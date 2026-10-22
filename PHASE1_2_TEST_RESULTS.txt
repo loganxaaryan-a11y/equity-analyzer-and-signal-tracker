@@ -1,0 +1,50 @@
+$ bun test server/src/measurement.test.ts
+bun test v1.4.2 (744846f84)
+
+server/src/measurement.test.ts:
+(pass) Phase 1.1 time and coverage closure > pre-issuance target cannot settle the prospective setup [11.96ms]
+(pass) Phase 1.1 time and coverage closure > missing OHLC before a later target is unverified [2.56ms]
+(pass) Phase 1.1 time and coverage closure > a future daily candle is never consumed [1.65ms]
+(pass) Phase 1.1 time and coverage closure > expiry inside a daily candle cannot prove a touch [1.81ms]
+(pass) Phase 1.1 time and coverage closure > missing first, middle, and tail sessions never become verified time exits [5.55ms]
+(pass) Phase 1.1 time and coverage closure > opening adverse gap applies before unordered high and low [2.42ms]
+(pass) Phase 1.1 time and coverage closure > double-touch daily bar stays ambiguous [1.94ms]
+(pass) Phase 1.1 time and coverage closure > research-reference price cannot masquerade as executable setup [8.56ms]
+(pass) Phase 1.1 time and coverage closure > time exit uses the exact declared final session close [21.84ms]
+(pass) returns, costs, calendars, and products > linear shorts use entry notional [0.08ms]
+(pass) returns, costs, calendars, and products > unknown cost is null; modeled 18 bps is explicit [3.30ms]
+(pass) returns, costs, calendars, and products > frozen META target 115 reaches evaluation unchanged [1.68ms]
+(pass) returns, costs, calendars, and products > XNYS DST and early close bounds are explicit [2.34ms]
+(pass) returns, costs, calendars, and products > fixed-horizon direction fails closed across missing sessions [2.11ms]
+(pass) returns, costs, calendars, and products > direction forecast does not consume evidence unavailable at cutoff [1.29ms]
+(pass) returns, costs, calendars, and products > entry inside a session cannot skip an unobserved entry-day path [1.38ms]
+(pass) returns, costs, calendars, and products > calendar dates outside validated coverage fail closed [1.59ms]
+(pass) append-only read model and offline replay > accepted revision selects improved evidence and preserves predecessor row [0.31ms]
+(pass) append-only read model and offline replay > offline replay ignores inputs unavailable at decision time [1.57ms]
+(pass) append-only read model and offline replay > sample sufficiency does not validate poor economics or edge [0.45ms]
+
+ 20 pass
+ 0 fail
+ 57 expect() calls
+Ran 20 tests across 1 file. [120.00ms]
+
+$ bun test server/src/phase1_2.integration.test.ts
+bun test v1.4.2 (744846f84)
+
+server/src/phase1_2.integration.test.ts:
+(pass) Phase 1.2 reconstruction integration > untouched raw snapshot reconstructs every compared output without network access [7.69ms]
+(pass) Phase 1.2 reconstruction integration > changing a relevant raw input produces field-level mismatches [7.20ms]
+(pass) Phase 1.2 reconstruction integration > altering saved outputs alone is detected [3.98ms]
+(pass) Phase 1.2 reconstruction integration > post-decision unavailable input has no effect [4.26ms]
+(pass) Phase 1.2 cohort isolation > accepted revision selection excludes mixed strategy, horizon, evaluator and cost cohorts [2.55ms]
+
+ 5 pass
+ 0 fail
+ 13 expect() calls
+Ran 5 tests across 1 file. [38.00ms]
+
+$ bun x tsc --noEmit -p server/tsconfig.json
+exit: 0
+
+$ bun x tsc --noEmit -p client/tsconfig.json
+exit: 0

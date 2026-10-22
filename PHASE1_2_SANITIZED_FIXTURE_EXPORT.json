@@ -1,0 +1,101 @@
+{
+  "fixtureType": "synthetic",
+  "purpose": "Phase 1.2 deterministic replay acceptance fixture; never inserted into production",
+  "issuance": {
+    "identity": "SYNTHETIC|equity-factor-agreement|3.1.0-measurement-closure|atr2-target1.5R-weights-6-8-8-20-8-20-20|decision-2025-08-19",
+    "decisionAt": "2025-08-19T21:00:00.000Z"
+  },
+  "rawSnapshot": {
+    "barCount": 230,
+    "availableThrough": "2025-08-19T21:00:00.000Z",
+    "firstDate": "2025-01-02",
+    "lastDate": "2025-08-19"
+  },
+  "recomputedReplay": {
+    "status": "reconstructed",
+    "decision": {
+      "direction": "long",
+      "score": 33,
+      "rawScore": 33,
+      "redundancyAdjustment": 0
+    },
+    "levels": {
+      "entryPrice": 119.77,
+      "stopPrice": 115.17,
+      "target1": 126.67,
+      "target2": 131.27,
+      "atr14": 2.3
+    },
+    "factors": [
+      {
+        "id": "price_vs_sma20",
+        "name": "Price vs SMA 20",
+        "weight": 6,
+        "score": 1,
+        "contribution": 6,
+        "reading": "119.77 vs 117.5"
+      },
+      {
+        "id": "price_vs_sma50",
+        "name": "Price vs SMA 50",
+        "weight": 8,
+        "score": 1,
+        "contribution": 8,
+        "reading": "119.77 vs 116.38"
+      },
+      {
+        "id": "price_vs_sma200",
+        "name": "Price vs SMA 200",
+        "weight": 8,
+        "score": 1,
+        "contribution": 8,
+        "reading": "119.77 vs 110.41"
+      },
+      {
+        "id": "rsi14_wilder",
+        "name": "Wilder RSI 14",
+        "weight": 20,
+        "score": 0,
+        "contribution": 0,
+        "reading": "88.54"
+      },
+      {
+        "id": "macd_12_26",
+        "name": "MACD 12–26",
+        "weight": 8,
+        "score": 1,
+        "contribution": 8,
+        "reading": "1.04"
+      },
+      {
+        "id": "volume_direction_z",
+        "name": "High-volume direction",
+        "weight": 20,
+        "score": 0,
+        "contribution": 0,
+        "reading": "0.03σ"
+      },
+      {
+        "id": "atr_adjusted_trend30",
+        "name": "ATR-adjusted 30-session trend",
+        "weight": 20,
+        "score": 0,
+        "contribution": 0,
+        "reading": "0.21"
+      }
+    ]
+  },
+  "originalEvaluation": {
+    "status": "OPEN",
+    "reason": "synthetic issuance has no post-entry path fixture"
+  },
+  "improvedEvidenceRevision": {
+    "status": "not_executed",
+    "reason": "daily revision linkage was runtime-probed on copied real rows; this synthetic replay fixture was intentionally not persisted"
+  },
+  "trackerResult": {
+    "cohort": "equity-factor-agreement|3.1.0-measurement-closure|atr2-target1.5R-weights-6-8-8-20-8-20-20|30 trading_sessions|equity-eval-3.2.0|Yahoo adjusted OHLC research reference|research_only_reference|unknown",
+    "included": false,
+    "reason": "synthetic fixture not persisted"
+  }
+}

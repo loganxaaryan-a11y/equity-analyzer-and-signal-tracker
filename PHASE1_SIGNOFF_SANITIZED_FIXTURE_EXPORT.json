@@ -1,0 +1,83 @@
+{
+  "fixtureClass": "synthetic_test_only",
+  "generatedAt": "2026-10-09T16:00:00.000Z",
+  "strategy": {
+    "id": "equity-factor-agreement",
+    "version": "3.1.0-measurement-closure",
+    "parameterHash": "atr2-target1.5R-weights-6-8-8-20-8-20-20",
+    "evaluatorVersion": "equity-eval-3.2.0",
+    "buildId": "phase1-final-signoff-2026-10-09"
+  },
+  "candidateConsistency": {
+    "expertCounterexample": {
+      "oldPath": {
+        "draftValidated": { "direction": "long", "allowed": true },
+        "candidatePersisted": { "direction": "short", "score": -16 },
+        "defect": "The persisted short inherited the earlier long gate."
+      },
+      "repairedPath": {
+        "reconstructionStatus": "rejected",
+        "finalCandidate": { "direction": "short", "score": -16 },
+        "finalGate": { "allowed": false, "reason": "short-regime: bearish daily structure gate not met" },
+        "persistenceReached": false,
+        "suppressedCandidateLogged": true
+      }
+    },
+    "mirroredAcceptedFixture": {
+      "draftDirection": "short",
+      "acceptedDirection": "long",
+      "bundleCounts": { "signal": 1, "rawInputSnapshot": 1, "issuedEvent": 1 },
+      "identityInvariant": "stored levels = raw snapshot levels = issued-event levels = accepted candidate levels",
+      "retryResult": "accepted original bundle; no duplicate"
+    }
+  },
+  "dailyActionReadModel": {
+    "issuance": {
+      "signalId": 701,
+      "symbol": "FIX",
+      "kind": "synthetic current-cohort fixture",
+      "entryConvention": "historical Yahoo adjusted-close research reference",
+      "tradeSetupEligibility": "research-only; never treated as executable paper fill"
+    },
+    "evidence": {
+      "calendar": "XNYS",
+      "horizon": 30,
+      "unit": "trading_sessions",
+      "source": "synthetic coherent OHLC fixture",
+      "freshProviderCase": "30 required sessions present",
+      "cachedProviderCase": "same 30 required sessions present after injected fresh-provider failure",
+      "missingProviderCase": "zero required sessions present"
+    },
+    "firstRun": {
+      "revisions": [
+        { "product": "trade_setup", "verdict": "UNVERIFIED", "reasonCode": "research_only_entry" },
+        { "product": "direction_forecast", "verdict": "HIT", "reasonCode": "fixed_horizon_direction" }
+      ],
+      "tracker": { "directionForecast": "HIT", "tradeSetup": "UNVERIFIED", "unverifiedDenominator": 1 },
+      "scorecard": { "gradedTradeSetups": 0, "unverified": 1 }
+    },
+    "identicalRetry": { "newRevisionCount": 0, "totalRevisionCount": 2 },
+    "freshProviderFailureWithAdequateCache": {
+      "jobOk": false,
+      "coverageReportedDegraded": true,
+      "directionForecast": "HIT",
+      "tradeSetup": "UNVERIFIED"
+    },
+    "freshProviderFailureWithInadequateCache": {
+      "jobOk": false,
+      "directionForecast": "UNVERIFIED",
+      "manufacturedOutcome": false
+    }
+  },
+  "persistenceFaultInjection": {
+    "writeBoundariesExercised": ["tracked signal", "raw input snapshot", "issued event"],
+    "failureResult": "atomic batch rolled back; zero partial rows visible",
+    "retryResult": "one complete logical bundle",
+    "interleavedIdenticalAndCompetingRequests": "one accepted original bundle returned deterministically"
+  },
+  "limitations": [
+    "All rows in this export are sanitized synthetic fixtures, not production signals.",
+    "No genuine post-edit issuance is represented.",
+    "No scheduled production-cycle or incident-log evidence is represented."
+  ]
+}

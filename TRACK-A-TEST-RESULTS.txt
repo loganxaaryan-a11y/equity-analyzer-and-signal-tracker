@@ -1,0 +1,81 @@
+bun test v1.4.2 (744846f84)
+
+research/src/harness.test.ts:
+(pass) frozen hypothesis semantics > requires full warm-up [1.72ms]
+(pass) frozen hypothesis semantics > trend continuation emits only aligned strict direction [7.67ms]
+(pass) frozen hypothesis semantics > breakout references exclude the current bar [6.44ms]
+(pass) frozen hypothesis semantics > missing or zero volume cannot pass [1.16ms]
+(pass) data integrity and corporate actions > rejects incoherent OHLC [0.71ms]
+(pass) data integrity and corporate actions > unresolved split-like discontinuity is excluded for unadjusted data [0.22ms]
+(pass) data integrity and corporate actions > duplicate dates are rejected [0.11ms]
+(pass) calendar, timing and labels > XNYS holiday and early close are valid [21.88ms]
+(pass) calendar, timing and labels > crypto availability skips the adjacent open that precedes publication [56.45ms]
+(pass) calendar, timing and labels > equity entry uses a later eligible XNYS open [198.74ms]
+(pass) calendar, timing and labels > unmatured horizons remain pending [22.64ms]
+(pass) calendar, timing and labels > long and short return arithmetic is linear on entry notional [0.51ms]
+(pass) chronology, estimand and isolation > future unavailable bars cannot change an earlier decision [72.32ms]
+(pass) chronology, estimand and isolation > deliberate future-feature leakage fixture is rejected by cutoff filtering [35.76ms]
+(pass) chronology, estimand and isolation > purges validation labels that overlap the next boundary [44.75ms]
+(pass) chronology, estimand and isolation > all assets use the same date split [85.65ms]
+(pass) chronology, estimand and isolation > matched always-short is the inverse of matched always-long [38.48ms]
+(pass) chronology, estimand and isolation > round-trip bps are converted to decimal return once [37.92ms]
+(pass) chronology, estimand and isolation > reruns are deterministic [100.56ms]
+(pass) chronology, estimand and isolation > normal research command blocks the holdout [1.85ms]
+(pass) chronology, estimand and isolation > legacy scoreboard merge is rejected [6.89ms]
+
+server/src/measurement.test.ts:
+(pass) Phase 1.1 time and coverage closure > pre-issuance target cannot settle the prospective setup [5.95ms]
+(pass) Phase 1.1 time and coverage closure > missing OHLC before a later target is unverified [2.57ms]
+(pass) Phase 1.1 time and coverage closure > a future daily candle is never consumed [1.81ms]
+(pass) Phase 1.1 time and coverage closure > expiry inside a daily candle cannot prove a touch [1.11ms]
+(pass) Phase 1.1 time and coverage closure > missing first, middle, and tail sessions never become verified time exits [3.52ms]
+(pass) Phase 1.1 time and coverage closure > opening adverse gap applies before unordered high and low [1.67ms]
+(pass) Phase 1.1 time and coverage closure > double-touch daily bar stays ambiguous [1.78ms]
+(pass) Phase 1.1 time and coverage closure > research-reference price cannot masquerade as executable setup [5.28ms]
+(pass) Phase 1.1 time and coverage closure > time exit uses the exact declared final session close [10.14ms]
+(pass) returns, costs, calendars, and products > linear shorts use entry notional [0.08ms]
+(pass) returns, costs, calendars, and products > unknown cost is null; modeled 18 bps is explicit [2.47ms]
+(pass) returns, costs, calendars, and products > frozen META target 115 reaches evaluation unchanged [1.53ms]
+(pass) returns, costs, calendars, and products > XNYS DST and early close bounds are explicit [0.59ms]
+(pass) returns, costs, calendars, and products > fixed-horizon direction fails closed across missing sessions [1.68ms]
+(pass) returns, costs, calendars, and products > direction forecast does not consume evidence unavailable at cutoff [1.15ms]
+(pass) returns, costs, calendars, and products > entry inside a session cannot skip an unobserved entry-day path [1.29ms]
+(pass) returns, costs, calendars, and products > calendar dates outside validated coverage fail closed [1.61ms]
+(pass) append-only read model and offline replay > accepted revision selects improved evidence and preserves predecessor row [0.20ms]
+(pass) append-only read model and offline replay > offline replay ignores inputs unavailable at decision time [1.72ms]
+(pass) append-only read model and offline replay > sample sufficiency does not validate poor economics or edge [0.15ms]
+
+server/src/phase1_2.integration.test.ts:
+(pass) Phase 1.2 reconstruction integration > untouched raw snapshot reconstructs every compared output without network access [5.80ms]
+(pass) Phase 1.2 reconstruction integration > changing a relevant raw input produces field-level mismatches [3.15ms]
+(pass) Phase 1.2 reconstruction integration > altering saved outputs alone is detected [3.30ms]
+(pass) Phase 1.2 reconstruction integration > post-decision unavailable input has no effect [3.43ms]
+(pass) Phase 1.2 cohort isolation > accepted revision selection excludes mixed strategy, horizon, evaluator and cost cohorts [0.34ms]
+
+server/src/final_signoff.integration.test.ts:
+(pass) final Phase 1 equity candidate consistency > actual recordSignal rejects the expert LONG-to-SHORT counterexample before persistence [31.14ms]
+(pass) final Phase 1 equity candidate consistency > changing the draft stop cannot change the reconstructed final rejection [47.14ms]
+(pass) final Phase 1 equity candidate consistency > mirrored SHORT-to-LONG case stores one bundle whose snapshot, gate and levels match [25.52ms]
+(pass) final Phase 1 equity candidate consistency > actual production batch rolls back at every write boundary and retry completes exactly one bundle [138.81ms]
+(pass) final Phase 1 equity candidate consistency > interleaved identical and competing requests deterministically return one original bundle [47.79ms]
+(pass) final Phase 1 equity candidate consistency > shared production reconstruction preserves anomaly and freshness gates [1.25ms]
+(pass) final Phase 1 daily action and read-model integration > actual daily action core creates one revision set, and tracker/scorecard select the accepted cohort [38.62ms]
+(pass) final Phase 1 daily action and read-model integration > provider failure with adequate cache resolves only eligible forecast evidence and reports degraded status [23.06ms]
+(pass) final Phase 1 daily action and read-model integration > provider failure with inadequate cache remains unresolved with explicit coverage [2.79ms]
+
+server/src/freshness.test.ts:
+(pass) Track A market freshness isolation > throttled analysis does not enter the market-data budget [0.11ms]
+(pass) Track A market freshness isolation > old provider content stays stale even after a successful receipt [0.19ms]
+(pass) Track A market freshness isolation > forming crypto candle later closes without changing identity of prior version [0.12ms]
+(pass) Track A market freshness isolation > provider outage retains age but reports error [0.06ms]
+(pass) Track A market freshness isolation > recovery derives a deterministic observation key for deduplication [0.15ms]
+(pass) Track A market freshness isolation > fresh quote does not imply stale factor freshness [0.07ms]
+(pass) Track A market freshness isolation > status planning never mutates frozen levels [0.19ms]
+(pass) Track A market freshness isolation > barrier observation remains observed-only without path evidence [0.05ms]
+(pass) Track A market freshness isolation > repeated status input produces the same deterministic identity material [0.07ms]
+(pass) Track A market freshness isolation > equity quote is labeled market-closed rather than real-time [0.07ms]
+
+ 65 pass
+ 0 fail
+ 168 expect() calls
+Ran 65 tests across 5 files. [1.77s]

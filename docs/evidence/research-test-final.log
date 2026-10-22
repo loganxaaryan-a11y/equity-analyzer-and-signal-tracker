@@ -1,0 +1,44 @@
+bun test v1.4.2 (744846f84)
+
+src/harness.test.ts:
+(pass) frozen hypothesis semantics > requires a complete 200-bar warm-up [2.44ms]
+(pass) frozen hypothesis semantics > trend continuation emits only aligned strict direction [26.30ms]
+(pass) frozen hypothesis semantics > breakout references exclude the current bar [13.26ms]
+(pass) frozen hypothesis semantics > missing or zero volume cannot pass [3.45ms]
+(pass) data integrity, sessions, and corporate actions > rejects incoherent OHLC [0.99ms]
+(pass) data integrity, sessions, and corporate actions > rejects malformed dates and nonchronological rows [0.14ms]
+(pass) data integrity, sessions, and corporate actions > unresolved split-like discontinuity is rejected for unadjusted data [0.72ms]
+(pass) data integrity, sessions, and corporate actions > duplicate dates are rejected [0.17ms]
+(pass) data integrity, sessions, and corporate actions > XNYS holiday and early close use actual session bounds [24.37ms]
+(pass) data integrity, sessions, and corporate actions > equity event time must equal its XNYS close [3.15ms]
+(pass) actual market clock and exact horizon > crypto availability skips the adjacent open that precedes publication [310.88ms]
+(pass) actual market clock and exact horizon > equity entry uses a later eligible XNYS open [3964.27ms]
+(pass) actual market clock and exact horizon > July 3–8 counterexample does not stretch when July 4 is deleted [482.47ms]
+(pass) actual market clock and exact horizon > a missing exact endpoint becomes unverified and never slides [236.39ms]
+(pass) actual market clock and exact horizon > a missing expected feature session is a feature exclusion [217.85ms]
+(pass) actual market clock and exact horizon > unmatured exact horizons remain pending [132.59ms]
+(pass) actual market clock and exact horizon > KO counterexample uses the endpoint bar's declared September 9 availability and purges before the September 8 fold [3780.12ms]
+(pass) actual market clock and exact horizon > delayed feature publication fails closed on both fold and holdout boundaries [5144.29ms]
+(pass) actual market clock and exact horizon > fixed-lag declarations reject inconsistent publication timestamps explicitly [1.83ms]
+(pass) actual market clock and exact horizon > long and short arithmetic is linear on entry notional [0.07ms]
+(pass) estimand, holdout, and uncertainty > matched candidate and SMA costs produce exactly zero gross and net differences [538.47ms]
+(pass) estimand, holdout, and uncertainty > SMA baseline cannot compress its exact window by borrowing an older available bar [663.80ms]
+(pass) estimand, holdout, and uncertainty > candidate abstentions and baseline eligibility are evaluated independently [422.95ms]
+(pass) estimand, holdout, and uncertainty > uncertainty uses complete scheduled date blocks and excludes the short tail [276.94ms]
+(pass) estimand, holdout, and uncertainty > future unavailable bars cannot change an earlier decision [438.78ms]
+(pass) estimand, holdout, and uncertainty > purges validation labels that overlap the next boundary [273.64ms]
+(pass) estimand, holdout, and uncertainty > engine rejects synthetic holdout bars before observations [1.89ms]
+(pass) estimand, holdout, and uncertainty > ordinary command guard rejects the same synthetic holdout input [39.15ms]
+(pass) estimand, holdout, and uncertainty > normal research command blocks holdout-opening aliases [0.29ms]
+(pass) estimand, holdout, and uncertainty > legacy scoreboard merge is rejected [2.60ms]
+(pass) estimand, holdout, and uncertainty > reruns are deterministic [878.08ms]
+(pass) synthetic controls remain separate from market evidence > positive control detects a pre-decision feature predictive by construction [1140.28ms]
+(pass) synthetic controls remain separate from market evidence > negative controls record fixed seeds and do not falsely qualify [1283.13ms]
+(pass) synthetic controls remain separate from market evidence > control cohort and separation contract cannot impersonate market evidence [1375.70ms]
+
+ 34 pass
+ 0 fail
+ 60 expect() calls
+Ran 34 tests across 1 file. [21.75s]
+
+EXIT_CODE=0

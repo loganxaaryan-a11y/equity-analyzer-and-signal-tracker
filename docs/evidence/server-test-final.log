@@ -1,0 +1,73 @@
+bun test v1.4.2 (744846f84)
+
+src/measurement.test.ts:
+(pass) Phase 1.1 time and coverage closure > pre-issuance target cannot settle the prospective setup [5.71ms]
+(pass) Phase 1.1 time and coverage closure > missing OHLC before a later target is unverified [2.53ms]
+(pass) Phase 1.1 time and coverage closure > a future daily candle is never consumed [1.97ms]
+(pass) Phase 1.1 time and coverage closure > expiry inside a daily candle cannot prove a touch [1.62ms]
+(pass) Phase 1.1 time and coverage closure > missing first, middle, and tail sessions never become verified time exits [5.81ms]
+(pass) Phase 1.1 time and coverage closure > opening adverse gap applies before unordered high and low [2.42ms]
+(pass) Phase 1.1 time and coverage closure > double-touch daily bar stays ambiguous [1.86ms]
+(pass) Phase 1.1 time and coverage closure > research-reference price cannot masquerade as executable setup [9.25ms]
+(pass) Phase 1.1 time and coverage closure > time exit uses the exact declared final session close [31.90ms]
+(pass) returns, costs, calendars, and products > linear shorts use entry notional [0.15ms]
+(pass) returns, costs, calendars, and products > unknown cost is null; modeled 18 bps is explicit [4.01ms]
+(pass) returns, costs, calendars, and products > frozen META target 115 reaches evaluation unchanged [1.88ms]
+(pass) returns, costs, calendars, and products > XNYS DST and early close bounds are explicit [0.90ms]
+(pass) returns, costs, calendars, and products > fixed-horizon direction fails closed across missing sessions [2.36ms]
+(pass) returns, costs, calendars, and products > direction forecast does not consume evidence unavailable at cutoff [1.32ms]
+(pass) returns, costs, calendars, and products > entry inside a session cannot skip an unobserved entry-day path [1.48ms]
+(pass) returns, costs, calendars, and products > calendar dates outside validated coverage fail closed [1.79ms]
+(pass) append-only read model and offline replay > accepted revision selects improved evidence and preserves predecessor row [0.28ms]
+(pass) append-only read model and offline replay > offline replay ignores inputs unavailable at decision time [1.75ms]
+(pass) append-only read model and offline replay > sample sufficiency does not validate poor economics or edge [0.45ms]
+
+src/phase1_2.integration.test.ts:
+(pass) Phase 1.2 reconstruction integration > untouched raw snapshot reconstructs every compared output without network access [7.65ms]
+(pass) Phase 1.2 reconstruction integration > changing a relevant raw input produces field-level mismatches [2.95ms]
+(pass) Phase 1.2 reconstruction integration > altering saved outputs alone is detected [2.63ms]
+(pass) Phase 1.2 reconstruction integration > post-decision unavailable input has no effect [2.44ms]
+(pass) Phase 1.2 cohort isolation > accepted revision selection excludes mixed strategy, horizon, evaluator and cost cohorts [0.45ms]
+
+src/final_signoff.integration.test.ts:
+(pass) final Phase 1 equity candidate consistency > actual recordSignal rejects the expert LONG-to-SHORT counterexample before persistence [33.83ms]
+(pass) final Phase 1 equity candidate consistency > changing the draft stop cannot change the reconstructed final rejection [72.02ms]
+(pass) final Phase 1 equity candidate consistency > mirrored SHORT-to-LONG case stores one bundle whose snapshot, gate and levels match [54.82ms]
+(pass) final Phase 1 equity candidate consistency > actual production batch rolls back at every write boundary and retry completes exactly one bundle [151.57ms]
+(pass) final Phase 1 equity candidate consistency > interleaved identical and competing requests deterministically return one original bundle [51.54ms]
+(pass) final Phase 1 equity candidate consistency > shared production reconstruction preserves anomaly and freshness gates [1.41ms]
+(pass) final Phase 1 daily action and read-model integration > actual daily action core creates one revision set, and tracker/scorecard select the accepted cohort [67.88ms]
+(pass) final Phase 1 daily action and read-model integration > provider failure with adequate cache resolves only eligible forecast evidence and reports degraded status [22.80ms]
+(pass) final Phase 1 daily action and read-model integration > provider failure with inadequate cache remains unresolved with explicit coverage [3.35ms]
+
+src/freshness.test.ts:
+(pass) Track A market freshness isolation > throttled analysis does not enter the market-data budget [0.16ms]
+(pass) Track A market freshness isolation > old provider content stays stale even after a successful receipt [0.20ms]
+(pass) Track A market freshness isolation > forming crypto candle later closes without changing identity of prior version [0.10ms]
+(pass) Track A market freshness isolation > provider outage retains age but reports error [0.05ms]
+(pass) Track A market freshness isolation > recovery derives a deterministic observation key for deduplication [0.13ms]
+(pass) Track A market freshness isolation > fresh quote does not imply stale factor freshness [0.10ms]
+(pass) Track A market freshness isolation > status planning never mutates frozen levels [0.72ms]
+(pass) Track A market freshness isolation > barrier observation remains observed-only without path evidence [0.05ms]
+(pass) Track A market freshness isolation > repeated status input produces the same deterministic identity material [0.06ms]
+(pass) Track A market freshness isolation > equity quote is labeled market-closed rather than real-time [0.04ms]
+(pass) Track A market freshness isolation > freshness is recalculated at read time while fetch health remains separate [0.13ms]
+(pass) Track A market freshness isolation > successful unchanged fetch records health but does not freshen old provider content [0.07ms]
+(pass) Track A market freshness isolation > future provider timestamps fail closed [0.03ms]
+(pass) Track A market freshness isolation > pre-issuance quote cannot append a barrier event [0.20ms]
+(pass) Track A market freshness isolation > stale and incompatible quote observations cannot append barrier events [0.08ms]
+
+src/market_refresh.integration.test.ts:
+(pass) deterministic market refresh action / worker / read-model integration > success advances observation stream pointers and exposes independent provider, receipt, and success clocks [112.52ms]
+(pass) deterministic market refresh action / worker / read-model integration > unchanged response reuses observations while recording successful refresh health [94.72ms]
+(pass) deterministic market refresh action / worker / read-model integration > provider outage preserves the stream pointer and last success while advancing attempt health [73.07ms]
+(pass) deterministic market refresh action / worker / read-model integration > 429 retries exactly once through the injected delay and recovers into persisted state [61.79ms]
+(pass) deterministic market refresh action / worker / read-model integration > concurrent same-symbol action triggers share one provider worker without duplicating observations [54.96ms]
+(pass) deterministic market refresh action / worker / read-model integration > stale and pre-issuance quotes append no barrier events and issued decision bytes remain immutable [66.94ms]
+
+ 55 pass
+ 0 fail
+ 191 expect() calls
+Ran 55 tests across 5 files. [1338.00ms]
+
+EXIT_CODE=0

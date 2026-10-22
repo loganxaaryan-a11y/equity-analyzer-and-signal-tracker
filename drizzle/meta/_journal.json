@@ -1,0 +1,370 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1790847405215,
+      "tag": "0001_initial",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1790847405215,
+      "tag": "0002_trading_journal_and_rules",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1790848131553,
+      "tag": "0003_add_signals_watchlist_alerts",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1790878814983,
+      "tag": "0004_add_theories_predictions_ripples_evidence",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1790881957901,
+      "tag": "0005_add_agentic_theory_watch",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1790885816350,
+      "tag": "0006_add_automatic_market_scans",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1790887320233,
+      "tag": "0007_add_scan_confidence_dimensions",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1790888066981,
+      "tag": "0008_add_signal_evidence_breakdown",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1790899611845,
+      "tag": "0009_add_engine_hits",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1790901877027,
+      "tag": "0010_add_historical_and_deep_analysis_caches",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1790907931281,
+      "tag": "0011_add_signal_interim_snapshots_and_briefs",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1790911246741,
+      "tag": "0012_theory_integrity_audit_fields",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "6",
+      "when": 1790919758658,
+      "tag": "0013_repair_theory_signals_and_gems",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "6",
+      "when": 1790988622182,
+      "tag": "0014_shared_news_and_signal_dedup",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "6",
+      "when": 1790993048916,
+      "tag": "0015_add_scan_exclusions_and_bls_monthly_cache",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "6",
+      "when": 1790994173511,
+      "tag": "0016_add_alpha_vantage_sentiment_snapshots",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "6",
+      "when": 1790997145092,
+      "tag": "0017_add_finnhub_ingest_snapshots",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "6",
+      "when": 1791001220539,
+      "tag": "0018_weighted_theory_run_summary",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "6",
+      "when": 1791157998610,
+      "tag": "0019_add_equity_valuation_snapshots",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "6",
+      "when": 1791239145678,
+      "tag": "0020_add_scorecard_verdicts",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "6",
+      "when": 1791306091051,
+      "tag": "0021_add_suppressed_signal_candidates",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "6",
+      "when": 1791306955718,
+      "tag": "0022_record_exact_suppressed_signal_day_ohlc",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "6",
+      "when": 1791312606085,
+      "tag": "0023_add_equity_universe_tiers",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "6",
+      "when": 1791318660073,
+      "tag": "0024_record_atr_scaled_invalidation_basis",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "6",
+      "when": 1791331707659,
+      "tag": "0025_cache_market_day_brief",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "6",
+      "when": 1791335679479,
+      "tag": "0026_add_dossier_daily_cache",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "6",
+      "when": 1791509567173,
+      "tag": "0027_phase1_signal_integrity",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "6",
+      "when": 1791511187983,
+      "tag": "0028_phase1_1_measurement_closure",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "6",
+      "when": 1791560139822,
+      "tag": "0029_unique_issued_event_per_signal",
+      "breakpoints": true
+    },
+    {
+      "idx": 29,
+      "version": "6",
+      "when": 1791568352524,
+      "tag": "0030_market_data_freshness_lanes",
+      "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "6",
+      "when": 1791826937111,
+      "tag": "0031_add_auditable_measurement_runs",
+      "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "6",
+      "when": 1791828208218,
+      "tag": "0032_measurement_run_item_reconciliation",
+      "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "6",
+      "when": 1791831336873,
+      "tag": "0033_measurement_run_integrity",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "6",
+      "when": 1791833592132,
+      "tag": "0034_measurement_batch_commit_journal",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "6",
+      "when": 1791837903927,
+      "tag": "0035_scanner_refresh_diagnostics_rotation",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "6",
+      "when": 1792044136250,
+      "tag": "0036_add_scheduler_invocation_receipts",
+      "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "6",
+      "when": 1792047489902,
+      "tag": "0037_add_scan_batch_runs",
+      "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "6",
+      "when": 1792110448053,
+      "tag": "0038_candidate_status_and_signal_link",
+      "breakpoints": true
+    },
+    {
+      "idx": 38,
+      "version": "6",
+      "when": 1792114499467,
+      "tag": "0039_discovery_lane",
+      "breakpoints": true
+    },
+    {
+      "idx": 39,
+      "version": "6",
+      "when": 1792116029261,
+      "tag": "0040_equity_alert_outbox",
+      "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "6",
+      "when": 1792170058739,
+      "tag": "0041_asset_context_history",
+      "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "6",
+      "when": 1792170420369,
+      "tag": "0042_add_asset_context_evidence_class",
+      "breakpoints": true
+    },
+    {
+      "idx": 42,
+      "version": "6",
+      "when": 1792177734019,
+      "tag": "0043_add_scan_batch_cycle_key",
+      "breakpoints": true
+    },
+    {
+      "idx": 43,
+      "version": "6",
+      "when": 1792459037595,
+      "tag": "0044_import_legacy_scorecard_verdicts",
+      "breakpoints": true
+    },
+    {
+      "idx": 44,
+      "version": "6",
+      "when": 1792470576216,
+      "tag": "0045_add_discovery_funnel_counts",
+      "breakpoints": true
+    },
+    {
+      "idx": 45,
+      "version": "6",
+      "when": 1792477906701,
+      "tag": "0046_add_cboe_daily_cache",
+      "breakpoints": true
+    },
+    {
+      "idx": 46,
+      "version": "6",
+      "when": 1792482573722,
+      "tag": "0047_add_scan_on_demand_run_state_and_proof_stamps",
+      "breakpoints": true
+    },
+    {
+      "idx": 47,
+      "version": "6",
+      "when": 1792530715726,
+      "tag": "0048_add_equity_notifications",
+      "breakpoints": true
+    },
+    {
+      "idx": 48,
+      "version": "6",
+      "when": 1792562437724,
+      "tag": "0049_add_invalidation_provenance_to_tracked_signals",
+      "breakpoints": true
+    },
+    {
+      "idx": 49,
+      "version": "6",
+      "when": 1792566443129,
+      "tag": "0050_add_eq2_shadow_assessments",
+      "breakpoints": true
+    },
+    {
+      "idx": 50,
+      "version": "6",
+      "when": 1792608460472,
+      "tag": "0051_add_equity_paper_fill_rule",
+      "breakpoints": true
+    },
+    {
+      "idx": 51,
+      "version": "6",
+      "when": 1792613740090,
+      "tag": "0052_add_equity_paper_issuance_activation",
+      "breakpoints": true
+    }
+  ]
+}

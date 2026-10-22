@@ -1,0 +1,52 @@
+$ bun test
+bun test v1.4.2 (744846f84)
+
+server/src/measurement.test.ts:
+(pass) Phase 1.1 time and coverage closure > pre-issuance target cannot settle the prospective setup [5.60ms]
+(pass) Phase 1.1 time and coverage closure > missing OHLC before a later target is unverified [3.11ms]
+(pass) Phase 1.1 time and coverage closure > a future daily candle is never consumed [1.74ms]
+(pass) Phase 1.1 time and coverage closure > expiry inside a daily candle cannot prove a touch [1.56ms]
+(pass) Phase 1.1 time and coverage closure > missing first, middle, and tail sessions never become verified time exits [6.92ms]
+(pass) Phase 1.1 time and coverage closure > opening adverse gap applies before unordered high and low [2.52ms]
+(pass) Phase 1.1 time and coverage closure > double-touch daily bar stays ambiguous [1.96ms]
+(pass) Phase 1.1 time and coverage closure > research-reference price cannot masquerade as executable setup [8.88ms]
+(pass) Phase 1.1 time and coverage closure > time exit uses the exact declared final session close [23.18ms]
+(pass) returns, costs, calendars, and products > linear shorts use entry notional [0.08ms]
+(pass) returns, costs, calendars, and products > unknown cost is null; modeled 18 bps is explicit [3.42ms]
+(pass) returns, costs, calendars, and products > frozen META target 115 reaches evaluation unchanged [1.86ms]
+(pass) returns, costs, calendars, and products > XNYS DST and early close bounds are explicit [4.23ms]
+(pass) returns, costs, calendars, and products > fixed-horizon direction fails closed across missing sessions [2.22ms]
+(pass) returns, costs, calendars, and products > direction forecast does not consume evidence unavailable at cutoff [1.29ms]
+(pass) returns, costs, calendars, and products > entry inside a session cannot skip an unobserved entry-day path [1.80ms]
+(pass) returns, costs, calendars, and products > calendar dates outside validated coverage fail closed [1.79ms]
+(pass) append-only read model and offline replay > accepted revision selects improved evidence and preserves predecessor row [0.26ms]
+(pass) append-only read model and offline replay > offline replay ignores inputs unavailable at decision time [1.96ms]
+(pass) append-only read model and offline replay > sample sufficiency does not validate poor economics or edge [0.53ms]
+
+server/src/phase1_2.integration.test.ts:
+(pass) Phase 1.2 reconstruction integration > untouched raw snapshot reconstructs every compared output without network access [6.33ms]
+(pass) Phase 1.2 reconstruction integration > changing a relevant raw input produces field-level mismatches [4.61ms]
+(pass) Phase 1.2 reconstruction integration > altering saved outputs alone is detected [3.96ms]
+(pass) Phase 1.2 reconstruction integration > post-decision unavailable input has no effect [4.46ms]
+(pass) Phase 1.2 cohort isolation > accepted revision selection excludes mixed strategy, horizon, evaluator and cost cohorts [0.40ms]
+
+server/src/final_signoff.integration.test.ts:
+(pass) final Phase 1 equity candidate consistency > actual recordSignal rejects the expert LONG-to-SHORT counterexample before persistence [51.43ms]
+(pass) final Phase 1 equity candidate consistency > changing the draft stop cannot change the reconstructed final rejection [71.75ms]
+(pass) final Phase 1 equity candidate consistency > mirrored SHORT-to-LONG case stores one bundle whose snapshot, gate and levels match [35.59ms]
+(pass) final Phase 1 equity candidate consistency > actual production batch rolls back at every write boundary and retry completes exactly one bundle [205.61ms]
+(pass) final Phase 1 equity candidate consistency > interleaved identical and competing requests deterministically return one original bundle [57.19ms]
+(pass) final Phase 1 equity candidate consistency > shared production reconstruction preserves anomaly and freshness gates [2.14ms]
+(pass) final Phase 1 daily action and read-model integration > actual daily action core creates one revision set, and tracker/scorecard select the accepted cohort [55.14ms]
+(pass) final Phase 1 daily action and read-model integration > provider failure with adequate cache resolves only eligible forecast evidence and reports degraded status [16.89ms]
+(pass) final Phase 1 daily action and read-model integration > provider failure with inadequate cache remains unresolved with explicit coverage [3.29ms]
+
+ 34 pass
+ 0 fail
+ 128 expect() calls
+Ran 34 tests across 3 files. [1258.00ms]
+[exit 0]
+
+$ bun run typecheck
+$ bun x tsc --noEmit -p client/tsconfig.json && bun x tsc --noEmit -p server/tsconfig.json
+[exit 0]
