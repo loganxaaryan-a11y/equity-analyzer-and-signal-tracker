@@ -30,3 +30,19 @@ pushing.
 The shared paper pipeline (paper-signals) is saved with the crypto terminal:
 `loganxaaryan-a11y/altcoin-analyzer-and-signal-tracker`. Earlier combined
 export (2026-10-15): `loganxaaryan-a11y/research-terminal-source`.
+
+
+## Export completion — 2026-10-22
+
+Added after verification against the export checklist: `vendor/space-sdk.tgz`
+(the `@hatch/space-sdk` tarball matching the `file:` dependency in package.json —
+a bare clone can now `bun install`), `PORTABILITY.md` (platform dependencies and
+what replaces them elsewhere), scheduler definitions under `workspace/crons/`
+(they previously existed only in the crypto repository), and canonical data
+exports under `workspace/exports/`: `paper-book-export.json` (the fill-rule
+cohort: 5 pending_entry setups with frozen levels, issuance records) and
+`tracked-signals-export.json` (all 57 tracked signals, populations labeled).
+Before this, the equity paper book existed only in the live terminal database
+and as one prose line in this README. Migration chain load-verified 2026-10-22:
+52/52 migrations apply cleanly to a scratch SQLite database. Exports are
+point-in-time records; the live system remains the source of truth.
