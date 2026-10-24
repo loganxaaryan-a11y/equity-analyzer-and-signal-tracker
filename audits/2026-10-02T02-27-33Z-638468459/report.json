@@ -1,0 +1,107 @@
+{
+  "ok": true,
+  "url": "https://artifact-capture.invalid/spaces/v2/hatch-audit-bec6a751-d2f1-45fa-8002-c75f7fd1550d/",
+  "duration_ms": 10421.989353,
+  "output_dir": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-02T02-27-33Z-638468459",
+  "nav_status": 200,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-02T02-27-33Z-638468459/screenshot.png",
+      "fullpage_screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-02T02-27-33Z-638468459/screenshot-full.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-02T02-27-33Z-638468459/screenshot-mobile.png"
+    }
+  },
+  "mobile_layout": {
+    "viewport_width": 390,
+    "scroll_width": 390,
+    "overflow_px": 0,
+    "widest_selector": null,
+    "verdict": "pass"
+  },
+  "horizontal_scrollers": [],
+  "unreachable_controls": {
+    "desktop": [],
+    "mobile": []
+  },
+  "clipped": {
+    "desktop": [],
+    "mobile": []
+  },
+  "images": {
+    "total": 0,
+    "broken": [],
+    "duplicate": [],
+    "unstable": [],
+    "failed_requests": [],
+    "external_blocked": {
+      "count": 0,
+      "sample": []
+    },
+    "sample_urls": [],
+    "verdict": "pass"
+  },
+  "text_issues": [],
+  "console_errors": [],
+  "console_warnings": [],
+  "external_fetch_failures": 2,
+  "external_fetch_failure_samples": [
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)",
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)"
+  ],
+  "blocked_requests": [],
+  "external_requests": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "method": "GET",
+      "resource_type": "stylesheet"
+    }
+  ],
+  "external_requests_dropped": 0,
+  "external_requests_dropped_data_bearing": 0,
+  "transport_ledger_active": true,
+  "egress_lockdown": true,
+  "transport_connections": [
+    {
+      "host": "artifact-capture.invalid",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 4068,
+      "bytes_down": 2488
+    },
+    {
+      "host": "fonts.googleapis.com",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "policy_denied": true
+    }
+  ],
+  "transport_udp_attempts": 0,
+  "transport_overflow": 0,
+  "unexplained_transport_hosts": [],
+  "broken_assets": [],
+  "blocked_affordances": [],
+  "interactive_nodes": 14,
+  "aria_snapshot": "- main:\n  - textbox \"Ticker, company, or commodity\"\n  - button \"ANALYZE\" [disabled]\n  - navigation \"Terminal sections\":\n    - button \"MARKET\"\n    - button \"DOSSIER\"\n    - button \"NEWS\"\n    - button \"SMART MONEY\"\n    - button \"SIGNALS\"\n    - button \"THEORIES\"\n    - button \"ENGINE HITS\"\n    - button \"WATCHLIST\"\n    - button \"JOURNAL\"\n  - region \"Market Day Brief\":\n    - text: MARKET DAY BRIEF\n    - heading \"MIXED\" [level=1]\n    - paragraph: 2/4 indexes bullish · 13/50 ranked names advancing (26%)\n    - button \"SYNTHESIZE + TEST\"\n    - button \"OPEN THEORIES\"\n    - text: \"INDEX ALIGNMENT 2 bullish · 2 bearish · 0 mixed SPY +25 / 15d +0.28% · QQQ +90 / 15d +3.38% · IWM -50 / 15d -4.14% · DIA -40 / 15d -2.1% REGIME unavailable Cycle clock withheld: required macro-proxy histories are not already cached. This action performs no new market-data requests. SMART MONEY mixed 4 filing alerts in 14 days: 0 purchase/add language, 0 sale/reduction language. Filing alerts are delayed evidence, not live flow.\"\n    - heading \"WHAT’S HAPPENING\" [level=3]\n    - text: 5 EVIDENCE CHAINS\n    - list:\n      - listitem:\n        - paragraph: 2 of 4 measured major indexes are bullish and 2 are bearish; 13/50 ranked candidates (26%) are positive over 15 sessions.\n        - link \"SPY +25 · 15d +0.28%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=0&period2=1790902636&interval=1d&events=div%2Csplits\n        - link \"QQQ +90 · 15d +3.38%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=0&period2=1790902636&interval=1d&events=div%2Csplits\n        - link \"IWM -50 · 15d -4.14%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/IWM?period1=0&period2=1790902636&interval=1d&events=div%2Csplits\n        - link \"DIA -40 · 15d -2.1%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/DIA?period1=0&period2=1790906929&interval=1d&events=div%2Csplits\n      - listitem:\n        - paragraph: Information Technology has the strongest retained sector agreement (+80) with 70% breadth; Financials is weakest at -80.\n        - link \"MU · 15d +3.63% · score +80\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/MU?interval=1d&range=2y&events=div%2Csplits\n        - link \"PLTR · 15d +10.33% · score +0\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/PLTR?interval=1d&range=2y&events=div%2Csplits\n        - link \"BRK-B · 15d -1.73% · score -80\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/BRK-B?interval=1d&range=2y&events=div%2Csplits\n        - link \"MS · 15d -12.66% · score -80\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/MS?interval=1d&range=2y&events=div%2Csplits\n      - listitem:\n        - paragraph: No retained scan signal currently clears the ±90 gate with a complete factor ledger, invalidation, timestamp, and source.\n        - text: NO LINKED SOURCE AVAILABLE\n      - listitem:\n        - paragraph: \"Smart-money posture: MIXED. 4 filing alerts in 14 days: 0 purchase/add language, 0 sale/reduction language. Filing alerts are delayed evidence, not live flow.\"\n        - link \"AAPL · Form 4 · 4 filed 2026-10-01.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/320193/000114036126038307/form4.xml\n        - link \"META · Form 4 · 4 filed 2026-09-28.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/1326801/000095010326014647/ownership.xml\n        - link \"META · Form 4 · 4 filed 2026-09-30.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/1326801/000095010326014886/ownership.xml\n        - link \"AAPL · Form 4 · 4 filed 2026-09-29.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/320193/000114036126038028/form4.xml\n      - listitem:\n        - paragraph: \"Top retained news driver: Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet. It matters because equities finished lower with small-cap underperformance as yields rose, leaving earnings reports as the near-term gauge of how demand and margins are holding up.\"\n        - link \"www.morningstar.com · retrieved 2026-10-02T00:21:53.133Z\":\n          - /url: https://www.morningstar.com/news/pr-newswire/20261001ln62150/weekly-losses-deepen-as-small-caps-lag-and-yields-edge-higher-into-earnings-gauntlet\n    - heading \"SECTOR SNAPSHOT\" [level=3]\n    - text: 15-SESSION\n    - table \"Sector direction and breadth\":\n      - row \"Sector Direction Breadth Notable\"\n      - row \"Information Technology +80 avg bullish 70% 7/10 MU +3.63% · +80 PLTR +10.33% · +0\":\n        - text: Information Technology +80 avg bullish 70% 7/10\n        - button \"MU +3.63% · +80\"\n        - button \"PLTR +10.33% · +0\"\n      - row \"Financials -80 avg bearish 0% 0/12 BRK-B -1.73% · -80 MS -12.66% · -80\":\n        - text: Financials -80 avg bearish 0% 0/12\n        - button \"BRK-B -1.73% · -80\"\n        - button \"MS -12.66% · -80\"\n      - row \"Consumer Staples -80 avg bearish 0% 0/3 MDLZ -7.37% · -80 MO -0.81% · +0\":\n        - text: Consumer Staples -80 avg bearish 0% 0/3\n        - button \"MDLZ -7.37% · -80\"\n        - button \"MO -0.81% · +0\"\n      - row \"Health Care -70 avg mixed 62.5% 5/8 MDT -6.09% · -80 LLY +2.92% · -60\":\n        - text: Health Care -70 avg mixed 62.5% 5/8\n        - button \"MDT -6.09% · -80\"\n        - button \"LLY +2.92% · -60\"\n      - row \"Industrials unrated mixed 20% 1/5 EMR +3.17% · +0 MMM -0.15% · +0\":\n        - text: Industrials unrated mixed 20% 1/5\n        - button \"EMR +3.17% · +0\"\n        - button \"MMM -0.15% · +0\"\n      - row \"Consumer Discretionary unrated mixed 0% 0/3 AMZN -1.29% · +0 GM -8.07% · +0\":\n        - text: Consumer Discretionary unrated mixed 0% 0/3\n        - button \"AMZN -1.29% · +0\"\n        - button \"GM -8.07% · +0\"\n      - row \"Utilities unrated mixed 0% 0/3 SO -6.17% · +0 NEE -8.36% · +0\":\n        - text: Utilities unrated mixed 0% 0/3\n        - button \"SO -6.17% · +0\"\n        - button \"NEE -8.36% · +0\"\n      - row \"Communication Services unrated mixed 0% 0/4 TMUS -8.04% · +0 CMCSA -11.51% · +0\":\n        - text: Communication Services unrated mixed 0% 0/4\n        - button \"TMUS -8.04% · +0\"\n        - button \"CMCSA -11.51% · +0\"\n      - row \"Real Estate unrated mixed 0% 0/1 AMT -6.69% · +0\":\n        - text: Real Estate unrated mixed 0% 0/1\n        - button \"AMT -6.69% · +0\"\n      - row \"Energy unrated mixed 0% 0/1 COP -8.34% · +0\":\n        - text: Energy unrated mixed 0% 0/1\n        - button \"COP -8.34% · +0\"\n    - text: SP100 latest ranked-candidate set; this is not full-universe advance/decline breadth. Cross-insight inputs are available. Run Synthesize + Test to draft candidates, pass each through chart/math/narrative/news verification, and update Theory Watch.\n    - time: 10/2/2026, 2:27:42 AM\n  - text: MARKET PULSE\n  - heading \"Prepared news / sector impact\" [level=3]\n  - button \"OPEN DISCOVERY\"\n  - article:\n    - text: www.morningstar.com\n    - time: 10/2/2026\n    - link \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\":\n      - /url: https://www.morningstar.com/news/pr-newswire/20261001ln62150/weekly-losses-deepen-as-small-caps-lag-and-yields-edge-higher-into-earnings-gauntlet\n      - heading \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\" [level=4]\n    - paragraph: It matters because equities finished lower with small-cap underperformance as yields rose, leaving earnings reports as the near-term gauge of how demand and margins are holding up.\n  - article:\n    - text: www.prnewswire.com\n    - time: 10/2/2026\n    - link \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\":\n      - /url: https://www.prnewswire.com/news-releases/weekly-losses-deepen-as-small-caps-lag-and-yields-edge-higher-into-earnings-gauntlet-302896471.html\n      - heading \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\" [level=4]\n    - paragraph: It matters because broad weekly declines led by small caps coincided with higher Treasury yields and subdued volatility, increasing attention on earnings for read-throughs on margins and demand.\n  - article:\n    - text: fxgt.com\n    - time: 10/2/2026\n    - 'link \"The Week Ahead: Key Economic Events to Watch for September 28-October 2, 2026\"':\n      - /url: https://fxgt.com/blog/the-week-ahead-key-economic-events-to-watch-for-september-28-october-2-2026/\n      - 'heading \"The Week Ahead: Key Economic Events to Watch for September 28-October 2, 2026\" [level=4]'\n    - paragraph: It matters because a busy calendar of Australian and US rate, inflation, and jobs releases alongside key earnings is expected to drive volatility across currencies, equities, and commodities.\n  - article:\n    - text: vistapglobal.com\n    - time: 10/2/2026\n    - link \"Stock Market Today October 1 2026 Closing Trends\":\n      - /url: https://vistapglobal.com/stock-market-today-october-1-2026-sp-500-and-nasdaq-rise-as-ai-strength-offsets-higher-rate-concerns-acn-amzn-avgo-docs-eprx-lpl-modd-mu-nke-nvda-ser/\n      - heading \"Stock Market Today October 1 2026 Closing Trends\" [level=4]\n    - paragraph: It matters because investors are weighing margin improvement against consumer demand and China recovery concerns while watching Treasury yields, oil prices, and the September jobs report for direction.\n  - heading \"Watchlist snapshot\" [level=3]\n  - button \"OPEN WATCHLIST\"\n  - text: SCANNING WATCHLIST…\n  - heading \"Broad-market signals\" [level=3]\n  - button \"OPEN MDT TAPE\"\n  - button \"MDT Health Care · -6.09% / 15 sessions -80 · SHORT / bearish MEDIUM confidence · 3 active setups\"\n  - button \"MU Information Technology · +3.63% / 15 sessions +80 · LONG / bullish MEDIUM confidence · 5 active setups\"\n  - button \"BRK-B Financials · -1.73% / 15 sessions -80 · SHORT / bearish MEDIUM confidence · 2 active setups\"\n  - button \"MS Financials · -12.66% / 15 sessions -80 · SHORT / bearish MEDIUM confidence · 6 active setups\"\n  - heading \"Engine hits\" [level=3]\n  - button \"OPEN LOG\"\n  - text: LOADING ENGINE HITS… MEASURING ROTATION…",
+  "audit_session_id": "825fc0b5-6ebd-4a07-8edc-b47980527f27",
+  "mobile_ms": 6967.410650999999,
+  "cold_launch_ms": 1298.8741260000002,
+  "desktop_ms": 7912.553508999999,
+  "browser_launches": 1,
+  "audit_path": "shared-concurrent",
+  "diagnostics": {
+    "audit_path": "shared-concurrent",
+    "concurrent_ran": true,
+    "concurrent_desktop_retry": false,
+    "concurrent_mobile_retry": false,
+    "shared_launch_failed": false,
+    "nav_retries": 0
+  }
+}

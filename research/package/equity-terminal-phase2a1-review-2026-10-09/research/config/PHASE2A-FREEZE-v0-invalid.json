@@ -1,0 +1,9 @@
+{
+  "frozenAt": "2026-10-09T16:23:05Z",
+  "specSha256": "204558351e63cf2d91484ccaf4767db62a646159615bae86167dd92cf8140571",
+  "trialRegistrySha256": "8fd97a2d3568e80756f8e11a14744bf3ada3c08c658f0c8468732d129ff81bdf",
+  "datasetManifestSha256": "598538f283737400509f02f7451cb8c5b26c8321927cd6807ca13da7277ef9f9",
+  "trainValidationDatasetSha256": "2ecd5373db6e42990a5ffcd9f3d8ebce08747eb0af73feb55d9d0bb40f13e68a",
+  "holdoutAggregateSha256": "bd8ec2194eada2031647b089a139c383254b55a8e71e9b3d83d6bc41c5c9ea41",
+  "outcomesViewedBeforeFreeze": false
+}

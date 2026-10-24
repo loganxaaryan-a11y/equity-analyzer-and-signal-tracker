@@ -365,6 +365,13 @@
       "when": 1792613740090,
       "tag": "0052_add_equity_paper_issuance_activation",
       "breakpoints": true
+    },
+    {
+      "idx": 52,
+      "version": "6",
+      "when": 1792776155568,
+      "tag": "0053_add_company_profiles",
+      "breakpoints": true
     }
   ]
 }

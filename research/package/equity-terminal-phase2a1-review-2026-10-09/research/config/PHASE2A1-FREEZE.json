@@ -1,0 +1,10 @@
+{
+  "frozenAt": "2026-10-09T18:16:00Z",
+  "status": "repair configuration frozen after original Phase 2A outcomes; no claim of unseen market evidence",
+  "priorExposurePreserved": true,
+  "holdoutOpened": false,
+  "registrySha256": "3c0a51f3b1ce3f3de0f531ee2cad6e4583170d7a1b2e7bfd18a21760c68bec72",
+  "engineSha256": "576a9062894aa2770ce1dba2843b4acdbd8b5c491f7f7afa8ed67731dd3e36ea",
+  "inputSha256": "1d474c568010c5f947e09f17fab619d663a484cadd960d78c69180ab811bc860",
+  "originalCandidateReportSha256": "66b08087e7a9ee0acb6b9afcd353428ecc2c678ae6740fdad71e117be3f44143"
+}

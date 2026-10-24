@@ -1,0 +1,127 @@
+{
+  "ok": true,
+  "url": "https://artifact-capture.invalid/spaces/v2/hatch-audit-02ecb7d3-2d12-4b6f-b6b6-76b00b65bccb/",
+  "duration_ms": 11952.070918000001,
+  "output_dir": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-23T17-27-58Z-474940027",
+  "nav_status": 200,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-23T17-27-58Z-474940027/screenshot.png",
+      "fullpage_screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-23T17-27-58Z-474940027/screenshot-full.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-23T17-27-58Z-474940027/screenshot-mobile.png"
+    }
+  },
+  "mobile_layout": {
+    "viewport_width": 390,
+    "scroll_width": 390,
+    "overflow_px": 0,
+    "widest_selector": null,
+    "verdict": "pass"
+  },
+  "horizontal_scrollers": [],
+  "unreachable_controls": {
+    "desktop": [],
+    "mobile": []
+  },
+  "clipped": {
+    "desktop": [],
+    "mobile": []
+  },
+  "images": {
+    "total": 0,
+    "broken": [],
+    "duplicate": [],
+    "unstable": [],
+    "failed_requests": [],
+    "external_blocked": {
+      "count": 0,
+      "sample": []
+    },
+    "sample_urls": [],
+    "verdict": "pass"
+  },
+  "text_issues": [],
+  "console_errors": [],
+  "console_warnings": [],
+  "external_fetch_failures": 2,
+  "external_fetch_failure_samples": [
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)",
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)"
+  ],
+  "blocked_requests": [],
+  "external_requests": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "method": "GET",
+      "resource_type": "stylesheet"
+    }
+  ],
+  "external_requests_dropped": 0,
+  "external_requests_dropped_data_bearing": 0,
+  "transport_ledger_active": true,
+  "egress_lockdown": true,
+  "transport_connections": [
+    {
+      "host": "fonts.googleapis.com",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "policy_denied": true
+    }
+  ],
+  "transport_udp_attempts": 0,
+  "transport_overflow": 0,
+  "unexplained_transport_hosts": [],
+  "broken_assets": [],
+  "blocked_affordances": [],
+  "interactive_nodes": 17,
+  "aria_snapshot": "- main:\n  - navigation \"Terminal destinations\":\n    - button \"TODAY\"\n    - button \"DOSSIER\"\n    - button \"SIGNALS\"\n    - button \"RESEARCH\"\n    - button \"NOTIFS\"\n    - button \"LOG\"\n  - note: OPPORTUNITIES — what changed · why it matters · timeframe · evidence and conflicts\n  - region \"Current opportunities\":\n    - text: OPPORTUNITIES · NEWEST FIRST\n    - heading \"What needs attention now\" [level=1]\n    - paragraph: One card per ticker. Watch alerts lead discovery candidates; related records stay visible under updates.\n    - button \"OPEN ALERT FEED\"\n    - article:\n      - text: WATCH ALERT GE GE\n      - strong: SHORT\n      - paragraph: Radar 90+ short\n      - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 310.85.\"\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:42:03 PM\n      - text: INVALIDATION\n      - strong: \"310.85\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 3\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/GE?period1=0&period2=1792752392&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT AAPL AAPL\n      - strong: LONG\n      - paragraph: Radar 90+ long\n      - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 335.33.\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:42:03 PM\n      - text: INVALIDATION\n      - strong: \"335.33\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 2\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/AAPL?period1=0&period2=1792752391&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT AVGO AVGO\n      - strong: SHORT\n      - paragraph: Radar 90+ short\n      - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 346.34.\"\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:42:03 PM\n      - text: INVALIDATION\n      - strong: \"346.34\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 2\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/AVGO?period1=0&period2=1792740261&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT MA MA\n      - strong: LONG\n      - paragraph: Radar 90+ long\n      - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 613.47.\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:42:03 PM\n      - text: INVALIDATION\n      - strong: \"613.47\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 1\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/MA?period1=0&period2=1792740452&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT BRK-B BRK-B\n      - strong: LONG\n      - paragraph: Radar 90+ long\n      - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 534.25.\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:42:02 PM\n      - text: INVALIDATION\n      - strong: \"534.25\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 2\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/BRK-B?period1=0&period2=1792752392&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT WMT WMT\n      - strong: LONG\n      - paragraph: Radar 90+ long\n      - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 116.27.\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:42:02 PM\n      - text: INVALIDATION\n      - strong: \"116.27\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 3\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/WMT?period1=0&period2=1792752392&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT LOW LOW\n      - strong: LONG\n      - paragraph: Radar 90+ long\n      - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 194.71.\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:42:02 PM\n      - text: INVALIDATION\n      - strong: \"194.71\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 1\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/LOW?period1=0&period2=1792740448&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT INTC INTC\n      - strong: SHORT\n      - paragraph: Radar 90+ short\n      - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 97.1.\"\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:42:01 PM\n      - text: INVALIDATION\n      - strong: \"97.1\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 3\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/INTC?period1=0&period2=1792752392&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT AMD AMD\n      - strong: SHORT\n      - paragraph: Radar 90+ short\n      - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 564.4.\"\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:42:01 PM\n      - text: INVALIDATION\n      - strong: \"564.4\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 1\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/AMD?period1=0&period2=1792752392&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT AMAT AMAT\n      - strong: SHORT\n      - paragraph: Radar 90+ short\n      - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 416.55.\"\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:42:00 PM\n      - text: INVALIDATION\n      - strong: \"416.55\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 1\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/AMAT?period1=0&period2=1792740257&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT PG PG\n      - strong: LONG\n      - paragraph: Radar 90+ long\n      - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 159.48.\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:42:00 PM\n      - text: INVALIDATION\n      - strong: \"159.48\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 4\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/PG?period1=0&period2=1792713442&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT LRCX LRCX\n      - strong: SHORT\n      - paragraph: Radar 90+ short\n      - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 261.15.\"\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:41:59 PM\n      - text: INVALIDATION\n      - strong: \"261.15\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 3\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/LRCX?period1=0&period2=1792740450&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT LMT LMT\n      - strong: LONG\n      - paragraph: Radar 90+ long\n      - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 559.65.\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:41:56 PM\n      - text: INVALIDATION\n      - strong: \"559.65\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 2\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/LMT?period1=0&period2=1792752392&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT GEV GEV\n      - strong: SHORT\n      - paragraph: Radar 90+ short\n      - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 921.42.\"\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:41:52 PM\n      - text: INVALIDATION\n      - strong: \"921.42\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 1\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/GEV?period1=0&period2=1792740368&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT UBER UBER\n      - strong: SHORT\n      - paragraph: Radar 90+ short\n      - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 71.23.\"\n      - text: OBSERVED\n      - strong: 10/22/2026, 1:51:44 PM\n      - text: INVALIDATION\n      - strong: \"71.23\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/UBER?period1=0&period2=1792676788&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT MS MS\n      - strong: SHORT\n      - paragraph: Radar 90+ short\n      - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 197.2.\"\n      - text: OBSERVED\n      - strong: 10/22/2026, 1:51:43 PM\n      - text: INVALIDATION\n      - strong: \"197.2\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 2\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/MS?period1=0&period2=1792615397&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT NFLX NFLX\n      - strong: SHORT\n      - paragraph: Radar 90+ short\n      - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 69.24.\"\n      - text: OBSERVED\n      - strong: 10/22/2026, 1:51:38 PM\n      - text: INVALIDATION\n      - strong: \"69.24\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 3\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/NFLX?period1=0&period2=1792666111&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT EMR EMR\n      - strong: LONG\n      - paragraph: Entry zone\n      - paragraph: Price 163.11 is within 1% of the tracked long entry 161.61.\n      - text: OBSERVED\n      - strong: 10/22/2026, 7:14:41 AM\n      - text: ENTRY CONDITION\n      - strong: Price 163.11 is within 1% of the tracked long entry 161.61.\n      - text: INVALIDATION\n      - strong: not stated\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 7\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/EMR?period1=0&period2=1792618018&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT META META\n      - strong: —\n      - paragraph: Form 4\n      - paragraph: 4 filed 2026-10-21.\n      - text: OBSERVED\n      - strong: 10/22/2026, 7:13:13 AM\n      - text: INVALIDATION\n      - strong: not stated\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - group: HISTORY / UPDATES · 4\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://www.sec.gov/Archives/edgar/data/1326801/000095010326015980/ownership.xml\n    - article:\n      - text: DISCOVERY CANDIDATE NOW ServiceNow, Inc.\n      - strong: LONG\n      - paragraph: Automated discovery · five-dimension gate\n      - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment\"\n      - text: OBSERVED\n      - strong: 10/23/2026, 1:36:29 PM\n      - text: INVALIDATION\n      - strong: \"144.7\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/NOW?period1=0&period2=1792762585&interval=1d&events=div%2Csplits\n    - article:\n      - text: DISCOVERY CANDIDATE XOM ExxonMobil Holdings Corporation\n      - strong: LONG\n      - paragraph: Automated discovery · five-dimension gate\n      - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n      - text: OBSERVED\n      - strong: 10/22/2026, 8:03:40 PM\n      - text: INVALIDATION\n      - strong: \"170.71\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/XOM?period1=0&period2=1792701930&interval=1d&events=div%2Csplits\n    - article:\n      - text: DISCOVERY CANDIDATE ABBV AbbVie Inc.\n      - strong: LONG\n      - paragraph: Automated discovery · five-dimension gate\n      - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n      - text: OBSERVED\n      - strong: 10/22/2026, 8:03:37 PM\n      - text: INVALIDATION\n      - strong: \"271.95\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/ABBV?period1=0&period2=1792740253&interval=1d&events=div%2Csplits\n    - article:\n      - text: DISCOVERY CANDIDATE CVX Chevron Corporation\n      - strong: LONG\n      - paragraph: Automated discovery · five-dimension gate\n      - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n      - text: OBSERVED\n      - strong: 10/22/2026, 8:03:32 PM\n      - text: INVALIDATION\n      - strong: \"217.47\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/CVX?period1=0&period2=1792740321&interval=1d&events=div%2Csplits\n    - article:\n      - text: DISCOVERY CANDIDATE MMM 3M Company\n      - strong: LONG\n      - paragraph: Automated discovery · five-dimension gate\n      - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment\"\n      - text: OBSERVED\n      - strong: 10/22/2026, 8:03:26 PM\n      - text: INVALIDATION\n      - strong: \"167.43\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/MMM?period1=0&period2=1792713424&interval=1d&events=div%2Csplits\n    - article:\n      - text: DISCOVERY CANDIDATE DHR Danaher Corporation\n      - strong: LONG\n      - paragraph: Automated discovery · five-dimension gate\n      - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment\"\n      - text: OBSERVED\n      - strong: 10/22/2026, 8:03:07 PM\n      - text: INVALIDATION\n      - strong: \"215.63\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/DHR?period1=0&period2=1792740332&interval=1d&events=div%2Csplits\n    - article:\n      - text: DISCOVERY CANDIDATE WFC Wells Fargo & Company\n      - strong: SHORT\n      - paragraph: Automated discovery · five-dimension gate\n      - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n      - text: OBSERVED\n      - strong: 10/22/2026, 8:02:58 PM\n      - text: INVALIDATION\n      - strong: \"86.95\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery. Loading shared asset context…\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/WFC?period1=0&period2\n… (aria snapshot truncated at 20000 chars)",
+  "document_text": {
+    "path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-23T17-27-58Z-474940027/document-text.txt",
+    "chars": 37009,
+    "truncated": false
+  },
+  "audit_session_id": "a3358eb0-6f2c-4d41-8b29-c6ca46ea529c",
+  "readiness": {
+    "desktop": {
+      "settled": false,
+      "settle_ms": 8016,
+      "in_flight": null,
+      "network_idle": false,
+      "retried": true
+    },
+    "mobile": {
+      "settled": false,
+      "settle_ms": 8016,
+      "in_flight": null,
+      "network_idle": false,
+      "retried": true
+    }
+  },
+  "color_scheme": {
+    "declared": "light",
+    "media_dependent": null,
+    "dark_frame": false
+  },
+  "mobile_ms": 10098.920625,
+  "cold_launch_ms": 277.159404,
+  "desktop_ms": 10466.473744,
+  "browser_launches": 1,
+  "audit_path": "shared-concurrent",
+  "diagnostics": {
+    "audit_path": "shared-concurrent",
+    "concurrent_ran": true,
+    "concurrent_desktop_retry": false,
+    "concurrent_mobile_retry": false,
+    "shared_launch_failed": false,
+    "nav_retries": 0,
+    "settle_retries": 2
+  }
+}

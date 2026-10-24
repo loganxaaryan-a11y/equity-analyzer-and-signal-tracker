@@ -1,0 +1,129 @@
+{
+  "ok": true,
+  "url": "https://artifact-capture.invalid/spaces/v2/hatch-audit-22cc0e60-cfc6-49d6-99ae-bf2606bdf70d/",
+  "duration_ms": 9578.633793,
+  "output_dir": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T00-57-22Z-893958866",
+  "nav_status": 200,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T00-57-22Z-893958866/screenshot.png",
+      "fullpage_screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T00-57-22Z-893958866/screenshot-full.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T00-57-22Z-893958866/screenshot-mobile.png"
+    }
+  },
+  "mobile_layout": {
+    "viewport_width": 390,
+    "scroll_width": 390,
+    "overflow_px": 0,
+    "widest_selector": null,
+    "verdict": "pass"
+  },
+  "horizontal_scrollers": [],
+  "unreachable_controls": {
+    "desktop": [],
+    "mobile": []
+  },
+  "clipped": {
+    "desktop": [],
+    "mobile": []
+  },
+  "images": {
+    "total": 0,
+    "broken": [],
+    "duplicate": [],
+    "unstable": [],
+    "failed_requests": [],
+    "external_blocked": {
+      "count": 0,
+      "sample": []
+    },
+    "sample_urls": [],
+    "verdict": "pass"
+  },
+  "text_issues": [],
+  "console_errors": [],
+  "console_warnings": [],
+  "external_fetch_failures": 2,
+  "external_fetch_failure_samples": [
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)",
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)"
+  ],
+  "blocked_requests": [],
+  "external_requests": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "method": "GET",
+      "resource_type": "stylesheet"
+    }
+  ],
+  "external_requests_dropped": 0,
+  "external_requests_dropped_data_bearing": 0,
+  "transport_ledger_active": true,
+  "egress_lockdown": true,
+  "transport_connections": [
+    {
+      "host": "artifact-capture.invalid",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 4132,
+      "bytes_down": 2483
+    },
+    {
+      "host": "fonts.googleapis.com",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "policy_denied": true
+    }
+  ],
+  "transport_udp_attempts": 0,
+  "transport_overflow": 0,
+  "unexplained_transport_hosts": [],
+  "broken_assets": [],
+  "blocked_affordances": [],
+  "interactive_nodes": 35,
+  "aria_snapshot": "- main:\n  - button \"rates\"\n  - button \"equities\"\n  - button \"elections\"\n  - button \"tech\"\n  - combobox \"Asset picker\":\n    - option \"ASSET PICKER\" [selected]\n    - option \"SPY · S&P 500\"\n    - option \"QQQ · Nasdaq 100\"\n    - option \"TLT · Treasuries\"\n    - option \"GLD · Gold\"\n    - option \"BTC · Bitcoin\"\n  - textbox \"Ticker or company\"\n  - button \"ANALYZE\" [disabled]\n  - text: POLYMARKET TOPIC\n  - textbox \"POLYMARKET TOPIC\"\n  - button \"FIND CROWD PRICE\" [disabled]\n  - navigation \"Terminal sections\":\n    - button \"MARKET\"\n    - button \"DOSSIER\"\n    - button \"NEWS\"\n    - button \"SMART MONEY\"\n    - button \"SIGNALS\"\n    - button \"THEORIES\"\n    - button \"ENGINE HITS\"\n    - button \"WATCHLIST\"\n    - button \"JOURNAL\"\n  - region \"Market Day Brief\":\n    - text: MARKET DAY BRIEF\n    - heading \"MIXED\" [level=1]\n    - paragraph: 2/4 indexes bullish · 24/78 ranked names advancing (30.77%)\n    - button \"SYNTHESIZE + TEST\"\n    - button \"OPEN THEORIES\"\n    - text: \"INDEX ALIGNMENT 2 bullish · 2 bearish · 0 mixed SPY +20 / 15d +1.06% · QQQ +73 / 15d +4.81% · IWM -38 / 15d -2.76% · DIA -38 / 15d -2.1% REGIME expansion As of 9/15/2026, 12:00:00 AM SMART MONEY mixed 4 filing alerts in 14 days: 0 purchase/add language, 0 sale/reduction language. Filing alerts are delayed evidence, not live flow.\"\n    - heading \"WHAT’S HAPPENING\" [level=3]\n    - text: 5 EVIDENCE CHAINS\n    - list:\n      - listitem:\n        - paragraph: 2 of 4 measured major indexes are bullish and 2 are bearish; 24/78 ranked candidates (30.77%) are positive over 15 sessions.\n        - link \"SPY +20 · 15d +1.06%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=0&period2=1790985760&interval=1d&events=div%2Csplits\n        - link \"QQQ +73 · 15d +4.81%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=0&period2=1790985760&interval=1d&events=div%2Csplits\n        - link \"IWM -38 · 15d -2.76%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/IWM?period1=0&period2=1790985760&interval=1d&events=div%2Csplits\n        - link \"DIA -38 · 15d -2.1%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/DIA?period1=0&period2=1790986355&interval=1d&events=div%2Csplits\n      - listitem:\n        - paragraph: Health Care has the strongest retained sector agreement (-80) with 54.55% breadth.\n        - link \"MDT · 15d -4.88% · score -80\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/MDT?period1=0&period2=1790988966&interval=1d&events=div%2Csplits\n        - link \"ISRG · 15d +11.31% · score +0\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/ISRG?period1=0&period2=1790985760&interval=1d&events=div%2Csplits\n        - link \"MDT · 15d -4.88% · score -80\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/MDT?period1=0&period2=1790988966&interval=1d&events=div%2Csplits\n        - link \"ISRG · 15d +11.31% · score +0\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/ISRG?period1=0&period2=1790985760&interval=1d&events=div%2Csplits\n      - listitem:\n        - paragraph: No retained scan signal currently clears the ±90 gate with a complete factor ledger, invalidation, timestamp, and source.\n        - text: NO LINKED SOURCE AVAILABLE\n      - listitem:\n        - paragraph: \"Smart-money posture: MIXED. 4 filing alerts in 14 days: 0 purchase/add language, 0 sale/reduction language. Filing alerts are delayed evidence, not live flow.\"\n        - link \"AAPL · Form 4 · 4 filed 2026-10-01.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/320193/000114036126038307/form4.xml\n        - link \"META · Form 4 · 4 filed 2026-09-28.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/1326801/000095010326014647/ownership.xml\n        - link \"META · Form 4 · 4 filed 2026-09-30.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/1326801/000095010326014886/ownership.xml\n        - link \"AAPL · Form 4 · 4 filed 2026-09-29.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/320193/000114036126038028/form4.xml\n      - listitem:\n        - paragraph: \"Top retained news driver: Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet. It matters because McCormick's sales growth and margin expansion contrasted with Conagra's sales decline, offering an early mixed signal on consumer demand and profitability into earnings season.\"\n        - link \"www.morningstar.com · retrieved 2026-10-03T00:56:30.358Z\":\n          - /url: https://www.morningstar.com/news/pr-newswire/20261001ln62150/weekly-losses-deepen-as-small-caps-lag-and-yields-edge-higher-into-earnings-gauntlet\n    - heading \"SECTOR SNAPSHOT\" [level=3]\n    - text: 15-SESSION\n    - table \"Sector direction and breadth\":\n      - row \"Sector Direction Breadth Notable\"\n      - row \"Health Care -80 avg mixed 54.55% 6/11 MDT -4.88% · -80 ISRG +11.31% · +0\":\n        - text: Health Care -80 avg mixed 54.55% 6/11\n        - button \"MDT -4.88% · -80\"\n        - button \"ISRG +11.31% · +0\"\n      - row \"Utilities -80 avg bearish 0% 0/3 NEE -7.39% · -80 DUK -4.72% · +0\":\n        - text: Utilities -80 avg bearish 0% 0/3\n        - button \"NEE -7.39% · -80\"\n        - button \"DUK -4.72% · +0\"\n      - row \"Consumer Discretionary -80 avg bearish 0% 0/7 HD -7.6% · -80 LOW -7.23% · -80\":\n        - text: Consumer Discretionary -80 avg bearish 0% 0/7\n        - button \"HD -7.6% · -80\"\n        - button \"LOW -7.23% · -80\"\n      - row \"Financials -80 avg bearish 0% 0/14 C -8.3% · -80 MA -2.82% · +0\":\n        - text: Financials -80 avg bearish 0% 0/14\n        - button \"C -8.3% · -80\"\n        - button \"MA -2.82% · +0\"\n      - row \"Information Technology +26.67 avg bullish 68.42% 13/19 ACN +19.33% · +80 MU +12.28% · +80\":\n        - text: Information Technology +26.67 avg bullish 68.42% 13/19\n        - button \"ACN +19.33% · +80\"\n        - button \"MU +12.28% · +80\"\n      - row \"Industrials +0 avg mixed 30% 3/10 BA -6.11% · -80 EMR +6.87% · +80\":\n        - text: Industrials +0 avg mixed 30% 3/10\n        - button \"BA -6.11% · -80\"\n        - button \"EMR +6.87% · +80\"\n      - row \"Communication Services unrated mixed 14.29% 1/7 CMCSA -13.79% · +0 T -4.89% · +0\":\n        - text: Communication Services unrated mixed 14.29% 1/7\n        - button \"CMCSA -13.79% · +0\"\n        - button \"T -4.89% · +0\"\n      - row \"Consumer Staples unrated mixed 20% 1/5 KO -1.38% · +0 PEP -8.09% · +0\":\n        - text: Consumer Staples unrated mixed 20% 1/5\n        - button \"KO -1.38% · +0\"\n        - button \"PEP -8.09% · +0\"\n      - row \"Energy unrated mixed 0% 0/1 COP -7.28% · +0\":\n        - text: Energy unrated mixed 0% 0/1\n        - button \"COP -7.28% · +0\"\n      - row \"Real Estate unrated mixed 0% 0/1 AMT -5.88% · +0\":\n        - text: Real Estate unrated mixed 0% 0/1\n        - button \"AMT -5.88% · +0\"\n    - text: SP100 latest ranked-candidate set; this is not full-universe advance/decline breadth. Cross-insight inputs are available. Run Synthesize + Test to draft candidates, test each through chart, math, narrative, news, and smart-money verification, and update Theory Watch.\n    - time: 10/3/2026, 12:57:43 AM\n  - text: MARKET PULSE\n  - heading \"5 of 7 measured instruments have positive 15-session breadth; META leads the 30-session return ÷ ATR% stack; 17 testable setup flags are active.\" [level=1]\n  - text: 15-session breadth 71.43% Active flags 17 Broad scan candidates 50 Risk-adjusted leader META\n  - paragraph: Live pulse 10/3/2026, 12:57:42 AM · broad discovery is prepared in the background.\n  - heading \"Prepared news / sector impact\" [level=3]\n  - button \"OPEN DISCOVERY\"\n  - article:\n    - text: www.morningstar.com\n    - time: 10/3/2026\n    - link \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\":\n      - /url: https://www.morningstar.com/news/pr-newswire/20261001ln62150/weekly-losses-deepen-as-small-caps-lag-and-yields-edge-higher-into-earnings-gauntlet\n      - heading \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\" [level=4]\n    - paragraph: It matters because McCormick's sales growth and margin expansion contrasted with Conagra's sales decline, offering an early mixed signal on consumer demand and profitability into earnings season.\n  - article:\n    - text: vistapglobal.com\n    - time: 10/3/2026\n    - link \"Weekly Market Summary October 2 2026 Analysis\":\n      - /url: https://vistapglobal.com/weekly-market-summary-october-2-2026-stocks-finish-higher-as-soft-jobs-data-reframes-fed-outlook-amd-avgo-f-googl-hpp-lpl-nvda-ser-soc-tsla/\n      - heading \"Weekly Market Summary October 2 2026 Analysis\" [level=4]\n    - paragraph: It matters because a G7 reserve release only modestly eased crude and diesel tightness while higher long-term Treasury yields alongside firmer equities keep inflation and term-premium risks in focus.\n  - article:\n    - text: www.canaccord-wealth.com\n    - time: 10/3/2026\n    - link \"Latest market news | Canaccord Wealth\":\n      - /url: https://www.canaccord-wealth.com/je/insights/latest-market-news\n      - heading \"Latest market news | Canaccord Wealth\" [level=4]\n    - paragraph: It matters because escalating Middle East tensions pressured energy and shipping routes while stronger US core CPI and an ECB rate hike reinforced expectations for higher rates.\n  - article:\n    - text: www.zerohedge.com\n    - time: 3/10/2026\n    - link \"The Biggest Moves In The Market Come After Corrections - Tuesday Premarket 3/10/26\":\n      - /url: https://www.zerohedge.com/news/2026-03-10/biggest-moves-market-come-after-corrections-tuesday-premarket-31026\n      - heading \"The Biggest Moves In The Market Come After Corrections - Tuesday Premarket 3/10/26\" [level=4]\n    - paragraph: It matters because extensive pre-market movers combined with a busy calendar of inflation data and earnings point to elevated near-term catalysts for market direction.\n  - heading \"Watchlist snapshot\" [level=3]\n  - button \"OPEN WATCHLIST\"\n  - button \"AAPL Apple Inc. OPEN DOSSIER refresh analysis on demand\"\n  - button \"META Meta Platforms, Inc. OPEN DOSSIER refresh analysis on demand\"\n  - button \"NVDA NVIDIA Corporation OPEN DOSSIER refresh analysis on demand\"\n  - button \"TSLA Tesla, Inc. OPEN DOSSIER refresh analysis on demand\"\n  - heading \"Broad-market signals\" [level=3]\n  - button \"OPEN ACN TAPE\"\n  - button \"ACN Information Technology · +19.33% / 15 sessions +80 · LONG / bullish MEDIUM confidence · 6 active setups\"\n  - button \"MU Information Technology · +12.28% / 15 sessions +80 · LONG / bullish MEDIUM confidence · 5 active setups\"\n  - button \"MDT Health Care · -4.88% / 15 sessions -80 · SHORT / bearish MEDIUM confidence · 3 active setups\"\n  - button \"NEE Utilities · -7.39% / 15 sessions -80 · SHORT / bearish MEDIUM confidence · 5 active setups\"\n  - heading \"Engine hits\" [level=3]\n  - button \"OPEN LOG\"\n  - 'button \"Oct 3 · GEM · SCAN #4 Off-Grid Power Race Pits Incumbent Automation Against Inspection Upstarts GEM 23\"':\n    - text: \"Oct 3 · GEM · SCAN #4 Off-Grid Power Race Pits Incumbent Automation Against Inspection Upstarts\"\n    - strong: GEM 23\n  - heading \"Relative-strength breadth\" [level=3]\n  - text: Leading SPY · 30d 4 Lagging SPY · 30d 0 Unavailable 0 Positive ratio returns mean the instrument outperformed SPY over the same aligned trading dates. Broad positive readings imply leadership breadth; they do not predict continuation.\n  - heading \"Watchlist rotation vs SPY\" [level=3]\n  - table \"Relative strength versus SPY\":\n    - row \"Instrument 30d ratio 90d ratio Range\"\n    - row \"Open META dossier\": META Meta Platforms, Inc. +33.6% +15.71% Leading ›\n    - row \"Open NVDA dossier\": NVDA NVIDIA Corporation +6.67% +4.35% Leading ›\n    - row \"Open AAPL dossier\": AAPL Apple Inc. +4.69% +3.96% Leading ›\n    - row \"Open TSLA dossier\": TSLA Tesla, Inc. +1.27% -19.28% Improving ›\n  - paragraph: Tap a row to open its dossier · aligned daily closes · Yahoo Finance · calculated 10/3/2026, 12:57:40 AM",
+  "audit_session_id": "af382f63-d960-468c-b745-19b07a6b93e1",
+  "readiness": {
+    "desktop": {
+      "settled": true,
+      "settle_ms": 5368,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": true
+    },
+    "mobile": {
+      "settled": true,
+      "settle_ms": 5506,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": true
+    }
+  },
+  "color_scheme": {
+    "declared": "light",
+    "media_dependent": null,
+    "dark_frame": false
+  },
+  "mobile_ms": 8023.8579979999995,
+  "cold_launch_ms": 535.2353270000001,
+  "desktop_ms": 8034.169132999999,
+  "browser_launches": 1,
+  "audit_path": "shared-concurrent",
+  "diagnostics": {
+    "audit_path": "shared-concurrent",
+    "concurrent_ran": true,
+    "concurrent_desktop_retry": false,
+    "concurrent_mobile_retry": false,
+    "shared_launch_failed": false,
+    "nav_retries": 0,
+    "settle_retries": 2
+  }
+}

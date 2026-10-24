@@ -1,0 +1,166 @@
+{
+  "ok": true,
+  "url": "https://artifact-capture.invalid/spaces/v2/hatch-audit-4d3d5422-b6a0-4b15-bd26-87214cef1d7f/",
+  "duration_ms": 10511.394459,
+  "output_dir": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-16T00-31-04Z-545515300",
+  "nav_status": 200,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-16T00-31-04Z-545515300/screenshot.png",
+      "fullpage_screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-16T00-31-04Z-545515300/screenshot-full.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-16T00-31-04Z-545515300/screenshot-mobile.png"
+    }
+  },
+  "mobile_layout": {
+    "viewport_width": 390,
+    "scroll_width": 390,
+    "overflow_px": 0,
+    "widest_selector": null,
+    "verdict": "pass"
+  },
+  "horizontal_scrollers": [],
+  "unreachable_controls": {
+    "desktop": [],
+    "mobile": []
+  },
+  "clipped": {
+    "desktop": [
+      {
+        "tag": "b",
+        "text": "0P0000UORE.F",
+        "kind": "text_truncated",
+        "overflow_px": 24,
+        "bbox": [
+          181,
+          3544,
+          90,
+          24
+        ]
+      },
+      {
+        "tag": "b",
+        "text": "ADANIENT.NS",
+        "kind": "text_truncated",
+        "overflow_px": 20,
+        "bbox": [
+          181,
+          3722,
+          90,
+          24
+        ]
+      },
+      {
+        "tag": "b",
+        "text": "RELIANCE.NS",
+        "kind": "text_truncated",
+        "overflow_px": 14,
+        "bbox": [
+          181,
+          5385,
+          90,
+          24
+        ]
+      }
+    ],
+    "mobile": []
+  },
+  "images": {
+    "total": 0,
+    "broken": [],
+    "duplicate": [],
+    "unstable": [],
+    "failed_requests": [],
+    "external_blocked": {
+      "count": 0,
+      "sample": []
+    },
+    "sample_urls": [],
+    "verdict": "pass"
+  },
+  "text_issues": [],
+  "console_errors": [],
+  "console_warnings": [],
+  "external_fetch_failures": 2,
+  "external_fetch_failure_samples": [
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)",
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)"
+  ],
+  "blocked_requests": [],
+  "external_requests": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "method": "GET",
+      "resource_type": "stylesheet"
+    }
+  ],
+  "external_requests_dropped": 0,
+  "external_requests_dropped_data_bearing": 0,
+  "transport_ledger_active": true,
+  "egress_lockdown": true,
+  "transport_connections": [
+    {
+      "host": "artifact-capture.invalid",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 4100,
+      "bytes_down": 2485
+    },
+    {
+      "host": "fonts.googleapis.com",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "policy_denied": true
+    }
+  ],
+  "transport_udp_attempts": 0,
+  "transport_overflow": 0,
+  "unexplained_transport_hosts": [],
+  "broken_assets": [],
+  "blocked_affordances": [],
+  "interactive_nodes": 25,
+  "aria_snapshot": "- main:\n  - navigation \"Terminal sections\":\n    - button \"HOME\"\n    - button \"CROWD\"\n    - button \"DOSSIER\"\n    - button \"NEWS\"\n    - button \"SMART MONEY\"\n    - button \"SIGNALS\"\n    - button \"THEORIES\"\n    - button \"ENGINE HITS\"\n    - button \"WATCHLIST\"\n    - button \"ALERTS\"\n    - button \"JOURNAL\"\n  - tablist \"Home view\":\n    - tab \"SIGNALS Fast tracked calls\" [selected]\n    - tab \"TRENDING Runners · sectors · breadth\"\n  - region \"Today's terminal run\":\n    - text: DAILY TERMINAL · SOURCE equity-homepage-e2e-2026-10-15.4\n    - heading \"What the terminal checked\" [level=1]\n    - paragraph: Discovery, market marks and outcome grading are separate ledgers. A quiet day is shown as a checked day—not as an unchanged homepage.\n    - button \"REFRESH 7 CARDS\"\n    - article:\n      - text: DISCOVERY SCAN RUN 21 · OK SP100 · 10/16/2026, 12:19:45 AM · last success 10/16/2026, 12:26:00 AM\n      - paragraph:\n        - text: \"Trigger: runAutomatedScan. Scheduler invocation:\"\n        - strong: SUCCEEDED · 10/15/2026, 7:38:41 PM · equity-theory-discovery:2026-10-15T19:38:41.594Z:f4390390-6783-4e82-bfef-e8934b84ab85\n        - text: .\n    - article:\n      - text: OUTCOME GRADING equity-2026-10-15T22:31:51.394Z-a467ed7d-4798-41e5-b52f-ef825c89a345 · COMPLETE started 10/15/2026, 10:31:51 PM · completed 10/15/2026, 10:31:54 PM · 0/50 evaluated · 0 failed\n      - paragraph:\n        - text: \"Trigger: runDailySignalPostmortem. Scheduler invocation:\"\n        - strong: SUCCEEDED · 10/15/2026, 10:31:51 PM · equity-signal-daily-postmortem:2026-10-15T22:31:51.363Z:4127065c-e164-4ee7-9830-52c3ec1c4956\n        - text: .\n    - article:\n      - text: PRICE REFRESH RUN 605 · PARTIAL 10/16/2026, 12:27:33 AM → 10/16/2026, 12:27:51 AM · 2/20 refreshed · 0 failed\n      - paragraph:\n        - text: \"Trigger: refreshMarketData / runMarketDataRefresh. Scheduler invocation:\"\n        - strong: SUCCEEDED · 10/16/2026, 12:27:33 AM · equity-market-data-refresh:2026-10-16T00:27:33.342Z:7a367dc3-fc9c-4b2c-946f-8643d57367bd\n        - text: .\n    - text: data Valid 101 eligible 101 emitted 50 excluded 0 failed 0 fetched 101 requested 101 scored 101 suppressed 5 REJECTION / ABSTENTION REASONS radar candidate persisted · 50 rank cap · 46 issuance gate · 5 NEW QUALIFYING CANDIDATES\n    - button \"BAC · short · -100\"\n    - button \"MS · short · -100\"\n    - button \"BNY · short · -100\"\n    - button \"WFC · short · -100\"\n    - button \"SCHW · short · -100\"\n    - button \"GS · short · -100\"\n    - button \"PG · long · +100\"\n    - button \"USB · short · -100\"\n    - group: PER-SYMBOL STRATEGY EVALUATIONS · 101\n    - button \"Open MDLZ evidence\":\n      - text: MDLZ STALE\n      - strong: $63.03\n      - term: TRADE / EVALUATION\n      - definition: LOGBOOK · MISSED\n      - term: LAST ACCEPTED EVALUATION\n      - definition: 10/10/2026, 12:58:39 PM\n      - term: OBSERVATION\n      - definition: 10/15/2026, 8:00:01 PM · 4h old\n      - term: FETCH / PERSIST\n      - definition: 10/15/2026, 8:27:49 PM · last success 10/16/2026, 12:12:43 AM\n      - term: CURRENCY\n      - definition: USD\n      - term: SESSION\n      - definition: EQUITY · CLOSED\n      - term: POINTER\n      - definition: observation 6585 · refresh run 589\n      - paragraph: \"The displayed last-known mark is beyond the frozen short invalidation. That is an apparent crossing, not a settlement: only post-entry completed candles with first-touch ordering can append an accepted outcome. The legacy signal lacks an immutable issuance/entry contract or supported calendar.\"\n      - text: provider event 2026-10-15T20:00:01.000Z → received 2026-10-15T20:27:49.156Z → displayed 63.03; correction v1\n    - button \"Open WMT evidence\":\n      - text: WMT STALE\n      - strong: $117.87\n      - term: TRADE / EVALUATION\n      - definition: LOGBOOK · MISSED\n      - term: LAST ACCEPTED EVALUATION\n      - definition: 10/10/2026, 12:58:38 PM\n      - term: OBSERVATION\n      - definition: 10/15/2026, 8:00:00 PM · 4h old\n      - term: FETCH / PERSIST\n      - definition: 10/15/2026, 8:12:44 PM · last success 10/16/2026, 12:27:39 AM\n      - term: CURRENCY\n      - definition: USD\n      - term: SESSION\n      - definition: EQUITY · CLOSED\n      - term: POINTER\n      - definition: observation 6547 · refresh run 588\n      - paragraph: \"The displayed last-known mark is beyond the frozen short invalidation. That is an apparent crossing, not a settlement: only post-entry completed candles with first-touch ordering can append an accepted outcome. The legacy signal lacks an immutable issuance/entry contract or supported calendar.\"\n      - text: provider event 2026-10-15T20:00:00.000Z → received 2026-10-15T20:12:44.742Z → displayed 117.87; correction v1\n    - button \"Open SI=F evidence\":\n      - text: SI=F FRESH\n      - strong: $57.25\n      - term: TRADE / EVALUATION\n      - definition: LOGBOOK · HIT\n      - term: LAST ACCEPTED EVALUATION\n      - definition: 10/10/2026, 12:58:36 PM\n      - term: OBSERVATION\n      - definition: 10/16/2026, 12:02:45 AM · 28m old\n      - term: FETCH / PERSIST\n      - definition: 10/16/2026, 12:12:52 AM · last success 10/16/2026, 12:12:52 AM\n      - term: CURRENCY\n      - definition: USD\n      - term: SESSION\n      - definition: FUTURE · OPEN\n      - term: POINTER\n      - definition: observation 6716 · refresh run 604\n      - paragraph: The legacy signal lacks an immutable issuance/entry contract or supported calendar.\n      - text: provider event 2026-10-16T00:02:45.000Z → received 2026-10-16T00:12:52.338Z → displayed 57.25; correction v1\n    - button \"Open GC=F evidence\":\n      - text: GC=F FRESH\n      - strong: $4,173.00\n      - term: TRADE / EVALUATION\n      - definition: UNRESOLVED · EVALUATION UNVERIFIED\n      - term: LAST ACCEPTED EVALUATION\n      - definition: 10/10/2026, 12:58:36 PM\n      - term: OBSERVATION\n      - definition: 10/16/2026, 12:02:30 AM · 28m old\n      - term: FETCH / PERSIST\n      - definition: 10/16/2026, 12:12:36 AM · last success 10/16/2026, 12:12:36 AM\n      - term: CURRENCY\n      - definition: USD\n      - term: SESSION\n      - definition: FUTURE · OPEN\n      - term: POINTER\n      - definition: observation 6711 · refresh run 604\n      - paragraph: The legacy signal lacks an immutable issuance/entry contract or supported calendar.\n      - text: provider event 2026-10-16T00:02:30.000Z → received 2026-10-16T00:12:36.061Z → displayed 4173; correction v1\n    - button \"Open CL=F evidence\":\n      - text: CL=F FRESH\n      - strong: $96.09\n      - term: TRADE / EVALUATION\n      - definition: UNRESOLVED · EVALUATION UNVERIFIED\n      - term: LAST ACCEPTED EVALUATION\n      - definition: 10/10/2026, 12:58:38 PM\n      - term: OBSERVATION\n      - definition: 10/16/2026, 12:17:45 AM · 13m old\n      - term: FETCH / PERSIST\n      - definition: 10/16/2026, 12:27:50 AM · last success 10/16/2026, 12:27:50 AM\n      - term: CURRENCY\n      - definition: USD\n      - term: SESSION\n      - definition: FUTURE · OPEN\n      - term: POINTER\n      - definition: observation 6720 · refresh run 605\n      - paragraph: The legacy signal lacks an immutable issuance/entry contract or supported calendar.\n      - text: provider event 2026-10-16T00:17:45.000Z → received 2026-10-16T00:27:50.017Z → displayed 96.09; correction v1\n    - button \"Open 6411.TWO evidence\":\n      - text: 6411.TWO STALE\n      - strong: NT$75.40\n      - term: TRADE / EVALUATION\n      - definition: LOGBOOK · MISSED\n      - term: LAST ACCEPTED EVALUATION\n      - definition: 10/10/2026, 12:58:35 PM\n      - term: OBSERVATION\n      - definition: 10/15/2026, 5:30:10 AM · 19h old\n      - term: FETCH / PERSIST\n      - definition: 10/15/2026, 6:12:36 AM · last success 10/16/2026, 12:27:41 AM\n      - term: CURRENCY\n      - definition: TWD\n      - term: SESSION\n      - definition: EQUITY · CLOSED\n      - term: POINTER\n      - definition: observation 5516 · refresh run 534\n      - paragraph: \"The displayed last-known mark is beyond the frozen long invalidation. That is an apparent crossing, not a settlement: only post-entry completed candles with first-touch ordering can append an accepted outcome. The legacy signal lacks an immutable issuance/entry contract or supported calendar.\"\n      - text: provider event 2026-10-15T05:30:10.000Z → received 2026-10-15T06:12:36.128Z → displayed 75.4; correction v1\n    - button \"Open 0221.KL evidence\":\n      - text: 0221.KL STALE\n      - strong: MYR 0.085\n      - term: TRADE / EVALUATION\n      - definition: UNRESOLVED · EVALUATION UNVERIFIED\n      - term: LAST ACCEPTED EVALUATION\n      - definition: 10/10/2026, 12:58:37 PM\n      - term: OBSERVATION\n      - definition: 10/15/2026, 8:29:44 AM · 16h old\n      - term: FETCH / PERSIST\n      - definition: 10/15/2026, 9:12:43 AM · last success 10/16/2026, 12:27:39 AM\n      - term: CURRENCY\n      - definition: MYR\n      - term: SESSION\n      - definition: EQUITY · CLOSED\n      - term: POINTER\n      - definition: observation 5644 · refresh run 544\n      - paragraph: The legacy signal lacks an immutable issuance/entry contract or supported calendar.\n      - text: provider event 2026-10-15T08:29:44.000Z → received 2026-10-15T09:12:43.943Z → displayed 0.085; correction v1\n    - text: Displayed source version proves this client bundle contains the repair. Deployment/build ID and source commit are not exposed to artifact actions; those remain pending platform evidence. Refresh coverage is the persisted inventory below, not a scheduler inference.\n  - region \"Open tracked signals\":\n    - text: LEGACY SIGNAL LEDGER · ACTIVE LEVEL MONITOR\n    - heading \"6 genuinely open signals\" [level=1]\n    - paragraph: Only calls whose latest mark remains between the frozen target and invalidation appear here. Level-closed calls move automatically to the full Signals logbook.\n    - button \"OPEN FULL SIGNALS\"\n    - status: SIGNAL LEDGER UPDATED Read 10/16/2026, 12:31:15 AM\n    - button \"Open GC=F signal tape\":\n      - text: short GC=F Gold Dec 26\n      - strong: +0.61%\n      - text: ISSUED ENTRY $4,198.70 CURRENT MARK $4,173.00 ISSUED INVALIDATION $4,314.66 ISSUED TARGET 1 $4,024.76 UNRESOLVED 13D · UNVERIFIED · Oct 2 · LAST EVALUATION 10/10/2026, 12:58:36 PM FRESH · USD · OBSERVATION 28m old · EVENT 10/16/2026, 12:02:30 AM · FETCHED 10/16/2026, 12:12:36 AM · LAST SUCCESS 10/16/2026, 12:12:36 AM The legacy signal lacks an immutable issuance/entry contract or supported calendar.\n    - button \"Open CL=F signal tape\":\n      - text: long CL=F Crude Oil Nov 26\n      - strong: +3.67%\n      - text: ISSUED ENTRY $92.69 CURRENT MARK $96.09 ISSUED INVALIDATION $87.22 ISSUED TARGET 1 $100.90 UNRESOLVED 13D · UNVERIFIED · Oct 2 · LAST EVALUATION 10/10/2026, 12:58:38 PM FRESH · USD · OBSERVATION 13m old · EVENT 10/16/2026, 12:17:45 AM · FETCHED 10/16/2026, 12:27:50 AM · LAST SUCCESS 10/16/2026, 12:27:50 AM The legacy signal lacks an immutable issuance/entry contract or supported calendar.\n    - button \"Open 0221.KL signal tape\":\n      - text: long 0221.KL TCS Group Holdings Berhad\n      - strong: \"-0%\"\n      - text: ISSUED ENTRY MYR 0.085 LAST KNOWN MARK MYR 0.085 ISSUED INVALIDATION MYR 0.08 ISSUED TARGET 1 MYR 0.0925 UNRESOLVED 13D · EVIDENCE UNVERIFIED · Oct 2 · LAST EVALUATION 10/10/2026, 12:58:37 PM STALE · MYR · OBSERVATION 16h old · EVENT 10/15/2026, 8:29:44 AM · FETCHED 10/15/2026, 9:12:43 AM · LAST SUCCESS 10/16/2026, 12:27:39 AM The legacy signal lacks an immutable issuance/entry contract or supported calendar.\n    - button \"Open META signal tape\":\n      - text: long META Meta Platforms, Inc.\n      - strong: \"-0.29%\"\n      - text: ISSUED ENTRY $738.88 LAST KNOWN MARK $736.72 ISSUED INVALIDATION $691.88 ISSUED TARGET 1 $809.38 UNRESOLVED 10D · EVIDENCE UNVERIFIED · Oct 5 · LAST EVALUATION 10/10/2026, 12:58:39 PM STALE · USD · OBSERVATION 4h old · EVENT 10/15/2026, 8:00:01 PM · FETCHED 10/15/2026, 8:27:51 PM · LAST SUCCESS 10/16/2026, 12:12:45 AM The legacy signal lacks an immutable issuance/entry contract or supported calendar.\n    - button \"Open EMR signal tape\":\n      - text: long EMR Emerson Electric Co.\n      - strong: +0.33%\n      - text: ISSUED ENTRY $161.61 LAST KNOWN MARK $162.15 ISSUED INVALIDATION $156.65 ISSUED TARGET 1 $169.05 UNRESOLVED 13D · EVIDENCE UNVERIFIED · Oct 2 · LAST EVALUATION 10/10/2026, 12:58:39 PM STALE · USD · OBSERVATION 4h old · EVENT 10/15/2026, 8:02:27 PM · FETCHED 10/15/2026, 8:27:40 PM · LAST SUCCESS 10/16/2026, 12:12:34 AM The legacy signal lacks an immutable issuance/entry contract or supported calendar.\n    - button \"Open META signal tape\":\n      - text: long META Meta Platforms, Inc.\n      - strong: +1.19%\n      - text: ISSUED ENTRY $728.08 LAST KNOWN MARK $736.72 ISSUED INVALIDATION $696.20 ISSUED TARGET 1 $775.90 UNRESOLVED 13D · EVIDENCE UNVERIFIED · Oct 2 · LAST EVALUATION 10/10/2026, 12:58:39 PM STALE · USD · OBSERVATION 4h old · EVENT 10/15/2026, 8:00:01 PM · FETCHED 10/15/2026, 8:27:51 PM · LAST SUCCESS 10/16/2026, 12:12:45 AM The legacy signal lacks an immutable issuance/entry contract or supported calendar.\n    - text: \"PHASE 1.2 COHORT POST-MORTEM · Oct 15 0 issued: 0 open, 0 resolved, 0 ambiguous, 0 unverified under evaluator equity-eval-3.2.0. Daily proximity counts and interim marks are non-settling diagnostics; legacy 5/14/30-session settlement text is intentionally not carried into this read model. Ledger read 10/16/2026, 12:31:15 AM · display state recalculated from the latest persisted mark; no grading settlement was changed.\"\n    - group: SCHEDULER + GRADING EVIDENCE\n  - region \"Analyze an asset\":\n    - text: START A DOSSIER\n    - heading \"What do you want to understand?\" [level=2]\n    - combobox \"Quick asset picker\":\n      - option \"QUICK PICK\" [selected]\n      - option \"SPY · S&P 500\"\n      - option \"QQQ · Nasdaq 100\"\n      - option \"TLT · Treasuries\"\n      - option \"GLD · Gold\"\n      - option \"BTC · Bitcoin\"\n    - textbox \"Ticker or company name\"\n    - button \"FIND\" [disabled]\n    - text: RECENT PICKS Your analyzed names will stay here on this device.",
+  "audit_session_id": "10f774f7-c3f6-45a1-a481-0766ccfc03a2",
+  "readiness": {
+    "desktop": {
+      "settled": true,
+      "settle_ms": 3347,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": false
+    },
+    "mobile": {
+      "settled": true,
+      "settle_ms": 4137,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": false
+    }
+  },
+  "color_scheme": {
+    "declared": "light",
+    "media_dependent": null,
+    "dark_frame": false
+  },
+  "cold_launch_ms": 1410.068003,
+  "desktop_ms": 7021.712227999999,
+  "mobile_ms": 7341.148997999999,
+  "browser_launches": 1,
+  "audit_path": "shared-concurrent",
+  "diagnostics": {
+    "audit_path": "shared-concurrent",
+    "concurrent_ran": true,
+    "concurrent_desktop_retry": false,
+    "concurrent_mobile_retry": false,
+    "shared_launch_failed": false,
+    "nav_retries": 0,
+    "settle_retries": 0
+  }
+}

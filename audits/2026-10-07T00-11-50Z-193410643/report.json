@@ -1,0 +1,129 @@
+{
+  "ok": true,
+  "url": "https://artifact-capture.invalid/spaces/v2/hatch-audit-89f4c13a-7a6f-4a4e-96e7-8fce0e11e267/",
+  "duration_ms": 7278.058341,
+  "output_dir": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-07T00-11-50Z-193410643",
+  "nav_status": 200,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-07T00-11-50Z-193410643/screenshot.png",
+      "fullpage_screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-07T00-11-50Z-193410643/screenshot-full.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-07T00-11-50Z-193410643/screenshot-mobile.png"
+    }
+  },
+  "mobile_layout": {
+    "viewport_width": 390,
+    "scroll_width": 390,
+    "overflow_px": 0,
+    "widest_selector": null,
+    "verdict": "pass"
+  },
+  "horizontal_scrollers": [],
+  "unreachable_controls": {
+    "desktop": [],
+    "mobile": []
+  },
+  "clipped": {
+    "desktop": [],
+    "mobile": []
+  },
+  "images": {
+    "total": 0,
+    "broken": [],
+    "duplicate": [],
+    "unstable": [],
+    "failed_requests": [],
+    "external_blocked": {
+      "count": 0,
+      "sample": []
+    },
+    "sample_urls": [],
+    "verdict": "pass"
+  },
+  "text_issues": [],
+  "console_errors": [],
+  "console_warnings": [],
+  "external_fetch_failures": 2,
+  "external_fetch_failure_samples": [
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)",
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)"
+  ],
+  "blocked_requests": [],
+  "external_requests": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "method": "GET",
+      "resource_type": "stylesheet"
+    }
+  ],
+  "external_requests_dropped": 0,
+  "external_requests_dropped_data_bearing": 0,
+  "transport_ledger_active": true,
+  "egress_lockdown": true,
+  "transport_connections": [
+    {
+      "host": "artifact-capture.invalid",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 4004,
+      "bytes_down": 2485
+    },
+    {
+      "host": "fonts.googleapis.com",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "policy_denied": true
+    }
+  ],
+  "transport_udp_attempts": 0,
+  "transport_overflow": 0,
+  "unexplained_transport_hosts": [],
+  "broken_assets": [],
+  "blocked_affordances": [],
+  "interactive_nodes": 22,
+  "aria_snapshot": "- main:\n  - navigation \"Terminal sections\":\n    - button \"HOME\"\n    - button \"CROWD\"\n    - button \"DOSSIER\"\n    - button \"NEWS\"\n    - button \"SMART MONEY\"\n    - button \"SIGNALS\"\n    - button \"THEORIES\"\n    - button \"ENGINE HITS\"\n    - button \"WATCHLIST\"\n    - button \"ALERTS\"\n    - button \"JOURNAL\"\n  - tablist \"Home view\":\n    - tab \"SIGNALS Fast tracked calls\" [selected]\n    - tab \"TRENDING Runners · sectors · breadth\"\n  - region \"Open tracked signals\":\n    - text: SIGNAL LEDGER · OPEN CALLS\n    - heading \"49 tracked signals in motion\" [level=1]\n    - paragraph: The lightweight ledger loads first. Market runners and breadth wait in Trending.\n    - button \"OPEN FULL SIGNALS\"\n    - button \"Open BTC-USD signal tape\":\n      - text: long BTC-USD Bitcoin USD\n      - strong: \"-0.05%\"\n      - text: ENTRY $86,241.38 CURRENT $86,196.93 INVALIDATION $83,519.63 TARGET 1 $90,324.01 OPEN 1D · Oct 5 STALE SOURCE\n    - button \"Open EMR signal tape\":\n      - text: long EMR Emerson Electric Co.\n      - strong: +0.45%\n      - text: ENTRY $161.61 CURRENT $162.33 INVALIDATION $156.65 TARGET 1 $169.05 OPEN 3D · Oct 2 STALE SOURCE\n    - button \"Open META signal tape\":\n      - text: long META Meta Platforms, Inc.\n      - strong: +1.9%\n      - text: ENTRY $728.08 CURRENT $741.90 INVALIDATION $696.20 TARGET 1 $775.90 OPEN 3D · Oct 2 STALE SOURCE\n    - button \"Open CL=F signal tape\":\n      - text: long CL=F Crude Oil Nov 26\n      - strong: \"-5.52%\"\n      - text: ENTRY $92.69 CURRENT $87.57 INVALIDATION $87.22 TARGET 1 $100.90 OPEN 4D · Oct 2 STALE SOURCE\n    - button \"Open 0221.KL signal tape\":\n      - text: long 0221.KL TCS Group Holdings Berhad\n      - strong: +5.88%\n      - text: ENTRY $0.085 CURRENT $0.09 INVALIDATION $0.08 TARGET 1 $0.0925 OPEN 4D · Oct 2 STALE SOURCE\n    - button \"Open SI=F signal tape\":\n      - text: short SI=F Silver Dec 26\n      - strong: \"-0.73%\"\n      - text: ENTRY $61.17 CURRENT $61.615 INVALIDATION $62.97 TARGET 1 $58.47 OPEN 4D · Oct 2 STALE SOURCE\n    - button \"Open GC=F signal tape\":\n      - text: short GC=F Gold Dec 26\n      - strong: +0.02%\n      - text: ENTRY $4,198.70 CURRENT $4,197.80 INVALIDATION $4,314.66 TARGET 1 $4,024.76 OPEN 4D · Oct 2 STALE SOURCE\n    - button \"Open 6411.TWO signal tape\":\n      - text: long 6411.TWO Amazing Microelectronic Corp.\n      - strong: +0.13%\n      - text: ENTRY $78.40 CURRENT $78.50 INVALIDATION $76.32 TARGET 1 $81.52 OPEN 4D · Oct 2 STALE SOURCE\n    - button \"Open MDLZ signal tape\":\n      - text: short MDLZ Mondelez International, Inc.\n      - strong: \"-1.26%\"\n      - text: ENTRY $57.76 CURRENT $58.49 INVALIDATION $59.27 TARGET 1 $55.495 OPEN 4D · Oct 1 STALE SOURCE\n    - button \"Open WMT signal tape\":\n      - text: short WMT Walmart Inc.\n      - strong: \"-0.78%\"\n      - text: ENTRY $104.26 CURRENT $105.07 INVALIDATION $107.06 TARGET 1 $100.06 OPEN 4D · Oct 1 STALE SOURCE\n    - button \"Open INFY signal tape\":\n      - text: short INFY Infosys Limited\n      - strong: +5.2%\n      - text: ENTRY $11.35 CURRENT $10.76 INVALIDATION $11.80 TARGET 1 $10.675 OPEN 4D · Oct 1 STALE SOURCE\n    - button \"Open PEP signal tape\":\n      - text: short PEP PepsiCo, Inc.\n      - strong: \"-0.04%\"\n      - text: ENTRY $125.60 CURRENT $125.65 INVALIDATION $128.61 TARGET 1 $121.08 OPEN 4D · Oct 1 STALE SOURCE\n    - text: \"LATEST POST-MORTEM · Oct 6 49 tracked: 34 open, 15 settled by first target 1 / invalidation touch. Open marks: 15 positive, 19 negative. Within 3% of target 1: 0221.KL, AAPL, NVDA, TECHM.NS, 0P0000UORE.F. Within 3% of invalidation: 6411.TWO, GC=F, SI=F, AMGN, ADANIENT.NS, SUI, COST, AMZN, TCS.NS, MDT, CL, COPA, PEP, WMT, MDLZ, AAPL, 0P0000UORE.F. Interim returns are noise and tracking only; formal 5D / 14D / 30D settlement is unchanged. Ledger read 10/7/2026, 12:11:57 AM · database only; no market refresh was started.\"\n  - region \"Analyze an asset\":\n    - text: START A DOSSIER\n    - heading \"What do you want to understand?\" [level=2]\n    - combobox \"Quick asset picker\":\n      - option \"QUICK PICK\" [selected]\n      - option \"SPY · S&P 500\"\n      - option \"QQQ · Nasdaq 100\"\n      - option \"TLT · Treasuries\"\n      - option \"GLD · Gold\"\n      - option \"BTC · Bitcoin\"\n    - textbox \"Ticker or company name\"\n    - button \"FIND\" [disabled]\n    - text: RECENT PICKS Your analyzed names will stay here on this device.",
+  "audit_session_id": "2f2e2964-ed2d-4f33-94a1-b2335889b260",
+  "readiness": {
+    "desktop": {
+      "settled": true,
+      "settle_ms": 1350,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": false
+    },
+    "mobile": {
+      "settled": true,
+      "settle_ms": 1326,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": false
+    }
+  },
+  "color_scheme": {
+    "declared": "light",
+    "media_dependent": null,
+    "dark_frame": false
+  },
+  "mobile_ms": 3676.288604,
+  "cold_launch_ms": 2618.823445,
+  "desktop_ms": 3840.3813330000003,
+  "browser_launches": 1,
+  "audit_path": "shared-concurrent",
+  "diagnostics": {
+    "audit_path": "shared-concurrent",
+    "concurrent_ran": true,
+    "concurrent_desktop_retry": false,
+    "concurrent_mobile_retry": false,
+    "shared_launch_failed": false,
+    "nav_retries": 0,
+    "settle_retries": 0
+  }
+}

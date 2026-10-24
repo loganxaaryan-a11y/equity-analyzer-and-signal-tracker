@@ -1,0 +1,930 @@
+[button: TODAY] [button: DOSSIER] [button: SIGNALS] [button: RESEARCH] [button: NOTIFS] [button: LOG]
+OPPORTUNITIES — what changed · why it matters · timeframe · evidence and conflicts
+OPPORTUNITIES · NEWEST FIRST
+# What needs attention now
+One card per ticker. Watch alerts lead discovery candidates; related records stay visible under updates.
+[button: OPEN ALERT FEED]
+WATCH ALERT
+GE
+GE
+SHORT
+Radar 90+ short
+-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 310.85.
+OBSERVED
+10/23/2026, 1:42:03 PM
+INVALIDATION
+310.85
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 3
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:02 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · -100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/GE?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+2 earlier alert updates remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/GE?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+WATCH ALERT
+AAPL
+AAPL
+LONG
+Radar 90+ long
++100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 335.33.
+OBSERVED
+10/23/2026, 1:42:03 PM
+INVALIDATION
+335.33
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 2
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:01 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · +100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/AAPL?period1=0&period2=1792752391&interval=1d&events=div%2Csplits)
+1 earlier alert update remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/AAPL?period1=0&period2=1792752391&interval=1d&events=div%2Csplits)
+WATCH ALERT
+AVGO
+AVGO
+SHORT
+Radar 90+ short
+-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 346.34.
+OBSERVED
+10/23/2026, 1:42:03 PM
+INVALIDATION
+346.34
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 2
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:01 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · -100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/AVGO?period1=0&period2=1792740261&interval=1d&events=div%2Csplits)
+1 earlier alert update remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/AVGO?period1=0&period2=1792740261&interval=1d&events=div%2Csplits)
+WATCH ALERT
+MA
+MA
+LONG
+Radar 90+ long
++100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 613.47.
+OBSERVED
+10/23/2026, 1:42:03 PM
+INVALIDATION
+613.47
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 1
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:03 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · +100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/MA?period1=0&period2=1792740452&interval=1d&events=div%2Csplits)
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/MA?period1=0&period2=1792740452&interval=1d&events=div%2Csplits)
+WATCH ALERT
+BRK-B
+BRK-B
+LONG
+Radar 90+ long
++100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 534.25.
+OBSERVED
+10/23/2026, 1:42:02 PM
+INVALIDATION
+534.25
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 2
+DISCOVERY CANDIDATE
+10/22/2026, 8:03:53 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · +100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/BRK-B?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+1 earlier alert update remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/BRK-B?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+WATCH ALERT
+WMT
+WMT
+LONG
+Radar 90+ long
++100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 116.27.
+OBSERVED
+10/23/2026, 1:42:02 PM
+INVALIDATION
+116.27
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 3
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:00 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · +100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/WMT?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+2 earlier alert updates remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/WMT?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+WATCH ALERT
+LOW
+LOW
+LONG
+Radar 90+ long
++100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 194.71.
+OBSERVED
+10/23/2026, 1:42:02 PM
+INVALIDATION
+194.71
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 1
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:02 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · +100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/LOW?period1=0&period2=1792740448&interval=1d&events=div%2Csplits)
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/LOW?period1=0&period2=1792740448&interval=1d&events=div%2Csplits)
+WATCH ALERT
+INTC
+INTC
+SHORT
+Radar 90+ short
+-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 97.1.
+OBSERVED
+10/23/2026, 1:42:01 PM
+INVALIDATION
+97.1
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 3
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:01 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · -100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/INTC?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+2 earlier alert updates remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/INTC?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+WATCH ALERT
+AMD
+AMD
+SHORT
+Radar 90+ short
+-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 564.4.
+OBSERVED
+10/23/2026, 1:42:01 PM
+INVALIDATION
+564.4
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 1
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:01 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · -100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/AMD?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/AMD?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+WATCH ALERT
+AMAT
+AMAT
+SHORT
+Radar 90+ short
+-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 416.55.
+OBSERVED
+10/23/2026, 1:42:00 PM
+INVALIDATION
+416.55
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 1
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:01 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · -100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/AMAT?period1=0&period2=1792740257&interval=1d&events=div%2Csplits)
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/AMAT?period1=0&period2=1792740257&interval=1d&events=div%2Csplits)
+WATCH ALERT
+PG
+PG
+LONG
+Radar 90+ long
++100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 159.48.
+OBSERVED
+10/23/2026, 1:42:00 PM
+INVALIDATION
+159.48
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 4
+DISCOVERY CANDIDATE
+10/22/2026, 8:02:30 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · +100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/PG?period1=0&period2=1792713442&interval=1d&events=div%2Csplits)
+3 earlier alert updates remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/PG?period1=0&period2=1792713442&interval=1d&events=div%2Csplits)
+WATCH ALERT
+LRCX
+LRCX
+SHORT
+Radar 90+ short
+-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 261.15.
+OBSERVED
+10/23/2026, 1:41:59 PM
+INVALIDATION
+261.15
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 3
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:01 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · -100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/LRCX?period1=0&period2=1792740450&interval=1d&events=div%2Csplits)
+2 earlier alert updates remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/LRCX?period1=0&period2=1792740450&interval=1d&events=div%2Csplits)
+WATCH ALERT
+LMT
+LMT
+LONG
+Radar 90+ long
++100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 559.65.
+OBSERVED
+10/23/2026, 1:41:56 PM
+INVALIDATION
+559.65
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 2
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:02 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · +100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/LMT?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+1 earlier alert update remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/LMT?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+WATCH ALERT
+GEV
+GEV
+SHORT
+Radar 90+ short
+-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 921.42.
+OBSERVED
+10/23/2026, 1:41:52 PM
+INVALIDATION
+921.42
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 1
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:02 PM
+Automated discovery · five-dimension gate
+MEDIUM confidence · 4/5 dimensions support · 0 conflicts · -100 five-dimension agreement · research: Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/GEV?period1=0&period2=1792740368&interval=1d&events=div%2Csplits)
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/GEV?period1=0&period2=1792740368&interval=1d&events=div%2Csplits)
+WATCH ALERT
+UBER
+UBER
+SHORT
+Radar 90+ short
+-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 71.23.
+OBSERVED
+10/22/2026, 1:51:44 PM
+INVALIDATION
+71.23
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/UBER?period1=0&period2=1792676788&interval=1d&events=div%2Csplits)
+WATCH ALERT
+MS
+MS
+SHORT
+Radar 90+ short
+-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 197.2.
+OBSERVED
+10/22/2026, 1:51:43 PM
+INVALIDATION
+197.2
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 2
+2 earlier alert updates remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/MS?period1=0&period2=1792615397&interval=1d&events=div%2Csplits)
+WATCH ALERT
+NFLX
+NFLX
+SHORT
+Radar 90+ short
+-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 69.24.
+OBSERVED
+10/22/2026, 1:51:38 PM
+INVALIDATION
+69.24
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 3
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:00 PM
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/NFLX?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+2 earlier alert updates remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/NFLX?period1=0&period2=1792666111&interval=1d&events=div%2Csplits)
+WATCH ALERT
+EMR
+EMR
+LONG
+Entry zone
+Price 163.11 is within 1% of the tracked long entry 161.61.
+OBSERVED
+10/22/2026, 7:14:41 AM
+ENTRY CONDITION
+Price 163.11 is within 1% of the tracked long entry 161.61.
+INVALIDATION
+not stated
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 7
+WATCH ALERT
+10/22/2026, 7:14:38 AM
+Volume spike
+Volume is 1.64σ above its recent mean.
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/EMR?period1=0&period2=1792618018&interval=1d&events=div%2Csplits)
+6 earlier alert updates remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/EMR?period1=0&period2=1792618018&interval=1d&events=div%2Csplits)
+WATCH ALERT
+META
+META
+—
+Form 4
+4 filed 2026-10-21.
+OBSERVED
+10/22/2026, 7:13:13 AM
+INVALIDATION
+not stated
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+HISTORY / UPDATES · 4
+DISCOVERY CANDIDATE
+10/22/2026, 8:00:01 PM
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Momentum, Positioning / sentiment
+SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/META?period1=0&period2=1792752391&interval=1d&events=div%2Csplits)
+3 earlier alert updates remain represented in the alert feed.
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://www.sec.gov/Archives/edgar/data/1326801/000095010326015980/ownership.xml)
+DISCOVERY CANDIDATE
+NOW
+ServiceNow, Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment
+OBSERVED
+10/23/2026, 1:36:29 PM
+INVALIDATION
+144.7
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/NOW?period1=0&period2=1792762585&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+XOM
+ExxonMobil Holdings Corporation
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:03:40 PM
+INVALIDATION
+170.71
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/XOM?period1=0&period2=1792701930&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+ABBV
+AbbVie Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:03:37 PM
+INVALIDATION
+271.95
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/ABBV?period1=0&period2=1792740253&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+CVX
+Chevron Corporation
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:03:32 PM
+INVALIDATION
+217.47
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/CVX?period1=0&period2=1792740321&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+MMM
+3M Company
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:03:26 PM
+INVALIDATION
+167.43
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/MMM?period1=0&period2=1792713424&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+DHR
+Danaher Corporation
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:03:07 PM
+INVALIDATION
+215.63
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/DHR?period1=0&period2=1792740332&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+WFC
+Wells Fargo & Company
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:02:58 PM
+INVALIDATION
+86.95
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/WFC?period1=0&period2=1792713436&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+C
+Citigroup Inc.
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:01:29 PM
+INVALIDATION
+129.16
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/C?period1=0&period2=1792740289&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+ANET
+Arista Networks, Inc.
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:03 PM
+INVALIDATION
+188.37
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/ANET?period1=0&period2=1792740261&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+AMT
+American Tower Corporation
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:03 PM
+INVALIDATION
+172.16
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/AMT?period1=0&period2=1792713448&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+HD
+The Home Depot, Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:03 PM
+INVALIDATION
+313.22
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/HD?period1=0&period2=1792752391&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+IBM
+International Business Machines Corporation
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:02 PM
+INVALIDATION
+237.1
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/IBM?period1=0&period2=1792740401&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+TMO
+Thermo Fisher Scientific Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:02 PM
+INVALIDATION
+634.54
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/TMO?period1=0&period2=1792740569&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+V
+Visa Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:02 PM
+INVALIDATION
+400.93
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/V?period1=0&period2=1792740591&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+CAT
+Caterpillar Inc.
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:02 PM
+INVALIDATION
+759.5
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/CAT?period1=0&period2=1792740292&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+LLY
+Eli Lilly and Company
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:02 PM
+INVALIDATION
+1232.1
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/LLY?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+PM
+Philip Morris International Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:02 PM
+INVALIDATION
+190.56
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/PM?period1=0&period2=1792740535&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+BA
+The Boeing Company
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:02 PM
+INVALIDATION
+197.42
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/BA?period1=0&period2=1792740264&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+GS
+The Goldman Sachs Group, Inc.
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:02 PM
+INVALIDATION
+940.71
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/GS?period1=0&period2=1792740390&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+BAC
+Bank of America Corporation
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:02 PM
+INVALIDATION
+53.59
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/BAC?period1=0&period2=1792713438&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+MO
+Altria Group, Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:02 PM
+INVALIDATION
+73.11
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/MO?period1=0&period2=1792740474&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+SCHW
+The Charles Schwab Corporation
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:02 PM
+INVALIDATION
+95.81
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/SCHW?period1=0&period2=1792740552&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+ADBE
+Adobe Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:01 PM
+INVALIDATION
+252.28
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/ADBE?period1=0&period2=1792740256&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+SNDK
+Sandisk Corporation
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:01 PM
+INVALIDATION
+1457.06
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/SNDK?period1=0&period2=1792713446&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+CSCO
+Cisco Systems, Inc.
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:01 PM
+INVALIDATION
+110.65
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/CSCO?period1=0&period2=1792740314&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+COST
+Costco Wholesale Corporation
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:01 PM
+INVALIDATION
+986.29
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/COST?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+ISRG
+Intuitive Surgical, Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:01 PM
+INVALIDATION
+417.81
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/ISRG?period1=0&period2=1792701942&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+GOOG
+Alphabet Inc.
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:00 PM
+INVALIDATION
+338.23
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/GOOG?period1=0&period2=1792740376&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+INTU
+Intuit Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:00 PM
+INVALIDATION
+329.23
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/INTU?period1=0&period2=1792740411&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+QCOM
+QUALCOMM Incorporated
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:00 PM
+INVALIDATION
+186.61
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/QCOM?period1=0&period2=1792740539&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+MDLZ
+Mondelez International, Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:00 PM
+INVALIDATION
+62.55
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/MDLZ?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+PEP
+PepsiCo, Inc.
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:00 PM
+INVALIDATION
+133.26
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/PEP?period1=0&period2=1792752392&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+TMUS
+T-Mobile US, Inc.
+SHORT
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:00 PM
+INVALIDATION
+169.48
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/TMUS?period1=0&period2=1792713451&interval=1d&events=div%2Csplits)
+DISCOVERY CANDIDATE
+SBUX
+Starbucks Corporation
+LONG
+Automated discovery · five-dimension gate
+LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment
+OBSERVED
+10/22/2026, 8:00:00 PM
+INVALIDATION
+97.13
+DELIVERY
+UNKNOWN
+No outbox row · homepage visibility is not chat delivery.
+Loading shared asset context…
+[button: OPEN DOSSIER] [button: SIGNAL TAPE] SOURCE (→ https://query1.finance.yahoo.com/v8/finance/chart/SBUX?period1=0&period2=1792740547&interval=1d&events=div%2Csplits)
+### Equity opportunity board
+EVIDENCE CHANGES
+## Fresh Engine Hits
+No fresh Engine Hits.The stored hit log has no evidence change inside the current freshness window.
+START A DOSSIER
+## What do you want to understand?
+[select: Quick asset picker = QUICK PICK* | SPY · S&P 500 | QQQ · Nasdaq 100 | TLT · Treasuries | GLD · Gold | BTC · Bitcoin]
+[input text: Ticker or company name]
+[button: FIND]
+RECENT PICKS
+Your analyzed names will stay here on this device.

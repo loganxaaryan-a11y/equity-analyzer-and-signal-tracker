@@ -1,0 +1,25 @@
+Builder sandbox verification, 2026-10-12 UTC
+
+Build: web artifact build succeeded at 06:34:41Z.
+Audit: pass; desktop and 390px mobile captured; 0 console errors, 0 broken images, 0 horizontal overflow, no clipped or unreachable controls. Google Fonts was blocked only by the audit egress lockdown.
+
+Refresh 1 — SPY diagnostic at 06:34:55Z–06:34:57Z:
+- action ok=true, runId=243, observationsWritten=2, reused=0
+- quote event 2026-10-09T20:00:00Z, receipt 2026-10-12T06:34:57Z
+- quote correctly stale; statusEventsAppended=0
+- isolation: expensiveAnalysisCalled=false, decisionsCreated=0, snapshotsMutated=0
+
+Refresh 2 — unchanged SPY diagnostic at 06:36:18Z–06:36:19Z:
+- action ok=true, runId=244, observationsWritten=0, reused=2
+- latest successful fetch advanced despite immutable payload reuse
+- quote remained stale because provider event time stayed old
+- isolation: expensiveAnalysisCalled=false, decisionsCreated=0, snapshotsMutated=0
+
+Read at 06:36:24Z:
+- quote provider age 210,984 seconds, fetch age 4 seconds, state=stale
+- completed candle OHLCV: 776.239990234375 / 779.4199829101562 / 775.1400146484375 / 778.5700073242188, volume 22,596,500, USD, NYSEArca
+- completed candle uses market-closed session-aware classification; quote content remains stale
+- expensive analysis remained not_available and unmodified
+- last run note: Market-data lane only; expensive analysis was not called.
+
+This sandbox verifies the action/read model and unchanged-fetch behavior against the real provider path. It is not deployed controlled outage/recovery evidence.

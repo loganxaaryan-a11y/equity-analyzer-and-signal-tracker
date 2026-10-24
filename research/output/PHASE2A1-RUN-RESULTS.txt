@@ -1,0 +1,4 @@
+$ bun research/src/command.ts repair-validate
+Phase 2A.1 repair validation complete: 5672 observations, 0 selections.
+Synthetic controls: positive=PASS, negative false qualifications=0/12.
+Holdout opened: false. Corrected outputs: research/output/phase2a1-*

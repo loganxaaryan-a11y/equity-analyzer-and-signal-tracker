@@ -1,0 +1,12 @@
+{
+  "entry": "client/dist/index.html",
+  "managedCronJobs": [
+    "equity-theory-discovery",
+    "equity-signal-daily-postmortem",
+    "equity-market-data-refresh"
+  ],
+  "name": "Equity Analyzer and Signal Tracker",
+  "platformVersion": 25,
+  "runtime": "typescript",
+  "slug": "equity-analyzer-and-signal-tracker"
+}

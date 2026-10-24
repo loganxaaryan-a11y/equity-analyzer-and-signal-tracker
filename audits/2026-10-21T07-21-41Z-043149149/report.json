@@ -1,0 +1,122 @@
+{
+  "ok": true,
+  "url": "https://artifact-capture.invalid/spaces/v2/hatch-audit-3af37c38-a42c-4f87-b3e3-b0bcfc6d117e/",
+  "duration_ms": 12495.721366,
+  "output_dir": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-21T07-21-41Z-043149149",
+  "nav_status": 200,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-21T07-21-41Z-043149149/screenshot.png",
+      "fullpage_screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-21T07-21-41Z-043149149/screenshot-full.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-21T07-21-41Z-043149149/screenshot-mobile.png"
+    }
+  },
+  "mobile_layout": {
+    "viewport_width": 390,
+    "scroll_width": 390,
+    "overflow_px": 0,
+    "widest_selector": null,
+    "verdict": "pass"
+  },
+  "horizontal_scrollers": [],
+  "unreachable_controls": {
+    "desktop": [],
+    "mobile": []
+  },
+  "clipped": {
+    "desktop": [],
+    "mobile": []
+  },
+  "images": {
+    "total": 0,
+    "broken": [],
+    "duplicate": [],
+    "unstable": [],
+    "failed_requests": [],
+    "external_blocked": {
+      "count": 0,
+      "sample": []
+    },
+    "sample_urls": [],
+    "verdict": "pass"
+  },
+  "text_issues": [],
+  "console_errors": [],
+  "console_warnings": [],
+  "external_fetch_failures": 2,
+  "external_fetch_failure_samples": [
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)",
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)"
+  ],
+  "blocked_requests": [],
+  "external_requests": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "method": "GET",
+      "resource_type": "stylesheet"
+    }
+  ],
+  "external_requests_dropped": 0,
+  "external_requests_dropped_data_bearing": 0,
+  "transport_ledger_active": true,
+  "egress_lockdown": true,
+  "transport_connections": [
+    {
+      "host": "fonts.googleapis.com",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "policy_denied": true
+    }
+  ],
+  "transport_udp_attempts": 0,
+  "transport_overflow": 0,
+  "unexplained_transport_hosts": [],
+  "broken_assets": [],
+  "blocked_affordances": [],
+  "interactive_nodes": 9,
+  "aria_snapshot": "- main:\n  - navigation \"Terminal destinations\":\n    - button \"TODAY\"\n    - button \"DOSSIER\"\n    - button \"SIGNALS\"\n    - button \"RESEARCH\"\n    - button \"LOG\"\n  - note: OPPORTUNITIES — what changed · why it matters · timeframe · evidence and conflicts\n  - region \"Current opportunities\":\n    - region \"Notifications\":\n      - text: NOTIFICATIONS · TERMINAL-FIRST\n      - heading \"Notifications\" [level=2]\n      - paragraph: Opportunities and lifecycle events as committed by the terminal. Read state changes only when you mark a row read here.\n      - strong: 64 UNREAD\n      - button \"Mark all notifications read\": MARK ALL READ\n      - heading \"ACTIONABLE NOW · 61\" [level=3]\n      - article:\n        - text: LLY QUALIFIED UNREAD\n        - paragraph: LLY — Radar 90+ long\n        - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 1208.99.\n        - paragraph: EVENT 10/21/2026, 7:19:31 AM → STORED 10/21/2026, 7:19:31 AM · no expiry recorded\n        - button \"Mark LLY notification 64 read\": MARK READ\n      - article:\n        - text: BRK-B QUALIFIED UNREAD\n        - paragraph: BRK-B — Radar 90+ long\n        - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 527.56.\n        - paragraph: EVENT 10/21/2026, 7:19:30 AM → STORED 10/21/2026, 7:19:30 AM · no expiry recorded\n        - button \"Mark BRK-B notification 63 read\": MARK READ\n      - article:\n        - text: LMT QUALIFIED UNREAD\n        - paragraph: LMT — Radar 90+ long\n        - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 524.22.\n        - paragraph: EVENT 10/21/2026, 7:19:30 AM → STORED 10/21/2026, 7:19:30 AM · no expiry recorded\n        - button \"Mark LMT notification 62 read\": MARK READ\n      - article:\n        - text: ISRG QUALIFIED UNREAD\n        - paragraph: ISRG — Radar 90+ long\n        - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 416.57.\n        - paragraph: EVENT 10/21/2026, 7:19:29 AM → STORED 10/21/2026, 7:19:30 AM · no expiry recorded\n        - button \"Mark ISRG notification 61 read\": MARK READ\n      - article:\n        - text: NFLX QUALIFIED UNREAD\n        - paragraph: NFLX — Radar 90+ short\n        - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 72.5.\"\n        - paragraph: EVENT 10/21/2026, 7:19:29 AM → STORED 10/21/2026, 7:19:29 AM · no expiry recorded\n        - button \"Mark NFLX notification 60 read\": MARK READ\n      - article:\n        - text: GE QUALIFIED UNREAD\n        - paragraph: GE — Radar 90+ short\n        - paragraph: \"-100 five-dimension agreement · SHORT · MEDIUM confidence · invalidation 315.89.\"\n        - paragraph: EVENT 10/21/2026, 7:19:25 AM → STORED 10/21/2026, 7:19:29 AM · no expiry recorded\n        - button \"Mark GE notification 59 read\": MARK READ\n      - article:\n        - text: INTC QUALIFIED UNREAD\n        - paragraph: INTC — discovery candidate (Intel Corporation)\n        - paragraph: \"LOW confidence · 2/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:00 PM → STORED 10/21/2026, 7:19:25 AM · no expiry recorded · REVIEW DUE 10/21/2026, 7:14:39 AM\n        - button \"Mark INTC notification 58 read\": MARK READ\n      - article:\n        - text: SNDK QUALIFIED UNREAD\n        - paragraph: SNDK — discovery candidate (Sandisk Corporation)\n        - paragraph: \"LOW confidence · 2/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:00 PM → STORED 10/21/2026, 7:19:25 AM · no expiry recorded\n        - button \"Mark SNDK notification 57 read\": MARK READ\n      - article:\n        - text: PLTR QUALIFIED UNREAD\n        - paragraph: PLTR — discovery candidate (Palantir Technologies Inc.)\n        - paragraph: \"LOW confidence · 2/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:01 PM → STORED 10/21/2026, 7:19:25 AM · no expiry recorded · REVIEW DUE 10/21/2026, 7:14:49 AM\n        - button \"Mark PLTR notification 56 read\": MARK READ\n      - article:\n        - text: DE QUALIFIED UNREAD\n        - paragraph: DE — discovery candidate (Deere & Company)\n        - paragraph: \"LOW confidence · 2/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:03 PM → STORED 10/21/2026, 7:19:25 AM · no expiry recorded\n        - button \"Mark DE notification 55 read\": MARK READ\n      - article:\n        - text: MU QUALIFIED UNREAD\n        - paragraph: MU — discovery candidate (Micron Technology, Inc.)\n        - paragraph: \"LOW confidence · 2/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:01 PM → STORED 10/21/2026, 7:19:25 AM · no expiry recorded · REVIEW DUE 10/21/2026, 7:14:46 AM\n        - button \"Mark MU notification 54 read\": MARK READ\n      - article:\n        - text: MDT QUALIFIED UNREAD\n        - paragraph: MDT — discovery candidate (Medtronic plc)\n        - paragraph: \"LOW confidence · 2/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:02 PM → STORED 10/21/2026, 7:19:25 AM · no expiry recorded · REVIEW DUE 10/21/2026, 7:14:44 AM\n        - button \"Mark MDT notification 53 read\": MARK READ\n      - article:\n        - text: NVDA QUALIFIED UNREAD\n        - paragraph: NVDA — discovery candidate (NVIDIA Corporation)\n        - paragraph: \"LOW confidence · 2/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:01 PM → STORED 10/21/2026, 7:19:25 AM · no expiry recorded · REVIEW DUE 10/21/2026, 7:14:47 AM\n        - button \"Mark NVDA notification 52 read\": MARK READ\n      - article:\n        - text: INTU QUALIFIED UNREAD\n        - paragraph: INTU — discovery candidate (Intuit Inc.)\n        - paragraph: \"LOW confidence · 2/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:01 PM → STORED 10/21/2026, 7:19:25 AM · no expiry recorded\n        - button \"Mark INTU notification 51 read\": MARK READ\n      - article:\n        - text: MSFT QUALIFIED UNREAD\n        - paragraph: MSFT — discovery candidate (Microsoft Corporation)\n        - paragraph: \"LOW confidence · 2/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volatility, Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:01 PM → STORED 10/21/2026, 7:19:25 AM · no expiry recorded\n        - button \"Mark MSFT notification 50 read\": MARK READ\n      - article:\n        - text: ABT QUALIFIED UNREAD\n        - paragraph: ABT — discovery candidate (Abbott Laboratories)\n        - paragraph: \"LOW confidence · 2/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Momentum, Volatility, Positioning / sentiment\"\n        - paragraph: \"Direction mixed · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:04:25 PM → STORED 10/21/2026, 7:19:25 AM · no expiry recorded\n        - button \"Mark ABT notification 49 read\": MARK READ\n      - article:\n        - text: BAC QUALIFIED UNREAD\n        - paragraph: BAC — discovery candidate (Bank of America Corporation)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:03 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded · REVIEW DUE 10/18/2026, 4:28:54 AM\n        - button \"Mark BAC notification 48 read\": MARK READ\n      - article:\n        - text: MA QUALIFIED UNREAD\n        - paragraph: MA — discovery candidate (Mastercard Incorporated)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:03 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark MA notification 47 read\": MARK READ\n      - article:\n        - text: GS QUALIFIED UNREAD\n        - paragraph: GS — discovery candidate (The Goldman Sachs Group, Inc.)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:02 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark GS notification 46 read\": MARK READ\n      - article:\n        - text: PM QUALIFIED UNREAD\n        - paragraph: PM — discovery candidate (Philip Morris International Inc.)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:02 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark PM notification 45 read\": MARK READ\n      - article:\n        - text: WMT QUALIFIED UNREAD\n        - paragraph: WMT — discovery candidate (Walmart Inc.)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:01 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded · REVIEW DUE 10/21/2026, 6:59:36 AM\n        - button \"Mark WMT notification 44 read\": MARK READ\n      - article:\n        - text: BKNG QUALIFIED UNREAD\n        - paragraph: BKNG — discovery candidate (Booking Holdings Inc.)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:01 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark BKNG notification 43 read\": MARK READ\n      - article:\n        - text: TMUS QUALIFIED UNREAD\n        - paragraph: TMUS — discovery candidate (T-Mobile US, Inc.)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:00 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark TMUS notification 42 read\": MARK READ\n      - article:\n        - text: UNP QUALIFIED UNREAD\n        - paragraph: UNP — discovery candidate (Union Pacific Corporation)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:02 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark UNP notification 41 read\": MARK READ\n      - article:\n        - text: ABBV QUALIFIED UNREAD\n        - paragraph: ABBV — discovery candidate (AbbVie Inc.)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:03:47 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark ABBV notification 40 read\": MARK READ\n      - article:\n        - text: AAPL QUALIFIED UNREAD\n        - paragraph: AAPL — discovery candidate (Apple Inc.)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:01 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded · REVIEW DUE 10/21/2026, 6:59:40 AM\n        - button \"Mark AAPL notification 39 read\": MARK READ\n      - article:\n        - text: COST QUALIFIED UNREAD\n        - paragraph: COST — discovery candidate (Costco Wholesale Corporation)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:00 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded · REVIEW DUE 10/21/2026, 6:59:53 AM\n        - button \"Mark COST notification 38 read\": MARK READ\n      - article:\n        - text: ACN QUALIFIED UNREAD\n        - paragraph: ACN — discovery candidate (Accenture plc)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:03 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark ACN notification 37 read\": MARK READ\n      - article:\n        - text: PG QUALIFIED UNREAD\n        - paragraph: PG — discovery candidate (The Procter & Gamble Company)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:03:12 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark PG notification 36 read\": MARK READ\n      - article:\n        - text: BA QUALIFIED UNREAD\n        - paragraph: BA — discovery candidate (The Boeing Company)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:03 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark BA notification 35 read\": MARK READ\n      - article:\n        - text: BNY QUALIFIED UNREAD\n        - paragraph: BNY — discovery candidate (The Bank of New York Mellon Corporation)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:02:24 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark BNY notification 34 read\": MARK READ\n      - article:\n        - text: LRCX QUALIFIED UNREAD\n        - paragraph: LRCX — discovery candidate (Lam Research Corporation)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:01 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark LRCX notification 33 read\": MARK READ\n      - article:\n        - text: AMT QUALIFIED UNREAD\n        - paragraph: AMT — discovery candidate (American Tower Corporation)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction long · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:03 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark AMT notification 32 read\": MARK READ\n      - article:\n        - text: SCHW QUALIFIED UNREAD\n        - paragraph: SCHW — discovery candidate (The Charles Schwab Corporation)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\"\n        - paragraph: \"Direction short · agreement 0 · low confidence · scan run #33\"\n        - paragraph: EVENT 10/20/2026, 8:00:02 PM → STORED 10/21/2026, 7:19:24 AM · no expiry recorded\n        - button \"Mark SCHW notification 31 read\": MARK READ\n      - article:\n        - text: UBER QUALIFIED UNREAD\n        - paragraph: UBER — discovery candidate (Uber Technologies, Inc.)\n        - paragraph: \"LOW confidence · 3/5 dimensions support · 0 conflicts · NO DIRECTIONAL RATING · fewer than 4/5 dimensions measured or factor direction is mixed · research: Volume, Positioning / sentiment\n… (aria snapshot truncated at 20000 chars)",
+  "audit_session_id": "99ec7d31-7689-458a-816c-05b697b830d5",
+  "readiness": {
+    "desktop": {
+      "settled": false,
+      "settle_ms": 8010,
+      "in_flight": null,
+      "network_idle": false,
+      "retried": true
+    },
+    "mobile": {
+      "settled": false,
+      "settle_ms": 8040,
+      "in_flight": null,
+      "network_idle": false,
+      "retried": true
+    }
+  },
+  "color_scheme": {
+    "declared": "light",
+    "media_dependent": null,
+    "dark_frame": false
+  },
+  "mobile_ms": 10186.171794,
+  "cold_launch_ms": 795.330115,
+  "desktop_ms": 10703.846496,
+  "browser_launches": 1,
+  "audit_path": "shared-concurrent",
+  "diagnostics": {
+    "audit_path": "shared-concurrent",
+    "concurrent_ran": true,
+    "concurrent_desktop_retry": false,
+    "concurrent_mobile_retry": false,
+    "shared_launch_failed": false,
+    "nav_retries": 0,
+    "settle_retries": 2
+  }
+}

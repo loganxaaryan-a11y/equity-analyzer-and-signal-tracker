@@ -1,0 +1,109 @@
+{
+  "cohort": "phase2a1-synthetic-controls-v1",
+  "positive": {
+    "construction": "A deterministic rising OHLCV series traverses the actual feature, next-entry, exact-endpoint label, purge, cost and shared date-panel evaluator path under an isolated synthetic registry.",
+    "futureInformationUsed": false,
+    "events": 320,
+    "meanGross": 0.00752253,
+    "meanCentralNet": 0.00652253,
+    "lower90": 0.00652253,
+    "qualified": true
+  },
+  "negative": {
+    "construction": "Signal directions and later outcomes come from independent deterministic PRNG streams for every recorded seed.",
+    "futureInformationUsed": false,
+    "seeds": [
+      101,
+      202,
+      303,
+      404,
+      505,
+      606,
+      707,
+      808,
+      909,
+      1010,
+      1111,
+      1212
+    ],
+    "eventsPerSeed": 420,
+    "qualifications": 0,
+    "falseQualificationRate": 0,
+    "results": [
+      {
+        "seed": 101,
+        "meanCentralNet": -0.00042339,
+        "lower90": -0.00111242,
+        "qualified": false
+      },
+      {
+        "seed": 202,
+        "meanCentralNet": -0.00103369,
+        "lower90": -0.00253702,
+        "qualified": false
+      },
+      {
+        "seed": 303,
+        "meanCentralNet": -0.00038265,
+        "lower90": -0.00140507,
+        "qualified": false
+      },
+      {
+        "seed": 404,
+        "meanCentralNet": -0.00086022,
+        "lower90": -0.00174724,
+        "qualified": false
+      },
+      {
+        "seed": 505,
+        "meanCentralNet": -0.00193304,
+        "lower90": -0.00326748,
+        "qualified": false
+      },
+      {
+        "seed": 606,
+        "meanCentralNet": -0.00110069,
+        "lower90": -0.00177432,
+        "qualified": false
+      },
+      {
+        "seed": 707,
+        "meanCentralNet": -0.00099466,
+        "lower90": -0.00199531,
+        "qualified": false
+      },
+      {
+        "seed": 808,
+        "meanCentralNet": -0.0005971,
+        "lower90": -0.00173744,
+        "qualified": false
+      },
+      {
+        "seed": 909,
+        "meanCentralNet": -0.0004038,
+        "lower90": -0.00163792,
+        "qualified": false
+      },
+      {
+        "seed": 1010,
+        "meanCentralNet": -0.00087436,
+        "lower90": -0.00171512,
+        "qualified": false
+      },
+      {
+        "seed": 1111,
+        "meanCentralNet": -0.00218137,
+        "lower90": -0.00313467,
+        "qualified": false
+      },
+      {
+        "seed": 1212,
+        "meanCentralNet": -0.00142941,
+        "lower90": -0.00212814,
+        "qualified": false
+      }
+    ]
+  },
+  "qualificationRule": "At least 40 events, positive mean modeled-net return, and a positive lower 90% complete-date-block interval. Direction-balance is not imposed on the control because its purpose is instrument sensitivity, not strategy eligibility. Imposing matched-SMA outperformance would make the positive control impossible whenever SMA is assigned the identical synthetic decisions; that comparator is therefore a sanity equality check, not the control's qualification gate.",
+  "separation": "Synthetic controls are emitted only to research/output/phase2a1-synthetic-controls.json and are never appended to market observations, candidate reports, selections, or the legacy scoreboard."
+}

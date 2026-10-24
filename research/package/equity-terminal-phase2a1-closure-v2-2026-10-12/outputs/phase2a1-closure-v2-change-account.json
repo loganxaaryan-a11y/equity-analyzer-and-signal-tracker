@@ -1,0 +1,65 @@
+{
+  "generatedAt": "2026-10-09T18:16:00Z",
+  "originalResultPreservedAt": "research/output/candidate-report.json",
+  "priorExposurePreserved": true,
+  "originalSelections": [
+    {
+      "market": "equity",
+      "horizon": 5,
+      "selected": null,
+      "reason": "No registered candidate met the frozen sample, coverage, direction-balance, economics, and uncertainty checks."
+    },
+    {
+      "market": "equity",
+      "horizon": 30,
+      "selected": null,
+      "reason": "No registered candidate met the frozen sample, coverage, direction-balance, economics, and uncertainty checks."
+    },
+    {
+      "market": "crypto",
+      "horizon": 5,
+      "selected": null,
+      "reason": "No registered candidate met the frozen sample, coverage, direction-balance, economics, and uncertainty checks."
+    },
+    {
+      "market": "crypto",
+      "horizon": 30,
+      "selected": null,
+      "reason": "No registered candidate met the frozen sample, coverage, direction-balance, economics, and uncertainty checks."
+    }
+  ],
+  "repairedSelections": [
+    {
+      "market": "equity",
+      "horizon": 5,
+      "selected": null,
+      "reason": "No registered candidate met the unchanged frozen sample, coverage, direction-balance, economics, and uncertainty checks."
+    },
+    {
+      "market": "equity",
+      "horizon": 30,
+      "selected": null,
+      "reason": "No registered candidate met the unchanged frozen sample, coverage, direction-balance, economics, and uncertainty checks."
+    },
+    {
+      "market": "crypto",
+      "horizon": 5,
+      "selected": null,
+      "reason": "No registered candidate met the unchanged frozen sample, coverage, direction-balance, economics, and uncertainty checks."
+    },
+    {
+      "market": "crypto",
+      "horizon": 30,
+      "selected": null,
+      "reason": "No registered candidate met the unchanged frozen sample, coverage, direction-balance, economics, and uncertainty checks."
+    }
+  ],
+  "comparisonScope": [
+    "calendar-derived entries/exits/lookbacks",
+    "exact scheduled endpoints",
+    "like-with-like matched costs",
+    "complete scheduled-date uncertainty blocks",
+    "engine-level holdout rejection"
+  ],
+  "note": "The repair is separately versioned. Familiar market outcomes are not represented as newly unseen evidence."
+}

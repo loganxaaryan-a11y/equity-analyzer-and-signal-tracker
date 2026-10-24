@@ -1,0 +1,5 @@
+ACTION=runmeasurementbatch
+ARGS={"runId":"definitely-missing-run","batchSize":1,"mode":"continue"}
+RESULT=ERROR RUN_NOT_FOUND: definitely-missing-run
+ASSERTION=no replacement run was created; explicit unknown resume failed closed
+EXIT_CODE=0 (expected action rejection observed)

@@ -86,7 +86,7 @@ function fixtureDb(initialSignals: any[]) {
   return { ctx, rows };
 }
 
-function lane(store: ReturnType<typeof fixtureDb>, seriesRef: { current: any }, nowIso: string) {
+function lane(_store: ReturnType<typeof fixtureDb>, seriesRef: { current: any }, nowIso: string) {
   return { now: () => new Date(nowIso), loadFreshHistory: async () => seriesRef.current, loadCachedHistory: async () => null };
 }
 

@@ -1320,7 +1320,7 @@ const managers = [
 ];
 type SecRecent = { form: string[]; accessionNumber: string[]; primaryDocument: string[]; filingDate: string[]; reportDate: string[] };
 type SecSubmissionFile = { name?: string; filingFrom?: string; filingTo?: string };
-type SecSubmission = { name?: string; filings?: { recent?: SecRecent; files?: SecSubmissionFile[] } };
+type SecSubmission = { name?: string; sic?: string; sicDescription?: string; exchanges?: string[]; filings?: { recent?: SecRecent; files?: SecSubmissionFile[] } };
 type SecIndex = { directory?: { item?: Array<{ name?: string }> } };
 type FilingRow = { accession: string; primary: string; filingDate: string; reportDate: string };
 type Holding = { issuer: string; value: number; shares: number };
@@ -1715,7 +1715,7 @@ function parseReasonLines(value: string): string[] {
   try { const parsed: unknown = JSON.parse(value); return Array.isArray(parsed) ? parsed.filter((line): line is string => typeof line === "string") : []; } catch { return []; }
 }
 const notificationRowSchema = z.object({
-  id: z.number(), dedupKey: z.string(), symbol: z.string(), kind: z.string(),
+  id: z.number(), dedupKey: z.string(), symbol: z.string(), name: z.string().nullable(), kind: z.string(),
   stage: z.enum(["watch_alert", "confirmed_paper_entry"]),
   class: z.enum(["opportunity", "lifecycle"]), eventType: notificationEventType,
   title: z.string(), reasonLines: z.array(z.string()),
@@ -1734,7 +1734,7 @@ const notificationRowSchema = z.object({
 type NotificationRow = z.infer<typeof notificationRowSchema>;
 function mapNotificationRow(row: typeof schema.equityNotifications.$inferSelect): NotificationRow {
   return {
-    id: row.id, dedupKey: row.dedupKey, symbol: row.symbol, kind: row.kind, stage: row.stage,
+    id: row.id, dedupKey: row.dedupKey, symbol: row.symbol, name: null, kind: row.kind, stage: row.stage,
     class: row.notificationClass, eventType: row.eventType, title: row.title,
     reasonLines: parseReasonLines(row.reasonLinesJson), blockerReason: row.blockerReason,
     disclosure: row.disclosure, eventAt: row.eventAt.toISOString(), storedAt: row.storedAt.toISOString(),
@@ -4622,6 +4622,163 @@ function canonicalAssetSymbol(value: string): string { const normalized = value.
 function assetAliases(symbol: string): Set<string> { const canonical = canonicalAssetSymbol(symbol); const values = [canonical]; if (canonical === "BTC-USD") values.push("BTC", "XBT"); if (canonical === "NEAR-USD") values.push("NEAR"); return new Set(values); }
 function safeRecord(value: string): Record<string, unknown> { try { const parsed: unknown = JSON.parse(value); return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed as Record<string, unknown> : {}; } catch { return {}; } }
 function contextSourceId(prefix: string, id: string | number): string { return `${prefix}-${id}`; }
+
+// ---------------------------------------------------------------------------
+// Company identity (2026-10-23): every ticker surface shows the full company
+// name, and the dossier shows what the company does. Names resolve from rows
+// the terminal already stores (scan universe, scan signals, tracked signals,
+// watchlist, verified asset profiles, cached Yahoo chart metadata, and the
+// company_profiles cache). Descriptions come only from a sourced fetch —
+// Yahoo Finance quoteSummary assetProfile, a verified asset profile, or a
+// web-search summary written strictly from returned snippets — and are
+// cached in company_profiles. List reads never fetch; only the single-symbol
+// getCompanyProfile action fetches, and it caches both hits and misses.
+const companyProfileSchema = z.object({
+  symbol: z.string(), name: z.string().nullable(), sector: z.string().nullable(), industry: z.string().nullable(),
+  description: z.string().nullable(), descriptionSourceTitle: z.string().nullable(), descriptionSourceUrl: z.string().nullable(),
+  fetchedAt: z.string().nullable(),
+});
+type CompanyProfile = z.infer<typeof companyProfileSchema>;
+const companyProfilesResponse = z.object({ profiles: z.array(companyProfileSchema), generatedAt: z.string() });
+const COMPANY_PROFILE_FRESH_MS = 30 * 24 * 3600000;
+const COMPANY_PROFILE_NEGATIVE_MS = 24 * 3600000;
+
+function usableCompanyName(value: string | null | undefined, symbol: string): string | null {
+  const name = value?.trim();
+  if (!name) return null;
+  if (name.toUpperCase() === symbol.toUpperCase()) return null;
+  return name;
+}
+
+async function resolveStoredCompanyInfo(ctx: Ctx, rawSymbols: string[]): Promise<Map<string, CompanyProfile>> {
+  const symbols = [...new Set(rawSymbols.map((value) => canonicalAssetSymbol(value)).filter(Boolean))];
+  const out = new Map<string, CompanyProfile>();
+  if (!symbols.length) return out;
+  for (const symbol of symbols) out.set(symbol, { symbol, name: null, sector: null, industry: null, description: null, descriptionSourceTitle: null, descriptionSourceUrl: null, fetchedAt: null });
+  const db = ctx.db<typeof schema>();
+  const fill = (symbol: string, patch: Partial<CompanyProfile>) => {
+    const row = out.get(symbol);
+    if (!row) return;
+    if (patch.name != null && row.name == null) row.name = patch.name;
+    if (patch.sector != null && row.sector == null) row.sector = patch.sector;
+    if (patch.industry != null && row.industry == null) row.industry = patch.industry;
+    if (patch.description != null && row.description == null) {
+      row.description = patch.description;
+      row.descriptionSourceTitle = patch.descriptionSourceTitle ?? null;
+      row.descriptionSourceUrl = patch.descriptionSourceUrl ?? null;
+    }
+    if (patch.fetchedAt != null && row.fetchedAt == null) row.fetchedAt = patch.fetchedAt;
+  };
+  const [cachedProfiles, verifiedProfiles, universeRows, scanRows, trackedRows, watchRows, historyRows] = await Promise.all([
+    db.select().from(schema.companyProfiles).where(inArray(schema.companyProfiles.symbol, symbols)),
+    db.select().from(schema.assetProfiles).where(inArray(schema.assetProfiles.symbol, symbols)),
+    db.select().from(schema.marketScanUniverseRows).where(inArray(schema.marketScanUniverseRows.symbol, symbols)).orderBy(desc(schema.marketScanUniverseRows.runId)),
+    db.select().from(schema.marketScanSignals).where(inArray(schema.marketScanSignals.symbol, symbols)),
+    db.select().from(schema.trackedSignals).where(inArray(schema.trackedSignals.symbol, symbols)).orderBy(desc(schema.trackedSignals.id)),
+    db.select().from(schema.watchlist).where(inArray(schema.watchlist.symbol, symbols)),
+    db.select().from(schema.historicalCaches).where(inArray(schema.historicalCaches.symbol, symbols)),
+  ]);
+  for (const row of cachedProfiles) fill(row.symbol, { name: usableCompanyName(row.name, row.symbol), sector: row.sector, industry: row.industry, description: row.description, descriptionSourceTitle: row.descriptionSourceTitle, descriptionSourceUrl: row.descriptionSourceUrl, fetchedAt: row.fetchedAt.toISOString() });
+  for (const row of verifiedProfiles) fill(row.symbol, { name: usableCompanyName(row.canonicalName, row.symbol), description: `${row.description} ${row.revenueModel}`.trim(), descriptionSourceTitle: row.sourceTitle, descriptionSourceUrl: row.sourceUrl });
+  const seenUniverse = new Set<string>();
+  for (const row of universeRows) { if (seenUniverse.has(row.symbol)) continue; seenUniverse.add(row.symbol); fill(row.symbol, { name: usableCompanyName(row.instrumentName, row.symbol), sector: row.sector }); }
+  for (const row of scanRows) fill(row.symbol, { name: usableCompanyName(row.instrumentName, row.symbol), sector: row.sector });
+  const seenTracked = new Set<string>();
+  for (const row of trackedRows) { if (seenTracked.has(row.symbol)) continue; seenTracked.add(row.symbol); fill(row.symbol, { name: usableCompanyName(row.instrumentName, row.symbol) }); }
+  for (const row of watchRows) fill(row.symbol, { name: usableCompanyName(row.displayName, row.symbol) });
+  for (const row of historyRows) {
+    try {
+      const meta = (JSON.parse(row.seriesJson) as { meta?: YahooMeta }).meta;
+      fill(row.symbol, { name: usableCompanyName(meta?.longName ?? meta?.shortName, row.symbol) });
+    } catch { /* a malformed cache row contributes no name */ }
+  }
+  return out;
+}
+
+async function fetchCompanyProfile(ctx: Ctx, rawSymbol: string): Promise<CompanyProfile> {
+  const symbol = canonicalAssetSymbol(rawSymbol);
+  const db = ctx.db<typeof schema>();
+  const stored = await resolveStoredCompanyInfo(ctx, [symbol]);
+  const base: CompanyProfile = stored.get(symbol) ?? { symbol, name: null, sector: null, industry: null, description: null, descriptionSourceTitle: null, descriptionSourceUrl: null, fetchedAt: null };
+  const cachedRow = (await db.select().from(schema.companyProfiles).where(eq(schema.companyProfiles.symbol, symbol)))[0];
+  if (cachedRow) {
+    const ageMs = Date.now() - cachedRow.fetchedAt.getTime();
+    const fresh = cachedRow.description ? ageMs < COMPANY_PROFILE_FRESH_MS : ageMs < COMPANY_PROFILE_NEGATIVE_MS;
+    if (fresh) return base;
+  }
+  const commodity = commodityAliases[cleanKey(symbol)] ?? null;
+  if (commodity) {
+    const profile: CompanyProfile = { ...base, name: base.name ?? commodity.name, description: base.description ?? commodity.why, descriptionSourceTitle: base.description ? base.descriptionSourceTitle : "Terminal commodity mapping", descriptionSourceUrl: base.description ? base.descriptionSourceUrl : null, fetchedAt: new Date().toISOString() };
+    await db.insert(schema.companyProfiles).values({ symbol, name: profile.name, sector: profile.sector, industry: profile.industry, description: profile.description, descriptionSourceTitle: profile.descriptionSourceTitle, descriptionSourceUrl: profile.descriptionSourceUrl, fetchedAt: new Date(), updatedAt: new Date() }).onConflictDoUpdate({ target: schema.companyProfiles.symbol, set: { name: profile.name, sector: profile.sector, industry: profile.industry, description: profile.description, descriptionSourceTitle: profile.descriptionSourceTitle, descriptionSourceUrl: profile.descriptionSourceUrl, fetchedAt: new Date(), updatedAt: new Date() } });
+    return profile;
+  }
+  let name = base.name; let sector = base.sector; let industry = base.industry;
+  let description = base.description; let descriptionSourceTitle = base.descriptionSourceTitle; let descriptionSourceUrl = base.descriptionSourceUrl;
+  // 1) Yahoo Finance quoteSummary assetProfile — the provider's own company
+  // profile (longBusinessSummary, sector, industry). Keyless access is
+  // intermittent (see DATA-PLAN); any failure falls through silently.
+  const quoteSummaryUrl = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${encodeURIComponent(symbol)}?modules=assetProfile%2Cprice`;
+  try {
+    const response = await pacedYahooFetch(quoteSummaryUrl);
+    if (response.ok) {
+      const payload = await response.json() as QuoteSummaryPayload;
+      const root = payload.quoteSummary?.result?.[0];
+      if (root) {
+        const profileModule = moduleObject(root, "assetProfile");
+        const priceModule = moduleObject(root, "price");
+        name = usableCompanyName(rawText(profileModule.companyName) ?? rawText(priceModule.longName) ?? rawText(priceModule.shortName), symbol) ?? name;
+        sector = rawText(profileModule.sector) ?? sector;
+        industry = rawText(profileModule.industry) ?? industry;
+        const summary = rawText(profileModule.longBusinessSummary)?.trim();
+        if (summary && !description) { description = summary.slice(0, 1200); descriptionSourceTitle = "Yahoo Finance company profile"; descriptionSourceUrl = quoteSummaryUrl; }
+      }
+    }
+  } catch { /* provider profile unavailable; fall through to SEC + search */ }
+  // 2) SEC EDGAR submissions — official issuer name and SIC industry
+  // ("what they do" at industry level) for US filers.
+  let secName: string | null = null; let secIndustry: string | null = null; let secUrl: string | null = null;
+  try {
+    const map = await cachedSecTickerMap();
+    const issuer = Object.values(map).find((row) => row.ticker.toUpperCase() === symbol);
+    if (issuer) {
+      const cik10 = String(issuer.cik_str).padStart(10, "0");
+      secUrl = `https://data.sec.gov/submissions/CIK${cik10}.json`;
+      const submission = await secJson<SecSubmission>(secUrl);
+      secName = usableCompanyName(submission.name, symbol);
+      secIndustry = submission.sicDescription?.trim() || null;
+    }
+  } catch { /* SEC unavailable; fall through */ }
+  name = name ?? secName;
+  industry = industry ?? secIndustry;
+  // 3) Sourced web-search summary — only when no provider description exists.
+  // The summary is written strictly from returned snippets (same pattern as
+  // fundingContext) and keeps the result URLs as its sources.
+  if (!description) {
+    try {
+      const label = name ?? symbol;
+      const result = await ctx.tool.web_search(`${label} (${symbol}) company profile what does the company do`);
+      const rows = (result.content?.results ?? []).filter((row) => !row.is_index_page && row.url).slice(0, 4);
+      const snippets = rows.map((row, index) => `[${index + 1}] ${row.title}: ${row.snippet}`).join("\n");
+      if (snippets) {
+        const summary = await ctx.inference.complete(`Write a plain-English summary of what ${label} does — its main products or services and who it sells to — in one or two sentences, using ONLY these search snippets. If they do not establish what the company does, reply with exactly UNAVAILABLE.\n${snippets}`, { schema: z.string() });
+        const cleaned = summary.trim();
+        if (cleaned && cleaned.toUpperCase() !== "UNAVAILABLE" && rows[0]) {
+          description = cleaned.slice(0, 1200);
+          descriptionSourceTitle = rows[0].title;
+          descriptionSourceUrl = rows[0].url ?? null;
+        }
+      }
+    } catch { /* search unavailable; the industry line still identifies the business */ }
+  }
+  if (!description && industry) {
+    description = secIndustry && secUrl ? `SEC-classified industry: ${industry}.` : `Industry: ${industry}.`;
+    if (secIndustry && secUrl) { descriptionSourceTitle = "SEC EDGAR submissions"; descriptionSourceUrl = secUrl; }
+  }
+  const fetchedAt = new Date();
+  await db.insert(schema.companyProfiles).values({ symbol, name, sector, industry, description, descriptionSourceTitle, descriptionSourceUrl, fetchedAt, updatedAt: fetchedAt }).onConflictDoUpdate({ target: schema.companyProfiles.symbol, set: { name, sector, industry, description, descriptionSourceTitle, descriptionSourceUrl, fetchedAt, updatedAt: fetchedAt } });
+  return { symbol, name, sector, industry, description, descriptionSourceTitle, descriptionSourceUrl, fetchedAt: fetchedAt.toISOString() };
+}
+
 async function buildAssetContext(ctx: Ctx, rawSymbol: string): Promise<AssetContext> {
   const symbol = canonicalAssetSymbol(rawSymbol); const aliases = assetAliases(symbol); const db = ctx.db<typeof schema>(); const retrievedAt = new Date();
   const [profileRows, linkRows, alertRows, signalRows, observationRows, deliveryRows, theoryRowsAll, evidenceRows, rippleRows, predictionRows, assessmentRows, outcomeRows, dossierRows] = await Promise.all([
@@ -5008,6 +5165,46 @@ const openbbOptionsChainSchema = z.object({ symbol: z.string(), totalContracts: 
 const openbbInsiderRowSchema = z.object({ transactionDate: z.string().nullable(), ownerName: z.string().nullable(), ownerTitle: z.string().nullable(), transactionType: z.string().nullable(), securitiesTransacted: z.number().nullable(), transactionPrice: z.number().nullable(), sharesHeld: z.number().nullable() });
 const openbbInsiderSchema = z.object({ symbol: z.string(), rows: z.array(openbbInsiderRowSchema) });
 const openbbCotMarketSchema = z.object({ label: z.string(), code: z.string().nullable(), marketName: z.string().nullable(), latestDate: z.string().nullable(), openInterest: z.number().nullable(), nonCommercialNet: z.number().nullable(), commercialNet: z.number().nullable(), nonReportableNet: z.number().nullable() });
+// Engine snapshot header (equity-snapshot-v1) — the workspace engine's own
+// freshness record for the bundles, read alongside the bundle through the
+// same privileged reader. Fields are exposed verbatim (snake_case, exactly
+// as published); snapshotAgeMs is computed at read time from
+// generated_at_utc. Null when the snapshot file is missing or unparseable.
+const engineSnapshotSchema = z.object({
+  schema: z.string().nullable(),
+  generated_at_utc: z.string().nullable(),
+  equity_bundle_fetched_at_utc: z.string().nullable(),
+  deribit_bundle_fetched_at_utc: z.string().nullable(),
+  equity_sections: z.record(z.string(), z.string()),
+  equity_errors: z.array(z.string()),
+  source: z.string().nullable(),
+  snapshotAgeMs: z.number().nullable(),
+});
+type EngineSnapshot = z.infer<typeof engineSnapshotSchema>;
+
+function parseEngineSnapshot(raw: unknown, nowMs: number): EngineSnapshot | null {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const snap = unknownRecord(raw);
+  const strOrNull = (value: unknown): string | null => typeof value === "string" && value ? value : null;
+  const generatedAtUtc = strOrNull(snap.generated_at_utc);
+  const generatedMs = generatedAtUtc ? Date.parse(generatedAtUtc) : NaN;
+  const sectionsRaw = unknownRecord(snap.equity_sections);
+  const sections: Record<string, string> = {};
+  for (const [key, value] of Object.entries(sectionsRaw)) sections[key] = typeof value === "string" ? value : String(value);
+  const errorsRaw = Array.isArray(snap.equity_errors) ? snap.equity_errors : [];
+  const errors = errorsRaw.map((value) => typeof value === "string" ? value : JSON.stringify(value) ?? String(value));
+  return {
+    schema: strOrNull(snap.schema),
+    generated_at_utc: generatedAtUtc,
+    equity_bundle_fetched_at_utc: strOrNull(snap.equity_bundle_fetched_at_utc),
+    deribit_bundle_fetched_at_utc: strOrNull(snap.deribit_bundle_fetched_at_utc),
+    equity_sections: sections,
+    equity_errors: errors,
+    source: strOrNull(snap.source),
+    snapshotAgeMs: Number.isFinite(generatedMs) ? Math.max(0, nowMs - generatedMs) : null,
+  };
+}
+
 const openbbEquityResponse = z.object({
   status: z.enum(["available", "unavailable"]),
   fetchedAtUtc: z.string().nullable(),
@@ -5018,17 +5215,25 @@ const openbbEquityResponse = z.object({
   insiderTrading: z.array(openbbInsiderSchema),
   cotMarkets: z.array(openbbCotMarketSchema),
   cotErrors: z.array(z.object({ key: z.string(), message: z.string() })),
+  engineSnapshot: engineSnapshotSchema.nullable(),
   error: z.string().nullable(),
 });
 type OpenbbEquityResponse = z.infer<typeof openbbEquityResponse>;
 
 async function readOpenbbEquity(ctx: Ctx): Promise<OpenbbEquityResponse> {
-  const unavailable = (error: string): OpenbbEquityResponse => ({ status: "unavailable", fetchedAtUtc: null, source: null, layer: null, indexes: [], optionsChains: [], insiderTrading: [], cotMarkets: [], cotErrors: [], error });
+  const unavailable = (error: string, engineSnapshot: EngineSnapshot | null): OpenbbEquityResponse => ({ status: "unavailable", fetchedAtUtc: null, source: null, layer: null, indexes: [], optionsChains: [], insiderTrading: [], cotMarkets: [], cotErrors: [], engineSnapshot, error });
   let provider: { ok: boolean; data: unknown | null; error: string | null } | null = null;
   try { provider = await ctx.executePrivileged(privileged.openbbEquityFile, {}); }
-  catch { return unavailable("The OpenBB equity bundle file could not be read from the workspace."); }
-  if (!provider?.ok || provider.data == null) return unavailable(provider?.error ?? "The OpenBB equity bundle file could not be read from the workspace.");
-  const root = unknownRecord(provider.data);
+  catch { return unavailable("The OpenBB equity bundle file could not be read from the workspace.", null); }
+  if (provider?.data == null) return unavailable(provider?.error ?? "The OpenBB equity bundle file could not be read from the workspace.", null);
+  // The privileged reader returns {"bundle": ..., "snapshot": ...}; tolerate
+  // the legacy bare-bundle shape by treating it as a bundle with no snapshot.
+  const dataRoot = unknownRecord(provider.data);
+  const hasWrapper = "bundle" in dataRoot || "snapshot" in dataRoot;
+  const bundleRaw: unknown = hasWrapper ? dataRoot.bundle : provider.data;
+  const engineSnapshot = parseEngineSnapshot(hasWrapper ? dataRoot.snapshot : null, Date.now());
+  if (!provider.ok || bundleRaw == null) return unavailable(provider.error ?? "The OpenBB equity bundle file could not be read from the workspace.", engineSnapshot);
+  const root = unknownRecord(bundleRaw);
   const sections = unknownRecord(root.sections);
   const numOrNull = (value: unknown): number | null => typeof value === "number" && Number.isFinite(value) ? value : null;
   const strOrNull = (value: unknown): string | null => typeof value === "string" && value ? value : null;
@@ -5083,7 +5288,7 @@ async function readOpenbbEquity(ctx: Ctx): Promise<OpenbbEquityResponse> {
   });
   const rawErrors = root.errors && typeof root.errors === "object" && !Array.isArray(root.errors) ? root.errors as Record<string, unknown> : {};
   const cotErrors = Object.entries(rawErrors).map(([key, value]) => ({ key, message: typeof value === "string" ? value : String(value) }));
-  return { status: "available", fetchedAtUtc: strOrNull(root.fetched_at_utc), source: strOrNull(root.source), layer: strOrNull(root.layer), indexes, optionsChains, insiderTrading, cotMarkets, cotErrors, error: null };
+  return { status: "available", fetchedAtUtc: strOrNull(root.fetched_at_utc), source: strOrNull(root.source), layer: strOrNull(root.layer), indexes, optionsChains, insiderTrading, cotMarkets, cotErrors, engineSnapshot, error: null };
 }
 
 const sourceHealthRowSchema = z.object({ source: z.string(), lastSuccessAt: z.string().nullable(), freshness: z.string(), errorCount: z.number().nullable(), lastError: z.string().nullable(), quotaRemaining: z.string().nullable(), fallbackStatus: z.string().nullable() });
@@ -6122,6 +6327,8 @@ ${evidenceText}`, { schema: completePictureInferenceSchema }); } catch { /* dete
   runDeepAnalysis: defineAction({ request: z.object({ symbol: z.string().min(1).max(30), coinId: z.string().max(80).optional(), name: z.string().max(160).optional(), referenceMultiple: z.number().positive().max(100).nullable().optional() }), response: deepAnalysisResponse.extend({ resolvedCoinId: z.string() }), async handler(ctx, args): Promise<z.infer<typeof deepAnalysisResponse> & { resolvedCoinId: string }> { const result = await deepAnalysis(ctx, args.symbol, args.referenceMultiple ?? null); return { ...result, resolvedCoinId: args.coinId?.trim() || args.symbol.trim().toUpperCase() }; } }),
   searchInstruments: defineAction({ request: z.object({ query: z.string().trim().min(2).max(80) }), response: instrumentSearchResponse, async handler(_ctx, args): Promise<z.infer<typeof instrumentSearchResponse>> { return searchYahooInstruments(args.query); } }),
   getAssetContext: defineAction({ request: z.object({ symbol: z.string().min(1).max(30) }), response: assetContextResponse, async handler(ctx, args): Promise<AssetContext> { return buildAssetContext(ctx, args.symbol); } }),
+  getCompanyProfile: defineAction({ request: z.object({ symbol: z.string().min(1).max(30) }), response: companyProfileSchema, async handler(ctx, args): Promise<CompanyProfile> { return fetchCompanyProfile(ctx, args.symbol); } }),
+  getCompanyProfiles: defineAction({ request: z.object({ symbols: z.array(z.string().min(1).max(30)).max(40) }), response: companyProfilesResponse, async handler(ctx, args): Promise<z.infer<typeof companyProfilesResponse>> { const resolved = await resolveStoredCompanyInfo(ctx, args.symbols); return { profiles: [...resolved.values()], generatedAt: new Date().toISOString() }; } }),
   getAssetContexts: defineAction({ request: z.object({ symbols: z.array(z.string().min(1).max(30)).max(25) }), response: z.object({ contexts: z.array(assetContextResponse), generatedAt: z.string() }), async handler(ctx, args): Promise<{ contexts: AssetContext[]; generatedAt: string }> { const symbols = [...new Set(args.symbols.map(canonicalAssetSymbol))]; return { contexts: await Promise.all(symbols.map((symbol) => buildAssetContext(ctx, symbol))), generatedAt: new Date().toISOString() }; } }),
   saveAssetProfile: defineAction({
     request: z.object({ symbol: z.string().min(1).max(30), canonicalName: z.string().min(1).max(160), instrumentType: z.enum(["equity", "crypto", "future", "fund", "other"]), instrumentDetail: z.string().min(1).max(500), description: z.string().min(1).max(1200), revenueModel: z.string().min(1).max(1200), sourceTitle: z.string().min(1).max(300), sourceUrl: z.string().url(), sourceAsOf: z.string().nullable() }),
@@ -6382,7 +6589,15 @@ ${evidenceText}`, { schema: completePictureInferenceSchema }); } catch { /* dete
         const board = await buildEquityOpportunityBoard(ctx);
         for (const boardRow of board.rows) reviewDueBySymbol.set(boardRow.symbol, boardRow.nextCheckAt);
       } catch { /* review-due is a display join; the inbox read stands without it */ }
-      return { generatedAt: new Date().toISOString(), total: allIds.length, unreadCount: unreadIds.length, notifications: rows.map((row) => ({ ...mapNotificationRow(row), reviewDue: reviewDueBySymbol.get(row.symbol) ?? null })) };
+      // Company-name join (display-only, stored rows only — this read never
+      // fetches): each notification shows the full company name beside its
+      // ticker when any stored terminal record knows it.
+      const nameBySymbol = new Map<string, string | null>();
+      try {
+        const resolved = await resolveStoredCompanyInfo(ctx, rows.map((row) => row.symbol));
+        for (const [symbol, profile] of resolved) nameBySymbol.set(symbol, profile.name);
+      } catch { /* the inbox read stands without names */ }
+      return { generatedAt: new Date().toISOString(), total: allIds.length, unreadCount: unreadIds.length, notifications: rows.map((row) => ({ ...mapNotificationRow(row), name: nameBySymbol.get(canonicalAssetSymbol(row.symbol)) ?? null, reviewDue: reviewDueBySymbol.get(row.symbol) ?? null })) };
     },
   }),
   // The ONLY writer of readAt. Called exclusively from the terminal UI's

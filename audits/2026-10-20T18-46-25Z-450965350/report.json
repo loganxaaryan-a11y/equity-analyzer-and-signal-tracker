@@ -1,0 +1,683 @@
+{
+  "ok": true,
+  "url": "https://artifact-capture.invalid/spaces/v2/hatch-audit-bb7dbabb-5387-460e-9707-164f0deff232/",
+  "duration_ms": 14023.075676,
+  "output_dir": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-20T18-46-25Z-450965350",
+  "nav_status": 200,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-20T18-46-25Z-450965350/screenshot.png",
+      "fullpage_screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-20T18-46-25Z-450965350/screenshot-full.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-20T18-46-25Z-450965350/screenshot-mobile.png"
+    }
+  },
+  "mobile_layout": {
+    "viewport_width": 390,
+    "scroll_width": 390,
+    "overflow_px": 0,
+    "widest_selector": null,
+    "verdict": "pass"
+  },
+  "horizontal_scrollers": [],
+  "unreachable_controls": {
+    "desktop": [
+      {
+        "name": "[alert-301]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 512,
+        "bbox": [
+          382,
+          1133,
+          60,
+          13
+        ]
+      },
+      {
+        "name": "SOURCES · 1",
+        "tag": "summary",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 760,
+        "bbox": [
+          198,
+          1383,
+          484,
+          11
+        ]
+      },
+      {
+        "name": "Radar 90+ long alert",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 805,
+        "bbox": [
+          198,
+          1423,
+          484,
+          16
+        ]
+      },
+      {
+        "name": "CALCULATIONS · 0",
+        "tag": "summary",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 794,
+        "bbox": [
+          198,
+          1417,
+          484,
+          11
+        ]
+      },
+      {
+        "name": "ASSESSMENT HISTORY · 8",
+        "tag": "summary",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 828,
+        "bbox": [
+          198,
+          1451,
+          484,
+          11
+        ]
+      },
+      {
+        "name": "[evidence-210]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 113,
+        "bbox": [
+          947,
+          734,
+          76,
+          13
+        ]
+      },
+      {
+        "name": "[evidence-200]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 113,
+        "bbox": [
+          1028,
+          734,
+          76,
+          13
+        ]
+      },
+      {
+        "name": "[evidence-126]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 113,
+        "bbox": [
+          1109,
+          734,
+          76,
+          13
+        ]
+      },
+      {
+        "name": "[link-477]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 113,
+        "bbox": [
+          1190,
+          734,
+          54,
+          13
+        ]
+      },
+      {
+        "name": "[link-445]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 131,
+        "bbox": [
+          785,
+          752,
+          54,
+          13
+        ]
+      },
+      {
+        "name": "[link-250]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 131,
+        "bbox": [
+          844,
+          752,
+          54,
+          13
+        ]
+      },
+      {
+        "name": "[signal-17]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 381,
+        "bbox": [
+          936,
+          1002,
+          60,
+          13
+        ]
+      },
+      {
+        "name": "[alert-299]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 570,
+        "bbox": [
+          942,
+          1191,
+          60,
+          13
+        ]
+      },
+      {
+        "name": "SOURCES · 29",
+        "tag": "summary",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 818,
+        "bbox": [
+          758,
+          1441,
+          484,
+          11
+        ]
+      },
+      {
+        "name": "S&P 500 futures flat at 7,735.25 after Monday's AI- and chip-stock rebound lifte",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 943,
+        "bbox": [
+          758,
+          1545,
+          484,
+          32
+        ]
+      },
+      {
+        "name": "Rotation board: META +14.7% vs SPY (30d, Leading), AAPL +7.4% Leading, EMR +5.3%",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1023,
+        "bbox": [
+          758,
+          1624,
+          484,
+          32
+        ]
+      },
+      {
+        "name": "META: +42 long factor agreement with $785.22 target1 and $658.73 invalidation — ",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1182,
+        "bbox": [
+          758,
+          1768,
+          484,
+          48
+        ]
+      },
+      {
+        "name": "IWM: -95 short factor agreement, RSI-14 31.99, invalidation above $278.14, targe",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1262,
+        "bbox": [
+          758,
+          1864,
+          484,
+          32
+        ]
+      },
+      {
+        "name": "Form 4 alert",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1326,
+        "bbox": [
+          758,
+          1943,
+          484,
+          16
+        ]
+      },
+      {
+        "name": "AAPL valuation fair: revenue growth 6.43%, operating margin 31.97%, no rich/chea",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1453,
+        "bbox": [
+          758,
+          2071,
+          484,
+          16
+        ]
+      },
+      {
+        "name": "AAPL +73 factor agreement, RSI 60.5, MACD +3.79, OBV accumulating, invalidation ",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1533,
+        "bbox": [
+          758,
+          2135,
+          484,
+          32
+        ]
+      },
+      {
+        "name": "US CPI + big-bank earnings today is a binary that can gap AAPL through either le",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1613,
+        "bbox": [
+          758,
+          2215,
+          484,
+          32
+        ]
+      },
+      {
+        "name": "ASML AI-demand raise lifts tech; mega-cap AI leadership supported by capex visib",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1693,
+        "bbox": [
+          758,
+          2294,
+          484,
+          32
+        ]
+      },
+      {
+        "name": "Form 4 alert",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1756,
+        "bbox": [
+          758,
+          2374,
+          484,
+          16
+        ]
+      },
+      {
+        "name": "Form 4 alert",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1820,
+        "bbox": [
+          758,
+          2438,
+          484,
+          16
+        ]
+      }
+    ],
+    "mobile": [
+      {
+        "name": "[alert-301]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 575,
+        "bbox": [
+          226,
+          1374,
+          60,
+          13
+        ]
+      },
+      {
+        "name": "SOURCES · 1",
+        "tag": "summary",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 823,
+        "bbox": [
+          42,
+          1623,
+          306,
+          11
+        ]
+      },
+      {
+        "name": "Radar 90+ long alert",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 868,
+        "bbox": [
+          42,
+          1663,
+          306,
+          16
+        ]
+      },
+      {
+        "name": "CALCULATIONS · 0",
+        "tag": "summary",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 857,
+        "bbox": [
+          42,
+          1657,
+          306,
+          11
+        ]
+      },
+      {
+        "name": "ASSESSMENT HISTORY · 8",
+        "tag": "summary",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 891,
+        "bbox": [
+          42,
+          1691,
+          306,
+          11
+        ]
+      },
+      {
+        "name": "[evidence-210]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 127,
+        "bbox": [
+          231,
+          1495,
+          76,
+          13
+        ]
+      },
+      {
+        "name": "[evidence-200]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 145,
+        "bbox": [
+          69,
+          1512,
+          76,
+          13
+        ]
+      },
+      {
+        "name": "[evidence-126]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 145,
+        "bbox": [
+          150,
+          1512,
+          76,
+          13
+        ]
+      },
+      {
+        "name": "[link-477]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 145,
+        "bbox": [
+          231,
+          1512,
+          54,
+          13
+        ]
+      },
+      {
+        "name": "[link-445]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 145,
+        "bbox": [
+          290,
+          1512,
+          54,
+          13
+        ]
+      },
+      {
+        "name": "[link-250]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 162,
+        "bbox": [
+          69,
+          1530,
+          54,
+          13
+        ]
+      },
+      {
+        "name": "[signal-17]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 442,
+        "bbox": [
+          220,
+          1810,
+          60,
+          13
+        ]
+      },
+      {
+        "name": "[alert-299]",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 648,
+        "bbox": [
+          226,
+          2015,
+          60,
+          13
+        ]
+      },
+      {
+        "name": "SOURCES · 29",
+        "tag": "summary",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 896,
+        "bbox": [
+          42,
+          2265,
+          306,
+          11
+        ]
+      },
+      {
+        "name": "S&P 500 futures flat at 7,735.25 after Monday's AI- and chip-stock rebound lifte",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1036,
+        "bbox": [
+          42,
+          2369,
+          306,
+          48
+        ]
+      },
+      {
+        "name": "Rotation board: META +14.7% vs SPY (30d, Leading), AAPL +7.4% Leading, EMR +5.3%",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 1148,
+        "bbox": [
+          42,
+          2480,
+          306,
+          48
+        ]
+      },
+      {
+        "name": "CALCULATIONS · 2",
+        "tag": "summary",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 930,
+        "bbox": [
+          42,
+          2299,
+          306,
+          11
+        ]
+      },
+      {
+        "name": "ASSESSMENT HISTORY · 4",
+        "tag": "summary",
+        "reason": "clipped_off",
+        "clipped_by": "details.asset-context.compact",
+        "overflow_px": 964,
+        "bbox": [
+          42,
+          2333,
+          306,
+          11
+        ]
+      }
+    ]
+  },
+  "clipped": {
+    "desktop": [],
+    "mobile": []
+  },
+  "images": {
+    "total": 0,
+    "broken": [],
+    "duplicate": [],
+    "unstable": [],
+    "failed_requests": [],
+    "external_blocked": {
+      "count": 0,
+      "sample": []
+    },
+    "sample_urls": [],
+    "verdict": "pass"
+  },
+  "text_issues": [],
+  "console_errors": [],
+  "console_warnings": [],
+  "external_fetch_failures": 2,
+  "external_fetch_failure_samples": [
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)",
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)"
+  ],
+  "blocked_requests": [],
+  "external_requests": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "method": "GET",
+      "resource_type": "stylesheet"
+    }
+  ],
+  "external_requests_dropped": 0,
+  "external_requests_dropped_data_bearing": 0,
+  "transport_ledger_active": true,
+  "egress_lockdown": true,
+  "transport_connections": [
+    {
+      "host": "fonts.googleapis.com",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "policy_denied": true
+    }
+  ],
+  "transport_udp_attempts": 0,
+  "transport_overflow": 0,
+  "unexplained_transport_hosts": [],
+  "broken_assets": [],
+  "blocked_affordances": [],
+  "interactive_nodes": 23,
+  "aria_snapshot": "- main:\n  - navigation \"Terminal destinations\":\n    - button \"TODAY\"\n    - button \"DOSSIER\"\n    - button \"SIGNALS\"\n    - button \"RESEARCH\"\n    - button \"LOG\"\n  - note: OPPORTUNITIES — what changed · why it matters · timeframe · evidence and conflicts\n  - region \"Current opportunities\":\n    - text: OPPORTUNITIES · NEWEST FIRST\n    - heading \"What needs attention now\" [level=1]\n    - paragraph: One card per ticker. Watch alerts lead discovery candidates; related records stay visible under updates.\n    - button \"OPEN ALERT FEED\"\n    - article:\n      - text: WATCH ALERT ISRG ISRG\n      - strong: LONG\n      - paragraph: Radar 90+ long\n      - paragraph: +100 five-dimension agreement · LONG · MEDIUM confidence · invalidation 411.39.\n      - text: OBSERVED\n      - strong: 10/20/2026, 1:41:56 PM\n      - text: INVALIDATION\n      - strong: \"411.39\"\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery.\n      - group: ASSET CONTEXT · FIVE QUESTIONS\n      - group: HISTORY / UPDATES · 1\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://query1.finance.yahoo.com/v8/finance/chart/ISRG?period1=0&period2=1792475174&interval=1d&events=div%2Csplits\n    - article:\n      - text: WATCH ALERT AAPL AAPL\n      - strong: —\n      - paragraph: Form 4\n      - paragraph: 4 filed 2026-10-19.\n      - text: OBSERVED\n      - strong: 10/20/2026, 1:50:10 AM\n      - text: INVALIDATION\n      - strong: not stated\n      - text: DELIVERY\n      - strong: UNKNOWN\n      - text: No outbox row · homepage visibility is not chat delivery.\n      - group: ASSET CONTEXT · FIVE QUESTIONS\n      - group: HISTORY / UPDATES · 4\n      - button \"OPEN DOSSIER\"\n      - button \"SIGNAL TAPE\"\n      - link \"SOURCE\":\n        - /url: https://www.sec.gov/Archives/edgar/data/320193/000114036126040127/form4.xml\n    - region \"Equity opportunity board\":\n      - heading \"Equity opportunity board\" [level=3]\n      - text: \"SCAN RUN #29 · SP100 · DATA THROUGH SESSION 2026-10-19\"\n      - alert: \"BOARD REBUILDING / PARTIAL Board rebuilding / partial: scan run #31 is partial — 101/101 processed, batch stage finalizing. The rows below are the last completed run #29's names under this banner — not a complete current board.\"\n      - text: \"VOL REGIME · CBOE VIX 18.44 · data as of 2026-10-19 · SKEW 161.86 · data as of 2026-10-19 · served from the stored daily cache POSITIONING · CFTC COT CFTC COT report date 2026-10-13 · Weekly positioning as of the Tuesday report date, published Friday. BOARD READ 10/20/2026, 6:46:40 PM · latest scan run #31 PARTIAL\"\n      - article:\n        - text: ISRG Intuitive Surgical, Inc. · Health Care ISSUED / LIVE TRACKED CALL\n        - strong: LONG +100\n        - text: QUOTE\n        - strong: PRICE UNKNOWN FROM THESE READS\n        - text: \"Quote time: not available in these reads · state not available COMPLETED-SESSION CHART READ\"\n        - strong: LONG +82 · stored dossier market read\n        - text: \"Completed session date: 2026-10-19 · completed candle close — · candle event unavailable SECTOR / INDEX CONTEXT\"\n        - strong: Health Care · sector impact positive (evidence +20) — 5 ranked signals in Health Care\n        - text: BUSINESS EVIDENCE · SEC EDGAR\n        - strong: Present · 5 items · latest filing 10-Q filed 2026-07-21\n        - text: SEC EDGAR companyfacts HORIZON\n        - strong: \"Horizon — open board call from scan run #29 (data through session 2026-10-19); graded at 5 / 14 / 30 trading-session horizons.\"\n        - text: NEXT CHECK\n        - strong: Next check — the freshness lane re-polls on its 15-minute cadence; the board rebuilds with the next completed scan run and the next completed session.\n        - note: \"NO_DATA · CURRENT QUOTE · ISRG Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - note: \"NO_DATA · COMPLETED DAILY CANDLE · ISRG Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - button \"Open ISRG dossier\": OPEN DOSSIER\n        - button \"Open ISRG signal tape\": SIGNAL TAPE\n      - article:\n        - text: GE GE Aerospace · Industrials ISSUED / LIVE TRACKED CALL\n        - strong: SHORT -50\n        - text: QUOTE\n        - strong: PRICE UNKNOWN FROM THESE READS\n        - text: \"Quote time: not available in these reads · state not available COMPLETED-SESSION CHART READ\"\n        - strong: SHORT -50 · scan board read\n        - text: \"Completed session date: 2026-10-20 · completed candle close — · candle event unavailable SECTOR / INDEX CONTEXT\"\n        - strong: Industrials · sector impact mixed (evidence -6) — 9 ranked signals in Industrials\n        - text: BUSINESS EVIDENCE · SEC EDGAR\n        - strong: No stored business evidence for this dossier\n        - text: HORIZON\n        - strong: \"Horizon — open board call from scan run #29 (data through session 2026-10-19); graded at 5 / 14 / 30 trading-session horizons.\"\n        - text: NEXT CHECK\n        - strong: Next check — the freshness lane re-polls on its 15-minute cadence; the board rebuilds with the next completed scan run and the next completed session.\n        - note: \"NO_DATA · CURRENT QUOTE · GE Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - note: \"NO_DATA · COMPLETED DAILY CANDLE · GE Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - button \"Open GE dossier\": OPEN DOSSIER\n        - button \"Open GE signal tape\": SIGNAL TAPE\n      - article:\n        - text: AMZN Amazon.com, Inc. · Consumer Discretionary ISSUED / LIVE TRACKED CALL STALE\n        - strong: LONG 0\n        - text: QUOTE\n        - strong: \"263.032\"\n        - text: \"Quote time: 10/20/2026, 6:13:02 PM · state stale COMPLETED-SESSION CHART READ\"\n        - strong: LONG 0 · scan board read\n        - text: \"Completed session date: 2026-10-19 · completed candle close 262.45 · candle event 10/19/2026, 8:00:00 PM SECTOR / INDEX CONTEXT\"\n        - strong: Consumer Discretionary · sector impact mixed (evidence 0) — 3 ranked signals in Consumer Discretionary\n        - text: BUSINESS EVIDENCE · SEC EDGAR\n        - strong: No stored business evidence for this dossier\n        - text: HORIZON\n        - strong: \"Horizon — open board call from scan run #29 (data through session 2026-10-19); graded at 5 / 14 / 30 trading-session horizons.\"\n        - text: NEXT CHECK\n        - strong: Next check — the freshness lane re-polls on its 15-minute cadence; this quote is next eligible 2026-10-20T18:28:02.494Z; the board rebuilds with the next completed scan run and the next completed session.\n        - paragraph: STALE — quote event 2026-10-20T18:13:02.000Z. The stored values above keep their own event times; nothing stale is presented as current.\n        - note: \"NO_DATA · CURRENT QUOTE · AMZN Source: Yahoo Finance public chart · fallback: no suitable fallback exists Last attempt 10/20/2026, 6:13:02 PM · result: Stale — last success 2026-10-20T18:13:02.494Z; the stored value is shown with its own event time and is never presented as current. · next retry: Next eligible 2026-10-20T18:28:02.494Z. Classification: stale\"\n        - button \"Open AMZN dossier\": OPEN DOSSIER\n        - button \"Open AMZN signal tape\": SIGNAL TAPE\n        - button \"Open tracker row for signal 28\": \"TRACKER #28\"\n      - article:\n        - text: MMM 3M Company · Industrials ISSUED / LIVE TRACKED CALL\n        - strong: SHORT 0\n        - text: QUOTE\n        - strong: PRICE UNKNOWN FROM THESE READS\n        - text: \"Quote time: not available in these reads · state not available COMPLETED-SESSION CHART READ\"\n        - strong: SHORT 0 · scan board read\n        - text: \"Completed session date: 2026-10-20 · completed candle close — · candle event unavailable SECTOR / INDEX CONTEXT\"\n        - strong: Industrials · sector impact mixed (evidence -6) — 9 ranked signals in Industrials\n        - text: BUSINESS EVIDENCE · SEC EDGAR\n        - strong: No stored business evidence for this dossier\n        - text: HORIZON\n        - strong: \"Horizon — open board call from scan run #29 (data through session 2026-10-19); graded at 5 / 14 / 30 trading-session horizons.\"\n        - text: NEXT CHECK\n        - strong: Next check — the freshness lane re-polls on its 15-minute cadence; the board rebuilds with the next completed scan run and the next completed session.\n        - note: \"NO_DATA · CURRENT QUOTE · MMM Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - note: \"NO_DATA · COMPLETED DAILY CANDLE · MMM Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - button \"Open MMM dossier\": OPEN DOSSIER\n        - button \"Open MMM signal tape\": SIGNAL TAPE\n      - article:\n        - text: CVX Chevron Corporation · Energy ISSUED / LIVE TRACKED CALL\n        - strong: LONG 0\n        - text: QUOTE\n        - strong: PRICE UNKNOWN FROM THESE READS\n        - text: \"Quote time: not available in these reads · state not available COMPLETED-SESSION CHART READ\"\n        - strong: LONG 0 · scan board read\n        - text: \"Completed session date: 2026-10-19 · completed candle close — · candle event unavailable SECTOR / INDEX CONTEXT\"\n        - strong: Energy · sector impact mixed (evidence 0) — 2 ranked signals in Energy\n        - text: BUSINESS EVIDENCE · SEC EDGAR\n        - strong: No stored business evidence for this dossier\n        - text: HORIZON\n        - strong: \"Horizon — open board call from scan run #29 (data through session 2026-10-19); graded at 5 / 14 / 30 trading-session horizons.\"\n        - text: NEXT CHECK\n        - strong: Next check — the freshness lane re-polls on its 15-minute cadence; the board rebuilds with the next completed scan run and the next completed session.\n        - note: \"NO_DATA · CURRENT QUOTE · CVX Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - note: \"NO_DATA · COMPLETED DAILY CANDLE · CVX Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - button \"Open CVX dossier\": OPEN DOSSIER\n        - button \"Open CVX signal tape\": SIGNAL TAPE\n      - article:\n        - text: GILD Gilead Sciences, Inc. · Health Care ISSUED / LIVE TRACKED CALL\n        - strong: LONG 0\n        - text: QUOTE\n        - strong: PRICE UNKNOWN FROM THESE READS\n        - text: \"Quote time: not available in these reads · state not available COMPLETED-SESSION CHART READ\"\n        - strong: LONG 0 · scan board read\n        - text: \"Completed session date: 2026-10-20 · completed candle close — · candle event unavailable SECTOR / INDEX CONTEXT\"\n        - strong: Health Care · sector impact positive (evidence +20) — 5 ranked signals in Health Care\n        - text: BUSINESS EVIDENCE · SEC EDGAR\n        - strong: No stored business evidence for this dossier\n        - text: HORIZON\n        - strong: \"Horizon — open board call from scan run #29 (data through session 2026-10-19); graded at 5 / 14 / 30 trading-session horizons.\"\n        - text: NEXT CHECK\n        - strong: Next check — the freshness lane re-polls on its 15-minute cadence; the board rebuilds with the next completed scan run and the next completed session.\n        - note: \"NO_DATA · CURRENT QUOTE · GILD Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - note: \"NO_DATA · COMPLETED DAILY CANDLE · GILD Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - button \"Open GILD dossier\": OPEN DOSSIER\n        - button \"Open GILD signal tape\": SIGNAL TAPE\n      - article:\n        - text: FDX FedEx Corporation · Industrials ISSUED / LIVE TRACKED CALL\n        - strong: SHORT 0\n        - text: QUOTE\n        - strong: PRICE UNKNOWN FROM THESE READS\n        - text: \"Quote time: not available in these reads · state not available COMPLETED-SESSION CHART READ\"\n        - strong: SHORT 0 · scan board read\n        - text: \"Completed session date: 2026-10-20 · completed candle close — · candle event unavailable SECTOR / INDEX CONTEXT\"\n        - strong: Industrials · sector impact mixed (evidence -6) — 9 ranked signals in Industrials\n        - text: BUSINESS EVIDENCE · SEC EDGAR\n        - strong: No stored business evidence for this dossier\n        - text: HORIZON\n        - strong: \"Horizon — open board call from scan run #29 (data through session 2026-10-19); graded at 5 / 14 / 30 trading-session horizons.\"\n        - text: NEXT CHECK\n        - strong: Next check — the freshness lane re-polls on its 15-minute cadence; the board rebuilds with the next completed scan run and the next completed session.\n        - note: \"NO_DATA · CURRENT QUOTE · FDX Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - note: \"NO_DATA · COMPLETED DAILY CANDLE · FDX Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - button \"Open FDX dossier\": OPEN DOSSIER\n        - button \"Open FDX signal tape\": SIGNAL TAPE\n      - article:\n        - text: BKNG Booking Holdings Inc. · Consumer Discretionary ISSUED / LIVE TRACKED CALL\n        - strong: SHORT 0\n        - text: QUOTE\n        - strong: PRICE UNKNOWN FROM THESE READS\n        - text: \"Quote time: not available in these reads · state not available COMPLETED-SESSION CHART READ\"\n        - strong: SHORT 0 · scan board read\n        - text: \"Completed session date: 2026-10-19 · completed candle close — · candle event unavailable SECTOR / INDEX CONTEXT\"\n        - strong: Consumer Discretionary · sector impact mixed (evidence 0) — 3 ranked signals in Consumer Discretionary\n        - text: BUSINESS EVIDENCE · SEC EDGAR\n        - strong: No stored business evidence for this dossier\n        - text: HORIZON\n        - strong: \"Horizon — open board call from scan run #29 (data through session 2026-10-19); graded at 5 / 14 / 30 trading-session horizons.\"\n        - text: NEXT CHECK\n        - strong: Next check — the freshness lane re-polls on its 15-minute cadence; the board rebuilds with the next completed scan run and the next completed session.\n        - note: \"NO_DATA · CURRENT QUOTE · BKNG Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - note: \"NO_DATA · COMPLETED DAILY CANDLE · BKNG Source: Yahoo Finance public chart · bounded freshness polling set · fallback: no suitable fallback exists Last attempt none recorded · result: Not attempted — this symbol has no quote in the freshness polling set, so the price is unknown from these reads. · next retry: When the symbol enters the bounded polling set (tracked or watched), or when a dossier refresh covers it. Classification: not applicable\"\n        - button \"Open BKNG dossier\": OPEN DOSSIER\n        - button \"Open BKNG signal tape\": SIGNAL TAPE\n      - article:\n        - text: WMT Walmart Inc. · Consumer Staples ISSUED / LIVE TRACKED CALL STALE\n        - strong: LONG 0\n        - text: QUOTE\n        - strong: \"118.33\"\n        - text: \"Quote time: 10/20/2026, 6:12:41 PM · state stale COMPLETED-SESSION CHART READ\"\n        - strong: LONG +60 · stored dossier market read\n        - text: \"Completed session date: 2026-10-19 · completed candle close 118.7 · candle event 10/19/2026, 8:00:00 PM SECTOR / INDEX CONTEXT\"\n        - strong: Consumer Staples · sector impact mixed (evidence 0) — 5 ranked signals in Consumer Staples\n        - text: BUSINESS EVIDENCE · SEC EDGAR\n        - strong: Present · 7 items · latest filing 10-Q filed 2026-08-28\n        - text: FinancialFilings API (SEC EDGAR) HORIZON\n        - strong: \"Horizon — open board call from scan run #29 (data through session 2026-10-19); graded at 5 / 14 / 30 trading-session horizons.\"\n   \n… (aria snapshot truncated at 20000 chars)",
+  "audit_session_id": "d03e6c9d-1ae7-44aa-ab99-df2c19a5e66f",
+  "readiness": {
+    "desktop": {
+      "settled": true,
+      "settle_ms": 7556,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": true
+    },
+    "mobile": {
+      "settled": true,
+      "settle_ms": 7289,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": true
+    }
+  },
+  "color_scheme": {
+    "declared": "light",
+    "media_dependent": null,
+    "dark_frame": false
+  },
+  "mobile_ms": 10615.400704,
+  "cold_launch_ms": 1989.6418449999999,
+  "desktop_ms": 10987.480923,
+  "browser_launches": 1,
+  "audit_path": "shared-concurrent",
+  "diagnostics": {
+    "audit_path": "shared-concurrent",
+    "concurrent_ran": true,
+    "concurrent_desktop_retry": false,
+    "concurrent_mobile_retry": false,
+    "shared_launch_failed": false,
+    "nav_retries": 0,
+    "settle_retries": 2
+  }
+}

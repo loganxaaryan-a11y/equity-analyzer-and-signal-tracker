@@ -1,0 +1,836 @@
+[button: THE READ] [button: OPPORTUNITIES] [button: THE BOOK] [button: RESEARCH]
+THE READ — what is happening · short / medium / long horizons · what changed · where evidence disagrees
+THE READ
+# What is happening, and over what timeframe
+A concise outlook first — horizons, the main changes, and where the evidence disagrees. Detail stays one tap away, not in the way.
+### Outlook by horizon
+10/23/2026, 7:48:30 PM
+SHORT · LATEST SESSION
+MIXED / no directional edge
+29 of 50 tracked names advancing (58%). SP100 latest tracked-candidate set; this is not full-universe advance/decline breadth.
+MEDIUM · 15 SESSIONS
+1/4 indexes bullish
+SPY -0% · QQQ -5.06% · IWM -0.84% · DIA +3.81% · average -0.52% over 15 sessions.
+LONG · REGIME
+expansion
+Rule-based four-quadrant classifier from Yahoo proxy histories. The market brief refreshes these inputs once per day and falls back to the last valid cache if a source fails. It is a transmission map, not a forecast. Regime as of Oct 22.
+MAIN CHANGES & EVIDENCE
+- 1 of 4 measured major indexes are bullish and 3 are bearish; 29/50 tracked candidates (58%) advanced in the latest completed session.
+- Consumer Discretionary has the strongest retained sector agreement (+100) with 100% breadth; Industrials is weakest at -33.33.
+- 4 retained scan signals clear the ±90 evidence gate: LMT +100, PG +100, LRCX -100, GEV -100.
+- Smart-money posture: MIXED. 5 filing alerts in 14 days: 0 purchase/add language, 0 sale/reduction language. Filing alerts are delayed evidence, not live flow.
+DISAGREEMENT / POSITIONING: Smart-money posture reads “mixed” from 5 retained filing reads — 5 filing alerts in 14 days: 0 purchase/add language, 0 sale/reduction language. Filing alerts are delayed evidence, not live flow. Where positioning and the tape disagree, both are shown; neither is forced into a vote.
+OPPORTUNITIES — what deserves attention · why now · research idea / pending setup / confirmed paper entry
+MARKET BRIEF UPDATED
+Generated 10/23/2026, 7:48:30 PM
+LATEST COMPLETED SESSION · Oct 22
+# A split tape rewards selection
+[button: REFRESH]
+[button:
+MARKET READ
+mixed
+1/4 indexes bullish
+] [button:
+TRACKED BREADTH
+58%
+29 of 50 advancing
+] [button:
+REGIME
+expansion
+as of Oct 22
+] [button:
+SMART MONEY
+mixed
+5 retained filing reads
+]
+TRACKED UNIVERSE
+## Top runners
+[button: OPEN ALL SIGNALS]
+[button:
+LMT
+Lockheed Martin Corporation
++6.96%
+Industrials
+LEADER · Oct 22
+] [button:
+ADBE
+Adobe Inc.
++6.07%
+Information Technology
+LEADER · Oct 22
+] [button:
+INTU
+Intuit Inc.
++5.75%
+Information Technology
+LEADER · Oct 22
+] [button:
+PG
+The Procter & Gamble Company
++5.58%
+Consumer Staples
+LEADER · Oct 22
+] [button:
+HD
+The Home Depot, Inc.
++4.33%
+Consumer Discretionary
+LEADER · Oct 22
+] [button:
+LRCX
+Lam Research Corporation
+-11.76%
+Information Technology
+LAGGARD · Oct 22
+] [button:
+GEV
+GE Vernova Inc.
+-10.64%
+Industrials
+LAGGARD · Oct 22
+] [button:
+SNDK
+Sandisk Corporation
+-8.51%
+Information Technology
+LAGGARD · Oct 22
+] [button:
+AMAT
+Applied Materials, Inc.
+-8.16%
+Information Technology
+LAGGARD · Oct 22
+] [button:
+AMD
+Advanced Micro Devices, Inc.
+-8.1%
+Information Technology
+LAGGARD · Oct 22
+]
+SECTOR MOMENTUM
+## Where strength is clustering
+DAILY AVG · TRACKED COHORT
+[button:
+Consumer Discretionary
++3.72%
+100% advancing · 3 names] [button:
+Consumer Staples
++3.22%
+100% advancing · 7 names] [button:
+Real Estate
++2.21%
+100% advancing · 1 names] [button:
+Health Care
++0.47%
+60% advancing · 5 names] [button:
+Financials
++0.41%
+62.5% advancing · 8 names] [button:
+Energy
++0.02%
+50% advancing · 2 names] [button:
+Communication Services
+-0.92%
+50% advancing · 4 names] [button:
+Industrials
+-1.89%
+33.33% advancing · 6 names]
+MARKET DAY BRIEF
+## Indexes and breadth
+[button: SHOW METHOD]
+[button:
+SPY
+-0% 15D
+short
+Oct 22
+] [button:
+QQQ
+-5.06% 15D
+short
+Oct 22
+] [button:
+IWM
+-0.84% 15D
+short
+Oct 22
+] [button:
+DIA
++3.81% 15D
+long
+Oct 22
+]
+[button:
+29 advancing
+21 declining
+SP100 latest tracked-candidate set; this is not full-universe advance/decline breadth.
+]
+### Theory updates
+[button: OPEN THEORIES]
+GEM
+EMR
+Off-Grid Power Race Pits Incumbent Automation Against Inspection Upstarts
+10/3/2026, 12:00:00 AM
+GEM
+ACN
+Narrow Leadership Sustains Enterprise AI Services Bid
+10/3/2026, 12:00:00 AM
+STATUS · 0 UNREAD NOTIFICATIONS · NO JOB FAILURES ON RECORD · FRESHNESS & RECEIPTS INSIDE
+NOTIFICATIONS · TERMINAL-FIRST
+## Notifications
+Opportunities and lifecycle events as committed by the terminal. Read state changes only when you mark a row read here.
+0 UNREAD
+[button: MARK ALL READ]
+STATUS — freshness, failures and receipts · detail expands only when you ask
+DAILY TERMINAL · SOURCE equity-homepage-e2e-2026-10-15.4
+# What the terminal checked
+Discovery, market marks and outcome grading are separate ledgers. A quiet day is shown as a checked day—not as an unchanged homepage.
+[button: REFRESH 7 CARDS]
+DISCOVERY SCAN
+RUN 44 · OK
+SP100 · computed 10/23/2026, 7:46:38 PM · data through session 2026-10-22 · last success 10/23/2026, 7:46:38 PM
+Trigger: runAutomatedScan. Scheduler invocation: SUCCEEDED · 10/23/2026, 7:46:54 PM · equity-theory-discovery:2026-10-23T19:46:54.578Z:b50870b7-7f24-4723-b6be-7bae04f85b91.
+OUTCOME GRADING
+equity-2026-10-23T15:47:06.527Z-e0e30fd6-ab56-4ff4-865f-225365fb0d88 · COMPLETE
+started 10/23/2026, 3:47:06 PM · completed 10/23/2026, 3:47:15 PM · 2/57 evaluated · 55 excluded · 0 failed
+Trigger: runDailySignalPostmortem. Scheduler invocation: SUCCEEDED · 10/23/2026, 10:46:09 AM · equity-signal-daily-postmortem:2026-10-23T10:46:09.754Z:67563130-1f84-4df8-9933-00882edb4429.
+PER-ROW DISPOSITIONS · 57
+AAPLEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+METAEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+NVDAEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+TSLAEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+GC=FEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+CL=FEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+SI=FEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+IWMEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+MUEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+HDEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+AMGNEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+VRTXEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+AMDEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+CRMEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+AAPLEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+TECHM.NSEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+RELIANCE.NSEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+JIOFIN.NSEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+ADANIENT.NSEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+PLTREXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+SPYEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+SUIEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+NVDAEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+COSTEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+6411.TWOEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+AMZNEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+INTCEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+TCS.NSEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+GC=FEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+SI=FEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+PTIREXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+PLTREXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+MDTEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+BSE.NSEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+CLEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+COPLEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+COPAEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+0P0000UORE.FEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+0221.KLEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+CL=FEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+VEDL.NSEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+HG=FEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+PEPEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+INFYEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+WMTEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+MDLZEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+METAEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+EMREXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+BTC-USDEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+METAEXCLUDEDimmutable contract incomplete · Excluded from this evaluator version: immutable contract fields are incomplete. The issued record remains unchanged.
+NFLXEXCLUDEDpaper fill rule lane · Excluded from the legacy measurement evaluator: fill-rule records (equity-paper-fill-v2) are filled and settled by evaluator equity-eval-3.4.0 in the daily monitoring lane. The issued record remains unchanged.
+BRK-BEXCLUDEDpaper fill rule lane · Excluded from the legacy measurement evaluator: fill-rule records (equity-paper-fill-v2) are filled and settled by evaluator equity-eval-3.4.0 in the daily monitoring lane. The issued record remains unchanged.
+SPYEVALUATEDresearch only entry · The recorded price is a historical research reference, not a demonstrated executable paper entry.
+LMTEXCLUDEDpaper fill rule lane · Excluded from the legacy measurement evaluator: fill-rule records (equity-paper-fill-v2) are filled and settled by evaluator equity-eval-3.4.0 in the daily monitoring lane. The issued record remains unchanged.
+LLYEXCLUDEDpaper fill rule lane · Excluded from the legacy measurement evaluator: fill-rule records (equity-paper-fill-v2) are filled and settled by evaluator equity-eval-3.4.0 in the daily monitoring lane. The issued record remains unchanged.
+QQQEVALUATEDresearch only entry · The recorded price is a historical research reference, not a demonstrated executable paper entry.
+GEEXCLUDEDpaper fill rule lane · Excluded from the legacy measurement evaluator: fill-rule records (equity-paper-fill-v2) are filled and settled by evaluator equity-eval-3.4.0 in the daily monitoring lane. The issued record remains unchanged.
+PRICE REFRESH
+RUN 1357 · PARTIAL
+10/24/2026, 2:29:33 AM → 10/24/2026, 2:29:59 AM · 0/20 refreshed · 0 failed
+Trigger: refreshMarketData / runMarketDataRefresh. Scheduler invocation: SUCCEEDED · 10/24/2026, 2:29:33 AM · equity-market-data-refresh:2026-10-24T02:29:33.253Z:1de30b43-45fe-41c0-917d-a178cb4c73b2.
+data Valid
+101
+eligible
+101
+emitted
+50
+excluded
+0
+failed
+0
+fetched
+101
+requested
+101
+scored
+101
+suppressed
+7
+REJECTION / ABSTENTION REASONS
+radar candidate persisted · 50
+rank cap · 44
+issuance gate · 7
+NEW QUALIFYING CANDIDATES
+[button: LMT · long · +100] [button: PG · long · +100] [button: LRCX · short · -100] [button: GEV · short · -100] [button: AMAT · short · -100] [button: AMD · short · -100] [button: INTC · short · -100] [button: LOW · long · +100]
+PER-SYMBOL STRATEGY EVALUATIONS · 101
+Rating requires a non-mixed factor direction and at least four measured dimensions. Future diagnosis rows persist each dimension's status, values and thresholds; older rows retain only the reason saved at their run time.
+AAPL
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:47:26 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+ABBV
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:03:37 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+ABT
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:02:32 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+ACN
+SUPPRESSED · issuance gate · issuance
+born-dead LONG: signal-day low 239.33 <= invalidation 239.7
+provider 200 · event 10/22/2026, 8:00:03 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+ADBE
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+AMAT
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+AMD
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:47:40 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+AMGN
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/23/2026, 3:47:35 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+AMT
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:03 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+AMZN
+SUPPRESSED · issuance gate · issuance
+short-regime: bearish daily structure gate not met on 2026-10-22
+provider 200 · event 10/23/2026, 3:47:55 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+ANET
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:03 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+AVGO
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+AXP
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:03:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+BA
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+BAC
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+BKNG
+SUPPRESSED · issuance gate · issuance
+short-regime: bearish daily structure gate not met on 2026-10-22
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+BLK
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+BMY
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+BNY
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:02:21 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+BRK-B
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:48:13 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+C
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:01:29 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+CAT
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+CMCSA
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:00 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+COF
+SUPPRESSED · issuance gate · issuance
+short-regime: bearish daily structure gate not met on 2026-10-22
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+COP
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+COST
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:47:48 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+CRM
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/23/2026, 3:47:25 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+CSCO
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+CVS
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+CVX
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:03:32 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+DE
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+DELL
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:03:33 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+DHR
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:03:07 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+DIS
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:03:04 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+DUK
+SUPPRESSED · issuance gate · issuance
+born-dead LONG: signal-day low 121.24 <= invalidation 121.36
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+EMR
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/23/2026, 3:48:07 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+FDX
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:03 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+GD
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:03 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+GE
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:48:30 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+GEV
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+GILD
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+GM
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+GOOG
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:00 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+GOOGL
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+GS
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+HD
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:47:38 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+IBM
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+INTC
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:47:57 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+INTU
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:00 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+ISRG
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+JNJ
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:03 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+JPM
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+KO
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+LIN
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+LLY
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:48:13 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+LMT
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:48:19 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+LOW
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+LRCX
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+MA
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:03 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+MCD
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+MDLZ
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:48:08 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+MDT
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/23/2026, 3:48:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+META
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:47:29 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+MMM
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:03:26 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+MO
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+MRK
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:02:28 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+MS
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:13 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+MSFT
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+MU
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/23/2026, 3:47:37 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+NEE
+SUPPRESSED · issuance gate · issuance
+born-dead LONG: signal-day low 78.64 <= invalidation 78.74
+provider 200 · event 10/22/2026, 8:00:03 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+NFLX
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:48:17 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+NOW
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 1:36:29 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+NVDA
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/23/2026, 3:47:30 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+ORCL
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:03:42 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+PANW
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+PEP
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:48:12 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+PFE
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:02:57 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+PG
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:02:30 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+PLTR
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/23/2026, 3:47:50 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+PM
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+QCOM
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:00 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+RTX
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+SBUX
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:00 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+SCHW
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+SNDK
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:01 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+SO
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+T
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:02:57 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+TMO
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+TMUS
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:00 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+TSLA
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/23/2026, 3:47:32 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+TXN
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:00 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+UBER
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:03 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+UNH
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+UNP
+SUPPRESSED · issuance gate · issuance
+born-dead LONG: signal-day low 278.59 <= invalidation 287
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+UPS
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:02:37 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+USB
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+V
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+VZ
+SCORED · rank cap · scoring
+Chart cleared completeness and was scored, but ranked outside the bounded 50-row radar display. No strategy gate was changed.
+provider 200 · event 10/22/2026, 8:00:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+WFC
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:02:58 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+WMT
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/23/2026, 3:48:02 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+XOM
+EMITTED · radar candidate persisted · persistence
+Chart fetched, normalized, completeness-eligible, scored, and persisted to the discovery radar. Signal issuance remains a separate gate.
+provider 200 · event 10/22/2026, 8:03:40 PM · attempted 10/23/2026, 7:30:39 PM · completed 10/23/2026, 7:46:38 PM
+[button:
+MDLZ
+STALE
+$63.80
+TRADE / EVALUATION
+LOGBOOK · MISSED
+LAST ACCEPTED EVALUATION
+10/10/2026, 12:58:39 PM
+OBSERVATION
+10/23/2026, 8:00:01 PM · 6h old
+FETCH / PERSIST
+10/23/2026, 8:14:44 PM · last success 10/24/2026, 2:29:44 AM
+CURRENCY
+USD
+SESSION
+EQUITY · CLOSED
+POINTER
+observation 14787 · refresh run 1333
+The displayed last-known mark is beyond the frozen short invalidation. That is an apparent crossing, not a settlement: only post-entry completed candles with first-touch ordering can append an accepted outcome. The legacy signal lacks an immutable issuance/entry contract or supported calendar.
+provider event 2026-10-23T20:00:01.000Z → received 2026-10-23T20:14:44.029Z → displayed 63.8; correction v1
+] [button:
+WMT
+STALE
+$119.89
+TRADE / EVALUATION
+LOGBOOK · MISSED
+LAST ACCEPTED EVALUATION
+10/10/2026, 12:58:38 PM
+OBSERVATION
+10/23/2026, 8:00:00 PM · 6h old
+FETCH / PERSIST
+10/23/2026, 8:29:44 PM · last success 10/24/2026, 1:59:54 AM
+CURRENCY
+USD
+SESSION
+EQUITY · CLOSED
+POINTER
+observation 14817 · refresh run 1334
+The displayed last-known mark is beyond the frozen short invalidation. That is an apparent crossing, not a settlement: only post-entry completed candles with first-touch ordering can append an accepted outcome. The legacy signal lacks an immutable issuance/entry contract or supported calendar.
+provider event 2026-10-23T20:00:00.000Z → received 2026-10-23T20:29:44.600Z → displayed 119.89; correction v1
+] [button:
+SI=F
+STALE
+$53.96
+TRADE / EVALUATION
+LOGBOOK · HIT
+LAST ACCEPTED EVALUATION
+10/10/2026, 12:58:36 PM
+OBSERVATION
+10/23/2026, 8:59:52 PM · 5h old
+FETCH / PERSIST
+10/23/2026, 9:30:17 PM · last success 10/24/2026, 2:29:59 AM
+CURRENCY
+USD
+SESSION
+FUTURE · CLOSED
+POINTER
+observation 14908 · refresh run 1338
+The legacy signal lacks an immutable issuance/entry contract or supported calendar.
+provider event 2026-10-23T20:59:52.000Z → received 2026-10-23T21:30:17.082Z → displayed 53.96; correction v1
+] [button:
+GC=F
+STALE
+$4,010.00
+TRADE / EVALUATION
+LOGBOOK · HIT
+LAST ACCEPTED EVALUATION
+10/10/2026, 12:58:36 PM
+OBSERVATION
+10/23/2026, 8:59:58 PM · 5h old
+FETCH / PERSIST
+10/23/2026, 9:14:50 PM · last success 10/24/2026, 2:14:54 AM
+CURRENCY
+USD
+SESSION
+FUTURE · CLOSED
+POINTER
+observation 14887 · refresh run 1337
+The legacy signal lacks an immutable issuance/entry contract or supported calendar.
+provider event 2026-10-23T20:59:58.000Z → received 2026-10-23T21:14:50.457Z → displayed 4010; correction v1
+] [button:
+CL=F
+STALE
+$103.44
+TRADE / EVALUATION
+LOGBOOK · HIT
+LAST ACCEPTED EVALUATION
+10/10/2026, 12:58:38 PM
+OBSERVATION
+10/23/2026, 8:59:58 PM · 5h old
+FETCH / PERSIST
+10/23/2026, 9:14:43 PM · last success 10/24/2026, 2:14:48 AM
+CURRENCY
+USD
+SESSION
+FUTURE · CLOSED
+POINTER
+observation 14882 · refresh run 1337
+The legacy signal lacks an immutable issuance/entry contract or supported calendar.
+provider event 2026-10-23T20:59:58.000Z → received 2026-10-23T21:14:43.741Z → displayed 103.44; correction v1
+] [button:
+6411.TWO
+STALE
+NT$74.10
+TRADE / EVALUATION
+LOGBOOK · MISSED
+LAST ACCEPTED EVALUATION
+10/10/2026, 12:58:35 PM
+OBSERVATION
+10/22/2026, 5:30:10 AM · 1d old
+FETCH / PERSIST
+10/22/2026, 6:29:36 AM · last success 10/24/2026, 2:14:37 AM
+CURRENCY
+TWD
+SESSION
+EQUITY · CLOSED
+POINTER
+observation 12419 · refresh run 1188
+The displayed last-known mark is beyond the frozen long invalidation. That is an apparent crossing, not a settlement: only post-entry completed candles with first-touch ordering can append an accepted outcome. The legacy signal lacks an immutable issuance/entry contract or supported calendar.
+provider event 2026-10-22T05:30:10.000Z → received 2026-10-22T06:29:36.757Z → displayed 74.1; correction v1
+] [button:
+0221.KL
+STALE
+MYR 0.08
+TRADE / EVALUATION
+LOGBOOK · MISSED
+LAST ACCEPTED EVALUATION
+10/10/2026, 12:58:37 PM
+OBSERVATION
+10/23/2026, 1:55:43 AM · 1d old
+FETCH / PERSIST
+10/23/2026, 2:14:54 AM · last success 10/24/2026, 2:14:35 AM
+CURRENCY
+MYR
+SESSION
+EQUITY · CLOSED
+POINTER
+observation 13694 · refresh run 1264
+The displayed last-known mark is beyond the frozen long invalidation. That is an apparent crossing, not a settlement: only post-entry completed candles with first-touch ordering can append an accepted outcome. The legacy signal lacks an immutable issuance/entry contract or supported calendar.
+provider event 2026-10-23T01:55:43.000Z → received 2026-10-23T02:14:54.870Z → displayed 0.08; correction v1
+]
+Displayed source version proves this client bundle contains the repair. Deployment/build ID and source commit are not exposed to artifact actions; those remain pending platform evidence. Refresh coverage is the persisted inventory below, not a scheduler inference.
+START A DOSSIER
+## What do you want to understand?
+[select: Quick asset picker = QUICK PICK* | SPY · S&P 500 | QQQ · Nasdaq 100 | TLT · Treasuries | GLD · Gold | BTC · Bitcoin]
+[input text: Ticker or company name]
+[button: FIND]
+RECENT PICKS
+Your analyzed names will stay here on this device.

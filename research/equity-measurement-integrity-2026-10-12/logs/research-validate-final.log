@@ -1,0 +1,6 @@
+$ bun research/src/command.ts closure-validate
+Phase 2A.1 closure validation complete: 5672 observations, 0 selections.
+Synthetic controls: positive=PASS, negative false qualifications=0/12.
+Holdout opened: false. Corrected outputs: research/output/phase2a1-*
+
+EXIT_CODE=0

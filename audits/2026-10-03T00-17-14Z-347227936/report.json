@@ -1,0 +1,129 @@
+{
+  "ok": true,
+  "url": "https://artifact-capture.invalid/spaces/v2/hatch-audit-3dd7367b-110c-484f-9cb9-38de34e947b2/",
+  "duration_ms": 11431.107067,
+  "output_dir": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T00-17-14Z-347227936",
+  "nav_status": 200,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T00-17-14Z-347227936/screenshot.png",
+      "fullpage_screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T00-17-14Z-347227936/screenshot-full.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T00-17-14Z-347227936/screenshot-mobile.png"
+    }
+  },
+  "mobile_layout": {
+    "viewport_width": 390,
+    "scroll_width": 390,
+    "overflow_px": 0,
+    "widest_selector": null,
+    "verdict": "pass"
+  },
+  "horizontal_scrollers": [],
+  "unreachable_controls": {
+    "desktop": [],
+    "mobile": []
+  },
+  "clipped": {
+    "desktop": [],
+    "mobile": []
+  },
+  "images": {
+    "total": 0,
+    "broken": [],
+    "duplicate": [],
+    "unstable": [],
+    "failed_requests": [],
+    "external_blocked": {
+      "count": 0,
+      "sample": []
+    },
+    "sample_urls": [],
+    "verdict": "pass"
+  },
+  "text_issues": [],
+  "console_errors": [],
+  "console_warnings": [],
+  "external_fetch_failures": 2,
+  "external_fetch_failure_samples": [
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)",
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)"
+  ],
+  "blocked_requests": [],
+  "external_requests": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "method": "GET",
+      "resource_type": "stylesheet"
+    }
+  ],
+  "external_requests_dropped": 0,
+  "external_requests_dropped_data_bearing": 0,
+  "transport_ledger_active": true,
+  "egress_lockdown": true,
+  "transport_connections": [
+    {
+      "host": "artifact-capture.invalid",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 4100,
+      "bytes_down": 2485
+    },
+    {
+      "host": "fonts.googleapis.com",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "policy_denied": true
+    }
+  ],
+  "transport_udp_attempts": 0,
+  "transport_overflow": 0,
+  "unexplained_transport_hosts": [],
+  "broken_assets": [],
+  "blocked_affordances": [],
+  "interactive_nodes": 34,
+  "aria_snapshot": "- main:\n  - textbox \"Ticker, company, or commodity\"\n  - button \"ANALYZE\" [disabled]\n  - navigation \"Terminal sections\":\n    - button \"MARKET\"\n    - button \"DOSSIER\"\n    - button \"NEWS\"\n    - button \"SMART MONEY\"\n    - button \"SIGNALS\"\n    - button \"THEORIES\"\n    - button \"ENGINE HITS\"\n    - button \"WATCHLIST\"\n    - button \"JOURNAL\"\n  - region \"Market Day Brief\":\n    - text: MARKET DAY BRIEF\n    - heading \"MIXED\" [level=1]\n    - paragraph: 2/4 indexes bullish · 13/50 ranked names advancing (26%)\n    - button \"SYNTHESIZE + TEST\"\n    - button \"OPEN THEORIES\"\n    - text: \"INDEX ALIGNMENT 2 bullish · 2 bearish · 0 mixed SPY +20 / 15d +1.06% · QQQ +73 / 15d +4.81% · IWM -38 / 15d -2.76% · DIA -38 / 15d -2.1% REGIME expansion As of 9/15/2026, 12:00:00 AM SMART MONEY mixed 4 filing alerts in 14 days: 0 purchase/add language, 0 sale/reduction language. Filing alerts are delayed evidence, not live flow.\"\n    - heading \"WHAT’S HAPPENING\" [level=3]\n    - text: 5 EVIDENCE CHAINS\n    - list:\n      - listitem:\n        - paragraph: 2 of 4 measured major indexes are bullish and 2 are bearish; 13/50 ranked candidates (26%) are positive over 15 sessions.\n        - link \"SPY +20 · 15d +1.06%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=0&period2=1790985760&interval=1d&events=div%2Csplits\n        - link \"QQQ +73 · 15d +4.81%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=0&period2=1790985760&interval=1d&events=div%2Csplits\n        - link \"IWM -38 · 15d -2.76%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/IWM?period1=0&period2=1790985760&interval=1d&events=div%2Csplits\n        - link \"DIA -38 · 15d -2.1%\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/DIA?period1=0&period2=1790986355&interval=1d&events=div%2Csplits\n      - listitem:\n        - paragraph: Health Care has the strongest retained sector agreement (-80) with 42.86% breadth.\n        - link \"MDT · 15d -4.88% · score -80\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/MDT?period1=0&period2=1790911144&interval=1d&events=div%2Csplits\n        - link \"ISRG · 15d +11.31% · score +0\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/ISRG?period1=0&period2=1790911144&interval=1d&events=div%2Csplits\n        - link \"MDT · 15d -4.88% · score -80\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/MDT?period1=0&period2=1790911144&interval=1d&events=div%2Csplits\n        - link \"ISRG · 15d +11.31% · score +0\":\n          - /url: https://query1.finance.yahoo.com/v8/finance/chart/ISRG?period1=0&period2=1790911144&interval=1d&events=div%2Csplits\n      - listitem:\n        - paragraph: No retained scan signal currently clears the ±90 gate with a complete factor ledger, invalidation, timestamp, and source.\n        - text: NO LINKED SOURCE AVAILABLE\n      - listitem:\n        - paragraph: \"Smart-money posture: MIXED. 4 filing alerts in 14 days: 0 purchase/add language, 0 sale/reduction language. Filing alerts are delayed evidence, not live flow.\"\n        - link \"AAPL · Form 4 · 4 filed 2026-10-01.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/320193/000114036126038307/form4.xml\n        - link \"META · Form 4 · 4 filed 2026-09-28.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/1326801/000095010326014647/ownership.xml\n        - link \"META · Form 4 · 4 filed 2026-09-30.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/1326801/000095010326014886/ownership.xml\n        - link \"AAPL · Form 4 · 4 filed 2026-09-29.\":\n          - /url: https://www.sec.gov/Archives/edgar/data/320193/000114036126038028/form4.xml\n      - listitem:\n        - paragraph: \"Top retained news driver: Stock Market Today October 1 2026 Closing Trends. With the 10-year yield at 5.24%, WTI near $93 and gold above $4,200, investors remain focused on the September jobs report and earnings for signals on rates, inflation and demand.\"\n        - link \"vistapglobal.com · retrieved 2026-10-02T19:24:06.697Z\":\n          - /url: https://vistapglobal.com/stock-market-today-october-1-2026-sp-500-and-nasdaq-rise-as-ai-strength-offsets-higher-rate-concerns-acn-amzn-avgo-docs-eprx-lpl-modd-mu-nke-nvda-ser/\n    - heading \"SECTOR SNAPSHOT\" [level=3]\n    - text: 15-SESSION\n    - table \"Sector direction and breadth\":\n      - row \"Sector Direction Breadth Notable\"\n      - row \"Health Care -80 avg mixed 42.86% 3/7 MDT -4.88% · -80 ISRG +11.31% · +0\":\n        - text: Health Care -80 avg mixed 42.86% 3/7\n        - button \"MDT -4.88% · -80\"\n        - button \"ISRG +11.31% · +0\"\n      - row \"Utilities -80 avg bearish 0% 0/3 NEE -7.39% · -80 DUK -4.72% · +0\":\n        - text: Utilities -80 avg bearish 0% 0/3\n        - button \"NEE -7.39% · -80\"\n        - button \"DUK -4.72% · +0\"\n      - row \"Consumer Discretionary -80 avg bearish 0% 0/4 HD -7.6% · -80 LOW -7.23% · -80\":\n        - text: Consumer Discretionary -80 avg bearish 0% 0/4\n        - button \"HD -7.6% · -80\"\n        - button \"LOW -7.23% · -80\"\n      - row \"Financials -80 avg bearish 0% 0/11 C -8.3% · -80 MS -11.59% · +0\":\n        - text: Financials -80 avg bearish 0% 0/11\n        - button \"C -8.3% · -80\"\n        - button \"MS -11.59% · +0\"\n      - row \"Information Technology +26.67 avg bullish 66.67% 8/12 ACN +19.33% · +80 MU +12.28% · +80\":\n        - text: Information Technology +26.67 avg bullish 66.67% 8/12\n        - button \"ACN +19.33% · +80\"\n        - button \"MU +12.28% · +80\"\n      - row \"Industrials +0 avg mixed 50% 2/4 BA -6.11% · -80 EMR +6.87% · +80\":\n        - text: Industrials +0 avg mixed 50% 2/4\n        - button \"BA -6.11% · -80\"\n        - button \"EMR +6.87% · +80\"\n      - row \"Communication Services unrated mixed 0% 0/6 CMCSA -13.79% · +0 T -4.89% · +0\":\n        - text: Communication Services unrated mixed 0% 0/6\n        - button \"CMCSA -13.79% · +0\"\n        - button \"T -4.89% · +0\"\n      - row \"Consumer Staples unrated mixed 0% 0/2 KO -1.38% · +0 MDLZ -6.72% · +0\":\n        - text: Consumer Staples unrated mixed 0% 0/2\n        - button \"KO -1.38% · +0\"\n        - button \"MDLZ -6.72% · +0\"\n      - row \"Real Estate unrated mixed 0% 0/1 AMT -5.88% · +0\":\n        - text: Real Estate unrated mixed 0% 0/1\n        - button \"AMT -5.88% · +0\"\n    - text: SP100 latest ranked-candidate set; this is not full-universe advance/decline breadth. Cross-insight inputs are available. Run Synthesize + Test to draft candidates, test each through chart, math, narrative, news, and smart-money verification, and update Theory Watch.\n    - time: 10/3/2026, 12:17:22 AM\n  - text: MARKET PULSE\n  - heading \"5 of 7 measured instruments have positive 15-session breadth; META leads the 30-session return ÷ ATR% stack; 17 testable setup flags are active.\" [level=1]\n  - text: 15-session breadth 71.43% Active flags 17 Broad scan candidates 50 Risk-adjusted leader META\n  - paragraph: Live pulse 10/3/2026, 12:17:25 AM · broad discovery is prepared in the background.\n  - heading \"Prepared news / sector impact\" [level=3]\n  - button \"OPEN DISCOVERY\"\n  - article:\n    - text: vistapglobal.com\n    - time: 10/2/2026\n    - link \"Stock Market Today October 1 2026 Closing Trends\":\n      - /url: https://vistapglobal.com/stock-market-today-october-1-2026-sp-500-and-nasdaq-rise-as-ai-strength-offsets-higher-rate-concerns-acn-amzn-avgo-docs-eprx-lpl-modd-mu-nke-nvda-ser/\n      - heading \"Stock Market Today October 1 2026 Closing Trends\" [level=4]\n    - paragraph: With the 10-year yield at 5.24%, WTI near $93 and gold above $4,200, investors remain focused on the September jobs report and earnings for signals on rates, inflation and demand.\n  - article:\n    - text: www.newswire.ca\n    - time: 10/2/2026\n    - link \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\":\n      - /url: https://www.newswire.ca/news-releases/weekly-losses-deepen-as-small-caps-lag-and-yields-edge-higher-into-earnings-gauntlet-817261305.html\n      - heading \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\" [level=4]\n    - paragraph: A down week for the Dow, S&P 500 and Russell 2000 alongside a rise in the 10-year yield to 5.24% highlights rate pressure on equities heading into earnings season.\n  - article:\n    - text: www.everhint.com\n    - time: 10/2/2026\n    - link \"Stock Market News — October 01, 2026 — Morning Update — Last 12 Hours (Pacific Time)\":\n      - /url: https://www.everhint.com/stock-market-news-october-01-2026-morning-update-last-12-hours-pacific-time/\n      - heading \"Stock Market News — October 01, 2026 — Morning Update — Last 12 Hours (Pacific Time)\" [level=4]\n    - paragraph: Surging UK and European bond yields weighed on European equities while strong Accenture and Micron results lifted software and semiconductor shares, leaving overall sentiment mildly bearish into Q4.\n  - article:\n    - text: www.ic.com\n    - time: 10/2/2026\n    - link \"IC – Europe Fundamental Forecast | 02 October 2026\":\n      - /url: https://www.ic.com/blog/ic-europe-fundamental-forecast-02-october-2026/\n      - heading \"IC – Europe Fundamental Forecast | 02 October 2026\" [level=4]\n    - paragraph: European and US trading today centers on Eurozone inflation and US payrolls, unemployment and wage data, framed as the key drivers for the dollar, Treasury yields, gold and indices amid elevated oil prices.\n  - heading \"Watchlist snapshot\" [level=3]\n  - button \"OPEN WATCHLIST\"\n  - button \"AAPL Apple Inc. OPEN DOSSIER refresh analysis on demand\"\n  - button \"META Meta Platforms, Inc. OPEN DOSSIER refresh analysis on demand\"\n  - button \"NVDA NVIDIA Corporation OPEN DOSSIER refresh analysis on demand\"\n  - button \"TSLA Tesla, Inc. OPEN DOSSIER refresh analysis on demand\"\n  - heading \"Broad-market signals\" [level=3]\n  - button \"OPEN ACN TAPE\"\n  - button \"ACN Information Technology · +19.33% / 15 sessions +80 · LONG / bullish MEDIUM confidence · 6 active setups\"\n  - button \"MU Information Technology · +12.28% / 15 sessions +80 · LONG / bullish MEDIUM confidence · 5 active setups\"\n  - button \"MDT Health Care · -4.88% / 15 sessions -80 · SHORT / bearish MEDIUM confidence · 3 active setups\"\n  - button \"NEE Utilities · -7.39% / 15 sessions -80 · SHORT / bearish MEDIUM confidence · 5 active setups\"\n  - heading \"Engine hits\" [level=3]\n  - button \"OPEN LOG\"\n  - button \"Sep 30 · FIRST LIVE RIPPLE-CHAIN TEST CASE uranium = leverage bet on AI power LOW 12/100\":\n    - text: Sep 30 · FIRST LIVE RIPPLE-CHAIN TEST CASE uranium = leverage bet on AI power\n    - strong: LOW 12/100\n  - heading \"Relative-strength breadth\" [level=3]\n  - text: Leading SPY · 30d 4 Lagging SPY · 30d 0 Unavailable 0 Positive ratio returns mean the instrument outperformed SPY over the same aligned trading dates. Broad positive readings imply leadership breadth; they do not predict continuation.\n  - heading \"Watchlist rotation vs SPY\" [level=3]\n  - table \"Relative strength versus SPY\":\n    - row \"Instrument 30d ratio 90d ratio Range\"\n    - row \"Open META dossier\": META Meta Platforms, Inc. +33.6% +15.71% Leading ›\n    - row \"Open NVDA dossier\": NVDA NVIDIA Corporation +6.67% +4.35% Leading ›\n    - row \"Open AAPL dossier\": AAPL Apple Inc. +4.69% +3.96% Leading ›\n    - row \"Open TSLA dossier\": TSLA Tesla, Inc. +1.27% -19.28% Improving ›\n  - paragraph: Tap a row to open its dossier · aligned daily closes · Yahoo Finance · calculated 10/3/2026, 12:17:26 AM",
+  "audit_session_id": "465c1510-1e3b-4fa2-afb3-e27e1b7bf698",
+  "readiness": {
+    "desktop": {
+      "settled": true,
+      "settle_ms": 7433,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": true
+    },
+    "mobile": {
+      "settled": true,
+      "settle_ms": 5780,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": true
+    }
+  },
+  "color_scheme": {
+    "declared": "light",
+    "media_dependent": null,
+    "dark_frame": false
+  },
+  "mobile_ms": 7586.370582,
+  "cold_launch_ms": 1079.661317,
+  "desktop_ms": 9308.588828,
+  "browser_launches": 1,
+  "audit_path": "shared-concurrent",
+  "diagnostics": {
+    "audit_path": "shared-concurrent",
+    "concurrent_ran": true,
+    "concurrent_desktop_retry": false,
+    "concurrent_mobile_retry": false,
+    "shared_launch_failed": false,
+    "nav_retries": 0,
+    "settle_retries": 2
+  }
+}

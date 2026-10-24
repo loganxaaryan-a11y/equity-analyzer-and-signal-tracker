@@ -1,0 +1,16 @@
+[button: TODAY] [button: DOSSIER] [button: SIGNALS] [button: RESEARCH] [button: NOTIFS] [button: LOG]
+OPPORTUNITIES — what changed · why it matters · timeframe · evidence and conflicts
+OPPORTUNITIES · NEWEST FIRST
+# What needs attention now
+One card per ticker. Watch alerts lead discovery candidates; related records stay visible under updates.
+[button: OPEN ALERT FEED]
+### Equity opportunity board
+EVIDENCE CHANGES
+## Fresh Engine Hits
+START A DOSSIER
+## What do you want to understand?
+[select: Quick asset picker = QUICK PICK* | SPY · S&P 500 | QQQ · Nasdaq 100 | TLT · Treasuries | GLD · Gold | BTC · Bitcoin]
+[input text: Ticker or company name]
+[button: FIND]
+RECENT PICKS
+Your analyzed names will stay here on this device.

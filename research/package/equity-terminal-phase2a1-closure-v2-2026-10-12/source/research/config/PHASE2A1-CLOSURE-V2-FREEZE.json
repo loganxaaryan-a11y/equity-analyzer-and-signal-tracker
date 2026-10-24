@@ -1,0 +1,43 @@
+{
+  "inputSha256": "1d474c568010c5f947e09f17fab619d663a484cadd960d78c69180ab811bc860",
+  "calendarSha256": "9109c826d89919da606e44b80f9b1be7e232a3aef83e53eedde58ca80a4ee0d5",
+  "registrySha256": "3c0a51f3b1ce3f3de0f531ee2cad6e4583170d7a1b2e7bfd18a21760c68bec72",
+  "correctedEngineSha256": "3be88f04c9cfb3aa4cb53045deac7f4fbf12cc32d1aa8161cc7ab15e40da7a52",
+  "splits": {
+    "crypto": {
+      "developmentEnd": "2026-06-30",
+      "validation1": {
+        "start": "2026-07-01",
+        "end": "2026-07-31"
+      },
+      "validation2": {
+        "start": "2026-08-01",
+        "end": "2026-08-31"
+      },
+      "holdoutStart": "2026-09-01"
+    },
+    "equity": {
+      "developmentEnd": "2026-08-14",
+      "validation1": {
+        "start": "2026-08-17",
+        "end": "2026-09-04"
+      },
+      "validation2": {
+        "start": "2026-09-08",
+        "end": "2026-09-18"
+      },
+      "holdoutStart": "2026-09-21"
+    }
+  },
+  "frozenBeforePerformance": true,
+  "holdoutPreserved": {
+    "equity": {
+      "start": "2026-09-21",
+      "end": "2026-10-07"
+    },
+    "crypto": {
+      "start": "2026-09-01",
+      "end": "2026-10-07"
+    }
+  }
+}

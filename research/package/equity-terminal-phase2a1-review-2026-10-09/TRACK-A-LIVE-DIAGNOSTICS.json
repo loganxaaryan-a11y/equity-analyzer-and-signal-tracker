@@ -1,0 +1,29 @@
+{
+  "captured_at": "2026-10-09T17:56:38.063Z",
+  "environment": "builder sandbox, live provider fetch",
+  "provider": "Yahoo Finance public chart",
+  "entitlement": "Public delayed/aggregated feed; not advertised as real-time",
+  "transport": "bounded polling",
+  "cadence_minutes": 15,
+  "run": {
+    "run_id": 4,
+    "status": "ok",
+    "requested": 4,
+    "usable": 4,
+    "stale_content": 0,
+    "errors": 0,
+    "expensive_analysis_called": false,
+    "decisions_created": 0,
+    "snapshots_mutated": 0,
+    "repeated_status_events_appended": 0
+  },
+  "budget": {"active_instruments": 4, "requests_per_run": 4, "requests_per_day": 384, "requests_per_30_days": 11520},
+  "samples": [
+    {"symbol":"BTC-USD","venue":"CCC","quote_currency":"USD","state":"fresh","provider_event_at":"2026-10-09T17:56:26.000Z","server_received_at":"2026-10-09T17:56:28.228Z","displayed_mark":82631.37,"latest_completed_candle_at":"2026-10-08T23:59:59.999Z","displayed_completed_close":81676.3359375,"forming_candle_at":"2026-10-09T17:56:26.000Z","trace":"provider regularMarketTime/regularMarketPrice -> append-only quote row -> displayed mark; completed and forming candle rows persisted separately"},
+    {"symbol":"ETH-USD","venue":"CCC","quote_currency":"USD","state":"fresh","provider_event_at":"2026-10-09T17:56:26.000Z","server_received_at":"2026-10-09T17:56:28.228Z","displayed_mark":2484.93,"latest_completed_candle_at":"2026-10-08T23:59:59.999Z","displayed_completed_close":2471.91259765625,"forming_candle_at":"2026-10-09T17:56:26.000Z","trace":"provider regularMarketTime/regularMarketPrice -> append-only quote row -> displayed mark; completed and forming candle rows persisted separately"},
+    {"symbol":"SOL-USD","venue":"CCC","quote_currency":"USD","state":"fresh","provider_event_at":"2026-10-09T17:56:22.000Z","server_received_at":"2026-10-09T17:56:28.228Z","displayed_mark":109.72,"latest_completed_candle_at":"2026-10-08T23:59:59.999Z","displayed_completed_close":109.44225311279297,"forming_candle_at":"2026-10-09T17:56:22.000Z","trace":"provider regularMarketTime/regularMarketPrice -> append-only quote row -> displayed mark; completed and forming candle rows persisted separately"},
+    {"symbol":"SPY","venue":"NYSEArca","quote_currency":"USD","state":"fresh","provider_event_at":"2026-10-09T17:56:31.000Z","server_received_at":"2026-10-09T17:56:28.228Z","displayed_mark":778.265,"latest_completed_candle_at":"2026-10-08T20:00:00.000Z","displayed_completed_close":773.9299926757812,"forming_candle_at":"2026-10-09T17:56:31.000Z","trace":"provider regularMarketTime/regularMarketPrice -> append-only quote row -> displayed mark; delayed/aggregated entitlement shown in UI"}
+  ],
+  "recovery_cycles": {"actual_live_outage_recovery_cycles":0,"simulated_test_coverage":true,"note":"No provider outage occurred during the live diagnostic window. Two consecutive production recovery cycles remain pending."},
+  "limitations": ["Builder diagnostics are live provider observations in an isolated sandbox, not production incident evidence.","Existing production persistence atomicity and incident-log limitations remain open.","The market-open label uses a weekday/time model for display freshness; authoritative holiday/early-close settlement remains with the existing XNYS evaluator."]
+}

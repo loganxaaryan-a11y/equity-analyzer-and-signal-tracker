@@ -272,6 +272,25 @@ export const assetProfiles = sqliteTable("asset_profiles", {
   updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull().$defaultFn(() => new Date()),
 });
 
+// Company identity cache (migration 0053): one row per canonical symbol with
+// the full company name, sector/industry, and a sourced plain-English
+// description of what the company does. Written only by the on-demand
+// getCompanyProfile fetch (Yahoo quoteSummary assetProfile, SEC EDGAR
+// submissions, or a sourced web-search summary); list surfaces read it
+// through the stored-only resolver and never trigger fetches. A row with a
+// null description is a negative cache entry (looked, nothing sourced yet).
+export const companyProfiles = sqliteTable("company_profiles", {
+  symbol: text("symbol").primaryKey(),
+  name: text("name"),
+  sector: text("sector"),
+  industry: text("industry"),
+  description: text("description"),
+  descriptionSourceTitle: text("description_source_title"),
+  descriptionSourceUrl: text("description_source_url"),
+  fetchedAt: integer("fetched_at", { mode: "timestamp_ms" }).notNull().$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull().$defaultFn(() => new Date()),
+});
+
 export const assetContextLinks = sqliteTable("asset_context_links", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   symbol: text("symbol").notNull(),

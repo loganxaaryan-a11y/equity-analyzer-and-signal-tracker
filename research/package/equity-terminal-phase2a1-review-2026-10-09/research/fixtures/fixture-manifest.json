@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "synthetic": true,
+  "containsProductionRows": false,
+  "fixtures": [
+    {
+      "id": "profitable-if-leaky-future-bar",
+      "test": "deliberate future-feature leakage fixture is rejected by cutoff filtering",
+      "purpose": "A later unavailable bar is made strongly profitable; the prior decision must remain unchanged because features are filtered by availableAt."
+    },
+    {
+      "id": "unresolved-four-for-one-split",
+      "test": "unresolved split-like discontinuity is excluded for unadjusted data",
+      "purpose": "A 4:1 discontinuity in an unadjusted series without event metadata must fail data integrity instead of becoming a return."
+    },
+    {
+      "id": "excluded-current-breakout-bar",
+      "test": "breakout references exclude the current bar",
+      "purpose": "The current high is extreme; the range test uses only the preceding 20 highs and still evaluates the close against that frozen range."
+    },
+    {
+      "id": "zero-reference-volume",
+      "test": "missing or zero volume cannot pass",
+      "purpose": "A zero in the preceding volume reference produces a feature exclusion rather than an issued breakout."
+    },
+    {
+      "id": "next-eligible-open",
+      "tests": [
+        "crypto availability skips the adjacent open that precedes publication",
+        "equity entry uses a later eligible XNYS open"
+      ],
+      "purpose": "Entry is strictly after decision availability on the appropriate market calendar."
+    },
+    {
+      "id": "label-overlap-purge",
+      "test": "purges validation labels that overlap the next boundary",
+      "purpose": "A validation decision whose label becomes available in the next period is purged."
+    }
+  ],
+  "generator": "research/src/harness.test.ts",
+  "deterministic": true
+}

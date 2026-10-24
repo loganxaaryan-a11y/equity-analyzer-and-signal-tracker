@@ -1,0 +1,12 @@
+{
+  "frozenAt": "2026-10-09T17:02:00Z",
+  "specSha256": "204558351e63cf2d91484ccaf4767db62a646159615bae86167dd92cf8140571",
+  "trialRegistrySha256": "8fd97a2d3568e80756f8e11a14744bf3ada3c08c658f0c8468732d129ff81bdf",
+  "datasetManifestSha256": "7f0f03f124617655a6a34d97f7ba2ba3f10b76c4ff1861813e60f1f534fbc76a",
+  "trainValidationDatasetSha256": "1d474c568010c5f947e09f17fab619d663a484cadd960d78c69180ab811bc860",
+  "holdoutAggregateSha256": "0abaedd5728b52a2400ec6d5fbeae4ee81cb7c202c8ac54f63c9f427ef6d2ea1",
+  "outcomesViewedBeforeCurrentFreeze": false,
+  "priorInvalidatedRunOutcomeExposure": true,
+  "priorFreezeFile": "research/config/PHASE2A-FREEZE-v0-invalid.json",
+  "correction": "XNYS early-close availability timestamps corrected; OHLCV, hypotheses, parameters, splits and universe unchanged."
+}

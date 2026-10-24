@@ -1,0 +1,107 @@
+{
+  "ok": true,
+  "url": "https://artifact-capture.invalid/spaces/v2/hatch-audit-6fa476ea-8137-4f73-8ec2-11cf644299db/",
+  "duration_ms": 9445.506250999999,
+  "output_dir": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-02T00-14-38Z-312195914",
+  "nav_status": 200,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-02T00-14-38Z-312195914/screenshot.png",
+      "fullpage_screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-02T00-14-38Z-312195914/screenshot-full.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-02T00-14-38Z-312195914/screenshot-mobile.png"
+    }
+  },
+  "mobile_layout": {
+    "viewport_width": 390,
+    "scroll_width": 390,
+    "overflow_px": 0,
+    "widest_selector": null,
+    "verdict": "pass"
+  },
+  "horizontal_scrollers": [],
+  "unreachable_controls": {
+    "desktop": [],
+    "mobile": []
+  },
+  "clipped": {
+    "desktop": [],
+    "mobile": []
+  },
+  "images": {
+    "total": 0,
+    "broken": [],
+    "duplicate": [],
+    "unstable": [],
+    "failed_requests": [],
+    "external_blocked": {
+      "count": 0,
+      "sample": []
+    },
+    "sample_urls": [],
+    "verdict": "pass"
+  },
+  "text_issues": [],
+  "console_errors": [],
+  "console_warnings": [],
+  "external_fetch_failures": 2,
+  "external_fetch_failure_samples": [
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)",
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)"
+  ],
+  "blocked_requests": [],
+  "external_requests": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "method": "GET",
+      "resource_type": "stylesheet"
+    }
+  ],
+  "external_requests_dropped": 0,
+  "external_requests_dropped_data_bearing": 0,
+  "transport_ledger_active": true,
+  "egress_lockdown": true,
+  "transport_connections": [
+    {
+      "host": "artifact-capture.invalid",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 3940,
+      "bytes_down": 2487
+    },
+    {
+      "host": "fonts.googleapis.com",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "policy_denied": true
+    }
+  ],
+  "transport_udp_attempts": 0,
+  "transport_overflow": 0,
+  "unexplained_transport_hosts": [],
+  "broken_assets": [],
+  "blocked_affordances": [],
+  "interactive_nodes": 20,
+  "aria_snapshot": "- main:\n  - textbox \"Ticker, company, or commodity\"\n  - button \"ANALYZE\" [disabled]\n  - navigation \"Terminal sections\":\n    - button \"MARKET\"\n    - button \"DOSSIER\"\n    - button \"NEWS\"\n    - button \"SMART MONEY\"\n    - button \"SIGNAL TAPE\"\n    - button \"THEORIES\"\n    - button \"ENGINE HITS\"\n    - button \"WATCHLIST\"\n    - button \"JOURNAL\"\n  - text: MARKET PULSE\n  - heading \"5 of 7 measured instruments have positive 15-session breadth; META leads the 30-session return ÷ ATR% stack; 16 testable setup flags are active.\" [level=1]\n  - text: 15-session breadth 71.43% Active flags 16 Broad scan candidates 50 Risk-adjusted leader META\n  - paragraph: Live pulse 10/2/2026, 12:14:45 AM · broad discovery is prepared in the background.\n  - heading \"Prepared news / sector impact\" [level=3]\n  - button \"OPEN DISCOVERY\"\n  - article:\n    - text: alphatradernews.com\n    - time: 10/1/2026\n    - link \"October 01 2026 Trader Market Radar – NYSE Pre-Market Session\":\n      - /url: https://alphatradernews.com/2026/10/01/october-01-2026-trader-market-radar-nyse-pre-market-session/\n      - heading \"October 01 2026 Trader Market Radar – NYSE Pre-Market Session\" [level=4]\n    - paragraph: It matters because AI-related semiconductor strength and softer PCE data are supporting sentiment, while still-rising Treasury yields, hawkish Fed commentary, and oil supply risks limit broader equity participation.\n  - article:\n    - text: www.newswire.ca\n    - time: 10/1/2026\n    - link \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\":\n      - /url: https://www.newswire.ca/news-releases/weekly-losses-deepen-as-small-caps-lag-and-yields-edge-higher-into-earnings-gauntlet-817261305.html\n      - heading \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\" [level=4]\n    - paragraph: It matters because the Dow, S&P 500, Nasdaq and Russell 2000 all finished lower on the week with small caps lagging as the 10-year yield rose to 5.24%, increasing pressure on rate-sensitive areas into earnings.\n  - article:\n    - text: www.tradingview.com\n    - time: 10/1/2026\n    - link \"News by Dow Jones Newswires on TradingView, 2026-10-01\":\n      - /url: https://www.tradingview.com/news/DJN_DN20261001001444:0/\n      - heading \"News by Dow Jones Newswires on TradingView, 2026-10-01\" [level=4]\n    - paragraph: It matters because softer PCE data has lowered October Fed-hike expectations to 39% and supported gold, while Treasury yields remain near 24-year highs and UK gilt yields and the dollar stay elevated.\n  - article:\n    - text: www.eoption.com\n    - time: 10/1/2026\n    - 'link \"Morning Preview: October 01, 2026 | eOption\"':\n      - /url: https://www.eoption.com/morning-preview-october-01-2026/\n      - 'heading \"Morning Preview: October 01, 2026 | eOption\" [level=4]'\n    - paragraph: It matters because the S&P 500 sits near an all-time high while over 70% of its constituents are down more than 10% from their highs and serious delinquencies rose 19% year over year, signaling narrow breadth and credit stress.\n  - heading \"Watchlist snapshot\" [level=3]\n  - button \"OPEN WATCHLIST\"\n  - text: SCANNING WATCHLIST…\n  - heading \"Broad-market signals\" [level=3]\n  - button \"OPEN ACN TAPE\"\n  - button \"ACN Information Technology · +19.33% / 15 sessions +80 · LONG / bullish MEDIUM confidence · 6 active setups\"\n  - button \"MU Information Technology · +12.28% / 15 sessions +80 · LONG / bullish MEDIUM confidence · 5 active setups\"\n  - button \"HD Consumer Discretionary · -7.6% / 15 sessions -80 · SHORT / bearish MEDIUM confidence · 6 active setups\"\n  - button \"MS Financials · -11.59% / 15 sessions -80 · SHORT / bearish MEDIUM confidence · 6 active setups\"\n  - heading \"Engine hits\" [level=3]\n  - button \"OPEN LOG\"\n  - button \"Sep 30 · FIRST LIVE RIPPLE-CHAIN TEST CASE uranium = leverage bet on AI power LOW 12/100\":\n    - text: Sep 30 · FIRST LIVE RIPPLE-CHAIN TEST CASE uranium = leverage bet on AI power\n    - strong: LOW 12/100\n  - text: MARKET READ\n  - paragraph: 5 of 7 measured instruments have positive 15-session breadth; META leads the 30-session return ÷ ATR% stack; 16 testable setup flags are active.\n  - text: 15-session breadth 71.43% Active flags 16 High-alignment names 4 7 instruments refreshed; 0 unavailable. Yahoo Finance prices — source times shown per asset.\n  - heading \"Feed status\" [level=3]\n  - button \"Open SPY dossier\":\n    - text: SPY refreshed\n    - paragraph: +0.03% / 15 sessions · MIXED / no directional edge · 2 flags\n    - text: 10/1/2026, 8:00:00 PM · OPEN DOSSIER\n  - button \"Open QQQ dossier\":\n    - text: QQQ refreshed\n    - paragraph: +3.28% / 15 sessions · LONG / bullish · 3 flags\n    - text: 10/1/2026, 8:00:00 PM · OPEN DOSSIER\n  - button \"Open IWM dossier\":\n    - text: IWM refreshed\n    - paragraph: \"-4.39% / 15 sessions · SHORT / bearish · 2 flags\"\n    - text: 10/1/2026, 8:00:00 PM · OPEN DOSSIER\n  - button \"Open AAPL dossier\":\n    - text: AAPL refreshed\n    - paragraph: +5.61% / 15 sessions · LONG / bullish · 3 flags\n    - text: 10/1/2026, 8:00:01 PM · OPEN DOSSIER\n  - button \"Open META dossier\":\n    - text: META refreshed\n    - paragraph: +10.94% / 15 sessions · LONG / bullish · 3 flags\n    - text: 10/1/2026, 8:00:01 PM · OPEN DOSSIER\n  - button \"Open NVDA dossier\":\n    - text: NVDA refreshed\n    - paragraph: +2.11% / 15 sessions · LONG / bullish · 3 flags\n    - text: 10/1/2026, 8:00:01 PM · OPEN DOSSIER\n  - button \"Open TSLA dossier\":\n    - text: TSLA refreshed\n    - paragraph: \"-3.53% / 15 sessions · MIXED / no directional edge · 0 flags\"\n    - text: 10/1/2026, 8:00:00 PM · OPEN DOSSIER\n  - heading \"Relative-strength breadth\" [level=3]\n  - text: Leading SPY · 30d 4 Lagging SPY · 30d 0 Unavailable 0 Positive ratio returns mean the instrument outperformed SPY over the same aligned trading dates. Broad positive readings imply leadership breadth; they do not predict continuation.\n  - heading \"Watchlist rotation vs SPY\" [level=3]\n  - table \"Relative strength versus SPY\":\n    - row \"Instrument 30d ratio 90d ratio Range\"\n    - row \"Open META dossier\": META Meta Platforms, Inc. +34.23% +16.28% Leading ›\n    - row \"Open AAPL dossier\": AAPL Apple Inc. +8.09% +6.34% Leading ›\n    - row \"Open TSLA dossier\": TSLA Tesla, Inc. +5.99% -17.3% Improving ›\n    - row \"Open NVDA dossier\": NVDA NVIDIA Corporation +4.59% +1.32% Leading ›\n  - paragraph: Tap a row to open its dossier · aligned daily closes · Yahoo Finance · calculated 10/2/2026, 12:14:46 AM",
+  "audit_session_id": "bf34aa12-006d-49d6-912b-a2cfb5f5fe71",
+  "mobile_ms": 6376.329336999999,
+  "cold_launch_ms": 1716.700376,
+  "desktop_ms": 6613.044255999999,
+  "browser_launches": 1,
+  "audit_path": "shared-concurrent",
+  "diagnostics": {
+    "audit_path": "shared-concurrent",
+    "concurrent_ran": true,
+    "concurrent_desktop_retry": false,
+    "concurrent_mobile_retry": false,
+    "shared_launch_failed": false,
+    "nav_retries": 0
+  }
+}

@@ -1,0 +1,3 @@
+Configured schedule: equity-market-data-refresh, owner space:equity-analyzer-and-signal-tracker, enabled=true, interval=15m.
+Observed scheduler run records: 10 consecutive status=succeeded direct action dispatches, 2026-10-12 00:12:32–02:27:32 EDT.
+Scope: scheduler records prove dispatch completion only; controlled post-repair outage/recovery evidence is pending.

@@ -1,0 +1,158 @@
+manifest_total=4347 manifest_failed=0
+manifest_exit=0
+bun install v1.4.2 (744846f84)
+
++ @types/bun@1.4.2
++ @types/react@19.2.14
++ @types/react-dom@19.2.3
++ tailwindcss@4.1.13
++ tailwindcss-safe-area@1.3.0
++ typescript@5.6.3
++ @hatch/space-sdk@vendor/space-sdk.tgz
++ @tanstack/react-query@5.100.10
++ drizzle-orm@0.45.2
++ react@19.2.5
++ react-dom@19.2.5
++ recharts@2.15.3
++ zod@4.4.3
+
+79 packages installed [23.90s]
+install_exit=0
+$ bun test --path-ignore-patterns='research/package/**' server/src/measurement.test.ts server/src/measurement_run.integrity.test.ts server/src/measurement_worker.integration.test.ts server/src/phase1_2.integration.test.ts server/src/final_signoff.integration.test.ts server/src/freshness.test.ts server/src/market_refresh.integration.test.ts research/src/harness.test.ts
+bun test v1.4.2 (744846f84)
+
+research/src/harness.test.ts:
+(pass) frozen hypothesis semantics > requires a complete 200-bar warm-up [4.48ms]
+(pass) frozen hypothesis semantics > trend continuation emits only aligned strict direction [8.02ms]
+(pass) frozen hypothesis semantics > breakout references exclude the current bar [16.60ms]
+(pass) frozen hypothesis semantics > missing or zero volume cannot pass [2.20ms]
+(pass) data integrity, sessions, and corporate actions > rejects incoherent OHLC [0.46ms]
+(pass) data integrity, sessions, and corporate actions > rejects malformed dates and nonchronological rows [0.22ms]
+(pass) data integrity, sessions, and corporate actions > unresolved split-like discontinuity is rejected for unadjusted data [0.23ms]
+(pass) data integrity, sessions, and corporate actions > duplicate dates are rejected [0.15ms]
+(pass) data integrity, sessions, and corporate actions > XNYS holiday and early close use actual session bounds [19.40ms]
+(pass) data integrity, sessions, and corporate actions > equity event time must equal its XNYS close [2.35ms]
+(pass) actual market clock and exact horizon > crypto availability skips the adjacent open that precedes publication [268.50ms]
+(pass) actual market clock and exact horizon > equity entry uses a later eligible XNYS open [3893.60ms]
+(pass) actual market clock and exact horizon > July 3–8 counterexample does not stretch when July 4 is deleted [467.50ms]
+(pass) actual market clock and exact horizon > a missing exact endpoint becomes unverified and never slides [232.21ms]
+(pass) actual market clock and exact horizon > a missing expected feature session is a feature exclusion [231.81ms]
+(pass) actual market clock and exact horizon > unmatured exact horizons remain pending [180.05ms]
+(pass) actual market clock and exact horizon > KO counterexample uses the endpoint bar's declared September 9 availability and purges before the September 8 fold [4052.97ms]
+(pass) actual market clock and exact horizon > delayed feature publication fails closed on both fold and holdout boundaries [4185.85ms]
+(pass) actual market clock and exact horizon > fixed-lag declarations reject inconsistent publication timestamps explicitly [1.66ms]
+(pass) actual market clock and exact horizon > long and short arithmetic is linear on entry notional [0.08ms]
+(pass) estimand, holdout, and uncertainty > matched candidate and SMA costs produce exactly zero gross and net differences [266.65ms]
+(pass) estimand, holdout, and uncertainty > SMA baseline cannot compress its exact window by borrowing an older available bar [239.55ms]
+(pass) estimand, holdout, and uncertainty > candidate abstentions and baseline eligibility are evaluated independently [270.39ms]
+(pass) estimand, holdout, and uncertainty > uncertainty uses complete scheduled date blocks and excludes the short tail [260.34ms]
+(pass) estimand, holdout, and uncertainty > future unavailable bars cannot change an earlier decision [391.23ms]
+(pass) estimand, holdout, and uncertainty > purges validation labels that overlap the next boundary [244.59ms]
+(pass) estimand, holdout, and uncertainty > engine rejects synthetic holdout bars before observations [2.82ms]
+(pass) estimand, holdout, and uncertainty > ordinary command guard rejects the same synthetic holdout input [70.71ms]
+(pass) estimand, holdout, and uncertainty > normal research command blocks holdout-opening aliases [0.28ms]
+(pass) estimand, holdout, and uncertainty > legacy scoreboard merge is rejected [3.61ms]
+(pass) estimand, holdout, and uncertainty > reruns are deterministic [627.26ms]
+(pass) synthetic controls remain separate from market evidence > positive control detects a pre-decision feature predictive by construction [1398.15ms]
+(pass) synthetic controls remain separate from market evidence > negative controls record fixed seeds and do not falsely qualify [1167.20ms]
+(pass) synthetic controls remain separate from market evidence > control cohort and separation contract cannot impersonate market evidence [1120.88ms]
+
+server/src/phase1_2.integration.test.ts:
+(pass) Phase 1.2 reconstruction integration > untouched raw snapshot reconstructs every compared output without network access [24.96ms]
+(pass) Phase 1.2 reconstruction integration > changing a relevant raw input produces field-level mismatches [15.12ms]
+(pass) Phase 1.2 reconstruction integration > altering saved outputs alone is detected [29.11ms]
+(pass) Phase 1.2 reconstruction integration > post-decision unavailable input has no effect [26.75ms]
+(pass) Phase 1.2 cohort isolation > accepted revision selection excludes mixed strategy, horizon, evaluator and cost cohorts [0.61ms]
+
+server/src/measurement_worker.integration.test.ts:
+(pass) production measurement action recovery > shared completion predicate rejects terminal rows without committed cursor/status metadata [0.14ms]
+(pass) production measurement action recovery > actual handler records evaluable, provider-failed and excluded members separately [125.52ms]
+(pass) production measurement action recovery > interruption after accepted revision/item write resumes in a fresh action context without duplicates or rewrites [85.53ms]
+(pass) production measurement action recovery > expired worker is fenced after provider pause; only the reacquired worker commits [85.69ms]
+(pass) production measurement action recovery > cursor commit survives crash before batch-row insertion through durable journal recovery [67.74ms]
+(pass) production measurement action recovery > 50 terminal items with cursor 0 remain partial until one production-handler cursor commit [65.28ms]
+
+server/src/measurement_run.integrity.test.ts:
+(pass) measurement run database integrity > unknown explicit run ID is RUN_NOT_FOUND; null is the only new-run path [1.12ms]
+(pass) measurement run database integrity > 50→49 cannot close and original denominator remains 50 [1.94ms]
+(pass) measurement run database integrity > duplicate, unexpected and ordinal corruption are rejected by identity/constraints [1.18ms]
+(pass) measurement run database integrity > stale concurrent cursor/lease attempts have one durable winner [0.87ms]
+(pass) measurement run database integrity > interruption after evaluation write before cursor commit replays without duplicates or rewrites [1.25ms]
+(pass) accepted evaluator result → grading/trade traces > missing initial, middle and tail candles stay UNVERIFIED/open [7.44ms]
+(pass) accepted evaluator result → grading/trade traces > forming/unavailable, expiry-straddling and same-bar outcomes do not manufacture resolution [8.38ms]
+(pass) accepted evaluator result → grading/trade traces > fixed-horizon direction remains a separate accepted product [5.74ms]
+(pass) accepted evaluator result → grading/trade traces > provider failure is retry-pending while trade state stays open [1.12ms]
+
+server/src/measurement.test.ts:
+(pass) Phase 1.1 time and coverage closure > pre-issuance target cannot settle the prospective setup [6.63ms]
+(pass) Phase 1.1 time and coverage closure > missing OHLC before a later target is unverified [2.14ms]
+(pass) Phase 1.1 time and coverage closure > a future daily candle is never consumed [1.56ms]
+(pass) Phase 1.1 time and coverage closure > expiry inside a daily candle cannot prove a touch [1.54ms]
+(pass) Phase 1.1 time and coverage closure > missing first, middle, and tail sessions never become verified time exits [4.93ms]
+(pass) Phase 1.1 time and coverage closure > opening adverse gap applies before unordered high and low [2.08ms]
+(pass) Phase 1.1 time and coverage closure > double-touch daily bar stays ambiguous [1.98ms]
+(pass) Phase 1.1 time and coverage closure > research-reference price cannot masquerade as executable setup [7.77ms]
+(pass) Phase 1.1 time and coverage closure > time exit uses the exact declared final session close [20.26ms]
+(pass) returns, costs, calendars, and products > linear shorts use entry notional [0.09ms]
+(pass) returns, costs, calendars, and products > unknown cost is null; modeled 18 bps is explicit [4.14ms]
+(pass) returns, costs, calendars, and products > frozen META target 115 reaches evaluation unchanged [2.12ms]
+(pass) returns, costs, calendars, and products > XNYS DST and early close bounds are explicit [0.94ms]
+(pass) returns, costs, calendars, and products > fixed-horizon direction fails closed across missing sessions [1.98ms]
+(pass) returns, costs, calendars, and products > direction forecast does not consume evidence unavailable at cutoff [1.46ms]
+(pass) returns, costs, calendars, and products > entry inside a session cannot skip an unobserved entry-day path [1.72ms]
+(pass) returns, costs, calendars, and products > calendar dates outside validated coverage fail closed [1.85ms]
+(pass) append-only read model and offline replay > accepted revision selects improved evidence and preserves predecessor row [0.15ms]
+(pass) append-only read model and offline replay > offline replay ignores inputs unavailable at decision time [1.13ms]
+(pass) append-only read model and offline replay > sample sufficiency does not validate poor economics or edge [0.19ms]
+
+server/src/market_refresh.integration.test.ts:
+(pass) deterministic market refresh action / worker / read-model integration > success advances observation stream pointers and exposes independent provider, receipt, and success clocks [85.38ms]
+(pass) deterministic market refresh action / worker / read-model integration > unchanged response reuses observations while recording successful refresh health [72.24ms]
+(pass) deterministic market refresh action / worker / read-model integration > provider outage preserves the stream pointer and last success while advancing attempt health [72.27ms]
+(pass) deterministic market refresh action / worker / read-model integration > 429 retries exactly once through the injected delay and recovers into persisted state [65.09ms]
+(pass) deterministic market refresh action / worker / read-model integration > concurrent same-symbol action triggers share one provider worker without duplicating observations [66.30ms]
+(pass) deterministic market refresh action / worker / read-model integration > stale and pre-issuance quotes append no barrier events and issued decision bytes remain immutable [77.60ms]
+
+server/src/freshness.test.ts:
+(pass) Track A market freshness isolation > throttled analysis does not enter the market-data budget [0.09ms]
+(pass) Track A market freshness isolation > old provider content stays stale even after a successful receipt [0.57ms]
+(pass) Track A market freshness isolation > forming crypto candle later closes without changing identity of prior version [0.12ms]
+(pass) Track A market freshness isolation > provider outage retains age but reports error [0.08ms]
+(pass) Track A market freshness isolation > recovery derives a deterministic observation key for deduplication [0.16ms]
+(pass) Track A market freshness isolation > fresh quote does not imply stale factor freshness [0.09ms]
+(pass) Track A market freshness isolation > status planning never mutates frozen levels [0.45ms]
+(pass) Track A market freshness isolation > barrier observation remains observed-only without path evidence [0.09ms]
+(pass) Track A market freshness isolation > repeated status input produces the same deterministic identity material [0.15ms]
+(pass) Track A market freshness isolation > equity quote is labeled market-closed rather than real-time [0.06ms]
+(pass) Track A market freshness isolation > freshness is recalculated at read time while fetch health remains separate [0.20ms]
+(pass) Track A market freshness isolation > successful unchanged fetch records health but does not freshen old provider content [0.08ms]
+(pass) Track A market freshness isolation > future provider timestamps fail closed [0.08ms]
+(pass) Track A market freshness isolation > pre-issuance quote cannot append a barrier event [0.13ms]
+(pass) Track A market freshness isolation > stale and incompatible quote observations cannot append barrier events [0.13ms]
+
+server/src/final_signoff.integration.test.ts:
+(pass) final Phase 1 equity candidate consistency > actual recordSignal rejects the expert LONG-to-SHORT counterexample before persistence [34.84ms]
+(pass) final Phase 1 equity candidate consistency > changing the draft stop cannot change the reconstructed final rejection [69.33ms]
+(pass) final Phase 1 equity candidate consistency > mirrored SHORT-to-LONG case stores one bundle whose snapshot, gate and levels match [34.93ms]
+(pass) final Phase 1 equity candidate consistency > actual production batch rolls back at every write boundary and retry completes exactly one bundle [243.16ms]
+(pass) final Phase 1 equity candidate consistency > interleaved identical and competing requests deterministically return one original bundle [85.03ms]
+(pass) final Phase 1 equity candidate consistency > shared production reconstruction preserves anomaly and freshness gates [2.54ms]
+(pass) final Phase 1 daily action and read-model integration > actual daily action core creates one revision set, and tracker/scorecard select the accepted cohort [42.86ms]
+(pass) final Phase 1 daily action and read-model integration > provider failure with adequate cache resolves only eligible forecast evidence and reports degraded status [19.99ms]
+(pass) final Phase 1 daily action and read-model integration > provider failure with inadequate cache remains unresolved with explicit coverage [3.11ms]
+
+ 104 pass
+ 0 fail
+ 310 expect() calls
+Ran 104 tests across 8 files. [21.89s]
+test_exit=0
+server_typecheck_exit=0
+client_typecheck_exit=0
+research_typecheck_exit=0
+$ bun research/src/command.ts closure-validate
+Phase 2A.1 closure validation complete: 5672 observations, 0 selections.
+Synthetic controls: positive=PASS, negative false qualifications=0/12.
+Holdout opened: false. Corrected outputs: research/output/phase2a1-*
+research_validate_exit=0
+
+OVERALL_EXIT_CODE=0

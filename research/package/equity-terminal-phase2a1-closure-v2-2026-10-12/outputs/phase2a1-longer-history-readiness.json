@@ -1,0 +1,365 @@
+{
+  "version": "longer-history-readiness-v1",
+  "performanceExecuted": false,
+  "currentInput": {
+    "bars": 1418,
+    "series": 5,
+    "adjustmentBasis": [
+      "unadjusted_raw_ohlcv"
+    ],
+    "sourceProvenance": [
+      {
+        "source": "Finnhub finance search structured daily candles",
+        "sourceUrl": "https://finnhub.io/?q=%22KO%22",
+        "retrievalTime": "2026-10-09T16:20:31Z"
+      },
+      {
+        "source": "Finnhub finance search structured daily candles",
+        "sourceUrl": "https://finnhub.io/?q=%22XOM%22",
+        "retrievalTime": "2026-10-09T16:20:31Z"
+      },
+      {
+        "source": "Finnhub finance search structured daily candles",
+        "sourceUrl": "https://finnhub.io/?q=%22JPM%22",
+        "retrievalTime": "2026-10-09T16:20:31Z"
+      },
+      {
+        "source": "Finnhub finance search structured daily candles",
+        "sourceUrl": "https://finnhub.io/?q=%22BTC%22",
+        "retrievalTime": "2026-10-09T16:22:26Z"
+      },
+      {
+        "source": "Finnhub finance search structured daily candles",
+        "sourceUrl": "https://finnhub.io/?q=%22ETH%22",
+        "retrievalTime": "2026-10-09T16:22:45Z"
+      }
+    ]
+  },
+  "calendar": {
+    "id": "XNYS embedded calendar",
+    "hash": "9109c826d89919da606e44b80f9b1be7e232a3aef83e53eedde58ca80a4ee0d5",
+    "limitation": "Validated only for dates encoded by the current calendar implementation; a full requested-period acquisition must revalidate every session, holiday and early close before performance."
+  },
+  "exclusions": {
+    "missingAndRevisionPolicy": "Exclude a scheduled feature, entry or endpoint when the exact bar is missing; reject duplicate/revised ambiguity before freezing. Endpoint-only labels do not borrow adjacent bars.",
+    "corporateActions": "Current input is unadjusted raw OHLCV and excludes unresolved split-like discontinuities. Longer-history performance is blocked until one consistent adjustment basis and revision policy are frozen."
+  },
+  "repairedEngineCounts": [
+    {
+      "trialId": "equity-5-trend-v1",
+      "fold": "validation_1",
+      "horizon": 5,
+      "matured": 45,
+      "acceptedMaturedIssued": 27,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 27,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "equity-5-trend-v1",
+      "fold": "validation_2",
+      "horizon": 5,
+      "matured": 12,
+      "acceptedMaturedIssued": 8,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 8,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "equity-5-trend-v1",
+      "fold": "pooled_validation",
+      "horizon": 5,
+      "matured": 57,
+      "acceptedMaturedIssued": 35,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 35,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "equity-5-breakout-v1",
+      "fold": "validation_1",
+      "horizon": 5,
+      "matured": 45,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "equity-5-breakout-v1",
+      "fold": "validation_2",
+      "horizon": 5,
+      "matured": 12,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "equity-5-breakout-v1",
+      "fold": "pooled_validation",
+      "horizon": 5,
+      "matured": 57,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "equity-30-trend-v1",
+      "fold": "validation_1",
+      "horizon": 30,
+      "matured": 0,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "equity-30-trend-v1",
+      "fold": "validation_2",
+      "horizon": 30,
+      "matured": 0,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "equity-30-trend-v1",
+      "fold": "pooled_validation",
+      "horizon": 30,
+      "matured": 0,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "equity-30-breakout-v1",
+      "fold": "validation_1",
+      "horizon": 30,
+      "matured": 0,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "equity-30-breakout-v1",
+      "fold": "validation_2",
+      "horizon": 30,
+      "matured": 0,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "equity-30-breakout-v1",
+      "fold": "pooled_validation",
+      "horizon": 30,
+      "matured": 0,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 0,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-5-trend-v1",
+      "fold": "validation_1",
+      "horizon": 5,
+      "matured": 60,
+      "acceptedMaturedIssued": 14,
+      "pointEstimateRows": 14,
+      "excludedTailRows": 0,
+      "completeBlocks": 1,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-5-trend-v1",
+      "fold": "validation_2",
+      "horizon": 5,
+      "matured": 50,
+      "acceptedMaturedIssued": 30,
+      "pointEstimateRows": 30,
+      "excludedTailRows": 0,
+      "completeBlocks": 1,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-5-trend-v1",
+      "fold": "pooled_validation",
+      "horizon": 5,
+      "matured": 110,
+      "acceptedMaturedIssued": 44,
+      "pointEstimateRows": 44,
+      "excludedTailRows": 0,
+      "completeBlocks": 2,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-5-breakout-v1",
+      "fold": "validation_1",
+      "horizon": 5,
+      "matured": 60,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 1,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-5-breakout-v1",
+      "fold": "validation_2",
+      "horizon": 5,
+      "matured": 50,
+      "acceptedMaturedIssued": 5,
+      "pointEstimateRows": 5,
+      "excludedTailRows": 0,
+      "completeBlocks": 1,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-5-breakout-v1",
+      "fold": "pooled_validation",
+      "horizon": 5,
+      "matured": 110,
+      "acceptedMaturedIssued": 5,
+      "pointEstimateRows": 5,
+      "excludedTailRows": 0,
+      "completeBlocks": 2,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-30-trend-v1",
+      "fold": "validation_1",
+      "horizon": 30,
+      "matured": 60,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 1,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-30-trend-v1",
+      "fold": "validation_2",
+      "horizon": 30,
+      "matured": 0,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 1,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-30-trend-v1",
+      "fold": "pooled_validation",
+      "horizon": 30,
+      "matured": 60,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 2,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-30-breakout-v1",
+      "fold": "validation_1",
+      "horizon": 30,
+      "matured": 60,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 1,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-30-breakout-v1",
+      "fold": "validation_2",
+      "horizon": 30,
+      "matured": 0,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 1,
+      "intervalAvailable": false
+    },
+    {
+      "trialId": "crypto-30-breakout-v1",
+      "fold": "pooled_validation",
+      "horizon": 30,
+      "matured": 60,
+      "acceptedMaturedIssued": 0,
+      "pointEstimateRows": 0,
+      "excludedTailRows": 0,
+      "completeBlocks": 2,
+      "intervalAvailable": false
+    }
+  ],
+  "gate": {
+    "readyForNewPerformance": false,
+    "reasons": [
+      "The current equity validation grid has only 24 scheduled sessions.",
+      "Thirty-session products have no mature eligible fold outcomes after repaired chronology and purge rules.",
+      "The supplied longer-history plan has no frozen acquired dataset in this checkout.",
+      "Calendar and corporate-action normalization for the full requested period are not yet frozen."
+    ]
+  },
+  "freezeCandidate": {
+    "inputSha256": "1d474c568010c5f947e09f17fab619d663a484cadd960d78c69180ab811bc860",
+    "calendarSha256": "9109c826d89919da606e44b80f9b1be7e232a3aef83e53eedde58ca80a4ee0d5",
+    "registrySha256": "3c0a51f3b1ce3f3de0f531ee2cad6e4583170d7a1b2e7bfd18a21760c68bec72",
+    "correctedEngineSha256": "3be88f04c9cfb3aa4cb53045deac7f4fbf12cc32d1aa8161cc7ab15e40da7a52",
+    "splits": {
+      "crypto": {
+        "developmentEnd": "2026-06-30",
+        "validation1": {
+          "start": "2026-07-01",
+          "end": "2026-07-31"
+        },
+        "validation2": {
+          "start": "2026-08-01",
+          "end": "2026-08-31"
+        },
+        "holdoutStart": "2026-09-01"
+      },
+      "equity": {
+        "developmentEnd": "2026-08-14",
+        "validation1": {
+          "start": "2026-08-17",
+          "end": "2026-09-04"
+        },
+        "validation2": {
+          "start": "2026-09-08",
+          "end": "2026-09-18"
+        },
+        "holdoutStart": "2026-09-21"
+      }
+    },
+    "frozenBeforePerformance": true,
+    "holdoutPreserved": {
+      "equity": {
+        "start": "2026-09-21",
+        "end": "2026-10-07"
+      },
+      "crypto": {
+        "start": "2026-09-01",
+        "end": "2026-10-07"
+      }
+    }
+  }
+}

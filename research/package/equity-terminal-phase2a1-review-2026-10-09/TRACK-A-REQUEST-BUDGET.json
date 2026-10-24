@@ -1,0 +1,17 @@
+{
+  "version": "track-a-v1",
+  "provider": "Yahoo Finance public chart",
+  "transport": "bounded polling",
+  "entitlement": "public delayed/aggregated; not advertised as real-time",
+  "cadence_minutes": 15,
+  "requests_per_symbol_per_run": 1,
+  "active_instrument_cap": 20,
+  "scenarios": [
+    {"active_instruments": 4, "requests_per_run": 4, "requests_per_day": 384, "requests_per_30_days": 11520},
+    {"active_instruments": 10, "requests_per_run": 10, "requests_per_day": 960, "requests_per_30_days": 28800},
+    {"active_instruments": 20, "requests_per_run": 20, "requests_per_day": 1920, "requests_per_30_days": 57600}
+  ],
+  "streaming_used": false,
+  "reason": "The server-action host is request-driven and does not promise durable WebSocket connections.",
+  "expensive_analysis_requests_per_market_refresh": 0
+}

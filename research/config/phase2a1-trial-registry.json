@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 2,
+  "frozenAt": "2026-10-09T16:23:05Z",
+  "cohort": "phase2a-ohlcv-v1",
+  "parameterSearch": "none",
+  "hypotheses": {
+    "trend_continuation_v1": {
+      "smaBars": 200,
+      "returnBars": 20,
+      "equality": "abstain"
+    },
+    "breakout_volume_v1": {
+      "smaBars": 200,
+      "rangeBars": 20,
+      "volumeMedianBars": 20,
+      "volumeMultiple": 1.5,
+      "referencesExcludeCurrentBar": true,
+      "equality": "abstain"
+    }
+  },
+  "products": [
+    {
+      "trialId": "equity-5-trend-v1",
+      "market": "equity",
+      "horizon": 5,
+      "horizonUnit": "trading_sessions",
+      "hypothesis": "trend_continuation_v1",
+      "status": "registered"
+    },
+    {
+      "trialId": "equity-5-breakout-v1",
+      "market": "equity",
+      "horizon": 5,
+      "horizonUnit": "trading_sessions",
+      "hypothesis": "breakout_volume_v1",
+      "status": "registered"
+    },
+    {
+      "trialId": "equity-30-trend-v1",
+      "market": "equity",
+      "horizon": 30,
+      "horizonUnit": "trading_sessions",
+      "hypothesis": "trend_continuation_v1",
+      "status": "registered"
+    },
+    {
+      "trialId": "equity-30-breakout-v1",
+      "market": "equity",
+      "horizon": 30,
+      "horizonUnit": "trading_sessions",
+      "hypothesis": "breakout_volume_v1",
+      "status": "registered"
+    },
+    {
+      "trialId": "crypto-5-trend-v1",
+      "market": "crypto",
+      "horizon": 5,
+      "horizonUnit": "elapsed_days",
+      "hypothesis": "trend_continuation_v1",
+      "status": "registered"
+    },
+    {
+      "trialId": "crypto-5-breakout-v1",
+      "market": "crypto",
+      "horizon": 5,
+      "horizonUnit": "elapsed_days",
+      "hypothesis": "breakout_volume_v1",
+      "status": "registered"
+    },
+    {
+      "trialId": "crypto-30-trend-v1",
+      "market": "crypto",
+      "horizon": 30,
+      "horizonUnit": "elapsed_days",
+      "hypothesis": "trend_continuation_v1",
+      "status": "registered"
+    },
+    {
+      "trialId": "crypto-30-breakout-v1",
+      "market": "crypto",
+      "horizon": 30,
+      "horizonUnit": "elapsed_days",
+      "hypothesis": "breakout_volume_v1",
+      "status": "registered"
+    }
+  ],
+  "attemptedVariants": [],
+  "selectionRule": {
+    "objective": "pooled_oof_mean_modeled_net_signed_return_central_cost",
+    "minimumMaturedEmissions": 40,
+    "minimumUniqueDecisionDates": 20,
+    "minimumLongs": 5,
+    "minimumShorts": 5,
+    "requirePositiveMeanNet": true,
+    "requirePositiveLower90PctTimeBlockInterval": true,
+    "tiePreference": "trend_continuation_v1"
+  },
+  "costsRoundTripBps": {
+    "equity": {
+      "central": 10,
+      "stressed": 30
+    },
+    "crypto": {
+      "central": 20,
+      "stressed": 50
+    }
+  },
+  "bootstrap": {
+    "seed": 22026009,
+    "resamples": 1000,
+    "blockDates": 30,
+    "minimumBlocksForInterval": 4
+  },
+  "legacyScoreboardIsolation": {
+    "phase": "phase2a",
+    "cohort": "phase2a-ohlcv-v1",
+    "legacyMergeAllowed": false
+  },
+  "correctionRunAt": "2026-10-09T18:16:00Z",
+  "splits": {
+    "crypto": {
+      "developmentEnd": "2026-06-30",
+      "validation1": {
+        "start": "2026-07-01",
+        "end": "2026-07-31"
+      },
+      "validation2": {
+        "start": "2026-08-01",
+        "end": "2026-08-31"
+      },
+      "holdoutStart": "2026-09-01"
+    },
+    "equity": {
+      "developmentEnd": "2026-08-14",
+      "validation1": {
+        "start": "2026-08-17",
+        "end": "2026-09-04"
+      },
+      "validation2": {
+        "start": "2026-09-08",
+        "end": "2026-09-18"
+      },
+      "holdoutStart": "2026-09-21"
+    }
+  },
+  "execution": {
+    "smaBars": 200,
+    "returnBars": 20,
+    "breakoutRangeBars": 20,
+    "volumeMedianBars": 20,
+    "volumeMultiple": 1.5,
+    "endpointOnlyAllowsIntermediateLabelGaps": true
+  },
+  "engineSha256": "576a9062894aa2770ce1dba2843b4acdbd8b5c491f7f7afa8ed67731dd3e36ea"
+}

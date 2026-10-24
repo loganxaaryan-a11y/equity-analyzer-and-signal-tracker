@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "createdAt": "2026-10-09T16:23:05Z",
+  "sourceExtract": "runtime finance search structured_entity daily candles",
+  "universeStatus": "Current-survivor exploratory sample; historical membership and delisted instruments unavailable.",
+  "instrumentReports": [
+    {
+      "instrumentId": "XNYS:KO:USD",
+      "symbol": "KO",
+      "market": "equity",
+      "class": "common_stock",
+      "venue": "XNYS",
+      "quoteCurrency": "USD",
+      "firstDate": "2025-09-26",
+      "lastDate": "2026-10-07",
+      "fullRows": 259,
+      "trainValidationRows": 246,
+      "lockedHoldoutRows": 13,
+      "rawFullSha256": "99021cf8a10f6c9136e1921b1ae00ff98fdc739950a3f619e28902a25606551c",
+      "trainValidationSha256": "aae8cd913d4364d6064b8520f78c39000ad3e11639fea40c5c69b325b20ccca7",
+      "lockedHoldoutSha256": "f65fe64806e1a7cee04cee496a2f08ca15c907a1ca76c3a84539dffa7bf917a1",
+      "duplicates": 0,
+      "providerFailures": 0,
+      "corporateActionFeed": "not supplied by this source extract",
+      "selectionStatus": "included current-survivor sample"
+    },
+    {
+      "instrumentId": "XNYS:XOM:USD",
+      "symbol": "XOM",
+      "market": "equity",
+      "class": "common_stock",
+      "venue": "XNYS",
+      "quoteCurrency": "USD",
+      "firstDate": "2025-09-26",
+      "lastDate": "2026-10-07",
+      "fullRows": 259,
+      "trainValidationRows": 246,
+      "lockedHoldoutRows": 13,
+      "rawFullSha256": "207f425acf658e8919d8609fc1047d8fd2592c40fb137dba8ec2fd659ca5dee6",
+      "trainValidationSha256": "eef5b61bc03fcb6d654d4855dc4e2ab975307f224c1fc01a882c0c2e66fc4081",
+      "lockedHoldoutSha256": "9403226c59f4109c68d5abd501cc9545ed71f59c960fa70a0c3c76ce7c17fb66",
+      "duplicates": 0,
+      "providerFailures": 0,
+      "corporateActionFeed": "not supplied by this source extract",
+      "selectionStatus": "included current-survivor sample"
+    },
+    {
+      "instrumentId": "XNYS:JPM:USD",
+      "symbol": "JPM",
+      "market": "equity",
+      "class": "common_stock",
+      "venue": "XNYS",
+      "quoteCurrency": "USD",
+      "firstDate": "2025-09-26",
+      "lastDate": "2026-10-07",
+      "fullRows": 259,
+      "trainValidationRows": 246,
+      "lockedHoldoutRows": 13,
+      "rawFullSha256": "60628ddae3eed69fba5e8bbb07f6d286b5b232f4c5e6fc87fc04f77f4f1415c3",
+      "trainValidationSha256": "5a8e77b4a83944421fffd2930f3764497aec27675da17aa73fef3da9c57c80ba",
+      "lockedHoldoutSha256": "f757509aa619f7b34a89b528bfdb43a3e40573f3b6bd980901ba2e78b62721ec",
+      "duplicates": 0,
+      "providerFailures": 0,
+      "corporateActionFeed": "not supplied by this source extract",
+      "selectionStatus": "included current-survivor sample"
+    },
+    {
+      "instrumentId": "binance:BTC:USD",
+      "symbol": "BTC",
+      "market": "crypto",
+      "class": "spot",
+      "venue": "binance",
+      "quoteCurrency": "USD",
+      "firstDate": "2025-09-26",
+      "lastDate": "2026-09-29",
+      "fullRows": 369,
+      "trainValidationRows": 340,
+      "lockedHoldoutRows": 29,
+      "rawFullSha256": "518d8e2676e46c7deee4dee7d7962fd6627d5e7c602db326f2898ed69f492bd0",
+      "trainValidationSha256": "ae4b8f686eb6b8074ef4ec40834164a8dda8d1380cc6dea02a97437051b50469",
+      "lockedHoldoutSha256": "739cd2839b9d8fdda5c18e65bd3e488dc85626e9dc75888d6c9155a06de60b08",
+      "duplicates": 0,
+      "providerFailures": 0,
+      "corporateActionFeed": "not supplied by this source extract",
+      "selectionStatus": "included current-survivor sample"
+    },
+    {
+      "instrumentId": "binance:ETH:USD",
+      "symbol": "ETH",
+      "market": "crypto",
+      "class": "spot",
+      "venue": "binance",
+      "quoteCurrency": "USD",
+      "firstDate": "2025-09-26",
+      "lastDate": "2026-10-07",
+      "fullRows": 377,
+      "trainValidationRows": 340,
+      "lockedHoldoutRows": 37,
+      "rawFullSha256": "5ccfc6403fe885a0412eb9697273700ddd03debf46eed8d4aa94fc19dcf5f0fd",
+      "trainValidationSha256": "6fb54e9af9f0d557ceeb8e4225af78b563ae6d8c36f4b097d483c5366881f394",
+      "lockedHoldoutSha256": "dd3df770d446c917b4fbcf5e4332aa5ee539b030428a845a99f26e0024e5047d",
+      "duplicates": 0,
+      "providerFailures": 0,
+      "corporateActionFeed": "not supplied by this source extract",
+      "selectionStatus": "included current-survivor sample"
+    }
+  ],
+  "holdout": {
+    "equity": {
+      "start": "2026-09-21",
+      "end": "2026-10-07"
+    },
+    "crypto": {
+      "start": "2026-09-01",
+      "end": "2026-10-07"
+    },
+    "rows": 105,
+    "aggregateSha256": "0abaedd5728b52a2400ec6d5fbeae4ee81cb7c202c8ac54f63c9f427ef6d2ea1",
+    "materialIncluded": false
+  },
+  "dataLimitations": [
+    "Only about one year of daily history was available from the supplied structured finance extract.",
+    "Corporate-action event rows and adjusted closes were absent; equity returns are unadjusted price returns, not total returns.",
+    "The universe is a current-survivor sample of three XNYS common stocks and two crypto assets; it is not historical whole-market coverage.",
+    "Crypto venue and quote currency use the source record labels; the exact tradable pair identifier was not supplied."
+  ],
+  "revisions": [
+    {
+      "revision": "availability-calendar-v1",
+      "at": "2026-10-09T17:02:00Z",
+      "reason": "Corrected XNYS early-close event and availability times to the shared validated calendar. Frozen hypotheses, parameters, splits and OHLCV were unchanged. The initial validation outcome had already been viewed; this exposure is disclosed in the audit.",
+      "priorFreezeFile": "research/config/PHASE2A-FREEZE-v0-invalid.json"
+    }
+  ]
+}

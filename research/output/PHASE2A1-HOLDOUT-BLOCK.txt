@@ -1,0 +1,14 @@
+58 | function percentile(values: number[], p: number): number | null { if (!values.length) return null; const sorted = [...values].sort((a, b) => a - b); return sorted[Math.max(0, Math.min(sorted.length - 1, Math.floor((sorted.length - 1) * p)))] ?? null; }
+59 | function stddev(values: number[]): number | null { const mean = average(values); if (mean == null || values.length < 2) return null; return Math.sqrt(values.reduce((sum, value) => sum + (value - mean) ** 2, 0) / (values.length - 1)); }
+60 | function seeded(seed: number): () => number { let state = seed >>> 0; return () => { state = (state * 1664525 + 1013904223) >>> 0; return state / 2 ** 32; }; }
+61 | 
+62 | export function assertResearchCommandAllowed(command: string): void {
+63 |   if (command === "holdout" || command === "open-holdout" || command === "--open-holdout") throw new Error("Holdout evaluation is blocked in Phase 2A. A reviewed Phase 2B command is required.");
+                                                                                                          ^
+error: Holdout evaluation is blocked in Phase 2A. A reviewed Phase 2B command is required.
+      at assertResearchCommandAllowed (/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/research/src/harness.ts:63:102)
+      at /home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/research/src/command.ts:77:8
+
+Bun v1.4.2 (Linux x64)
+
+exit_code=1

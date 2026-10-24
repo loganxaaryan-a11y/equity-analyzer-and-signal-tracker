@@ -1,0 +1,742 @@
+{
+  "ok": true,
+  "url": "https://artifact-capture.invalid/spaces/v2/hatch-audit-f8b9461d-a494-49e4-804b-8b6b01c3a9d4/",
+  "duration_ms": 9848.091454000001,
+  "output_dir": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-05T03-39-35Z-538724824",
+  "nav_status": 200,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-05T03-39-35Z-538724824/screenshot.png",
+      "fullpage_screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-05T03-39-35Z-538724824/screenshot-full.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-05T03-39-35Z-538724824/screenshot-mobile.png"
+    }
+  },
+  "mobile_layout": {
+    "viewport_width": 390,
+    "scroll_width": 390,
+    "overflow_px": 0,
+    "widest_selector": null,
+    "verdict": "pass"
+  },
+  "horizontal_scrollers": [],
+  "unreachable_controls": {
+    "desktop": [
+      {
+        "name": "MU · 15d +12.28% · score +80",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 55,
+        "bbox": [
+          197,
+          933,
+          166,
+          22
+        ]
+      },
+      {
+        "name": "AVGO · 15d -4.76% · score +0",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 55,
+        "bbox": [
+          369,
+          933,
+          166,
+          22
+        ]
+      },
+      {
+        "name": "MDT · 15d -4.26% · score -80",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 55,
+        "bbox": [
+          540,
+          933,
+          166,
+          22
+        ]
+      },
+      {
+        "name": "JNJ · 15d -3.6% · score -80",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 83,
+        "bbox": [
+          197,
+          961,
+          160,
+          22
+        ]
+      },
+      {
+        "name": "AAPL · Form 4 · 4 filed 2026-10-01.",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 274,
+        "bbox": [
+          197,
+          1152,
+          204,
+          22
+        ]
+      },
+      {
+        "name": "META · Form 4 · 4 filed 2026-09-28.",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 274,
+        "bbox": [
+          407,
+          1152,
+          204,
+          22
+        ]
+      },
+      {
+        "name": "META · Form 4 · 4 filed 2026-09-30.",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 302,
+        "bbox": [
+          197,
+          1180,
+          204,
+          22
+        ]
+      },
+      {
+        "name": "AAPL · Form 4 · 4 filed 2026-09-29.",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 302,
+        "bbox": [
+          407,
+          1180,
+          204,
+          22
+        ]
+      },
+      {
+        "name": "www.clausvistesen.com · retrieved 2026-10-04T19:24:29.124Z",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 438,
+        "bbox": [
+          197,
+          1316,
+          328,
+          22
+        ]
+      },
+      {
+        "name": "MDT-4.26% · -80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 35,
+        "bbox": [
+          1176,
+          903,
+          70,
+          32
+        ]
+      },
+      {
+        "name": "JNJ-3.6% · -80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 71,
+        "bbox": [
+          1181,
+          939,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "NEE-6.66% · -80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 122,
+        "bbox": [
+          1176,
+          990,
+          70,
+          32
+        ]
+      },
+      {
+        "name": "SO-3.96% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 158,
+        "bbox": [
+          1181,
+          1026,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "KO-2.41% · -80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 209,
+        "bbox": [
+          1176,
+          1077,
+          70,
+          32
+        ]
+      },
+      {
+        "name": "PEP-7.65% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 245,
+        "bbox": [
+          1181,
+          1113,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "C-8.3% · -80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 296,
+        "bbox": [
+          1181,
+          1164,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "MS-11.59% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 332,
+        "bbox": [
+          1176,
+          1200,
+          70,
+          32
+        ]
+      },
+      {
+        "name": "EMR+6.87% · +80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 383,
+        "bbox": [
+          1176,
+          1251,
+          70,
+          32
+        ]
+      },
+      {
+        "name": "BA-8.03% · -80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 419,
+        "bbox": [
+          1176,
+          1287,
+          70,
+          32
+        ]
+      },
+      {
+        "name": "AMZN-1.29% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 470,
+        "bbox": [
+          1181,
+          1338,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "LOW-8.14% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 506,
+        "bbox": [
+          1181,
+          1374,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "T-6.75% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 557,
+        "bbox": [
+          1181,
+          1425,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "DIS-4.09% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 593,
+        "bbox": [
+          1181,
+          1461,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "COP-7.72% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 644,
+        "bbox": [
+          1181,
+          1512,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "XOM-1.19% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 680,
+        "bbox": [
+          1181,
+          1548,
+          65,
+          32
+        ]
+      }
+    ],
+    "mobile": [
+      {
+        "name": "SPY +56 · 15d +0.95%",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 406,
+        "bbox": [
+          37,
+          1227,
+          122,
+          22
+        ]
+      },
+      {
+        "name": "QQQ +73 · 15d +4.96%",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 406,
+        "bbox": [
+          165,
+          1227,
+          122,
+          22
+        ]
+      },
+      {
+        "name": "IWM -38 · 15d -2.3%",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 434,
+        "bbox": [
+          37,
+          1256,
+          117,
+          22
+        ]
+      },
+      {
+        "name": "DIA -60 · 15d -2.57%",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 434,
+        "bbox": [
+          160,
+          1256,
+          122,
+          22
+        ]
+      },
+      {
+        "name": "MU · 15d +12.28% · score +80",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 549,
+        "bbox": [
+          37,
+          1371,
+          166,
+          22
+        ]
+      },
+      {
+        "name": "AVGO · 15d -4.76% · score +0",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 577,
+        "bbox": [
+          37,
+          1399,
+          166,
+          22
+        ]
+      },
+      {
+        "name": "MDT · 15d -4.26% · score -80",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 606,
+        "bbox": [
+          37,
+          1427,
+          166,
+          22
+        ]
+      },
+      {
+        "name": "JNJ · 15d -3.6% · score -80",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 634,
+        "bbox": [
+          37,
+          1456,
+          160,
+          22
+        ]
+      },
+      {
+        "name": "AAPL · Form 4 · 4 filed 2026-10-01.",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 885,
+        "bbox": [
+          37,
+          1707,
+          204,
+          22
+        ]
+      },
+      {
+        "name": "META · Form 4 · 4 filed 2026-09-28.",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 913,
+        "bbox": [
+          37,
+          1735,
+          204,
+          22
+        ]
+      },
+      {
+        "name": "META · Form 4 · 4 filed 2026-09-30.",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 941,
+        "bbox": [
+          37,
+          1763,
+          204,
+          22
+        ]
+      },
+      {
+        "name": "AAPL · Form 4 · 4 filed 2026-09-29.",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 969,
+        "bbox": [
+          37,
+          1791,
+          204,
+          22
+        ]
+      },
+      {
+        "name": "www.clausvistesen.com · retrieved 2026-10-04T19:24:29.124Z",
+        "tag": "a",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 1198,
+        "bbox": [
+          37,
+          2008,
+          328,
+          34
+        ]
+      },
+      {
+        "name": "MU+12.28% · +80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 1342,
+        "bbox": [
+          293,
+          2154,
+          75,
+          32
+        ]
+      },
+      {
+        "name": "AVGO-4.76% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 1378,
+        "bbox": [
+          303,
+          2190,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "MDT-4.26% · -80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 1429,
+        "bbox": [
+          298,
+          2241,
+          70,
+          32
+        ]
+      },
+      {
+        "name": "JNJ-3.6% · -80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 1465,
+        "bbox": [
+          303,
+          2277,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "NEE-6.66% · -80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 1516,
+        "bbox": [
+          298,
+          2328,
+          70,
+          32
+        ]
+      },
+      {
+        "name": "SO-3.96% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 1552,
+        "bbox": [
+          303,
+          2364,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "KO-2.41% · -80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 1603,
+        "bbox": [
+          298,
+          2415,
+          70,
+          32
+        ]
+      },
+      {
+        "name": "PEP-7.65% · +0",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 1639,
+        "bbox": [
+          303,
+          2451,
+          65,
+          32
+        ]
+      },
+      {
+        "name": "C-8.3% · -80",
+        "tag": "button",
+        "reason": "clipped_off",
+        "clipped_by": "div",
+        "overflow_px": 1690,
+        "bbox": [
+          303,
+          2502,
+          65,
+          32
+        ]
+      }
+    ]
+  },
+  "clipped": {
+    "desktop": [],
+    "mobile": []
+  },
+  "images": {
+    "total": 0,
+    "broken": [],
+    "duplicate": [],
+    "unstable": [],
+    "failed_requests": [],
+    "external_blocked": {
+      "count": 0,
+      "sample": []
+    },
+    "sample_urls": [],
+    "verdict": "pass"
+  },
+  "text_issues": [],
+  "console_errors": [],
+  "console_warnings": [],
+  "external_fetch_failures": 2,
+  "external_fetch_failure_samples": [
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)",
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)"
+  ],
+  "blocked_requests": [],
+  "external_requests": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "method": "GET",
+      "resource_type": "stylesheet"
+    }
+  ],
+  "external_requests_dropped": 0,
+  "external_requests_dropped_data_bearing": 0,
+  "transport_ledger_active": true,
+  "egress_lockdown": true,
+  "transport_connections": [
+    {
+      "host": "artifact-capture.invalid",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 4004,
+      "bytes_down": 2484
+    },
+    {
+      "host": "fonts.googleapis.com",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "policy_denied": true
+    }
+  ],
+  "transport_udp_attempts": 0,
+  "transport_overflow": 0,
+  "unexplained_transport_hosts": [],
+  "broken_assets": [],
+  "blocked_affordances": [],
+  "interactive_nodes": 21,
+  "aria_snapshot": "- main:\n  - navigation \"Terminal sections\":\n    - button \"HOME\"\n    - button \"CROWD\"\n    - button \"DOSSIER\"\n    - button \"NEWS\"\n    - button \"SMART MONEY\"\n    - button \"SIGNALS\"\n    - button \"THEORIES\"\n    - button \"ENGINE HITS\"\n    - button \"WATCHLIST\"\n    - button \"ALERTS\"\n    - button \"JOURNAL\"\n  - region \"Market Day Brief\":\n    - text: MARKET DAY BRIEF\n    - heading \"MIXED\" [level=1]\n    - paragraph: 2/4 indexes bullish · 28.4% ranked breadth\n    - status \"Stale regime data\": STALE REGIME expansion · data as of 9/15/2026, 12:00:00 AM · latest market session 2026-10-02\n    - text: REGIME STALE SMART MONEY mixed GENERATED 10/5/2026, 3:39:44 AM\n  - region \"Analyze an asset\":\n    - text: START A DOSSIER\n    - heading \"What do you want to understand?\" [level=2]\n    - combobox \"Quick asset picker\":\n      - option \"QUICK PICK\" [selected]\n      - option \"SPY · S&P 500\"\n      - option \"QQQ · Nasdaq 100\"\n      - option \"TLT · Treasuries\"\n      - option \"GLD · Gold\"\n      - option \"BTC · Bitcoin\"\n    - textbox \"Ticker or company name\"\n    - button \"ANALYZE\" [disabled]\n    - text: RECENT PICKS Your analyzed names will stay here on this device.\n  - group: OPEN FULL MARKET BRIEF",
+  "audit_session_id": "50d41a12-23b2-41a2-8ee5-cec5285b18b6",
+  "readiness": {
+    "desktop": {
+      "settled": true,
+      "settle_ms": 5821,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": true
+    },
+    "mobile": {
+      "settled": true,
+      "settle_ms": 6159,
+      "in_flight": 0,
+      "network_idle": true,
+      "retried": true
+    }
+  },
+  "color_scheme": {
+    "declared": "light",
+    "media_dependent": null,
+    "dark_frame": false
+  },
+  "cold_launch_ms": 541.4981690000001,
+  "desktop_ms": 8202.497242000001,
+  "mobile_ms": 8476.731697,
+  "browser_launches": 1,
+  "audit_path": "shared-concurrent",
+  "diagnostics": {
+    "audit_path": "shared-concurrent",
+    "concurrent_ran": true,
+    "concurrent_desktop_retry": false,
+    "concurrent_mobile_retry": false,
+    "shared_launch_failed": false,
+    "nav_retries": 0,
+    "settle_retries": 2
+  }
+}

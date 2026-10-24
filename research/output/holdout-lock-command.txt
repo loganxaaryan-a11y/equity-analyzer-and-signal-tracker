@@ -1,0 +1,14 @@
+89 |   crypto: { developmentEnd: "2026-06-30", validation1: { start: "2026-07-01", end: "2026-07-31" }, validation2: { start: "2026-08-01", end: "2026-08-31" }, holdoutStart: "2026-09-01" },
+90 |   equity: { developmentEnd: "2026-08-14", validation1: { start: "2026-08-17", end: "2026-09-04" }, validation2: { start: "2026-09-08", end: "2026-09-18" }, holdoutStart: "2026-09-21" },
+91 | };
+92 | 
+93 | export function assertResearchCommandAllowed(command: string): void {
+94 |   if (command === "holdout" || command === "open-holdout" || command === "--open-holdout") throw new Error("Holdout evaluation is blocked in Phase 2A. A reviewed Phase 2B command is required.");
+                                                                                                          ^
+error: Holdout evaluation is blocked in Phase 2A. A reviewed Phase 2B command is required.
+      at assertResearchCommandAllowed (/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/research/src/harness.ts:94:102)
+      at /home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/research/src/command.ts:91:1
+
+Bun v1.4.2 (Linux x64)
+
+exit_code=1

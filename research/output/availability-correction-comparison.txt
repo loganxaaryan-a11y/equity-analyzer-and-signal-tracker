@@ -1,0 +1,12 @@
+Phase 2A availability-calendar correction comparison
+
+Correction: equity event/available times on validated XNYS early-close dates now use the shared XNYS calendar instead of a fixed 16:00 local close. OHLCV, universe, hypotheses, parameters, costs, splits, and holdout boundaries were unchanged.
+
+The initial validation outcome was viewed before this correction. That exposure is preserved in PHASE2A-FREEZE-v0-invalid.json and disclosed in PHASE2A-AUDIT.md.
+
+Post-correction comparison:
+candidate_reports_identical=true
+baseline_reports_identical=true
+selections_identical=true
+
+The corrected run still produced 5,672 observations, zero selections, and did not open the holdout.

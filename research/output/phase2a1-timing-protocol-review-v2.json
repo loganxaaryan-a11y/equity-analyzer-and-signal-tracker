@@ -1,0 +1,37 @@
+{
+  "version": "timing-protocol-review-v2",
+  "executed": false,
+  "outcomeStatistics": null,
+  "comparatorPools": {
+    "candidateDates": "All eligible issued candidate dates by fold and horizon after chronology repair.",
+    "comparatorDates": "All full-schedule dates with independently eligible exact baseline inputs in the same fold/horizon; candidate abstentions may enter only this pool.",
+    "otherCandidateDatesInComparatorPool": false
+  },
+  "seeds": [
+    22026009,
+    22026010,
+    22026011,
+    22026012
+  ],
+  "matchingOrder": [
+    "fold",
+    "market",
+    "horizon",
+    "instrument class",
+    "direction",
+    "pre-decision volatility bucket",
+    "nearest date without crossing the fold boundary"
+  ],
+  "unmatchedEvents": "Retain and report unmatched counts and reasons; do not reuse or invent a match.",
+  "reuse": "No comparator reuse within a seed until its eligible pool is exhausted; exhaustion is reported and unmatched, not relaxed.",
+  "dependence": "Build connected components over the union of candidate and comparator outcome windows. Candidate and comparator dates both contribute edges. Scheduled blocks are resampling units, never independent trading bets. Require at least 20 usable components; transitive overlap may make the design structurally infeasible.",
+  "structuralPreflightRequired": [
+    "pool sizes",
+    "matched count",
+    "unmatched count by reason",
+    "reuse/exhaustion count",
+    "component size distribution",
+    "usable component count"
+  ],
+  "reviewRequiredBeforeExecution": true
+}

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "runId": "phase2a-validation-2026-10-09",
+  "startedAt": "2026-10-09T16:23:05Z",
+  "completedAt": "2026-10-09T16:23:05Z",
+  "command": "bun run research:validate",
+  "status": "completed",
+  "registeredTrials": [
+    {
+      "trialId": "equity-5-trend-v1",
+      "configurationStatus": "registered",
+      "runStatus": "completed",
+      "pooledReportPresent": true
+    },
+    {
+      "trialId": "equity-5-breakout-v1",
+      "configurationStatus": "registered",
+      "runStatus": "completed",
+      "pooledReportPresent": true
+    },
+    {
+      "trialId": "equity-30-trend-v1",
+      "configurationStatus": "registered",
+      "runStatus": "completed",
+      "pooledReportPresent": true
+    },
+    {
+      "trialId": "equity-30-breakout-v1",
+      "configurationStatus": "registered",
+      "runStatus": "completed",
+      "pooledReportPresent": true
+    },
+    {
+      "trialId": "crypto-5-trend-v1",
+      "configurationStatus": "registered",
+      "runStatus": "completed",
+      "pooledReportPresent": true
+    },
+    {
+      "trialId": "crypto-5-breakout-v1",
+      "configurationStatus": "registered",
+      "runStatus": "completed",
+      "pooledReportPresent": true
+    },
+    {
+      "trialId": "crypto-30-trend-v1",
+      "configurationStatus": "registered",
+      "runStatus": "completed",
+      "pooledReportPresent": true
+    },
+    {
+      "trialId": "crypto-30-breakout-v1",
+      "configurationStatus": "registered",
+      "runStatus": "completed",
+      "pooledReportPresent": true
+    }
+  ],
+  "attemptedVariants": [],
+  "failedPerformanceRuns": [],
+  "invalidatedRuns": [
+    {
+      "runId": "phase2a-validation-pre-availability-calendar-correction",
+      "status": "invalidated",
+      "reason": "Equity early-close availability used a fixed 16:00 local close. The corrected run used the shared XNYS calendar; candidate, baseline and selection reports were identical."
+    }
+  ],
+  "holdoutOpened": false
+}

@@ -1,0 +1,129 @@
+{
+  "ok": true,
+  "url": "https://artifact-capture.invalid/spaces/v2/hatch-audit-103c0918-87c2-43ae-9856-c914d76943aa/",
+  "duration_ms": 22451.787398,
+  "output_dir": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T04-24-59Z-955163141",
+  "nav_status": 200,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 900,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T04-24-59Z-955163141/screenshot.png",
+      "fullpage_screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T04-24-59Z-955163141/screenshot-full.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "screenshot_path": "/home/hatch/workspace/ts-spaces/equity-analyzer-and-signal-tracker/audits/2026-10-03T04-24-59Z-955163141/screenshot-mobile.png"
+    }
+  },
+  "mobile_layout": {
+    "viewport_width": 390,
+    "scroll_width": 390,
+    "overflow_px": 0,
+    "widest_selector": null,
+    "verdict": "pass"
+  },
+  "horizontal_scrollers": [],
+  "unreachable_controls": {
+    "desktop": [],
+    "mobile": []
+  },
+  "clipped": {
+    "desktop": [],
+    "mobile": []
+  },
+  "images": {
+    "total": 0,
+    "broken": [],
+    "duplicate": [],
+    "unstable": [],
+    "failed_requests": [],
+    "external_blocked": {
+      "count": 0,
+      "sample": []
+    },
+    "sample_urls": [],
+    "verdict": "pass"
+  },
+  "text_issues": [],
+  "console_errors": [],
+  "console_warnings": [],
+  "external_fetch_failures": 2,
+  "external_fetch_failure_samples": [
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)",
+    "console.error: Failed to load resource: net::ERR_SOCKS_CONNECTION_FAILED (https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap)"
+  ],
+  "blocked_requests": [],
+  "external_requests": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap",
+      "method": "GET",
+      "resource_type": "stylesheet"
+    }
+  ],
+  "external_requests_dropped": 0,
+  "external_requests_dropped_data_bearing": 0,
+  "transport_ledger_active": true,
+  "egress_lockdown": true,
+  "transport_connections": [
+    {
+      "host": "artifact-capture.invalid",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 4068,
+      "bytes_down": 2486
+    },
+    {
+      "host": "fonts.googleapis.com",
+      "port": 443,
+      "connects": 2,
+      "bytes_up": 0,
+      "bytes_down": 0,
+      "policy_denied": true
+    }
+  ],
+  "transport_udp_attempts": 0,
+  "transport_overflow": 0,
+  "unexplained_transport_hosts": [],
+  "broken_assets": [],
+  "blocked_affordances": [],
+  "interactive_nodes": 22,
+  "aria_snapshot": "- main:\n  - button \"rates\"\n  - button \"equities\"\n  - button \"elections\"\n  - button \"tech\"\n  - combobox \"Asset picker\":\n    - option \"ASSET PICKER\" [selected]\n    - option \"SPY · S&P 500\"\n    - option \"QQQ · Nasdaq 100\"\n    - option \"TLT · Treasuries\"\n    - option \"GLD · Gold\"\n    - option \"BTC · Bitcoin\"\n  - textbox \"Ticker or company\"\n  - button \"ANALYZE\" [disabled]\n  - text: POLYMARKET TOPIC\n  - textbox \"POLYMARKET TOPIC\"\n  - button \"FIND CROWD PRICE\" [disabled]\n  - navigation \"Terminal sections\":\n    - button \"MARKET\"\n    - button \"DOSSIER\"\n    - button \"NEWS\"\n    - button \"SMART MONEY\"\n    - button \"SIGNALS\"\n    - button \"THEORIES\"\n    - button \"ENGINE HITS\"\n    - button \"WATCHLIST\"\n    - button \"JOURNAL\"\n  - text: MARKET PULSE\n  - heading \"Prepared news / sector impact\" [level=3]\n  - button \"OPEN DISCOVERY\"\n  - article:\n    - text: vistapglobal.com\n    - time: 10/2/2026\n    - link \"Stock Market Today October 1 2026 Closing Trends\":\n      - /url: https://vistapglobal.com/stock-market-today-october-1-2026-sp-500-and-nasdaq-rise-as-ai-strength-offsets-higher-rate-concerns-acn-amzn-avgo-docs-eprx-lpl-modd-mu-nke-nvda-ser/\n      - heading \"Stock Market Today October 1 2026 Closing Trends\" [level=4]\n    - paragraph: With the 10-year yield at 5.24%, WTI near $93 and gold above $4,200, investors remain focused on the September jobs report and earnings for signals on rates, inflation and demand.\n  - article:\n    - text: www.newswire.ca\n    - time: 10/2/2026\n    - link \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\":\n      - /url: https://www.newswire.ca/news-releases/weekly-losses-deepen-as-small-caps-lag-and-yields-edge-higher-into-earnings-gauntlet-817261305.html\n      - heading \"Weekly Losses Deepen As Small Caps Lag And Yields Edge Higher Into Earnings Gauntlet\" [level=4]\n    - paragraph: A down week for the Dow, S&P 500 and Russell 2000 alongside a rise in the 10-year yield to 5.24% highlights rate pressure on equities heading into earnings season.\n  - article:\n    - text: www.everhint.com\n    - time: 10/2/2026\n    - link \"Stock Market News — October 01, 2026 — Morning Update — Last 12 Hours (Pacific Time)\":\n      - /url: https://www.everhint.com/stock-market-news-october-01-2026-morning-update-last-12-hours-pacific-time/\n      - heading \"Stock Market News — October 01, 2026 — Morning Update — Last 12 Hours (Pacific Time)\" [level=4]\n    - paragraph: Surging UK and European bond yields weighed on European equities while strong Accenture and Micron results lifted software and semiconductor shares, leaving overall sentiment mildly bearish into Q4.\n  - article:\n    - text: www.ic.com\n    - time: 10/2/2026\n    - link \"IC – Europe Fundamental Forecast | 02 October 2026\":\n      - /url: https://www.ic.com/blog/ic-europe-fundamental-forecast-02-october-2026/\n      - heading \"IC – Europe Fundamental Forecast | 02 October 2026\" [level=4]\n    - paragraph: European and US trading today centers on Eurozone inflation and US payrolls, unemployment and wage data, framed as the key drivers for the dollar, Treasury yields, gold and indices amid elevated oil prices.\n  - heading \"Watchlist snapshot\" [level=3]\n  - button \"OPEN WATCHLIST\"\n  - button \"AAPL Apple Inc. OPEN DOSSIER refresh analysis on demand\"\n  - button \"META Meta Platforms, Inc. OPEN DOSSIER refresh analysis on demand\"\n  - button \"NVDA NVIDIA Corporation OPEN DOSSIER refresh analysis on demand\"\n  - button \"TSLA Tesla, Inc. OPEN DOSSIER refresh analysis on demand\"\n  - heading \"Broad-market signals\" [level=3]\n  - button \"OPEN ACN TAPE\"\n  - button \"ACN Information Technology · +19.33% / 15 sessions +80 · LONG / bullish MEDIUM confidence · 6 active setups\"\n  - button \"MU Information Technology · +12.28% / 15 sessions +80 · LONG / bullish MEDIUM confidence · 5 active setups\"\n  - button \"MDT Health Care · -4.88% / 15 sessions -80 · SHORT / bearish MEDIUM confidence · 3 active setups\"\n  - button \"NEE Utilities · -7.39% / 15 sessions -80 · SHORT / bearish MEDIUM confidence · 5 active setups\"\n  - heading \"Engine hits\" [level=3]\n  - button \"OPEN LOG\"\n  - 'button \"Oct 3 · GEM · SCAN #4 Off-Grid Power Race Pits Incumbent Automation Against Inspection Upstarts GEM 23\"':\n    - text: \"Oct 3 · GEM · SCAN #4 Off-Grid Power Race Pits Incumbent Automation Against Inspection Upstarts\"\n    - strong: GEM 23\n  - heading \"Relative-strength breadth\" [level=3]\n  - text: Leading SPY · 30d 4 Lagging SPY · 30d 0 Unavailable 0 Positive ratio returns mean the instrument outperformed SPY over the same aligned trading dates. Broad positive readings imply leadership breadth; they do not predict continuation.\n  - heading \"Watchlist rotation vs SPY\" [level=3]\n  - table \"Relative strength versus SPY\":\n    - row \"Instrument 30d ratio 90d ratio Range\"\n    - row \"Open META dossier\": META Meta Platforms, Inc. +33.6% +15.71% Leading ›\n    - row \"Open NVDA dossier\": NVDA NVIDIA Corporation +6.67% +4.35% Leading ›\n    - row \"Open AAPL dossier\": AAPL Apple Inc. +4.69% +3.96% Leading ›\n    - row \"Open TSLA dossier\": TSLA Tesla, Inc. +1.27% -19.28% Improving ›\n  - paragraph: Tap a row to open its dossier · aligned daily closes · Yahoo Finance · calculated 10/3/2026, 4:25:23 AM",
+  "audit_session_id": "3bc196e2-8623-47f7-a704-e17a29ec3a7c",
+  "readiness": {
+    "desktop": {
+      "settled": false,
+      "settle_ms": 8220,
+      "in_flight": 2,
+      "network_idle": true,
+      "retried": true
+    },
+    "mobile": {
+      "settled": false,
+      "settle_ms": 8399,
+      "in_flight": 3,
+      "network_idle": true,
+      "retried": true
+    }
+  },
+  "color_scheme": {
+    "declared": "light",
+    "media_dependent": null,
+    "dark_frame": false
+  },
+  "mobile_ms": 13979.156456,
+  "cold_launch_ms": 4972.042825,
+  "desktop_ms": 14369.141801,
+  "browser_launches": 1,
+  "audit_path": "shared-concurrent",
+  "diagnostics": {
+    "audit_path": "shared-concurrent",
+    "concurrent_ran": true,
+    "concurrent_desktop_retry": false,
+    "concurrent_mobile_retry": false,
+    "shared_launch_failed": false,
+    "nav_retries": 0,
+    "settle_retries": 2
+  }
+}
