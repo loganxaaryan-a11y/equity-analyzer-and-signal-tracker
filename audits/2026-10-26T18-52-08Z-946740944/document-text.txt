@@ -1,0 +1,17 @@
+[button: THE READ] [button: OPPORTUNITIES] [button: THE BOOK] [button: RESEARCH]
+THE READ — what is happening · short / medium / long horizons · what changed · where evidence disagrees
+THE READ
+# What is happening, and over what timeframe
+A concise outlook first — horizons, the main changes, and where the evidence disagrees. Detail stays one tap away, not in the way.
+LOADING MARKET VIEW
+Waiting up to 20 seconds for runners, sectors and breadth.
+### Theory updates
+[button: OPEN THEORIES]
+STATUS · 0 UNREAD NOTIFICATIONS · NO JOB FAILURES ON RECORD · FRESHNESS & RECEIPTS INSIDE
+START A DOSSIER
+## What do you want to understand?
+[select: Quick asset picker = QUICK PICK* | SPY · S&P 500 | QQQ · Nasdaq 100 | TLT · Treasuries | GLD · Gold | BTC · Bitcoin]
+[input text: Ticker or company name]
+[button: FIND]
+RECENT PICKS
+Your analyzed names will stay here on this device.

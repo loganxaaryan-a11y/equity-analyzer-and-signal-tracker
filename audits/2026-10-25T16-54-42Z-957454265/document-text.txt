@@ -1,0 +1,176 @@
+[button: THE READ] [button: OPPORTUNITIES] [button: THE BOOK] [button: RESEARCH]
+THE READ — what is happening · short / medium / long horizons · what changed · where evidence disagrees
+THE READ
+# What is happening, and over what timeframe
+A concise outlook first — horizons, the main changes, and where the evidence disagrees. Detail stays one tap away, not in the way.
+### Outlook by horizon
+10/25/2026, 4:53:16 PM
+SHORT · LATEST SESSION
+SHORT / bearish
+10 of 50 tracked names advancing (20%). SP100 latest tracked-candidate set; this is not full-universe advance/decline breadth.
+MEDIUM · 15 SESSIONS
+0/4 indexes bullish
+SPY -1.26% · QQQ -6.03% · IWM -2.05% · DIA +2.03% · average -1.83% over 15 sessions.
+LONG · REGIME
+expansion
+Rule-based four-quadrant classifier from Yahoo proxy histories. The market brief refreshes these inputs once per day and falls back to the last valid cache if a source fails. It is a transmission map, not a forecast. Regime as of Oct 23.
+MAIN CHANGES & EVIDENCE
+- 0 of 4 measured major indexes are bullish and 3 are bearish; 10/50 tracked candidates (20%) advanced in the latest completed session.
+- Real Estate has the strongest retained sector agreement (+100) with 100% breadth; Industrials is weakest at -50.
+- 4 retained scan signals clear the ±90 evidence gate: AMT +100, UBER -100, T -100, GEV -100.
+- Smart-money posture: MIXED. 5 filing alerts in 14 days: 0 purchase/add language, 0 sale/reduction language. Filing alerts are delayed evidence, not live flow.
+DISAGREEMENT / POSITIONING: Smart-money posture reads “mixed” from 5 retained filing reads — 5 filing alerts in 14 days: 0 purchase/add language, 0 sale/reduction language. Filing alerts are delayed evidence, not live flow. Where positioning and the tape disagree, both are shown; neither is forced into a vote.
+OPPORTUNITIES — what deserves attention · why now · research idea / pending setup / confirmed paper entry
+MARKET BRIEF UPDATED
+Generated 10/25/2026, 4:53:16 PM
+LATEST COMPLETED SESSION · Oct 23
+# Sellers have the tape
+[button: REFRESH]
+[button:
+MARKET READ
+bearish
+0/4 indexes bullish
+] [button:
+TRACKED BREADTH
+20%
+10 of 50 advancing
+] [button:
+REGIME
+expansion
+as of Oct 23
+] [button:
+SMART MONEY
+mixed
+5 retained filing reads
+]
+TRACKED UNIVERSE
+## Top runners
+[button: OPEN ALL SIGNALS]
+[button:
+AMT
+American Tower Corporation
++4.08%
+Real Estate
+LEADER · Oct 23
+] [button:
+COP
+ConocoPhillips
++3.55%
+Energy
+LEADER · Oct 23
+] [button:
+CVX
+Chevron Corporation
++2.88%
+Energy
+LEADER · Oct 23
+] [button:
+XOM
+ExxonMobil Holdings Corporation
++2.79%
+Energy
+LEADER · Oct 23
+] [button:
+LMT
+Lockheed Martin Corporation
++2.42%
+Industrials
+LEADER · Oct 23
+] [button:
+T
+AT&T Inc.
+-7.96%
+Communication Services
+LAGGARD · Oct 23
+] [button:
+TMUS
+T-Mobile US, Inc.
+-7.72%
+Communication Services
+LAGGARD · Oct 23
+] [button:
+ACN
+Accenture plc
+-3.62%
+Information Technology
+LAGGARD · Oct 23
+] [button:
+UBER
+Uber Technologies, Inc.
+-3.43%
+Industrials
+LAGGARD · Oct 23
+] [button:
+BKNG
+Booking Holdings Inc.
+-3.27%
+Consumer Discretionary
+LAGGARD · Oct 23
+]
+SECTOR MOMENTUM
+## Where strength is clustering
+DAILY AVG · TRACKED COHORT
+[button:
+Real Estate
++4.08%
+100% advancing · 1 names] [button:
+Energy
++3.08%
+100% advancing · 3 names] [button:
+Information Technology
+-0.35%
+33.33% advancing · 6 names] [button:
+Health Care
+-0.39%
+50% advancing · 4 names] [button:
+Industrials
+-1.27%
+25% advancing · 8 names] [button:
+Financials
+-1.39%
+0% advancing · 10 names] [button:
+Consumer Staples
+-1.98%
+0% advancing · 6 names] [button:
+Consumer Discretionary
+-2.25%
+0% advancing · 5 names]
+MARKET DAY BRIEF
+## Indexes and breadth
+[button: SHOW METHOD]
+[button:
+SPY
+-1.26% 15D
+short
+Oct 23
+] [button:
+QQQ
+-6.03% 15D
+short
+Oct 23
+] [button:
+IWM
+-2.05% 15D
+short
+Oct 23
+] [button:
+DIA
++2.03% 15D
+mixed
+Oct 23
+]
+[button:
+10 advancing
+40 declining
+SP100 latest tracked-candidate set; this is not full-universe advance/decline breadth.
+]
+### Theory updates
+[button: OPEN THEORIES]
+STATUS · 0 UNREAD NOTIFICATIONS · NO JOB FAILURES ON RECORD · FRESHNESS & RECEIPTS INSIDE
+START A DOSSIER
+## What do you want to understand?
+[select: Quick asset picker = QUICK PICK* | SPY · S&P 500 | QQQ · Nasdaq 100 | TLT · Treasuries | GLD · Gold | BTC · Bitcoin]
+[input text: Ticker or company name]
+[button: FIND]
+RECENT PICKS
+Your analyzed names will stay here on this device.

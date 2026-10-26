@@ -49,6 +49,106 @@ export function pickLiveScanRun<T extends ScanRunStateLike>(rows: T[], now: Date
   return live;
 }
 
+// Batched-scan resume selection (scan/resume repair). The deployed schedule's
+// rule is resume-newest-first: while the newest batch for a universe is
+// unfinished it MUST be resumed — across session cycle keys — and a new batch
+// must never be forked over it; an older batch superseded by a newer one is
+// never resurrected. The previous loader resumed only a batch whose stored
+// cycle key equalled the current session's key, so a batch whose driver died
+// in an earlier session (e.g. run 46, wedged at 20/101) was orphaned at the
+// next session boundary and every later cycle forked fresh work instead of
+// finishing it. Cycle keys now only feed the same-session done guard; they
+// never gate resume.
+export const SCAN_BATCH_IN_FLIGHT_STAGES: readonly string[] = ["open", "finalizing", "maintenance", "brief"];
+
+export function isScanBatchInFlight(stage: string): boolean {
+  return SCAN_BATCH_IN_FLIGHT_STAGES.includes(stage);
+}
+
+export type ScanBatchLike = { id: number; stage: string; runId?: number };
+
+// Pick the batch a scan invocation must drive, or null when no batch may be
+// resumed (the caller then applies its same-session done guard / creates a
+// fresh batch). `batches` is every recent batch for one universe, any stage.
+// An explicit `namedBatchId` (the deployed schedule's resume protocol) is
+// honored only when it names the newest batch overall — in flight or done —
+// so a stale run-log id can never resurrect a superseded batch.
+export function pickScanBatchToResume<T extends ScanBatchLike>(batches: T[], namedBatchId?: number | null): T | null {
+  if (!batches.length) return null;
+  const newest = batches.reduce((best, row) => (row.id > best.id ? row : best));
+  if (namedBatchId != null) {
+    const named = batches.find((row) => row.id === namedBatchId);
+    return named && named.id === newest.id ? named : null;
+  }
+  return isScanBatchInFlight(newest.stage) ? newest : null;
+}
+
+// Named-batch patch (2026-10-26) — explicit batch requests fail explicitly.
+//
+// A scan RUN id and a scan BATCH id are different identifiers for different
+// rows: batch 28 is the scan_batch_runs row whose runId (market_scan_runs
+// id) is 46. A caller that passes 46 as `batchRunId` is passing a run id,
+// not a batch id. The old loader turned every non-newest named id into a
+// silent null and then either returned a different completed batch (the
+// same-session done guard) or created a brand-new batch — so an explicit
+// request could quietly report, or create, work the caller never asked
+// for. `resolveNamedScanBatch` makes that impossible: a named request
+// resolves to exactly the named batch, or to a typed mismatch the caller
+// must surface. It never substitutes another batch and never creates one.
+export type NamedBatchResolution<T extends ScanBatchLike> =
+  | { status: "matched"; batch: T }
+  | {
+      status: "mismatch";
+      requestedBatchId: number;
+      reason: "not_found" | "superseded" | "run_id_not_batch_id";
+      message: string;
+      newestBatchId: number | null;
+      // When the requested value is a scan run id, the batch that run
+      // actually owns — named so the caller can correct its own log to the
+      // scan-batch id (run 46 → scan-batch 28) instead of guessing.
+      correctBatchIdForRunId: number | null;
+      runIdForRequested: number | null;
+    };
+
+export function resolveNamedScanBatch<T extends ScanBatchLike>(batches: T[], namedBatchId: number): NamedBatchResolution<T> {
+  const newest = batches.length ? batches.reduce((best, row) => (row.id > best.id ? row : best)) : null;
+  const named = batches.find((row) => row.id === namedBatchId);
+  if (named && newest && named.id === newest.id) return { status: "matched", batch: named };
+  if (named) {
+    return {
+      status: "mismatch",
+      requestedBatchId: namedBatchId,
+      reason: "superseded",
+      message: `NAMED_BATCH_MISMATCH: requested scan batch ${namedBatchId} exists but is superseded by newer scan batch ${newest?.id ?? "unknown"}; a superseded batch is never resumed or substituted. No other batch was returned and no new scan was created. Correct the caller to the newest scan-batch id or start a new batch with no batchRunId.`,
+      newestBatchId: newest?.id ?? null,
+      correctBatchIdForRunId: null,
+      runIdForRequested: named.runId ?? null,
+    };
+  }
+  // Run-id confusion: the requested value names a scan run, not a batch.
+  const byRunId = batches.find((row) => row.runId != null && row.runId === namedBatchId);
+  if (byRunId) {
+    return {
+      status: "mismatch",
+      requestedBatchId: namedBatchId,
+      reason: "run_id_not_batch_id",
+      message: `NAMED_BATCH_MISMATCH: requested batchRunId ${namedBatchId} is a scan RUN id, not a scan-batch id. Scan run ${namedBatchId} owns scan batch ${byRunId.id}; pass batchRunId ${byRunId.id} to resume/report that batch. Run ids and batch ids are distinct and are never substituted silently. No other batch was returned and no new scan was created.`,
+      newestBatchId: newest?.id ?? null,
+      correctBatchIdForRunId: byRunId.id,
+      runIdForRequested: namedBatchId,
+    };
+  }
+  return {
+    status: "mismatch",
+    requestedBatchId: namedBatchId,
+    reason: "not_found",
+    message: `NAMED_BATCH_MISMATCH: requested scan batch ${namedBatchId} was not found among the known scan batches for this universe (newest known scan batch: ${newest?.id ?? "none"}). A missing named batch is never turned into automatic selection of another batch. No other batch was returned and no new scan was created.`,
+    newestBatchId: newest?.id ?? null,
+    correctBatchIdForRunId: null,
+    runIdForRequested: null,
+  };
+}
+
 // Extract the YYYY-MM-DD session date from a stored timestamp/bar value.
 // Accepts ISO timestamps ("2026-10-19T21:00:00.000Z") and bare dates
 // ("2026-10-19"); anything else yields null rather than a guessed date.

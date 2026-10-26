@@ -462,6 +462,11 @@ export const marketScanRuns = sqliteTable("market_scan_runs", {
   // predate stamping (reads derive a fallback from the run's stored rows).
   computedAt: integer("computed_at", { mode: "timestamp_ms" }),
   dataThroughSession: text("data_through_session"),
+  // Q4 (2026-10-25): completion time — when the run fully finished (for a
+  // batched run, when its batch reached stage "done"), stored separately
+  // from computedAt (the analysis time, stamped at finalization) and from
+  // dataThroughSession (the market-data session the inputs reached).
+  completedAt: integer("completed_at", { mode: "timestamp_ms" }),
   marketBriefJson: text("market_brief_json"),
   marketBriefGeneratedAt: integer("market_brief_generated_at", { mode: "timestamp_ms" }),
   createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull().$defaultFn(() => new Date()),
@@ -502,6 +507,13 @@ export const scanBatchRuns = sqliteTable("scan_batch_runs", {
   // session (09:30 / 11:30 / 13:30 / 15:30 ET) this batch belongs to.
   // Nullable only for rows created before session keys existed.
   cycleKey: text("cycle_key"),
+  // Q4 (2026-10-25): the batch's original data-through session, frozen at
+  // creation from the batch's own cycle; a resume never updates it (and
+  // never re-stamps cycleKey either — see scan_session_identity.ts).
+  dataThroughSession: text("data_through_session"),
+  // Q4: when this batch reached stage "done" (its completion time),
+  // distinct from the run's analysis (computedAt) time.
+  completedAt: integer("completed_at", { mode: "timestamp_ms" }),
   createdAt: integer("created_at", { mode: "timestamp_ms" }).notNull().$defaultFn(() => new Date()),
   updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull().$defaultFn(() => new Date()),
 }, (table) => [
@@ -1199,6 +1211,12 @@ export const equityPaperIssuancePasses = sqliteTable("equity_paper_issuance_pass
   capturedDay: text("captured_day").notNull(),
   batchRunId: integer("batch_run_id"),
   batchId: integer("batch_id"),
+  // Named-batch patch (2026-10-26, migration 0055): the scan RUN id kept
+  // explicitly distinct from the scan BATCH id. Legacy rows (null here)
+  // stored the run id in batch_run_id and the batch id in batch_id; new
+  // rows store batch_run_id = scan-batch id (matching
+  // scan_batch_symbol_results.batch_run_id) and the run id here.
+  scanRunId: integer("scan_run_id"),
   reconcileOk: integer("reconcile_ok", { mode: "boolean" }).notNull(),
   halted: integer("halted", { mode: "boolean" }).notNull(),
   haltReason: text("halt_reason"),
