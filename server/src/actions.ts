@@ -3,10 +3,11 @@ import { privileged } from "@space/privileged";
 import { and, asc, desc, eq, inArray, isNull, lt, or } from "drizzle-orm";
 import * as schema from "./schema";
 import { acceptedEvaluationRevisions, acceptedEvaluationRevisionsForCohort, assessDirectionalEvidence, decideEquityPaperFill, decideEquityPaperFillV2, deterministicReplaySnapshot, evaluateEquityDirectionForecast, evaluateEquityPaperFillSetup, evaluateEquityPaperFillSetupV2, evaluateEquityTradeSetup, isPaperFillRuleVersion, paperFillEvaluation, reconstructAndValidateEquityCandidate, xnysSessionBounds, PAPER_COST_SCENARIO, PAPER_FILL_CONTRACT, PAPER_FILL_CONTRACT_V1, PAPER_FILL_RULE_VERSION, PAPER_FILL_RULE_VERSION_V1, type DailyEvidenceBar, type EquityEvaluation, type FrozenEvaluationSignal } from "./measurement";
-import { MARKET_REFRESH_CONFIG, candleState, classifyFreshness, currentFreshness, futuresSessionOpen, isFuturesSymbol, isNyseEarlyClose, isNyseTradingDay, isSessionBarCompleted, marketKindForSymbol, observationIdentity, planSignalStatus, requestBudget, seriesCoverage, signalObservationEligibility, type ObservationKind } from "./freshness";
+import { MARKET_REFRESH_CONFIG, candleState, classifyFreshness, currentFreshness, futuresSessionOpen, isFuturesSymbol, isNyseEarlyClose, isNyseTradingDay, isSessionBarCompleted, marketKindForSymbol, nyseSessionCloseUtcIso, observationIdentity, planSignalStatus, requestBudget, seriesCoverage, signalObservationEligibility, type ObservationKind } from "./freshness";
 import { buildSignalMonitoringClosure } from "./signal_logbook";
 import { discoveryLaneResponse, discoveryLaneRunResponse, executeDiscoveryLane, readDiscoveryLane } from "./discovery_lane";
-import { SCAN_RUN_DEADLINE_MS, isRecentlyActive, maxSessionDate, pickLiveScanRun } from "./scan_on_demand";
+import { SCAN_RUN_DEADLINE_MS, isRecentlyActive, maxSessionDate, pickLiveScanRun, pickScanBatchToResume, resolveNamedScanBatch } from "./scan_on_demand";
+import { batchDoneInCycle, buildScanProofStamps, cycleKeyPreservedOnResume, cycleKeySessionDate, discoveryCycleKey, isCompletedSessionRowStale, isCompletedSessionStale, isScanRunOverdue } from "./scan_session_identity";
 
 type Point = { date: string; close: number; open: number | null; high: number | null; low: number | null; volume: number | null };
 type ChartPoint = Point & { sma20: number | null; sma50: number | null; sma200Proxy: number | null };
@@ -360,6 +361,14 @@ async function pacedDiscoveryYahooFetch(url: string): Promise<Response> {
   }
   throw new Error("Yahoo Finance rate-limited the discovery request after two backoff attempts; this refresh pass was abandoned.");
 }
+// Adjusted bars preserve raw ordering (one ratio scales every price), so a
+// present high/low violating high >= low, high >= close, or low <= close is
+// corrupt and dropping it keeps the corrupt range out of Wilder ATR.
+export function isUsableDailyBar(close: number, high: number | null, low: number | null): boolean {
+  if (high != null && (!Number.isFinite(high) || high <= 0 || high < close || (low != null && high < low))) return false;
+  if (low != null && (!Number.isFinite(low) || low <= 0 || low > close)) return false;
+  return true;
+}
 async function yahooSeries(symbol: string, range = "2y", lane: YahooLane = "interactive"): Promise<YahooSeries> {
   const sourceUrl = range === "max" ? `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?period1=0&period2=${Math.floor(Date.now() / 1000)}&interval=1d&events=div%2Csplits` : `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?interval=1d&range=${range}&events=div%2Csplits`;
   let response: Response;
@@ -375,8 +384,9 @@ async function yahooSeries(symbol: string, range = "2y", lane: YahooLane = "inte
     const adjustmentRatio = adjustedClose != null && rawClose != null && rawClose > 0 ? adjustedClose / rawClose : 1;
     const adjustOhlc = (value: number | null | undefined) => { const measured = finite(value); return measured == null ? null : measured * adjustmentRatio; };
     const close = adjustedClose ?? rawClose; const volume = finite(quote?.volume?.[index]);
-    if (typeof close !== "number" || !Number.isFinite(close) || close <= 0 || (volume != null && volume < 0)) return [];
-    return [{ date: isoDate(timestamp), close, open: adjustOhlc(quote?.open?.[index]), high: adjustOhlc(quote?.high?.[index]), low: adjustOhlc(quote?.low?.[index]), volume }];
+    const high = adjustOhlc(quote?.high?.[index]); const low = adjustOhlc(quote?.low?.[index]);
+    if (typeof close !== "number" || !Number.isFinite(close) || close <= 0 || (volume != null && volume < 0) || !isUsableDailyBar(close, high, low)) return [];
+    return [{ date: isoDate(timestamp), close, open: adjustOhlc(quote?.open?.[index]), high, low, volume }];
   });
   if (!points.length) throw new Error(`Yahoo Finance returned no usable OHLCV history for ${symbol}.`);
   const events: YahooSeries["events"] = [];
@@ -473,7 +483,7 @@ const FILL_EVALUATOR_VERSION = "equity-eval-3.4.0";
 // reservation against the cap until it fills or expires unfilled; a filled
 // position consumes cohort capacity permanently (see the post-reconcile
 // issuance step below computeDailySignalSnapshots).
-const PAPER_ISSUANCE_COHORT_CAP = 5;
+export const PAPER_ISSUANCE_COHORT_CAP = 5;
 const FILL_PRICE_BASIS = "Yahoo adjusted OHLC paper fill";
 const FILL_WINDOW_SESSIONS = 5;
 const fillCohortKeyV1 = `${ACTIVE_COHORT_BASE}|trade_setup|30:trading_sessions|${FILL_PRICE_BASIS}|${PAPER_FILL_CONTRACT_V1}|${PAPER_COST_SCENARIO}:10`;
@@ -1091,6 +1101,16 @@ async function buildMacroCrowdPricing(): Promise<z.infer<typeof crowdPricingPane
 function emptyCrowdPricing(reason: string): z.infer<typeof crowdPricingPanelSchema> { return { state: "no_data", label: POLYMARKET_LABEL, asOf: null, reason, fedDecision: [], macroContext: [], sentiment: null }; }
 async function fetchFearGreed() { const sourceUrl = "https://api.alternative.me/fng/?limit=1&format=json"; try { const response = await fetch(sourceUrl, { headers: { "User-Agent": "Muse Equity Analyzer support@meta.com" } }); if (!response.ok) return null; const payload = await response.json() as { data?: Array<{ value?: string; value_classification?: string; timestamp?: string }> }; const row = payload.data?.[0]; const value = Number(row?.value); const seconds = Number(row?.timestamp); if (!Number.isFinite(value) || !Number.isFinite(seconds)) return null; return { value, classification: row?.value_classification ?? "Unclassified", asOf: new Date(seconds * 1000).toISOString(), sourceUrl, note: "Alternative.me Fear & Greed is crowd/sentiment context only and contributes zero to directional factor agreement." }; } catch { return null; } }
 
+// Coverage of the latest completed NYSE session is required for GOOD, so a
+// stale provider-error fallback inside the 5-day age backstop still scores
+// STALE with its contribution withheld.
+export function factorQuality(input: { hasAnomaly: boolean; coversLatestCompletedSession: boolean; lastBarAgeDays: number; reading: string }): "GOOD" | "NO_DATA" | "STALE" | "ANOMALY" {
+  if (input.hasAnomaly) return "ANOMALY";
+  if (!input.coversLatestCompletedSession) return "STALE";
+  if (input.lastBarAgeDays > 5) return "STALE";
+  if (input.reading === "Unavailable") return "NO_DATA";
+  return "GOOD";
+}
 async function analyze(ctx: Ctx, rawQuery: string, shouldRecord = false, includeBacktest = false, includeValuation = false, includeDossierContext = true, issuanceCandidateId: number | null = null): Promise<z.infer<typeof analyzeResponse>> {
   const query = rawQuery.trim(); const key = cleanKey(query);
   const privateMatch = privateCompanies[key];
@@ -1146,10 +1166,16 @@ async function analyze(ctx: Ctx, rawQuery: string, shouldRecord = false, include
   const latestSma20 = chartFull[chartFull.length - 1]?.sma20; const latestSma50 = chartFull[chartFull.length - 1]?.sma50; const rsiNow = rsiComputed; const volZ = zScore(volumes.slice(-20)); const ret30 = returns.find((r) => r.label === "30d")?.value;
   const macdValue = macdFast != null && macdSlow != null ? macdFast - macdSlow : null;
   type FactorScore = -1 | 0 | 1;
-  const lastBarAgeDays = Math.max(0, (Date.now() - Date.parse(`${last.date}T21:00:00Z`)) / 86400000);
+  const lastBarAgeDays = Math.max(0, (Date.now() - Date.parse(nyseSessionCloseUtcIso(last.date))) / 86400000);
+  // Scoring coverage gate: a series that does not cover the latest completed
+  // NYSE session (e.g. a stale provider-error fallback) can never score GOOD,
+  // even when its newest bar is within the 5-day age backstop below.
+  const scoringNow = new Date();
+  const scoringCoverage = seriesCoverage(series.points, series.retrievedAt ?? scoringNow.toISOString(), scoringNow.toISOString());
+  const coverageStale = !scoringCoverage.coversLatestCompletedSession;
   const hasAnomaly = daily.slice(-260).some((point, index, rows) => { const prior = rows[index - 1]; if (!prior || prior.close <= 0) return false; const move = point.close / prior.close - 1; return !Number.isFinite(move) || move <= -1 || Math.abs(move) > 0.8; });
   const factors: Array<{ name: string; weight: number; score: FactorScore; contribution: number; reading: string; quality: "GOOD" | "NO_DATA" | "STALE" | "ANOMALY"; asOf: string; source: string; qualityReason: string }> = [];
-  const addFactor = (name: string, weight: number, value: FactorScore, reading: string) => { const quality = hasAnomaly ? "ANOMALY" as const : lastBarAgeDays > 5 ? "STALE" as const : reading === "Unavailable" ? "NO_DATA" as const : "GOOD" as const; const score = quality === "GOOD" ? value : 0; const qualityReason = quality === "ANOMALY" ? "A recent daily move exceeded the 80% anomaly gate; contribution withheld." : quality === "STALE" ? `Latest source bar is ${round(lastBarAgeDays, 1)} days old; contribution withheld above 5 days.` : quality === "NO_DATA" ? "Minimum source sample was not available; contribution withheld." : "Sample, anomaly, and freshness gates passed."; factors.push({ name, weight, score, contribution: weight * score, reading, quality, asOf: last.date, source: "Yahoo Finance chart", qualityReason }); };
+  const addFactor = (name: string, weight: number, value: FactorScore, reading: string) => { const quality = factorQuality({ hasAnomaly, coversLatestCompletedSession: scoringCoverage.coversLatestCompletedSession, lastBarAgeDays, reading }); const score = quality === "GOOD" ? value : 0; const qualityReason = quality === "ANOMALY" ? "A recent daily move exceeded the 80% anomaly gate; contribution withheld." : quality === "STALE" ? (coverageStale ? `Source series does not cover the latest completed NYSE session (${scoringCoverage.latestCompletedSessionDate}); newest completed bar ${scoringCoverage.newestCompletedBarDate ?? "none"}; contribution withheld.` : `Latest source bar is ${round(lastBarAgeDays, 1)} days old; contribution withheld above 5 days.`) : quality === "NO_DATA" ? "Minimum source sample was not available; contribution withheld." : "Sample, anomaly, and freshness gates passed."; factors.push({ name, weight, score, contribution: weight * score, reading, quality, asOf: last.date, source: "Yahoo Finance chart", qualityReason }); };
   addFactor("Price vs SMA 20", 6, latestSma20 == null ? 0 : last.close > latestSma20 ? 1 : -1, latestSma20 == null ? "Unavailable" : `${round(last.close)} vs ${round(latestSma20)}`);
   addFactor("Price vs SMA 50", 8, latestSma50 == null ? 0 : last.close > latestSma50 ? 1 : -1, latestSma50 == null ? "Unavailable" : `${round(last.close)} vs ${round(latestSma50)}`);
   addFactor("Price vs SMA 200", 8, day200 == null ? 0 : last.close > day200 ? 1 : -1, day200 == null ? "Unavailable" : `${round(last.close)} vs ${round(day200)}`);
@@ -1320,7 +1346,7 @@ const managers = [
 ];
 type SecRecent = { form: string[]; accessionNumber: string[]; primaryDocument: string[]; filingDate: string[]; reportDate: string[] };
 type SecSubmissionFile = { name?: string; filingFrom?: string; filingTo?: string };
-type SecSubmission = { name?: string; filings?: { recent?: SecRecent; files?: SecSubmissionFile[] } };
+type SecSubmission = { name?: string; sic?: string; sicDescription?: string; exchanges?: string[]; filings?: { recent?: SecRecent; files?: SecSubmissionFile[] } };
 type SecIndex = { directory?: { item?: Array<{ name?: string }> } };
 type FilingRow = { accession: string; primary: string; filingDate: string; reportDate: string };
 type Holding = { issuer: string; value: number; shares: number };
@@ -1715,7 +1741,7 @@ function parseReasonLines(value: string): string[] {
   try { const parsed: unknown = JSON.parse(value); return Array.isArray(parsed) ? parsed.filter((line): line is string => typeof line === "string") : []; } catch { return []; }
 }
 const notificationRowSchema = z.object({
-  id: z.number(), dedupKey: z.string(), symbol: z.string(), kind: z.string(),
+  id: z.number(), dedupKey: z.string(), symbol: z.string(), name: z.string().nullable(), kind: z.string(),
   stage: z.enum(["watch_alert", "confirmed_paper_entry"]),
   class: z.enum(["opportunity", "lifecycle"]), eventType: notificationEventType,
   title: z.string(), reasonLines: z.array(z.string()),
@@ -1734,7 +1760,7 @@ const notificationRowSchema = z.object({
 type NotificationRow = z.infer<typeof notificationRowSchema>;
 function mapNotificationRow(row: typeof schema.equityNotifications.$inferSelect): NotificationRow {
   return {
-    id: row.id, dedupKey: row.dedupKey, symbol: row.symbol, kind: row.kind, stage: row.stage,
+    id: row.id, dedupKey: row.dedupKey, symbol: row.symbol, name: null, kind: row.kind, stage: row.stage,
     class: row.notificationClass, eventType: row.eventType, title: row.title,
     reasonLines: parseReasonLines(row.reasonLinesJson), blockerReason: row.blockerReason,
     disclosure: row.disclosure, eventAt: row.eventAt.toISOString(), storedAt: row.storedAt.toISOString(),
@@ -2587,7 +2613,7 @@ const tierBatchResponse = z.object({ ok: z.boolean(), universe: z.enum(["sp100",
 const tierPopulationStatusResponse = z.object({ ok: z.boolean(), universe: z.enum(["sp100", "sp500"]), runId: z.number().nullable(), totalProfiles: z.number(), persistedTotal: z.number(), persistedCounts: z.object({ t1: z.number(), t2: z.number(), t3: z.number() }), complete: z.boolean(), batchesRun: z.number(), note: z.string() });
 const scanDiagnosticSchema = z.object({ symbol: z.string(), stage: z.enum(["ticker_resolution", "provider_request", "http_response", "normalization", "chart_eligibility", "scoring", "issuance", "persistence"]), outcome: z.enum(["fetched", "data_valid", "eligible", "scored", "emitted", "suppressed", "excluded", "failed"]), reasonCode: z.string(), reason: z.string(), providerStatus: z.number().nullable(), resolvedSymbol: z.string().nullable(), sourceUrl: z.string().nullable(), providerEventAt: z.string().nullable(), attemptedAt: z.string(), completedAt: z.string().nullable() });
 const scanAccountingSchema = z.object({ requested: z.number(), fetched: z.number(), dataValid: z.number(), eligible: z.number(), scored: z.number(), emitted: z.number(), suppressed: z.number(), excluded: z.number(), failed: z.number() });
-const scanProofStampsSchema = z.object({ runId: z.number(), computedAt: z.string().nullable(), dataThroughSession: z.string().nullable(), status: z.enum(["ok", "partial", "degraded", "failed"]) });
+const scanProofStampsSchema = z.object({ runId: z.number(), computedAt: z.string().nullable(), dataThroughSession: z.string().nullable(), marketDataSession: z.string().nullable(), analysisTime: z.string().nullable(), completionTime: z.string().nullable(), status: z.enum(["ok", "partial", "degraded", "failed"]) });
 const autoScanResponse = z.object({ run: z.object({ id: z.number(), universe: z.enum(["sp100", "sp500"]), requestedCount: z.number(), scannedCount: z.number(), availableCount: z.number(), signalCount: z.number(), newsCount: z.number(), eligibleCount: z.number(), scoredCount: z.number(), watchedCount: z.number(), issuedCount: z.number(), suppressedCount: z.number(), lastAttemptAt: z.string().nullable(), lastSuccessAt: z.string().nullable(), overdue: z.boolean(), zeroCoverage: z.boolean(), status: z.enum(["ok", "partial", "degraded", "failed"]), note: z.string(), createdAt: z.string(), sourceUrl: z.string(), stamps: scanProofStampsSchema }).nullable(), accounting: scanAccountingSchema, diagnostics: z.array(scanDiagnosticSchema), signals: z.array(z.object({ id: z.number(), symbol: z.string(), name: z.string(), sector: z.string(), universeTier: z.enum(["t1", "t2"]), direction: z.enum(["long", "short", "mixed"]), agreementScore: z.number(), activeFlags: z.number(), return15d: z.number().nullable(), volumeZ: z.number().nullable(), rankScore: z.number(), confidenceTier: z.enum(["high", "medium", "low"]), ratingAvailable: z.boolean(), dimensions: z.array(scanDimensionSchema), researchRequired: z.array(z.string()), factors: z.array(scanFactorSchema), formula: z.string(), invalidationLevel: z.number().nullable(), sourceUrl: z.string().nullable(), why: z.string(), sourceAsOf: z.string().nullable() })), tiers: z.object({ t1: z.array(universeTierRowSchema), t2: z.array(universeTierRowSchema), t3: z.array(universeTierRowSchema), methodology: z.string() }), sectors: z.array(z.object({ id: z.number(), sector: z.string(), direction: z.enum(["positive", "negative", "mixed"]), evidenceScore: z.number(), headline: z.string(), reason: z.string(), sourceCount: z.number() })), news: z.array(z.object({ id: z.number(), title: z.string(), source: z.string(), url: z.string(), publishedAt: z.string(), timestampKind: z.enum(["published", "retrieved"]), whyItMatters: z.string(), ripples: z.array(z.string()) })), theoryRun: z.object({ status: z.enum(["ok", "degraded", "failed"]), surfacedCount: z.number(), withheldFloorCount: z.number(), contestedCount: z.number(), note: z.string() }).nullable() });
 // Batch 3 — filtered observations read model. Read-only: returns the stored
 // rows the latest completed scan already computed (suppressed candidates from
@@ -2630,7 +2656,7 @@ async function readAutoScan(ctx: Ctx): Promise<z.infer<typeof autoScanResponse>>
   const db = ctx.db<typeof schema>(); const runs = await db.select().from(schema.marketScanRuns).orderBy(desc(schema.marketScanRuns.createdAt)); const run = runs[0];
   const emptyTiers = { t1: [], t2: [], t3: [], methodology: "T1 is the S&P 100 large-cap/liquidity proxy and receives full scoring plus full research. T2 contains non-T1 names promoted to full scoring by the fixed +10% five-session velocity qualifier. T3 retains every remaining constituent on lightweight velocity tracking. Tiers change effort and display only; scores, weights, issuance gates, and grading are unchanged." };
   if (!run) return { run: null, accounting: { requested: 0, fetched: 0, dataValid: 0, eligible: 0, scored: 0, emitted: 0, suppressed: 0, excluded: 0, failed: 0 }, diagnostics: [], signals: [], tiers: emptyTiers, sectors: [], news: [], theoryRun: null };
-  const [signals, universeRows, diagnostics, sectors, news, theoryRuns, theoryRows] = await Promise.all([
+  const [signals, universeRows, diagnostics, sectors, news, theoryRuns, theoryRows, runBatches] = await Promise.all([
     db.select().from(schema.marketScanSignals).where(eq(schema.marketScanSignals.runId, run.id)).orderBy(desc(schema.marketScanSignals.rankScore)),
     db.select().from(schema.marketScanUniverseRows).where(eq(schema.marketScanUniverseRows.runId, run.id)).orderBy(asc(schema.marketScanUniverseRows.symbol)),
     db.select().from(schema.marketScanSymbolDiagnostics).where(eq(schema.marketScanSymbolDiagnostics.runId, run.id)).orderBy(asc(schema.marketScanSymbolDiagnostics.symbol)),
@@ -2638,13 +2664,17 @@ async function readAutoScan(ctx: Ctx): Promise<z.infer<typeof autoScanResponse>>
     db.select().from(schema.marketScanNews).where(eq(schema.marketScanNews.runId, run.id)).orderBy(desc(schema.marketScanNews.id)),
     db.select().from(schema.theoryDiscoveryRuns).orderBy(desc(schema.theoryDiscoveryRuns.finishedAt)),
     db.select().from(schema.machineTheories).orderBy(desc(schema.machineTheories.checkedAt)),
+    db.select().from(schema.scanBatchRuns).where(eq(schema.scanBatchRuns.runId, run.id)),
   ]);
   const theoryRun = theoryRuns[0]; const summary = theoryRun ? theoryRunSummary(theoryRun, theoryRows) : null;
   const tierBySymbol = new Map(universeRows.map((row) => [row.symbol, row.universeTier]));
   const tierRows = universeRows.map((row) => ({ symbol: row.symbol, name: row.instrumentName, sector: row.sector, tier: row.universeTier, trackingMode: row.trackingMode, velocity5d: row.velocity5d, reason: row.tierReason }));
   const tiers = { t1: tierRows.filter((row) => row.tier === "t1"), t2: tierRows.filter((row) => row.tier === "t2"), t3: tierRows.filter((row) => row.tier === "t3"), methodology: emptyTiers.methodology };
   const runStatus = run.status === "failed" && run.scannedCount > 0 && run.availableCount === 0 ? "degraded" as const : run.status;
-  const heartbeatAt = run.lastSuccessAt ?? null; const overdue = !heartbeatAt || Date.now() - heartbeatAt.getTime() > 36 * 60 * 60 * 1000;
+  const heartbeatAt = run.lastSuccessAt ?? null;
+  // Q4: a run covering the latest completed session is not overdue merely
+  // because its last success is >36h old (Friday's run read on Sunday).
+  const overdue = isScanRunOverdue({ lastSuccessAt: heartbeatAt, dataThroughSession: run.dataThroughSession, now: new Date() });
   const countOutcome = (outcome: typeof schema.marketScanSymbolDiagnostics.$inferSelect["outcome"]) => diagnostics.filter((row) => row.outcome === outcome).length;
   const accounting = diagnostics.length ? { requested: run.requestedCount, fetched: diagnostics.filter((row) => ["fetched", "data_valid", "eligible", "scored", "emitted", "suppressed"].includes(row.outcome)).length, dataValid: diagnostics.filter((row) => ["data_valid", "eligible", "scored", "emitted", "suppressed"].includes(row.outcome)).length, eligible: diagnostics.filter((row) => ["eligible", "scored", "emitted", "suppressed"].includes(row.outcome)).length, scored: diagnostics.filter((row) => ["scored", "emitted", "suppressed"].includes(row.outcome)).length, emitted: countOutcome("emitted"), suppressed: countOutcome("suppressed"), excluded: countOutcome("excluded"), failed: countOutcome("failed") } : { requested: run.requestedCount, fetched: run.availableCount, dataValid: run.availableCount, eligible: run.eligibleCount, scored: run.availableCount, emitted: run.signalCount, suppressed: run.suppressedCount, excluded: Math.max(0, run.requestedCount - run.availableCount), failed: run.availableCount === 0 ? run.scannedCount : 0 };
   const diagnosticRows = diagnostics.map((row) => ({ symbol: row.symbol, stage: row.stage, outcome: row.outcome, reasonCode: row.reasonCode, reason: row.reason, providerStatus: row.providerStatus, resolvedSymbol: row.resolvedSymbol, sourceUrl: row.sourceUrl, providerEventAt: row.providerEventAt, attemptedAt: row.attemptedAt.toISOString(), completedAt: row.completedAt?.toISOString() ?? null }));
@@ -2653,14 +2683,23 @@ async function readAutoScan(ctx: Ctx): Promise<z.infer<typeof autoScanResponse>>
   // records — the latest per-symbol completion time, and the latest session
   // date among the provider events / signal source times the run persisted.
   // Never the read-time wall clock dressed up as run data.
-  const storedComputedAt = run.computedAt ?? null;
   const derivedComputedAt = diagnostics.reduce<Date | null>((latest, row) => (row.completedAt && (!latest || row.completedAt.getTime() > latest.getTime()) ? row.completedAt : latest), null);
-  const stamps: z.infer<typeof scanProofStampsSchema> = {
+  // Q4 three times, kept separate: marketDataSession (the original
+  // data-through session — for a batched run, the batch's frozen original
+  // session wins so a resume can never relabel it), analysisTime (when
+  // the scan computed), completionTime (when the run fully finished; for
+  // legacy batched rows, the done batch's completion / last update).
+  const runBatch = runBatches[0] ?? null;
+  const builtStamps = buildScanProofStamps({
     runId: run.id,
-    computedAt: (storedComputedAt ?? derivedComputedAt ?? run.createdAt).toISOString(),
-    dataThroughSession: run.dataThroughSession ?? maxSessionDate([...diagnostics.map((row) => row.providerEventAt), ...signals.map((row) => row.sourceAsOf)]),
     status: runStatus,
-  };
+    dataThroughSession: runBatch?.dataThroughSession ?? run.dataThroughSession ?? maxSessionDate([...diagnostics.map((row) => row.providerEventAt), ...signals.map((row) => row.sourceAsOf)]),
+    computedAt: run.computedAt ?? null,
+    completedAt: run.completedAt ?? (runBatch?.stage === "done" ? runBatch.completedAt ?? runBatch.updatedAt : null),
+    derivedComputedAt,
+    createdAt: run.createdAt,
+  });
+  const stamps: z.infer<typeof scanProofStampsSchema> = { ...builtStamps, status: runStatus };
   return { run: { id: run.id, universe: run.universe, requestedCount: run.requestedCount, scannedCount: run.scannedCount, availableCount: run.availableCount, signalCount: run.signalCount, newsCount: run.newsCount, eligibleCount: run.eligibleCount, scoredCount: run.scoredCount, watchedCount: run.watchedCount, issuedCount: run.issuedCount, suppressedCount: run.suppressedCount, lastAttemptAt: run.lastAttemptAt?.toISOString() ?? null, lastSuccessAt: heartbeatAt?.toISOString() ?? null, overdue, zeroCoverage: run.requestedCount > 0 && run.availableCount === 0, status: runStatus, note: run.note, createdAt: run.createdAt.toISOString(), sourceUrl: universeUrls[run.universe], stamps }, accounting, diagnostics: diagnosticRows, signals: signals.map((row) => ({ id: row.id, symbol: row.symbol, name: row.instrumentName, sector: row.sector, universeTier: tierBySymbol.get(row.symbol) === "t1" ? "t1" as const : "t2" as const, direction: row.direction, agreementScore: row.agreementScore, activeFlags: row.activeFlags, return15d: row.return15d, volumeZ: row.volumeZ, rankScore: row.rankScore, confidenceTier: row.confidenceTier, ratingAvailable: parseScanDimensions(row.dimensionsJson).filter((dimension) => dimension.status !== "research").length >= 4 && parseScanFactors(row.factorBreakdownJson).length > 0 && row.invalidationLevel != null && row.sourceAsOf != null, dimensions: parseScanDimensions(row.dimensionsJson), researchRequired: asStringArray(row.researchRequiredJson), factors: parseScanFactors(row.factorBreakdownJson), formula: "Directional rating = 100 × (supporting − conflicting) ÷ measured dimensions. Coverage is shown separately; unavailable research never becomes a directional vote. The factor ledger below supplies the underlying trend and momentum evidence.", invalidationLevel: row.invalidationLevel, sourceUrl: row.sourceUrl, why: row.why, sourceAsOf: row.sourceAsOf })), tiers, sectors: sectors.map((row) => ({ id: row.id, sector: row.sector, direction: row.direction, evidenceScore: row.evidenceScore, headline: row.headline, reason: row.reason, sourceCount: row.sourceCount })), news: news.map((row) => ({ id: row.id, title: row.title, source: row.source, url: row.sourceUrl, publishedAt: row.publishedAt, timestampKind: row.timestampKind, whyItMatters: row.whyItMatters, ripples: asStringArray(row.ripplesJson) })), theoryRun: theoryRun && summary ? { status: theoryRun.status, surfacedCount: summary.surfacedCount, withheldFloorCount: summary.withheldFloorCount, contestedCount: summary.contestedCount, note: summary.note } : null };
 }
 async function populateUniverseTierBatch(ctx: Ctx, args: { universe: "sp100" | "sp500"; offset: number; limit: number }): Promise<z.infer<typeof tierBatchResponse>> {
@@ -2851,7 +2890,7 @@ function passesDiscoveryCompleteness(result: z.infer<typeof analyzeResponse>, fu
   if (history.length < 252) return { ok: false, reason: "fewer than 252 clean daily sessions" };
   const recent = history.slice(-20); const liquidSessions = recent.filter((point) => point.volume != null && point.volume > 0 && point.close > 0); if (liquidSessions.length < 18) return { ok: false, reason: "fewer than 18 liquid sessions in the latest 20" };
   const dollarVolumes = liquidSessions.map((point) => point.close * (point.volume ?? 0)).sort((a, b) => a - b); const medianDollarVolume = dollarVolumes[Math.floor(dollarVolumes.length / 2)] ?? 0; if (medianDollarVolume < 25_000_000) return { ok: false, reason: "median 20-session dollar volume below $25m" };
-  const latest = history.at(-1); if (!latest) return { ok: false, reason: "latest source bar unavailable" }; const ageDays = (Date.now() - Date.parse(`${latest.date}T21:00:00Z`)) / 86400000; if (!Number.isFinite(ageDays) || ageDays > 5) return { ok: false, reason: "latest bar older than 5 calendar days" };
+  const latest = history.at(-1); if (!latest) return { ok: false, reason: "latest source bar unavailable" }; const ageDays = (Date.now() - Date.parse(nyseSessionCloseUtcIso(latest.date))) / 86400000; if (!Number.isFinite(ageDays) || ageDays > 5) return { ok: false, reason: "latest bar older than 5 calendar days" };
   if (result.factorModel.factors.some((factor) => factor.quality !== "GOOD")) return { ok: false, reason: "one or more scoring factors failed sample, anomaly, or freshness gates" };
   return { ok: true, reason: "252 sessions, 18/20 recent liquid bars, $25m median dollar volume, all factor gates passed" };
 }
@@ -2942,7 +2981,7 @@ async function finalizeScanDiagnosis(ctx: Ctx, args: { universe: "sp100" | "sp50
 async function runAutomatedMarketScan(ctx: Ctx, universe: "sp100" | "sp500"): Promise<z.infer<typeof autoScanResponse>> {
   const startedAt = new Date(); let profiles: UniverseProfile[] = []; let sourceUrl: string = universeUrls[universe];
   try { const loaded = await loadScanUniverse(universe); profiles = loaded.profiles; sourceUrl = loaded.sourceUrl; } catch (error) {
-    const inserted = await ctx.db<typeof schema>().insert(schema.marketScanRuns).values({ universe, requestedCount: universe === "sp100" ? 101 : 503, scannedCount: 0, availableCount: 0, signalCount: 0, newsCount: 0, eligibleCount: 0, scoredCount: 0, watchedCount: 0, issuedCount: 0, suppressedCount: universe === "sp100" ? 101 : 503, lastAttemptAt: startedAt, lastSuccessAt: null, status: "failed", note: `Universe membership could not be loaded: ${String(error).replace(/^Error:\s*/, "")}`, exclusionsJson: "[]", createdAt: startedAt, computedAt: new Date(), dataThroughSession: null }).returning();
+    const inserted = await ctx.db<typeof schema>().insert(schema.marketScanRuns).values({ universe, requestedCount: universe === "sp100" ? 101 : 503, scannedCount: 0, availableCount: 0, signalCount: 0, newsCount: 0, eligibleCount: 0, scoredCount: 0, watchedCount: 0, issuedCount: 0, suppressedCount: universe === "sp100" ? 101 : 503, lastAttemptAt: startedAt, lastSuccessAt: null, status: "failed", note: `Universe membership could not be loaded: ${String(error).replace(/^Error:\s*/, "")}`, exclusionsJson: "[]", createdAt: startedAt, computedAt: new Date(), completedAt: new Date(), dataThroughSession: null }).returning();
     ctx.invalidateQueries(); return inserted[0] ? readAutoScan(ctx) : { run: null, accounting: { requested: 0, fetched: 0, dataValid: 0, eligible: 0, scored: 0, emitted: 0, suppressed: 0, excluded: 0, failed: 0 }, diagnostics: [], signals: [], tiers: { t1: [], t2: [], t3: [], methodology: "Universe tiering was unavailable because membership could not be loaded." }, sectors: [], news: [], theoryRun: null };
   }
   const db = ctx.db<typeof schema>();
@@ -3012,7 +3051,7 @@ async function runAutomatedMarketScan(ctx: Ctx, universe: "sp100" | "sp500"): Pr
   } catch { /* deterministic sector aggregation remains */ }
   const availableSymbols = new Set(available.map((row) => row.profile.symbol)); const failedExclusions = scanProfiles.filter((profile) => !availableSymbols.has(profile.symbol)).map((profile) => ({ symbol: profile.symbol, reason: scanFailureBySymbol.get(profile.symbol) ?? "No usable chart returned." })); const suppressedExclusions = suppressed.map((row) => ({ symbol: row.profile.symbol, reason: row.issuance?.reason ?? "Signal issuance gate did not clear." })); const exclusions = [...failedExclusions, ...suppressedExclusions];
   const status: "ok" | "partial" | "degraded" = !available.length ? "degraded" : available.length < scanProfiles.length || !newsResult.items.length ? "partial" : "ok"; const t3Count = Math.max(0, profiles.length - topTierProfiles.length - scoringSelection.qualifiers.length); const coverageNote = !available.length ? `DEGRADED — zero of ${scanProfiles.length} full-score candidates produced usable histories. The empty candidate set is a data-pipeline failure, not a no-signal market result.` : `${available.length}/${scanProfiles.length} full-score candidates cleared completeness.`; const note = `${coverageNote} ${velocityBySymbol.size}/${profiles.length} constituents returned the lightweight 5-session velocity read. T1: ${topTierProfiles.length} S&P 100 large-cap/liquidity proxy names received full scoring and research. T2: ${scoringSelection.qualifiers.length} other names cleared the fixed +10% velocity qualifier and received the same full scoring. T3: ${t3Count} remaining names stayed visible on lightweight tracking. ${suppressed.length} directional candidate${suppressed.length === 1 ? " was" : "s were"} withheld by issuance validation. Eligibility, factor weights, formulas, publishing gates, the signal ledger, and grading are unchanged.`;
-  const runRows = await db.insert(schema.marketScanRuns).values({ universe, requestedCount: profiles.length, scannedCount: scanProfiles.length, availableCount: available.length, signalCount: selected.length, newsCount: newsResult.items.length, eligibleCount: available.length, scoredCount: available.length, watchedCount: selected.length, issuedCount: 0, suppressedCount: exclusions.length, lastAttemptAt: startedAt, lastSuccessAt: available.length ? new Date() : null, status, note, exclusionsJson: JSON.stringify(exclusions), createdAt: startedAt, computedAt: new Date(), dataThroughSession: maxSessionDate(available.map((row) => completedDailyPoints(row.fullSeries.points, new Date(), row.fullSeries.retrievedAt).at(-1)?.date ?? null)) }).returning(); const run = runRows[0]; if (!run) return { run: null, accounting: { requested: profiles.length, fetched: available.length, dataValid: available.length, eligible: available.length, scored: available.length, emitted: 0, suppressed: suppressed.length, excluded: failedExclusions.length, failed: failedExclusions.length }, diagnostics: [], signals: [], tiers: { t1: [], t2: [], t3: [], methodology: "Universe tier rows could not be saved." }, sectors: [], news: [], theoryRun: null };
+  const runRows = await db.insert(schema.marketScanRuns).values({ universe, requestedCount: profiles.length, scannedCount: scanProfiles.length, availableCount: available.length, signalCount: selected.length, newsCount: newsResult.items.length, eligibleCount: available.length, scoredCount: available.length, watchedCount: selected.length, issuedCount: 0, suppressedCount: exclusions.length, lastAttemptAt: startedAt, lastSuccessAt: available.length ? new Date() : null, status, note, exclusionsJson: JSON.stringify(exclusions), createdAt: startedAt, computedAt: new Date(), completedAt: new Date(), dataThroughSession: maxSessionDate(available.map((row) => completedDailyPoints(row.fullSeries.points, new Date(), row.fullSeries.retrievedAt).at(-1)?.date ?? null)) }).returning(); const run = runRows[0]; if (!run) return { run: null, accounting: { requested: profiles.length, fetched: available.length, dataValid: available.length, eligible: available.length, scored: available.length, emitted: 0, suppressed: suppressed.length, excluded: failedExclusions.length, failed: failedExclusions.length }, diagnostics: [], signals: [], tiers: { t1: [], t2: [], t3: [], methodology: "Universe tier rows could not be saved." }, sectors: [], news: [], theoryRun: null };
   const selectedSymbols = new Set(selected.map((row) => row.profile.symbol)); const suppressedBySymbol = new Map(suppressed.map((row) => [row.profile.symbol, row.issuance?.reason ?? "Signal issuance gate did not clear."])); const availableBySymbol = new Map(available.map((row) => [row.profile.symbol, row]));
   const diagnosticRows: Array<typeof schema.marketScanSymbolDiagnostics.$inferInsert> = scanProfiles.map((profile) => {
     const candidate = availableBySymbol.get(profile.symbol); const suppressedReason = suppressedBySymbol.get(profile.symbol);
@@ -3095,11 +3134,23 @@ type ScanBatchIssuancePacket = {
 const automatedScanBatchResponse = z.object({
   runId: z.number(),
   batchRunId: z.number(),
+  // Named-batch patch (2026-10-26): the two ids, labeled distinctly on
+  // every response. runId is the market_scan_runs id; batchRunId /
+  // scanBatchId are the scan_batch_runs id. They are different numbers
+  // for the same scan (e.g. run 46 / scan batch 28) and are never
+  // interchangeable as inputs.
+  scanRunId: z.number(),
+  scanBatchId: z.number(),
+  requestedBatchId: z.number().nullable(),
   processedCount: z.number(),
   totalSymbols: z.number(),
   done: z.boolean(),
   batchDurationMs: z.number(),
 });
+// Build identifier for the named-batch patch and the operating-result
+// action (2026-10-26). Reported verbatim by getEquityOperatingResult so a
+// caller can prove which code produced a result, not just when it ran.
+const NAMED_BATCH_PATCH_BUILD_ID = "equity-named-batch-patch-2026-10-26";
 function parseScanBatchEntries(value: string): ScanBatchUniverseEntry[] {
   try { return JSON.parse(value) as ScanBatchUniverseEntry[]; } catch { return []; }
 }
@@ -3109,29 +3160,8 @@ function parseScanBatchGatePacket(value: string): ScanBatchGatePacket | null {
 function parseScanBatchIssuancePacket(value: string): ScanBatchIssuancePacket {
   try { return JSON.parse(value) as ScanBatchIssuancePacket; } catch { return { issuance: null, signalDay: null, issuanceSourceUrl: "" }; }
 }
-const DISCOVERY_SESSION_SLOTS = ["0930", "1130", "1330", "1530"] as const;
-// Cycle key for the batched discovery scan. The four scheduled sessions
-// (09:30 / 11:30 / 13:30 / 15:30 America/New_York, Mon–Fri) each own a batch
-// cycle: the key names the most recent scheduled session at or before `now`
-// (e.g. "2026-10-16-1130"). Before the first slot of a trading day — and on
-// weekends — it resolves to the previous trading day's 15:30 session, so a
-// completed batch only ever satisfies retries inside its own session.
-function discoveryCycleKey(now: Date): string {
-  const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23", weekday: "short" }).formatToParts(now);
-  const part = (type: string) => parts.find((candidate) => candidate.type === type)?.value ?? "";
-  let year = Number(part("year")); let month = Number(part("month")); let day = Number(part("day"));
-  const weekdayIndex: Record<string, number> = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
-  let weekday = weekdayIndex[part("weekday")] ?? 0;
-  const hhmm = `${part("hour")}${part("minute")}`;
-  const isWeekday = () => weekday >= 1 && weekday <= 5;
-  let slot: string | undefined = isWeekday() ? [...DISCOVERY_SESSION_SLOTS].reverse().find((candidate) => candidate <= hhmm) : undefined;
-  while (!slot) {
-    const previous = new Date(Date.UTC(year, month - 1, day) - 86_400_000);
-    year = previous.getUTCFullYear(); month = previous.getUTCMonth() + 1; day = previous.getUTCDate(); weekday = previous.getUTCDay();
-    if (isWeekday()) slot = "1530";
-  }
-  return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}-${slot ?? "1530"}`;
-}
+// discoveryCycleKey lives in scan_session_identity.ts (Q4): the cycle key
+// is part of a batch's original session identity, derived and tested there.
 async function createAutomatedScanBatch(ctx: Ctx, universe: "sp100" | "sp500") {
   const db = ctx.db<typeof schema>();
   const loaded = await loadScanUniverse(universe); const profiles = loaded.profiles; const startedAt = new Date();
@@ -3150,37 +3180,78 @@ async function createAutomatedScanBatch(ctx: Ctx, universe: "sp100" | "sp500") {
   });
   const runRows = await db.insert(schema.marketScanRuns).values({ universe, requestedCount: profiles.length, scannedCount: scoringSelection.profiles.length, availableCount: 0, signalCount: 0, newsCount: 0, eligibleCount: 0, scoredCount: 0, watchedCount: 0, issuedCount: 0, suppressedCount: 0, lastAttemptAt: startedAt, lastSuccessAt: null, status: "partial", note: `BATCH IN PROGRESS — 0/${scoringSelection.profiles.length} full-score candidates durably processed. Scoring, gates, issuance rules, and grading are unchanged.`, exclusionsJson: "[]", createdAt: startedAt }).returning();
   const run = runRows[0]; if (!run) throw new Error("Batched market scan run could not be initialized.");
-  const batchRows = await db.insert(schema.scanBatchRuns).values({ universe, runId: run.id, symbolListJson: JSON.stringify(entries), processedCount: 0, stage: "open", cycleKey: discoveryCycleKey(startedAt), createdAt: startedAt, updatedAt: startedAt }).returning();
+  const batchCycleKey = discoveryCycleKey(startedAt);
+  const batchRows = await db.insert(schema.scanBatchRuns).values({ universe, runId: run.id, symbolListJson: JSON.stringify(entries), processedCount: 0, stage: "open", cycleKey: batchCycleKey, dataThroughSession: cycleKeySessionDate(batchCycleKey), completedAt: null, createdAt: startedAt, updatedAt: startedAt }).returning();
   const batch = batchRows[0]; if (!batch) throw new Error("Batched market scan state could not be initialized.");
   return { batch, entries };
 }
-async function loadOrCreateAutomatedScanBatch(ctx: Ctx, universe: "sp100" | "sp500") {
+async function loadOrCreateAutomatedScanBatch(ctx: Ctx, universe: "sp100" | "sp500", namedBatchRunId?: number | null) {
   const db = ctx.db<typeof schema>();
   const cycleKey = discoveryCycleKey(new Date());
-  const existing = (await db.select().from(schema.scanBatchRuns).where(and(eq(schema.scanBatchRuns.universe, universe), or(eq(schema.scanBatchRuns.stage, "open"), eq(schema.scanBatchRuns.stage, "finalizing"), eq(schema.scanBatchRuns.stage, "maintenance"), eq(schema.scanBatchRuns.stage, "brief")))).orderBy(desc(schema.scanBatchRuns.createdAt)).limit(1))[0];
-  if (existing && existing.cycleKey == null) {
-    // Legacy in-flight batch created before session cycle keys existed: it is
-    // still this session's work, so stamp it with the current key and resume
-    // via the existing batchRunId mechanism. Stamping also lets the done
-    // guard below recognize it once it completes.
-    await db.update(schema.scanBatchRuns).set({ cycleKey }).where(eq(schema.scanBatchRuns.id, existing.id));
-    return { batch: { ...existing, cycleKey }, entries: parseScanBatchEntries(existing.symbolListJson) };
+  // Resume-first (scan/resume repair): the newest batch for this universe is
+  // the only resume candidate, and an unfinished one is ALWAYS resumed —
+  // across session cycle keys — instead of being orphaned at the next
+  // session boundary while a fresh batch forks over it. That orphaning is
+  // what wedged scan run 46 at 20/101: its driver died in one session and
+  // the next session's loader, matching only its own cycle key, would have
+  // started new work and left the run "BATCH IN PROGRESS" forever. The
+  // deployed schedule's explicit batchRunId resume protocol is honored via
+  // pickScanBatchToResume, which accepts the id only when it names the
+  // newest batch overall; a superseded id falls through to the same
+  // newest-first resolution rather than resurrecting older work.
+  const recent = await db.select().from(schema.scanBatchRuns).where(eq(schema.scanBatchRuns.universe, universe)).orderBy(desc(schema.scanBatchRuns.id)).limit(8);
+  // Named-batch patch (2026-10-26) — fail explicitly on a named mismatch.
+  // An explicit batchRunId is a caller's claim about WHICH batch it owns.
+  // It must resolve to that batch or throw a clear mismatch; it must never
+  // fall through to the done guard (a different completed batch) or to
+  // createAutomatedScanBatch (a new scan created as a side effect of a
+  // verification/resume call). The run-id check searches beyond the recent
+  // window: a caller passing scan run 46 must be told it owns scan batch
+  // 28 even when batch 28 is no longer among the newest rows.
+  if (namedBatchRunId != null) {
+    let candidates = recent;
+    const alreadyCovers = recent.some((row) => row.id === namedBatchRunId || row.runId === namedBatchRunId);
+    if (!alreadyCovers) {
+      const byId = await db.select().from(schema.scanBatchRuns).where(and(eq(schema.scanBatchRuns.universe, universe), eq(schema.scanBatchRuns.id, namedBatchRunId))).limit(1);
+      const byRunId = byId.length ? byId : await db.select().from(schema.scanBatchRuns).where(and(eq(schema.scanBatchRuns.universe, universe), eq(schema.scanBatchRuns.runId, namedBatchRunId))).limit(1);
+      if (byRunId.length) candidates = [...recent, ...byRunId];
+    }
+    const resolution = resolveNamedScanBatch(candidates, namedBatchRunId);
+    if (resolution.status === "mismatch") throw new Error(resolution.message);
+    const matched = resolution.batch;
+    const preservedCycleKey = cycleKeyPreservedOnResume(matched.cycleKey);
+    return { batch: { ...matched, cycleKey: preservedCycleKey }, entries: parseScanBatchEntries(matched.symbolListJson) };
   }
-  if (existing && existing.cycleKey === cycleKey) return { batch: existing, entries: parseScanBatchEntries(existing.symbolListJson) };
-  // An in-flight batch from an earlier session is left untouched: this
-  // session starts its own batch below instead of resuming stale work.
-  // Fork-on-resume guard (2026-10-15), session-scoped (2026-10-16): a worker
-  // invocation can time out client-side AFTER the server completed the batch
-  // (stage="done", response never delivered). The next invocation in the SAME
-  // session must return the completed batch so the caller reports done=true —
-  // never fork a fresh batch and reprocess. The guard matches this session's
-  // cycle key, not the calendar date: a completed 09:30 batch must not make
-  // the 11:30 / 13:30 / 15:30 sessions no-ops (the prior date-based key did
-  // exactly that, collapsing the intended 4x daily discovery to 1x).
-  const doneThisSession = (await db.select().from(schema.scanBatchRuns)
-    .where(and(eq(schema.scanBatchRuns.universe, universe), eq(schema.scanBatchRuns.stage, "done"),
-      eq(schema.scanBatchRuns.cycleKey, cycleKey)))
-    .orderBy(desc(schema.scanBatchRuns.createdAt)).limit(1))[0];
+  const resumed = pickScanBatchToResume(recent, null);
+  if (resumed) {
+    // Q4 (2026-10-25): NEVER re-stamp a resumed batch. The old code set
+    // cycleKey = the resuming session's key, which relabeled the original
+    // session's analysis as current-session work and obscured the batch's
+    // original data session (run 46's Oct 23 session would have been
+    // rewritten to the resume day's session). cycleKey and
+    // dataThroughSession are the batch's original identity and stay frozen;
+    // the finishing session is recorded by the completion time instead,
+    // and the done guard below keys on that completion. A done batch named
+    // explicitly is returned as-is so the caller reports done=true.
+    const preservedCycleKey = cycleKeyPreservedOnResume(resumed.cycleKey);
+    return { batch: { ...resumed, cycleKey: preservedCycleKey }, entries: parseScanBatchEntries(resumed.symbolListJson) };
+  }
+  // Fork-on-resume guard (2026-10-15), session-scoped (2026-10-16), re-keyed
+  // on completion (Q4): a worker invocation can time out client-side AFTER
+  // the server completed the batch (stage="done", response never
+  // delivered). The next invocation in the SAME session must return the
+  // completed batch so the caller reports done=true — never fork a fresh
+  // batch and reprocess. The guard matches the session the batch COMPLETED
+  // in, not the batch's original cycle key and not the calendar date: a
+  // batch created Friday and finished Sunday still belongs to Friday's
+  // cycle (Sunday resolves to Friday's 15:30 session), while a batch that
+  // completed in an earlier cycle never makes a later session a no-op —
+  // the next scan starts when the schedule or newer data requires a new
+  // session, not forced by a resume.
+  const doneRows = await db.select().from(schema.scanBatchRuns)
+    .where(and(eq(schema.scanBatchRuns.universe, universe), eq(schema.scanBatchRuns.stage, "done")))
+    .orderBy(desc(schema.scanBatchRuns.id)).limit(8);
+  const doneThisSession = doneRows.find((row) => batchDoneInCycle(row, cycleKey));
   if (doneThisSession) return { batch: doneThisSession, entries: parseScanBatchEntries(doneThisSession.symbolListJson) };
   return createAutomatedScanBatch(ctx, universe);
 }
@@ -3350,25 +3421,31 @@ async function finishAutomatedScanBatchMaintenance(ctx: Ctx, batch: typeof schem
   if (batch.stage === "brief") {
     // Existing market-day brief cache step, isolated in its own worker budget.
     await writeMarketDayBriefCache(ctx, batch.runId);
-    await db.update(schema.scanBatchRuns).set({ stage: "done", updatedAt: new Date() }).where(eq(schema.scanBatchRuns.id, batch.id));
+    // Q4 completion time: the instant the batch fully finished, stored on
+    // both the batch and its scan run — separate from the run's analysis
+    // time (computedAt, stamped at finalization) and from its original
+    // market-data session (dataThroughSession, never re-stamped).
+    const completedAt = new Date();
+    await db.update(schema.scanBatchRuns).set({ stage: "done", completedAt, updatedAt: completedAt }).where(eq(schema.scanBatchRuns.id, batch.id));
+    await db.update(schema.marketScanRuns).set({ completedAt }).where(eq(schema.marketScanRuns.id, batch.runId));
     ctx.invalidateQueries();
     return true;
   }
   return batch.stage === "done";
 }
-async function runAutomatedScanBatch(ctx: Ctx, args: { universe: "sp100" | "sp500"; maxSymbols: number }): Promise<z.infer<typeof automatedScanBatchResponse>> {
-  const invocationStartedAt = Date.now(); const db = ctx.db<typeof schema>(); const loaded = await loadOrCreateAutomatedScanBatch(ctx, args.universe); const batch = loaded.batch; const entries = loaded.entries; const scanEntries = entries.filter((entry) => entry.shouldScan); const totalSymbols = scanEntries.length;
+async function runAutomatedScanBatch(ctx: Ctx, args: { universe: "sp100" | "sp500"; maxSymbols: number; batchRunId?: number | null }): Promise<z.infer<typeof automatedScanBatchResponse>> {
+  const invocationStartedAt = Date.now(); const db = ctx.db<typeof schema>(); const loaded = await loadOrCreateAutomatedScanBatch(ctx, args.universe, args.batchRunId ?? null); const batch = loaded.batch; const entries = loaded.entries; const scanEntries = entries.filter((entry) => entry.shouldScan); const totalSymbols = scanEntries.length;
   if (!entries.length) throw new Error("The persisted batch universe snapshot is empty or invalid.");
   if (batch.stage === "done") {
     // Completed batch (possibly via the fork-on-resume guard): report done,
     // never regress the stage. The tail below would otherwise UPDATE a done
     // batch back to "finalizing".
-    return { runId: batch.runId, batchRunId: batch.id, processedCount: batch.processedCount,
+    return { runId: batch.runId, batchRunId: batch.id, scanRunId: batch.runId, scanBatchId: batch.id, requestedBatchId: args.batchRunId ?? null, processedCount: batch.processedCount,
       totalSymbols, done: true, batchDurationMs: Date.now() - invocationStartedAt };
   }
   if (batch.stage === "maintenance" || batch.stage === "brief") {
     const done = await finishAutomatedScanBatchMaintenance(ctx, batch);
-    return { runId: batch.runId, batchRunId: batch.id, processedCount: batch.processedCount, totalSymbols, done, batchDurationMs: Date.now() - invocationStartedAt };
+    return { runId: batch.runId, batchRunId: batch.id, scanRunId: batch.runId, scanBatchId: batch.id, requestedBatchId: args.batchRunId ?? null, processedCount: batch.processedCount, totalSymbols, done, batchDurationMs: Date.now() - invocationStartedAt };
   }
   if (batch.stage === "open") {
     const completedRows = await db.select({ symbol: schema.scanBatchSymbolResults.symbol }).from(schema.scanBatchSymbolResults).where(eq(schema.scanBatchSymbolResults.batchRunId, batch.id)); const completedSymbols = new Set(completedRows.map((row) => row.symbol)); const next = scanEntries.filter((entry) => !completedSymbols.has(entry.profile.symbol)).slice(0, args.maxSymbols);
@@ -3423,7 +3500,7 @@ async function runAutomatedScanBatch(ctx: Ctx, args: { universe: "sp100" | "sp50
   // pipeline. This prevents symbol work plus finalization from sharing one 120s budget.
   if (readyToFinalize && finalizationOnlyInvocation) await finalizeAutomatedScanBatch(ctx, { ...batch, processedCount, stage: "finalizing", updatedAt: new Date() }, entries);
   ctx.invalidateQueries();
-  return { runId: batch.runId, batchRunId: batch.id, processedCount, totalSymbols, done: false, batchDurationMs: Date.now() - invocationStartedAt };
+  return { runId: batch.runId, batchRunId: batch.id, scanRunId: batch.runId, scanBatchId: batch.id, requestedBatchId: args.batchRunId ?? null, processedCount, totalSymbols, done: false, batchDurationMs: Date.now() - invocationStartedAt };
 }
 
 // Batch 5 Part 6 — scan on demand. A fresh equity scan run on user trigger:
@@ -3446,7 +3523,7 @@ const scanOnDemandResponse = z.object({
   runId: z.number().nullable(),
   status: z.enum(["running", "ok", "partial", "degraded", "failed"]),
   note: z.string(),
-  stamps: z.object({ runId: z.number().nullable(), computedAt: z.string().nullable(), dataThroughSession: z.string().nullable(), status: z.string().nullable() }),
+  stamps: z.object({ runId: z.number().nullable(), computedAt: z.string().nullable(), dataThroughSession: z.string().nullable(), marketDataSession: z.string().nullable(), analysisTime: z.string().nullable(), completionTime: z.string().nullable(), status: z.string().nullable() }),
 });
 type ScanOnDemandResponse = z.infer<typeof scanOnDemandResponse>;
 
@@ -3466,8 +3543,8 @@ async function closeOnDemandState(ctx: Ctx, stateId: number, runId: number): Pro
   await db.update(schema.scanRunState).set({ status, completedAt: new Date(), marketScanRunId: runId, note }).where(eq(schema.scanRunState.id, stateId));
   const result = await readAutoScan(ctx);
   const stamps = result.run && result.run.id === runId
-    ? { runId: result.run.stamps.runId, computedAt: result.run.stamps.computedAt, dataThroughSession: result.run.stamps.dataThroughSession, status: result.run.stamps.status }
-    : { runId, computedAt: row?.computedAt?.toISOString() ?? null, dataThroughSession: row?.dataThroughSession ?? null, status };
+    ? { runId: result.run.stamps.runId, computedAt: result.run.stamps.computedAt, dataThroughSession: result.run.stamps.dataThroughSession, marketDataSession: result.run.stamps.marketDataSession, analysisTime: result.run.stamps.analysisTime, completionTime: result.run.stamps.completionTime, status: result.run.stamps.status }
+    : { runId, computedAt: row?.computedAt?.toISOString() ?? null, dataThroughSession: row?.dataThroughSession ?? null, marketDataSession: row?.dataThroughSession ?? null, analysisTime: row?.computedAt?.toISOString() ?? null, completionTime: row?.completedAt?.toISOString() ?? null, status };
   ctx.invalidateQueries();
   return { outcome: "completed", stateId, runId, status, note, stamps };
 }
@@ -3475,9 +3552,13 @@ async function closeOnDemandState(ctx: Ctx, stateId: number, runId: number): Pro
 async function driveOnDemandScan(ctx: Ctx, stateId: number, universe: "sp100" | "sp500", runId: number, driveStartedAt: number = Date.now()): Promise<ScanOnDemandResponse> {
   const db = ctx.db<typeof schema>();
   let last: z.infer<typeof automatedScanBatchResponse> | null = null;
+  // Pin the drive to this run's own batch: a continuation after the driver
+  // was killed must advance the same batch (resume-after-kill), never
+  // whichever batch the generic newest-first resolution would pick.
+  const ownBatch = (await db.select({ id: schema.scanBatchRuns.id }).from(schema.scanBatchRuns).where(eq(schema.scanBatchRuns.runId, runId)).orderBy(desc(schema.scanBatchRuns.id)).limit(1))[0];
   try {
     while (Date.now() - driveStartedAt < SCAN_DRIVE_BUDGET_MS) {
-      last = await runAutomatedScanBatch(ctx, { universe, maxSymbols: 10 });
+      last = await runAutomatedScanBatch(ctx, { universe, maxSymbols: 10, batchRunId: ownBatch?.id ?? null });
       await db.update(schema.scanRunState).set({ heartbeatAt: new Date() }).where(eq(schema.scanRunState.id, stateId));
       if (last.done) break;
     }
@@ -3485,14 +3566,14 @@ async function driveOnDemandScan(ctx: Ctx, stateId: number, universe: "sp100" | 
     const reason = error instanceof Error ? error.message : String(error);
     await db.update(schema.scanRunState).set({ status: "failed", completedAt: new Date(), note: `On-demand scan failed while driving scan run #${runId}: ${reason}` }).where(eq(schema.scanRunState.id, stateId));
     ctx.invalidateQueries();
-    return { outcome: "failed", stateId, runId, status: "failed", note: `On-demand scan failed while driving scan run #${runId}: ${reason}`, stamps: { runId, computedAt: null, dataThroughSession: null, status: "failed" } };
+    return { outcome: "failed", stateId, runId, status: "failed", note: `On-demand scan failed while driving scan run #${runId}: ${reason}`, stamps: { runId, computedAt: null, dataThroughSession: null, marketDataSession: null, analysisTime: null, completionTime: null, status: "failed" } };
   }
   if (last?.done) return closeOnDemandState(ctx, stateId, last.runId);
   ctx.invalidateQueries();
   return {
     outcome: "started", stateId, runId, status: "running",
     note: `Fresh scan run #${runId} is still computing in bounded steps (${last?.processedCount ?? 0}/${last?.totalSymbols ?? 0} full-score candidates processed). Continue it to completion; any new trigger returns this run instead of starting a duplicate.`,
-    stamps: { runId, computedAt: null, dataThroughSession: null, status: "running" },
+    stamps: { runId, computedAt: null, dataThroughSession: null, marketDataSession: null, analysisTime: null, completionTime: null, status: "running" },
   };
 }
 
@@ -3510,7 +3591,7 @@ async function runEquityScanOnDemand(ctx: Ctx, universe: "sp100" | "sp500"): Pro
     return {
       outcome: "already_in_progress", stateId: owner?.id ?? 0, runId: inFlight.runId, status: "running",
       note: `Scan already in progress — scan run #${inFlight.runId} (${inFlight.universe.toUpperCase()}, stage ${inFlight.stage}, ${inFlight.processedCount} candidates processed) is still being advanced; no duplicate was started.`,
-      stamps: { runId: inFlight.runId, computedAt: null, dataThroughSession: null, status: "running" },
+      stamps: { runId: inFlight.runId, computedAt: null, dataThroughSession: null, marketDataSession: null, analysisTime: null, completionTime: null, status: "running" },
     };
   }
   // In-progress lock, part 2: this path's run-state record.
@@ -3520,7 +3601,7 @@ async function runEquityScanOnDemand(ctx: Ctx, universe: "sp100" | "sp500"): Pro
     return {
       outcome: "already_in_progress", stateId: live.id, runId: live.marketScanRunId, status: "running",
       note: `Scan already in progress — on-demand run state #${live.id} (${live.universe.toUpperCase()}) started ${live.startedAt.toISOString()} is still live; no duplicate was started.`,
-      stamps: { runId: live.marketScanRunId, computedAt: null, dataThroughSession: null, status: "running" },
+      stamps: { runId: live.marketScanRunId, computedAt: null, dataThroughSession: null, marketDataSession: null, analysisTime: null, completionTime: null, status: "running" },
     };
   }
   // Close out stale running rows (heartbeat/deadline passed without
@@ -3545,7 +3626,7 @@ async function runEquityScanOnDemand(ctx: Ctx, universe: "sp100" | "sp500"): Pro
     const reason = error instanceof Error ? error.message : String(error);
     await db.update(schema.scanRunState).set({ status: "failed", completedAt: new Date(), note: `On-demand scan could not start: ${reason}` }).where(eq(schema.scanRunState.id, state.id));
     ctx.invalidateQueries();
-    return { outcome: "failed", stateId: state.id, runId: null, status: "failed", note: `On-demand scan could not start: ${reason}`, stamps: { runId: null, computedAt: null, dataThroughSession: null, status: "failed" } };
+    return { outcome: "failed", stateId: state.id, runId: null, status: "failed", note: `On-demand scan could not start: ${reason}`, stamps: { runId: null, computedAt: null, dataThroughSession: null, marketDataSession: null, analysisTime: null, completionTime: null, status: "failed" } };
   }
   await db.update(schema.scanRunState).set({ marketScanRunId: batch.runId, heartbeatAt: new Date() }).where(eq(schema.scanRunState.id, state.id));
   return driveOnDemandScan(ctx, state.id, universe, batch.runId, now.getTime());
@@ -3554,17 +3635,17 @@ async function runEquityScanOnDemand(ctx: Ctx, universe: "sp100" | "sp500"): Pro
 async function continueEquityScanOnDemand(ctx: Ctx, stateId: number): Promise<ScanOnDemandResponse> {
   const db = ctx.db<typeof schema>();
   const state = (await db.select().from(schema.scanRunState).where(eq(schema.scanRunState.id, stateId)).limit(1))[0];
-  if (!state) return { outcome: "failed", stateId, runId: null, status: "failed", note: `No on-demand scan run state #${stateId} exists to continue.`, stamps: { runId: null, computedAt: null, dataThroughSession: null, status: "failed" } };
+  if (!state) return { outcome: "failed", stateId, runId: null, status: "failed", note: `No on-demand scan run state #${stateId} exists to continue.`, stamps: { runId: null, computedAt: null, dataThroughSession: null, marketDataSession: null, analysisTime: null, completionTime: null, status: "failed" } };
   if (state.status !== "running") {
     return {
       outcome: state.status === "failed" ? "failed" : "completed",
       stateId: state.id, runId: state.marketScanRunId, status: state.status, note: state.note,
-      stamps: { runId: state.marketScanRunId, computedAt: state.completedAt?.toISOString() ?? null, dataThroughSession: null, status: state.status },
+      stamps: { runId: state.marketScanRunId, computedAt: state.completedAt?.toISOString() ?? null, dataThroughSession: null, marketDataSession: null, analysisTime: null, completionTime: state.completedAt?.toISOString() ?? null, status: state.status },
     };
   }
   if (state.marketScanRunId == null) {
     await db.update(schema.scanRunState).set({ status: "failed", completedAt: new Date(), note: "On-demand run state has no scan run to continue; marked failed." }).where(eq(schema.scanRunState.id, state.id));
-    return { outcome: "failed", stateId: state.id, runId: null, status: "failed", note: "On-demand run state has no scan run to continue; marked failed.", stamps: { runId: null, computedAt: null, dataThroughSession: null, status: "failed" } };
+    return { outcome: "failed", stateId: state.id, runId: null, status: "failed", note: "On-demand run state has no scan run to continue; marked failed.", stamps: { runId: null, computedAt: null, dataThroughSession: null, marketDataSession: null, analysisTime: null, completionTime: null, status: "failed" } };
   }
   // The continuation is the run's own driver: refresh its heartbeat/deadline,
   // then drive the same bounded batch steps.
@@ -3843,7 +3924,7 @@ const signalTrackerResponse = z.object({ cohort: z.object({ strategyId: z.string
 const paperIssuanceResponse = z.object({
   state: z.object({ halted: z.boolean(), haltReason: z.string().nullable(), haltedAt: z.string().nullable(), leaseActive: z.boolean(), updatedAt: z.string().nullable() }),
   cohort: z.object({ cap: z.number().int().positive(), filled: z.number().int().nonnegative(), pending: z.number().int().nonnegative(), expiredUnfilled: z.number().int().nonnegative() }),
-  passes: z.array(z.object({ id: z.number(), capturedDay: z.string(), batchRunId: z.number().nullable(), batchId: z.number().nullable(), reconcileOk: z.boolean(), halted: z.boolean(), haltReason: z.string().nullable(), haltCleared: z.boolean(), created: z.array(paperIssuanceCreatedShape), skippedCapacity: z.array(paperIssuanceSkipShape), skippedDuplicates: z.array(paperIssuanceSkipShape), declined: z.array(paperIssuanceSkipShape), cohortFilled: z.number(), cohortPending: z.number(), createdAt: z.string() })),
+  passes: z.array(z.object({ id: z.number(), capturedDay: z.string(), batchRunId: z.number().nullable(), batchId: z.number().nullable(), scanRunId: z.number().nullable(), scanBatchId: z.number().nullable(), reconcileOk: z.boolean(), halted: z.boolean(), haltReason: z.string().nullable(), haltCleared: z.boolean(), created: z.array(paperIssuanceCreatedShape), skippedCapacity: z.array(paperIssuanceSkipShape), skippedDuplicates: z.array(paperIssuanceSkipShape), declined: z.array(paperIssuanceSkipShape), cohortFilled: z.number(), cohortPending: z.number(), createdAt: z.string() })),
 });
 function parsePaperIssuanceList<T>(value: string): T[] { try { const parsed: unknown = JSON.parse(value); return Array.isArray(parsed) ? parsed as T[] : []; } catch { return []; } }
 async function readPaperIssuanceSummary(ctx: Ctx): Promise<z.infer<typeof paperIssuanceSummaryShape>> {
@@ -3893,12 +3974,15 @@ const recordSignalVerdictResponse = z.object({ ok: z.boolean(), message: z.strin
 // created/skip entry shapes are declared with the tracker shapes above.
 const paperIssuanceReportShape = z.object({
   batchRunId: z.number().nullable(), batchId: z.number().nullable(),
+  // Distinct ids (named-batch patch): scanRunId is the market_scan_runs
+  // id, scanBatchId / batchRunId / batchId are the scan_batch_runs id.
+  scanRunId: z.number().nullable(), scanBatchId: z.number().nullable(),
   reconcileOk: z.boolean(), halted: z.boolean(), haltReason: z.string().nullable(), haltCleared: z.boolean(),
   cohortCap: z.number().int().positive(), cohortFilled: z.number().int().nonnegative(), cohortPending: z.number().int().nonnegative(),
   created: z.array(paperIssuanceCreatedShape), skippedCapacity: z.array(paperIssuanceSkipShape), skippedDuplicates: z.array(paperIssuanceSkipShape), declined: z.array(paperIssuanceSkipShape),
 });
 type PaperIssuanceReport = z.infer<typeof paperIssuanceReportShape>;
-const emptyPaperIssuanceReport = (overrides: Partial<PaperIssuanceReport> = {}): PaperIssuanceReport => ({ batchRunId: null, batchId: null, reconcileOk: false, halted: false, haltReason: null, haltCleared: false, cohortCap: PAPER_ISSUANCE_COHORT_CAP, cohortFilled: 0, cohortPending: 0, created: [], skippedCapacity: [], skippedDuplicates: [], declined: [], ...overrides });
+const emptyPaperIssuanceReport = (overrides: Partial<PaperIssuanceReport> = {}): PaperIssuanceReport => ({ batchRunId: null, batchId: null, scanRunId: null, scanBatchId: null, reconcileOk: false, halted: false, haltReason: null, haltCleared: false, cohortCap: PAPER_ISSUANCE_COHORT_CAP, cohortFilled: 0, cohortPending: 0, created: [], skippedCapacity: [], skippedDuplicates: [], declined: [], ...overrides });
 const snapshotRunResponse = z.object({ ok: z.boolean(), capturedDay: z.string(), trackedCount: z.number(), snapshotCount: z.number(), approachingTargetCount: z.number(), approachingInvalidationCount: z.number(), settlementUpdatedRows: z.number(), settlementFilledHorizons: z.number(), settlementPendingRows: z.number(), summary: z.string(), errors: z.array(z.string()), issuance: paperIssuanceReportShape });
 export async function computeDailySignalSnapshots(ctx: Ctx, dependencies: SignalJobDependencies = {}): Promise<z.infer<typeof snapshotRunResponse>> {
   // The scheduled post-mortem runs the authoritative append-only evaluator first.
@@ -4203,7 +4287,7 @@ async function countPaperCohort(ctx: Ctx): Promise<{ filled: number; pending: nu
 async function persistPaperIssuancePass(ctx: Ctx, capturedDay: string, report: PaperIssuanceReport, at: Date): Promise<void> {
   const db = ctx.db<typeof schema>();
   await db.insert(schema.equityPaperIssuancePasses).values({
-    capturedDay, batchRunId: report.batchRunId, batchId: report.batchId, reconcileOk: report.reconcileOk,
+    capturedDay, batchRunId: report.batchRunId, batchId: report.batchId, scanRunId: report.scanRunId, reconcileOk: report.reconcileOk,
     halted: report.halted, haltReason: report.haltReason, haltCleared: report.haltCleared,
     createdJson: JSON.stringify(report.created), skippedCapacityJson: JSON.stringify(report.skippedCapacity),
     skippedDuplicatesJson: JSON.stringify(report.skippedDuplicates), declinedJson: JSON.stringify(report.declined),
@@ -4255,7 +4339,10 @@ export async function runPostReconcilePaperIssuance(ctx: Ctx, input: { capturedD
   const completed = batches.filter((batch) => batch.stage === "done").sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime() || b.id - a.id);
   const batch = completed[0];
   if (!batch) { await persistPaperIssuancePass(ctx, input.capturedDay, report, now); return report; }
-  report.batchRunId = batch.runId; report.batchId = batch.id;
+  // Distinct ids: batchRunId/batchId are the scan-batch id (28), scanRunId
+  // is the scan run id (46). The pre-patch code stored the run id in
+  // batchRunId, which is how a caller came to pass batchRunId 46.
+  report.batchRunId = batch.id; report.batchId = batch.id; report.scanRunId = batch.runId; report.scanBatchId = batch.id;
   const [candidateRows, resultRows, signalRows] = await Promise.all([
     db.select().from(schema.marketScanSignals),
     db.select().from(schema.scanBatchSymbolResults),
@@ -4622,6 +4709,163 @@ function canonicalAssetSymbol(value: string): string { const normalized = value.
 function assetAliases(symbol: string): Set<string> { const canonical = canonicalAssetSymbol(symbol); const values = [canonical]; if (canonical === "BTC-USD") values.push("BTC", "XBT"); if (canonical === "NEAR-USD") values.push("NEAR"); return new Set(values); }
 function safeRecord(value: string): Record<string, unknown> { try { const parsed: unknown = JSON.parse(value); return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed as Record<string, unknown> : {}; } catch { return {}; } }
 function contextSourceId(prefix: string, id: string | number): string { return `${prefix}-${id}`; }
+
+// ---------------------------------------------------------------------------
+// Company identity (2026-10-23): every ticker surface shows the full company
+// name, and the dossier shows what the company does. Names resolve from rows
+// the terminal already stores (scan universe, scan signals, tracked signals,
+// watchlist, verified asset profiles, cached Yahoo chart metadata, and the
+// company_profiles cache). Descriptions come only from a sourced fetch —
+// Yahoo Finance quoteSummary assetProfile, a verified asset profile, or a
+// web-search summary written strictly from returned snippets — and are
+// cached in company_profiles. List reads never fetch; only the single-symbol
+// getCompanyProfile action fetches, and it caches both hits and misses.
+const companyProfileSchema = z.object({
+  symbol: z.string(), name: z.string().nullable(), sector: z.string().nullable(), industry: z.string().nullable(),
+  description: z.string().nullable(), descriptionSourceTitle: z.string().nullable(), descriptionSourceUrl: z.string().nullable(),
+  fetchedAt: z.string().nullable(),
+});
+type CompanyProfile = z.infer<typeof companyProfileSchema>;
+const companyProfilesResponse = z.object({ profiles: z.array(companyProfileSchema), generatedAt: z.string() });
+const COMPANY_PROFILE_FRESH_MS = 30 * 24 * 3600000;
+const COMPANY_PROFILE_NEGATIVE_MS = 24 * 3600000;
+
+function usableCompanyName(value: string | null | undefined, symbol: string): string | null {
+  const name = value?.trim();
+  if (!name) return null;
+  if (name.toUpperCase() === symbol.toUpperCase()) return null;
+  return name;
+}
+
+async function resolveStoredCompanyInfo(ctx: Ctx, rawSymbols: string[]): Promise<Map<string, CompanyProfile>> {
+  const symbols = [...new Set(rawSymbols.map((value) => canonicalAssetSymbol(value)).filter(Boolean))];
+  const out = new Map<string, CompanyProfile>();
+  if (!symbols.length) return out;
+  for (const symbol of symbols) out.set(symbol, { symbol, name: null, sector: null, industry: null, description: null, descriptionSourceTitle: null, descriptionSourceUrl: null, fetchedAt: null });
+  const db = ctx.db<typeof schema>();
+  const fill = (symbol: string, patch: Partial<CompanyProfile>) => {
+    const row = out.get(symbol);
+    if (!row) return;
+    if (patch.name != null && row.name == null) row.name = patch.name;
+    if (patch.sector != null && row.sector == null) row.sector = patch.sector;
+    if (patch.industry != null && row.industry == null) row.industry = patch.industry;
+    if (patch.description != null && row.description == null) {
+      row.description = patch.description;
+      row.descriptionSourceTitle = patch.descriptionSourceTitle ?? null;
+      row.descriptionSourceUrl = patch.descriptionSourceUrl ?? null;
+    }
+    if (patch.fetchedAt != null && row.fetchedAt == null) row.fetchedAt = patch.fetchedAt;
+  };
+  const [cachedProfiles, verifiedProfiles, universeRows, scanRows, trackedRows, watchRows, historyRows] = await Promise.all([
+    db.select().from(schema.companyProfiles).where(inArray(schema.companyProfiles.symbol, symbols)),
+    db.select().from(schema.assetProfiles).where(inArray(schema.assetProfiles.symbol, symbols)),
+    db.select().from(schema.marketScanUniverseRows).where(inArray(schema.marketScanUniverseRows.symbol, symbols)).orderBy(desc(schema.marketScanUniverseRows.runId)),
+    db.select().from(schema.marketScanSignals).where(inArray(schema.marketScanSignals.symbol, symbols)),
+    db.select().from(schema.trackedSignals).where(inArray(schema.trackedSignals.symbol, symbols)).orderBy(desc(schema.trackedSignals.id)),
+    db.select().from(schema.watchlist).where(inArray(schema.watchlist.symbol, symbols)),
+    db.select().from(schema.historicalCaches).where(inArray(schema.historicalCaches.symbol, symbols)),
+  ]);
+  for (const row of cachedProfiles) fill(row.symbol, { name: usableCompanyName(row.name, row.symbol), sector: row.sector, industry: row.industry, description: row.description, descriptionSourceTitle: row.descriptionSourceTitle, descriptionSourceUrl: row.descriptionSourceUrl, fetchedAt: row.fetchedAt.toISOString() });
+  for (const row of verifiedProfiles) fill(row.symbol, { name: usableCompanyName(row.canonicalName, row.symbol), description: `${row.description} ${row.revenueModel}`.trim(), descriptionSourceTitle: row.sourceTitle, descriptionSourceUrl: row.sourceUrl });
+  const seenUniverse = new Set<string>();
+  for (const row of universeRows) { if (seenUniverse.has(row.symbol)) continue; seenUniverse.add(row.symbol); fill(row.symbol, { name: usableCompanyName(row.instrumentName, row.symbol), sector: row.sector }); }
+  for (const row of scanRows) fill(row.symbol, { name: usableCompanyName(row.instrumentName, row.symbol), sector: row.sector });
+  const seenTracked = new Set<string>();
+  for (const row of trackedRows) { if (seenTracked.has(row.symbol)) continue; seenTracked.add(row.symbol); fill(row.symbol, { name: usableCompanyName(row.instrumentName, row.symbol) }); }
+  for (const row of watchRows) fill(row.symbol, { name: usableCompanyName(row.displayName, row.symbol) });
+  for (const row of historyRows) {
+    try {
+      const meta = (JSON.parse(row.seriesJson) as { meta?: YahooMeta }).meta;
+      fill(row.symbol, { name: usableCompanyName(meta?.longName ?? meta?.shortName, row.symbol) });
+    } catch { /* a malformed cache row contributes no name */ }
+  }
+  return out;
+}
+
+async function fetchCompanyProfile(ctx: Ctx, rawSymbol: string): Promise<CompanyProfile> {
+  const symbol = canonicalAssetSymbol(rawSymbol);
+  const db = ctx.db<typeof schema>();
+  const stored = await resolveStoredCompanyInfo(ctx, [symbol]);
+  const base: CompanyProfile = stored.get(symbol) ?? { symbol, name: null, sector: null, industry: null, description: null, descriptionSourceTitle: null, descriptionSourceUrl: null, fetchedAt: null };
+  const cachedRow = (await db.select().from(schema.companyProfiles).where(eq(schema.companyProfiles.symbol, symbol)))[0];
+  if (cachedRow) {
+    const ageMs = Date.now() - cachedRow.fetchedAt.getTime();
+    const fresh = cachedRow.description ? ageMs < COMPANY_PROFILE_FRESH_MS : ageMs < COMPANY_PROFILE_NEGATIVE_MS;
+    if (fresh) return base;
+  }
+  const commodity = commodityAliases[cleanKey(symbol)] ?? null;
+  if (commodity) {
+    const profile: CompanyProfile = { ...base, name: base.name ?? commodity.name, description: base.description ?? commodity.why, descriptionSourceTitle: base.description ? base.descriptionSourceTitle : "Terminal commodity mapping", descriptionSourceUrl: base.description ? base.descriptionSourceUrl : null, fetchedAt: new Date().toISOString() };
+    await db.insert(schema.companyProfiles).values({ symbol, name: profile.name, sector: profile.sector, industry: profile.industry, description: profile.description, descriptionSourceTitle: profile.descriptionSourceTitle, descriptionSourceUrl: profile.descriptionSourceUrl, fetchedAt: new Date(), updatedAt: new Date() }).onConflictDoUpdate({ target: schema.companyProfiles.symbol, set: { name: profile.name, sector: profile.sector, industry: profile.industry, description: profile.description, descriptionSourceTitle: profile.descriptionSourceTitle, descriptionSourceUrl: profile.descriptionSourceUrl, fetchedAt: new Date(), updatedAt: new Date() } });
+    return profile;
+  }
+  let name = base.name; let sector = base.sector; let industry = base.industry;
+  let description = base.description; let descriptionSourceTitle = base.descriptionSourceTitle; let descriptionSourceUrl = base.descriptionSourceUrl;
+  // 1) Yahoo Finance quoteSummary assetProfile — the provider's own company
+  // profile (longBusinessSummary, sector, industry). Keyless access is
+  // intermittent (see DATA-PLAN); any failure falls through silently.
+  const quoteSummaryUrl = `https://query1.finance.yahoo.com/v10/finance/quoteSummary/${encodeURIComponent(symbol)}?modules=assetProfile%2Cprice`;
+  try {
+    const response = await pacedYahooFetch(quoteSummaryUrl);
+    if (response.ok) {
+      const payload = await response.json() as QuoteSummaryPayload;
+      const root = payload.quoteSummary?.result?.[0];
+      if (root) {
+        const profileModule = moduleObject(root, "assetProfile");
+        const priceModule = moduleObject(root, "price");
+        name = usableCompanyName(rawText(profileModule.companyName) ?? rawText(priceModule.longName) ?? rawText(priceModule.shortName), symbol) ?? name;
+        sector = rawText(profileModule.sector) ?? sector;
+        industry = rawText(profileModule.industry) ?? industry;
+        const summary = rawText(profileModule.longBusinessSummary)?.trim();
+        if (summary && !description) { description = summary.slice(0, 1200); descriptionSourceTitle = "Yahoo Finance company profile"; descriptionSourceUrl = quoteSummaryUrl; }
+      }
+    }
+  } catch { /* provider profile unavailable; fall through to SEC + search */ }
+  // 2) SEC EDGAR submissions — official issuer name and SIC industry
+  // ("what they do" at industry level) for US filers.
+  let secName: string | null = null; let secIndustry: string | null = null; let secUrl: string | null = null;
+  try {
+    const map = await cachedSecTickerMap();
+    const issuer = Object.values(map).find((row) => row.ticker.toUpperCase() === symbol);
+    if (issuer) {
+      const cik10 = String(issuer.cik_str).padStart(10, "0");
+      secUrl = `https://data.sec.gov/submissions/CIK${cik10}.json`;
+      const submission = await secJson<SecSubmission>(secUrl);
+      secName = usableCompanyName(submission.name, symbol);
+      secIndustry = submission.sicDescription?.trim() || null;
+    }
+  } catch { /* SEC unavailable; fall through */ }
+  name = name ?? secName;
+  industry = industry ?? secIndustry;
+  // 3) Sourced web-search summary — only when no provider description exists.
+  // The summary is written strictly from returned snippets (same pattern as
+  // fundingContext) and keeps the result URLs as its sources.
+  if (!description) {
+    try {
+      const label = name ?? symbol;
+      const result = await ctx.tool.web_search(`${label} (${symbol}) company profile what does the company do`);
+      const rows = (result.content?.results ?? []).filter((row) => !row.is_index_page && row.url).slice(0, 4);
+      const snippets = rows.map((row, index) => `[${index + 1}] ${row.title}: ${row.snippet}`).join("\n");
+      if (snippets) {
+        const summary = await ctx.inference.complete(`Write a plain-English summary of what ${label} does — its main products or services and who it sells to — in one or two sentences, using ONLY these search snippets. If they do not establish what the company does, reply with exactly UNAVAILABLE.\n${snippets}`, { schema: z.string() });
+        const cleaned = summary.trim();
+        if (cleaned && cleaned.toUpperCase() !== "UNAVAILABLE" && rows[0]) {
+          description = cleaned.slice(0, 1200);
+          descriptionSourceTitle = rows[0].title;
+          descriptionSourceUrl = rows[0].url ?? null;
+        }
+      }
+    } catch { /* search unavailable; the industry line still identifies the business */ }
+  }
+  if (!description && industry) {
+    description = secIndustry && secUrl ? `SEC-classified industry: ${industry}.` : `Industry: ${industry}.`;
+    if (secIndustry && secUrl) { descriptionSourceTitle = "SEC EDGAR submissions"; descriptionSourceUrl = secUrl; }
+  }
+  const fetchedAt = new Date();
+  await db.insert(schema.companyProfiles).values({ symbol, name, sector, industry, description, descriptionSourceTitle, descriptionSourceUrl, fetchedAt, updatedAt: fetchedAt }).onConflictDoUpdate({ target: schema.companyProfiles.symbol, set: { name, sector, industry, description, descriptionSourceTitle, descriptionSourceUrl, fetchedAt, updatedAt: fetchedAt } });
+  return { symbol, name, sector, industry, description, descriptionSourceTitle, descriptionSourceUrl, fetchedAt: fetchedAt.toISOString() };
+}
+
 async function buildAssetContext(ctx: Ctx, rawSymbol: string): Promise<AssetContext> {
   const symbol = canonicalAssetSymbol(rawSymbol); const aliases = assetAliases(symbol); const db = ctx.db<typeof schema>(); const retrievedAt = new Date();
   const [profileRows, linkRows, alertRows, signalRows, observationRows, deliveryRows, theoryRowsAll, evidenceRows, rippleRows, predictionRows, assessmentRows, outcomeRows, dossierRows] = await Promise.all([
@@ -5008,6 +5252,46 @@ const openbbOptionsChainSchema = z.object({ symbol: z.string(), totalContracts: 
 const openbbInsiderRowSchema = z.object({ transactionDate: z.string().nullable(), ownerName: z.string().nullable(), ownerTitle: z.string().nullable(), transactionType: z.string().nullable(), securitiesTransacted: z.number().nullable(), transactionPrice: z.number().nullable(), sharesHeld: z.number().nullable() });
 const openbbInsiderSchema = z.object({ symbol: z.string(), rows: z.array(openbbInsiderRowSchema) });
 const openbbCotMarketSchema = z.object({ label: z.string(), code: z.string().nullable(), marketName: z.string().nullable(), latestDate: z.string().nullable(), openInterest: z.number().nullable(), nonCommercialNet: z.number().nullable(), commercialNet: z.number().nullable(), nonReportableNet: z.number().nullable() });
+// Engine snapshot header (equity-snapshot-v1) — the workspace engine's own
+// freshness record for the bundles, read alongside the bundle through the
+// same privileged reader. Fields are exposed verbatim (snake_case, exactly
+// as published); snapshotAgeMs is computed at read time from
+// generated_at_utc. Null when the snapshot file is missing or unparseable.
+const engineSnapshotSchema = z.object({
+  schema: z.string().nullable(),
+  generated_at_utc: z.string().nullable(),
+  equity_bundle_fetched_at_utc: z.string().nullable(),
+  deribit_bundle_fetched_at_utc: z.string().nullable(),
+  equity_sections: z.record(z.string(), z.string()),
+  equity_errors: z.array(z.string()),
+  source: z.string().nullable(),
+  snapshotAgeMs: z.number().nullable(),
+});
+type EngineSnapshot = z.infer<typeof engineSnapshotSchema>;
+
+function parseEngineSnapshot(raw: unknown, nowMs: number): EngineSnapshot | null {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+  const snap = unknownRecord(raw);
+  const strOrNull = (value: unknown): string | null => typeof value === "string" && value ? value : null;
+  const generatedAtUtc = strOrNull(snap.generated_at_utc);
+  const generatedMs = generatedAtUtc ? Date.parse(generatedAtUtc) : NaN;
+  const sectionsRaw = unknownRecord(snap.equity_sections);
+  const sections: Record<string, string> = {};
+  for (const [key, value] of Object.entries(sectionsRaw)) sections[key] = typeof value === "string" ? value : String(value);
+  const errorsRaw = Array.isArray(snap.equity_errors) ? snap.equity_errors : [];
+  const errors = errorsRaw.map((value) => typeof value === "string" ? value : JSON.stringify(value) ?? String(value));
+  return {
+    schema: strOrNull(snap.schema),
+    generated_at_utc: generatedAtUtc,
+    equity_bundle_fetched_at_utc: strOrNull(snap.equity_bundle_fetched_at_utc),
+    deribit_bundle_fetched_at_utc: strOrNull(snap.deribit_bundle_fetched_at_utc),
+    equity_sections: sections,
+    equity_errors: errors,
+    source: strOrNull(snap.source),
+    snapshotAgeMs: Number.isFinite(generatedMs) ? Math.max(0, nowMs - generatedMs) : null,
+  };
+}
+
 const openbbEquityResponse = z.object({
   status: z.enum(["available", "unavailable"]),
   fetchedAtUtc: z.string().nullable(),
@@ -5018,17 +5302,25 @@ const openbbEquityResponse = z.object({
   insiderTrading: z.array(openbbInsiderSchema),
   cotMarkets: z.array(openbbCotMarketSchema),
   cotErrors: z.array(z.object({ key: z.string(), message: z.string() })),
+  engineSnapshot: engineSnapshotSchema.nullable(),
   error: z.string().nullable(),
 });
 type OpenbbEquityResponse = z.infer<typeof openbbEquityResponse>;
 
 async function readOpenbbEquity(ctx: Ctx): Promise<OpenbbEquityResponse> {
-  const unavailable = (error: string): OpenbbEquityResponse => ({ status: "unavailable", fetchedAtUtc: null, source: null, layer: null, indexes: [], optionsChains: [], insiderTrading: [], cotMarkets: [], cotErrors: [], error });
+  const unavailable = (error: string, engineSnapshot: EngineSnapshot | null): OpenbbEquityResponse => ({ status: "unavailable", fetchedAtUtc: null, source: null, layer: null, indexes: [], optionsChains: [], insiderTrading: [], cotMarkets: [], cotErrors: [], engineSnapshot, error });
   let provider: { ok: boolean; data: unknown | null; error: string | null } | null = null;
   try { provider = await ctx.executePrivileged(privileged.openbbEquityFile, {}); }
-  catch { return unavailable("The OpenBB equity bundle file could not be read from the workspace."); }
-  if (!provider?.ok || provider.data == null) return unavailable(provider?.error ?? "The OpenBB equity bundle file could not be read from the workspace.");
-  const root = unknownRecord(provider.data);
+  catch { return unavailable("The OpenBB equity bundle file could not be read from the workspace.", null); }
+  if (provider?.data == null) return unavailable(provider?.error ?? "The OpenBB equity bundle file could not be read from the workspace.", null);
+  // The privileged reader returns {"bundle": ..., "snapshot": ...}; tolerate
+  // the legacy bare-bundle shape by treating it as a bundle with no snapshot.
+  const dataRoot = unknownRecord(provider.data);
+  const hasWrapper = "bundle" in dataRoot || "snapshot" in dataRoot;
+  const bundleRaw: unknown = hasWrapper ? dataRoot.bundle : provider.data;
+  const engineSnapshot = parseEngineSnapshot(hasWrapper ? dataRoot.snapshot : null, Date.now());
+  if (!provider.ok || bundleRaw == null) return unavailable(provider.error ?? "The OpenBB equity bundle file could not be read from the workspace.", engineSnapshot);
+  const root = unknownRecord(bundleRaw);
   const sections = unknownRecord(root.sections);
   const numOrNull = (value: unknown): number | null => typeof value === "number" && Number.isFinite(value) ? value : null;
   const strOrNull = (value: unknown): string | null => typeof value === "string" && value ? value : null;
@@ -5083,7 +5375,7 @@ async function readOpenbbEquity(ctx: Ctx): Promise<OpenbbEquityResponse> {
   });
   const rawErrors = root.errors && typeof root.errors === "object" && !Array.isArray(root.errors) ? root.errors as Record<string, unknown> : {};
   const cotErrors = Object.entries(rawErrors).map(([key, value]) => ({ key, message: typeof value === "string" ? value : String(value) }));
-  return { status: "available", fetchedAtUtc: strOrNull(root.fetched_at_utc), source: strOrNull(root.source), layer: strOrNull(root.layer), indexes, optionsChains, insiderTrading, cotMarkets, cotErrors, error: null };
+  return { status: "available", fetchedAtUtc: strOrNull(root.fetched_at_utc), source: strOrNull(root.source), layer: strOrNull(root.layer), indexes, optionsChains, insiderTrading, cotMarkets, cotErrors, engineSnapshot, error: null };
 }
 
 const sourceHealthRowSchema = z.object({ source: z.string(), lastSuccessAt: z.string().nullable(), freshness: z.string(), errorCount: z.number().nullable(), lastError: z.string().nullable(), quotaRemaining: z.string().nullable(), fallbackStatus: z.string().nullable() });
@@ -5200,7 +5492,7 @@ const equityBoardRowSchema = z.object({
 const equityOpportunityBoardResponse = z.object({
   generatedAt: z.string(),
   partial: z.boolean(), partialNote: z.string().nullable(),
-  run: z.object({ id: z.number(), status: z.string(), universe: z.enum(["sp100", "sp500"]), createdAt: z.string(), dataThroughSession: z.string().nullable() }).nullable(),
+  run: z.object({ id: z.number(), status: z.string(), universe: z.enum(["sp100", "sp500"]), createdAt: z.string(), dataThroughSession: z.string().nullable(), marketDataSession: z.string().nullable(), analysisTime: z.string().nullable(), completionTime: z.string().nullable(), sessionStale: z.boolean() }).nullable(),
   latestRun: z.object({ id: z.number(), status: z.string() }).nullable(),
   volRegime: z.object({ status: z.enum(["available", "unavailable"]), summary: z.string() }),
   cot: z.object({ status: z.enum(["available", "unavailable"]), reportDate: z.string().nullable(), summary: z.string() }),
@@ -5258,8 +5550,23 @@ async function buildEquityOpportunityBoard(ctx: Ctx): Promise<EquityOpportunityB
   for (const row of trackedRows) trackedBySymbol.set(row.symbol, [...(trackedBySymbol.get(row.symbol) ?? []), row]);
   const verdictBySignal = new Map(verdictRows.map((row) => [row.signalId, row]));
   const signals = boardRun ? await db.select().from(schema.marketScanSignals).where(eq(schema.marketScanSignals.runId, boardRun.id)).orderBy(desc(schema.marketScanSignals.rankScore)) : [];
+  // Completed-session close fallback (scan/resume repair): the freshness
+  // polling set is bounded to tracked/watched names, so most board rows had
+  // no price at all even though the scan itself stored every name's full
+  // history. The latest completed bar from that stored history supplies the
+  // row's completed-session close — dated by its own session, never
+  // presented as a live quote (the quote field stays polling-lane only).
+  const historyRows = signals.length ? await db.select().from(schema.historicalCaches).where(inArray(schema.historicalCaches.symbol, signals.map((row) => row.symbol))) : [];
+  const scanCloseBySymbol = new Map<string, { date: string; close: number }>();
+  for (const row of historyRows) {
+    const series = parseCachedSeries(row.seriesJson, row.sourceUrl, row.fetchedAt);
+    if (!series) continue;
+    const lastCompleted = completedDailyPoints(series.points, new Date(), series.retrievedAt).at(-1);
+    if (lastCompleted) scanCloseBySymbol.set(row.symbol, { date: lastCompleted.date, close: lastCompleted.close });
+  }
   const runSectors = boardRun ? sectorRows.filter((row) => row.runId === boardRun.id) : [];
-  const dataThrough = boardRun?.dataThroughSession ?? boardSessionDate(signals.map((row) => row.sourceAsOf).filter((value): value is string => value != null).sort().at(-1) ?? null);
+  const boardBatch = boardRun ? batchByRun.get(boardRun.id) ?? null : null;
+  const dataThrough = boardBatch?.dataThroughSession ?? boardRun?.dataThroughSession ?? boardSessionDate(signals.map((row) => row.sourceAsOf).filter((value): value is string => value != null).sort().at(-1) ?? null);
 
   const rows: EquityOpportunityBoardResponse["rows"] = [];
   for (const signal of signals) {
@@ -5279,19 +5586,23 @@ async function buildEquityOpportunityBoard(ctx: Ctx): Promise<EquityOpportunityB
     const quoteStale = !!quoteInput && (quoteInput.stale || quoteInput.state === "stale");
     if (quoteMissing) noData.push(explain("Current quote", quoteInput, inPollingSet ? "provider failure" : "not applicable"));
     else if (quoteStale) noData.push(explain("Current quote", quoteInput, "stale"));
-    const candleMissing = !candleInput || candleInput.close == null;
-    const candleSessionDate = boardSessionDate(candleInput?.eventAt);
+    // The scan-stored history close stands in only when the polling lane has
+    // no completed candle for this name; it carries its own session date.
+    const scanClose = candleInput?.close == null ? scanCloseBySymbol.get(symbol) ?? null : null;
+    const candleMissing = (!candleInput || candleInput.close == null) && scanClose == null;
+    const candleSessionDate = boardSessionDate(candleInput?.eventAt) ?? scanClose?.date ?? null;
     // A completed candle pinned to an older session than the board's
     // data-through session is stale for this name even when the lane still
     // holds the bar as its latest stored completed bar (the BAC case: candle
     // at the 2026-10-16 session while peers sit on 2026-10-19).
-    const candleSessionLag = candleSessionDate != null && dataThrough != null && candleSessionDate < dataThrough;
-    const candleStale = !!candleInput && (candleInput.stale || candleInput.state === "stale" || candleSessionLag);
+    const candleSessionLag = isCompletedSessionRowStale(candleSessionDate, dataThrough);
+    const candleStale = scanClose != null ? candleSessionLag : !!candleInput && (candleInput.stale || candleInput.state === "stale" || candleSessionLag);
     if (candleMissing) noData.push(explain("Completed daily candle", candleInput, inPollingSet ? "provider failure" : "not applicable"));
+    else if (scanClose != null && candleSessionLag) noData.push({ metric: "Completed daily candle", symbol, primarySource: "Yahoo Finance public chart · scan-stored history", fallback: null, lastAttemptAt: signal.sourceAsOf, lastSuccessAt: signal.sourceAsOf, result: `Stale — the completed-session close shown is from the scan's stored history, pinned at the ${candleSessionDate} session while the board's data-through session is ${dataThrough}; it is shown with its own session date and never as the current completed session.`, nextRetry: "With the next completed scan run.", classification: "stale" });
     else if (candleStale) noData.push(explain("Completed daily candle", candleInput, "stale", candleSessionLag && !candleInput?.stale && candleInput?.state !== "stale", candleSessionLag ? `Stale — the completed candle is pinned at the ${candleSessionDate} session while the board's data-through session is ${dataThrough}; it is shown with its own session date and never as the current completed session.` : undefined));
     const staleReasons: string[] = [];
     if (quoteStale) staleReasons.push(`quote event ${quoteInput?.eventAt ?? "unknown"}`);
-    if (candleStale) staleReasons.push(`completed candle event ${candleInput?.eventAt ?? "unknown"}`);
+    if (candleStale) staleReasons.push(scanClose != null ? `completed candle session ${candleSessionDate ?? "unknown"} (scan-stored history)` : `completed candle event ${candleInput?.eventAt ?? "unknown"}`);
     const marketRead = marketReadBySymbol.get(symbol) ?? null;
     const chartRead = marketRead
       ? { direction: marketRead.direction, score: marketRead.score, sessionDate: marketRead.sessionDate, source: "stored dossier market read" }
@@ -5323,7 +5634,7 @@ async function buildEquityOpportunityBoard(ctx: Ctx): Promise<EquityOpportunityB
       direction: signal.direction, score: signal.agreementScore, confidenceTier: signal.confidenceTier,
       population: "issued",
       quote: { price: quoteInput?.value ?? null, eventAt: quoteInput?.eventAt ?? null, state: quoteInput?.state ?? "not_available", stale: quoteStale },
-      completedSession: { date: boardSessionDate(candleInput?.eventAt) ?? boardSessionDate(signal.sourceAsOf), close: candleInput?.close ?? null, eventAt: candleInput?.eventAt ?? null, state: candleSessionLag ? "stale" : candleInput?.state ?? "not_available", stale: candleStale },
+      completedSession: { date: candleSessionDate ?? boardSessionDate(signal.sourceAsOf), close: candleInput?.close ?? scanClose?.close ?? null, eventAt: candleInput?.eventAt ?? null, state: candleSessionLag ? "stale" : candleInput?.state ?? (scanClose ? "market_closed" : "not_available"), stale: candleStale },
       chartRead,
       sectorContext,
       businessEvidence: { present: evidence.state === "available" && evidence.items.length > 0, form: evidenceLatest?.form ?? null, filedDate: evidenceLatest?.filedDate ?? null, source: evidence.items[0]?.source ?? null, count: evidence.items.length },
@@ -5345,7 +5656,7 @@ async function buildEquityOpportunityBoard(ctx: Ctx): Promise<EquityOpportunityB
     : "CFTC COT stamp unavailable in this read; the COT strip in Research reads the official file directly.";
   return {
     generatedAt, partial, partialNote,
-    run: boardRun ? { id: boardRun.id, status: boardRun.status, universe: boardRun.universe, createdAt: boardRun.createdAt.toISOString(), dataThroughSession: dataThrough } : null,
+    run: boardRun ? { id: boardRun.id, status: boardRun.status, universe: boardRun.universe, createdAt: boardRun.createdAt.toISOString(), dataThroughSession: dataThrough, marketDataSession: dataThrough, analysisTime: boardRun.computedAt?.toISOString() ?? null, completionTime: boardRun.completedAt?.toISOString() ?? (boardBatch?.stage === "done" ? boardBatch.completedAt?.toISOString() ?? null : null), sessionStale: isCompletedSessionStale(dataThrough, generatedAt) } : null,
     latestRun: latestRun ? { id: latestRun.id, status: latestRun.status } : null,
     volRegime: { status: vol && vol.status === "available" ? "available" : "unavailable", summary: volSummary },
     cot: { status: cot && cot.status === "available" ? "available" : "unavailable", reportDate: cot?.reportDate ?? null, summary: cotSummary },
@@ -5353,7 +5664,260 @@ async function buildEquityOpportunityBoard(ctx: Ctx): Promise<EquityOpportunityB
   };
 }
 
+// ---------------------------------------------------------------------------
+// Named-batch verification + operating result (2026-10-26 repair).
+//
+// getScanBatch is a pure read: it reports the batch a caller named, or a
+// clear mismatch, and it creates nothing — verification must never start a
+// scan as a side effect. getEquityOperatingResult is the one operating
+// result for this terminal, assembled only from stored records: last
+// completed scan and its dispositions, latest qualifying setup or the
+// actual reasons none qualified, issued positions and enrollment
+// discrepancies, monitoring/settlement coverage, runtime health, the
+// build identifiers for the applied fixes, and the next scheduled
+// reconciliation (daily postmortem, 06:46 America/Toronto).
+const namedScanBatchResponse = z.object({
+  status: z.enum(["matched", "mismatch"]),
+  requestedBatchId: z.number().int().positive(),
+  reason: z.enum(["matched", "not_found", "superseded", "run_id_not_batch_id"]),
+  message: z.string(),
+  scanBatchId: z.number().nullable(),
+  scanRunId: z.number().nullable(),
+  correctBatchIdForRunId: z.number().nullable(),
+  newestScanBatchId: z.number().nullable(),
+  stage: z.string().nullable(),
+  processedCount: z.number().nullable(),
+  cycleKey: z.string().nullable(),
+  dataThroughSession: z.string().nullable(),
+  completedAt: z.string().nullable(),
+  createdAt: z.string().nullable(),
+  buildId: z.string(),
+});
+type NamedScanBatchResponse = z.infer<typeof namedScanBatchResponse>;
+
+async function verifyNamedScanBatch(ctx: Ctx, universe: "sp100" | "sp500", requestedBatchId: number): Promise<NamedScanBatchResponse> {
+  const db = ctx.db<typeof schema>();
+  const batches = await db.select().from(schema.scanBatchRuns).where(eq(schema.scanBatchRuns.universe, universe)).orderBy(desc(schema.scanBatchRuns.id));
+  // Reporting semantics differ from resume semantics: a verification read
+  // reports the named batch itself whenever it exists — including a
+  // completed older batch — and never substitutes a different batch's
+  // record for it. Only a missing id or a run-id/batch-id confusion is a
+  // mismatch here. (Resuming a superseded batch remains refused in the
+  // scan loader, via resolveNamedScanBatch.)
+  const direct = batches.find((row) => row.id === requestedBatchId);
+  if (direct) {
+    const newestId = batches[0]?.id ?? direct.id;
+    return {
+      status: "matched", requestedBatchId, reason: "matched",
+      message: direct.id === newestId
+        ? `Scan batch ${direct.id} (scan run ${direct.runId}) is the newest scan batch for ${universe}; run id and batch id are distinct and both are reported here. This verification read created nothing.`
+        : `Scan batch ${direct.id} (scan run ${direct.runId}) is reported exactly as named. It is superseded by newer scan batch ${newestId} for resume purposes — a resume request naming it would fail explicitly rather than substitute batch ${newestId} — but its own record is reported here, not another batch's. This verification read created nothing.`,
+      scanBatchId: direct.id, scanRunId: direct.runId, correctBatchIdForRunId: null,
+      newestScanBatchId: newestId, stage: direct.stage, processedCount: direct.processedCount,
+      cycleKey: direct.cycleKey, dataThroughSession: direct.dataThroughSession,
+      completedAt: direct.completedAt?.toISOString() ?? null, createdAt: direct.createdAt.toISOString(),
+      buildId: NAMED_BATCH_PATCH_BUILD_ID,
+    };
+  }
+  const resolution = resolveNamedScanBatch(batches, requestedBatchId);
+  if (resolution.status === "matched") {
+    const batch = resolution.batch;
+    return {
+      status: "matched", requestedBatchId, reason: "matched",
+      message: `Scan batch ${batch.id} (scan run ${batch.runId}) is the newest scan batch for ${universe}; run id and batch id are distinct and both are reported here. This verification read created nothing.`,
+      scanBatchId: batch.id, scanRunId: batch.runId, correctBatchIdForRunId: null,
+      newestScanBatchId: batch.id, stage: batch.stage, processedCount: batch.processedCount,
+      cycleKey: batch.cycleKey, dataThroughSession: batch.dataThroughSession,
+      completedAt: batch.completedAt?.toISOString() ?? null, createdAt: batch.createdAt.toISOString(),
+      buildId: NAMED_BATCH_PATCH_BUILD_ID,
+    };
+  }
+  const runOwned = resolution.reason === "run_id_not_batch_id" ? batches.find((row) => row.id === resolution.correctBatchIdForRunId) : undefined;
+  return {
+    status: "mismatch", requestedBatchId, reason: resolution.reason, message: `${resolution.message} This verification read created nothing.`,
+    scanBatchId: null, scanRunId: runOwned ? runOwned.runId : null, correctBatchIdForRunId: resolution.correctBatchIdForRunId,
+    newestScanBatchId: resolution.newestBatchId, stage: null, processedCount: null,
+    cycleKey: null, dataThroughSession: null, completedAt: null, createdAt: null,
+    buildId: NAMED_BATCH_PATCH_BUILD_ID,
+  };
+}
+
+function nextDailyTorontoRun(now: Date, hour: number, minute: number): Date {
+  // Next wall-clock hour:minute in America/Toronto strictly after `now`,
+  // resolved by fixed-point offset correction (Toronto is UTC-4 in EDT,
+  // UTC-5 in EST; two refinement passes settle either case).
+  const torontoDate = (instant: Date) => new Intl.DateTimeFormat("en-CA", { timeZone: "America/Toronto", year: "numeric", month: "2-digit", day: "2-digit" }).format(instant);
+  for (let addDays = 0; addDays < 3; addDays++) {
+    const base = new Date(`${torontoDate(now)}T00:00:00.000Z`);
+    const target = new Date(base.getTime() + addDays * 86_400_000);
+    const [y = 1970, m = 1, d = 1] = [target.getUTCFullYear(), target.getUTCMonth() + 1, target.getUTCDate()];
+    let guess = new Date(Date.UTC(y, m - 1, d, hour + 4, minute));
+    for (let pass = 0; pass < 2; pass++) {
+      const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/Toronto", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(guess);
+      const gh = Number(parts.find((p) => p.type === "hour")?.value ?? hour);
+      const gm = Number(parts.find((p) => p.type === "minute")?.value ?? minute);
+      const deltaMinutes = (hour * 60 + minute) - (gh * 60 + gm);
+      if (deltaMinutes === 0) break;
+      guess = new Date(guess.getTime() + deltaMinutes * 60_000);
+    }
+    if (guess.getTime() > now.getTime()) return guess;
+  }
+  return new Date(now.getTime() + 24 * 60 * 60 * 1000);
+}
+
+const equityOperatingResultResponse = z.object({
+  generatedAt: z.string(),
+  buildIds: z.object({ signalBuildId: z.string(), namedBatchPatchBuildId: z.string() }),
+  lastCompletedScan: z.object({
+    scanRunId: z.number(), scanBatchId: z.number(), universe: z.string(), status: z.string(),
+    marketDataSession: z.string().nullable(), analysisTime: z.string().nullable(), completionTime: z.string().nullable(),
+    cycleKey: z.string().nullable(), processedCount: z.number(), totalSymbols: z.number(),
+    evaluated: z.number(), emitted: z.number(), suppressed: z.number(), excluded: z.number(), failed: z.number(),
+    note: z.string(),
+  }).nullable(),
+  latestQualifying: z.object({
+    created: z.array(z.string()), candidateCount: z.number(),
+    reasonsNoneQualified: z.array(z.string()),
+    latestPassId: z.number().nullable(), latestPassAt: z.string().nullable(),
+  }),
+  issuedPositions: z.object({
+    cohortCap: z.number(), cohortFilled: z.number(), cohortPending: z.number(), expiredUnfilled: z.number(),
+    enrollmentDiscrepancies: z.array(z.string()),
+  }),
+  monitoringSettlementCoverage: z.object({
+    trackedCount: z.number(), openCount: z.number(), settledCount: z.number(), pendingCount: z.number(), unknownCount: z.number(),
+    latestBriefDay: z.string().nullable(), latestBriefSummary: z.string().nullable(),
+    postmortemReceipt: z.object({ status: z.string(), invokedAt: z.string(), completedAt: z.string().nullable(), runId: z.string() }).nullable(),
+  }),
+  runtimeHealth: z.object({
+    issuanceHalted: z.boolean(), haltReason: z.string().nullable(), leaseActive: z.boolean(), stateUpdatedAt: z.string().nullable(),
+    scanOverdue: z.boolean(), interventionNeeded: z.string().nullable(),
+    schedulerJobs: z.array(z.object({ jobKey: z.string(), jobName: z.string(), status: z.string().nullable(), invokedAt: z.string().nullable(), completedAt: z.string().nullable() })),
+  }),
+  nextScheduledReconciliation: z.object({ jobName: z.string(), schedule: z.string(), nextRunAt: z.string() }),
+  pendingObservations: z.object({ firstNewEntry: z.string(), firstNewSettlement: z.string() }),
+  acceptanceScope: z.string(),
+});
+type EquityOperatingResult = z.infer<typeof equityOperatingResultResponse>;
+
+async function buildEquityOperatingResult(ctx: Ctx): Promise<EquityOperatingResult> {
+  const db = ctx.db<typeof schema>();
+  const now = new Date();
+  const [batches, issuance, scheduler, liveState, briefs] = await Promise.all([
+    db.select().from(schema.scanBatchRuns).orderBy(desc(schema.scanBatchRuns.id)),
+    // Reuse the stored-read handler logic through the same tables.
+    (async () => {
+      const [state, signals, passes] = await Promise.all([readPaperIssuanceState(ctx), db.select().from(schema.trackedSignals), db.select().from(schema.equityPaperIssuancePasses)]);
+      return { state, signals, passes };
+    })(),
+    readSchedulerInvocations(ctx),
+    readLiveTrackerState(ctx).catch(() => null),
+    db.select().from(schema.signalDailyBriefs).orderBy(desc(schema.signalDailyBriefs.sourceAsOf)).limit(1),
+  ]);
+  const completedBatch = batches.find((batch) => batch.stage === "done") ?? null;
+  let lastCompletedScan: EquityOperatingResult["lastCompletedScan"] = null;
+  let lastScanOverdue = false;
+  if (completedBatch) {
+    const runRows = await db.select().from(schema.marketScanRuns).where(eq(schema.marketScanRuns.id, completedBatch.runId)).limit(1);
+    const run = runRows[0];
+    const diagnostics = run ? await db.select().from(schema.marketScanSymbolDiagnostics).where(eq(schema.marketScanSymbolDiagnostics.runId, run.id)) : [];
+    const entries = parseScanBatchEntries(completedBatch.symbolListJson);
+    const countOutcome = (outcome: string) => diagnostics.filter((row) => row.outcome === outcome).length;
+    lastCompletedScan = {
+      scanRunId: completedBatch.runId, scanBatchId: completedBatch.id,
+      universe: completedBatch.universe, status: run?.status ?? "unknown",
+      marketDataSession: completedBatch.dataThroughSession ?? run?.dataThroughSession ?? null,
+      analysisTime: run?.computedAt?.toISOString() ?? null,
+      completionTime: (run?.completedAt ?? completedBatch.completedAt)?.toISOString() ?? null,
+      cycleKey: completedBatch.cycleKey, processedCount: completedBatch.processedCount,
+      totalSymbols: entries.filter((entry) => entry.shouldScan).length,
+      evaluated: diagnostics.length, emitted: countOutcome("emitted"), suppressed: countOutcome("suppressed"),
+      excluded: countOutcome("excluded"), failed: countOutcome("failed"),
+      note: run?.note ?? "No scan-run note stored for the latest completed batch.",
+    };
+    lastScanOverdue = run ? isScanRunOverdue({ lastSuccessAt: run.lastSuccessAt ?? null, dataThroughSession: lastCompletedScan.marketDataSession, now }) : false;
+  }
+  const sortedPasses = [...issuance.passes].sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime() || b.id - a.id);
+  const latestPass = sortedPasses[0] ?? null;
+  const latestCreated = latestPass ? parsePaperIssuanceList<z.infer<typeof paperIssuanceCreatedShape>>(latestPass.createdJson) : [];
+  const reasonsNoneQualified: string[] = [];
+  if (latestPass && !latestCreated.length) {
+    for (const row of parsePaperIssuanceList<z.infer<typeof paperIssuanceSkipShape>>(latestPass.skippedCapacityJson)) reasonsNoneQualified.push(`capacity: ${row.symbol} — ${row.reason}`);
+    for (const row of parsePaperIssuanceList<z.infer<typeof paperIssuanceSkipShape>>(latestPass.skippedDuplicatesJson)) reasonsNoneQualified.push(`duplicate: ${row.symbol} — ${row.reason}`);
+    for (const row of parsePaperIssuanceList<z.infer<typeof paperIssuanceSkipShape>>(latestPass.declinedJson)) reasonsNoneQualified.push(`declined: ${row.symbol} — ${row.reason}`);
+    if (!reasonsNoneQualified.length) reasonsNoneQualified.push(latestPass.halted ? `Issuance halted in the latest pass: ${latestPass.haltReason ?? "halt reason not stored"}` : "The latest completed scan batch produced no directional candidate whose stored issuance packet allowed issuance; no setup was created and none was forced.");
+  }
+  let filled = 0; let pending = 0; let expiredUnfilled = 0;
+  const discrepancies: string[] = [];
+  for (const signal of issuance.signals) {
+    if (!isFillRuleSignal(signal)) continue;
+    if (signal.entryState === "filled") filled++;
+    else if (signal.entryState === "pending_entry") pending++;
+    else if (signal.entryState === "expired_unfilled") expiredUnfilled++;
+  }
+  if (filled + pending > PAPER_ISSUANCE_COHORT_CAP) discrepancies.push(`Cohort over cap: ${filled} filled + ${pending} pending exceeds the ${PAPER_ISSUANCE_COHORT_CAP}-position cap.`);
+  // Enrollment discrepancies: a pass that claims a creation must link to a
+  // durable tracked signal. A created entry with no signal id, or whose
+  // signal id is absent from the ledger, is a discrepancy; count movement
+  // between passes (fills, expiries, settlements) is not.
+  const signalIds = new Set(issuance.signals.map((signal) => signal.id));
+  for (const entry of latestCreated) {
+    if (entry.signalId == null) discrepancies.push(`Latest pass ${latestPass?.id ?? "?"} created ${entry.symbol} (candidate ${entry.candidateId}) with no tracked-signal id recorded.`);
+    else if (!signalIds.has(entry.signalId)) discrepancies.push(`Latest pass ${latestPass?.id ?? "?"} created ${entry.symbol} as tracked signal ${entry.signalId}, but that signal is absent from the tracked-signal ledger.`);
+  }
+  const postmortemJob = scheduler.jobs.find((job) => job.jobKey === "signal_postmortem")?.latest ?? null;
+  const state = issuance.state;
+  const leaseActive = !!(state?.leaseToken && state.leaseExpiresAt && state.leaseExpiresAt.getTime() > now.getTime());
+  const scanOverdue = lastScanOverdue;
+  const interventionNeeded = state?.halted
+    ? `Issuance is halted: ${state.haltReason ?? "halt reason not stored"}. Monitoring continues; the halt clears only on a later pass whose reconcile completes successfully — do not rerun blindly.`
+    : leaseActive
+      ? "An issuance lease is currently active; a concurrent pass would issue nothing. No intervention unless the lease outlives its 10-minute expiry without a completing pass."
+      : null;
+  const brief = briefs[0] ?? null;
+  return {
+    generatedAt: now.toISOString(),
+    buildIds: { signalBuildId: SIGNAL_BUILD_ID, namedBatchPatchBuildId: NAMED_BATCH_PATCH_BUILD_ID },
+    lastCompletedScan,
+    latestQualifying: {
+      created: latestCreated.map((row) => row.symbol),
+      candidateCount: latestCreated.length,
+      reasonsNoneQualified,
+      latestPassId: latestPass?.id ?? null,
+      latestPassAt: latestPass?.createdAt.toISOString() ?? null,
+    },
+    issuedPositions: { cohortCap: PAPER_ISSUANCE_COHORT_CAP, cohortFilled: filled, cohortPending: pending, expiredUnfilled, enrollmentDiscrepancies: discrepancies },
+    monitoringSettlementCoverage: {
+      trackedCount: liveState?.trackedCount ?? 0, openCount: liveState?.openCount ?? 0, settledCount: liveState?.settledCount ?? 0,
+      pendingCount: liveState?.pendingCount ?? pending, unknownCount: liveState?.unknownCount ?? 0,
+      latestBriefDay: brief?.capturedDay ?? null, latestBriefSummary: brief?.summary ?? null,
+      postmortemReceipt: postmortemJob ? { status: postmortemJob.status, invokedAt: postmortemJob.invokedAt, completedAt: postmortemJob.completedAt, runId: postmortemJob.runId } : null,
+    },
+    runtimeHealth: {
+      issuanceHalted: state?.halted ?? false, haltReason: state?.haltReason ?? null, leaseActive,
+      stateUpdatedAt: state?.updatedAt?.toISOString() ?? null, scanOverdue,
+      interventionNeeded,
+      schedulerJobs: scheduler.jobs.map((job) => ({ jobKey: job.jobKey, jobName: job.jobName, status: job.latest?.status ?? null, invokedAt: job.latest?.invokedAt ?? null, completedAt: job.latest?.completedAt ?? null })),
+    },
+    nextScheduledReconciliation: { jobName: "equity-signal-daily-postmortem", schedule: "daily 06:46 America/Toronto", nextRunAt: nextDailyTorontoRun(now, 6, 46).toISOString() },
+    pendingObservations: {
+      firstNewEntry: latestCreated.length ? `Observed in latest pass ${latestPass?.id ?? ""}: ${latestCreated.map((row) => row.symbol).join(", ")}.` : "PENDING — first new entry: no setup was created by the latest recorded pass; this observation stays open by name until a post-repair pass creates one.",
+      firstNewSettlement: "PENDING — first new settlement: no settlement first observed after this repair has been recorded yet; this observation stays open by name and does not block other repairs.",
+    },
+    acceptanceScope: "Initial operational acceptance only: this result reports stored coverage and runtime health at generation time. It is not permanent reliability and not trading edge. A scheduled run that correctly produces no entry is a successful run.",
+  };
+}
+
 export const Actions = {
+  getScanBatch: defineAction({
+    request: z.object({ universe: z.enum(["sp100", "sp500"]).default("sp100"), batchId: z.number().int().positive() }),
+    response: namedScanBatchResponse,
+    async handler(ctx, args): Promise<NamedScanBatchResponse> { return verifyNamedScanBatch(ctx, args.universe, args.batchId); },
+  }),
+  getEquityOperatingResult: defineAction({
+    request: z.object({}), response: equityOperatingResultResponse,
+    async handler(ctx): Promise<EquityOperatingResult> { return buildEquityOperatingResult(ctx); },
+  }),
   getEquityOpportunityBoard: defineAction({ request: z.object({}), response: equityOpportunityBoardResponse, async handler(ctx): Promise<EquityOpportunityBoardResponse> { return buildEquityOpportunityBoard(ctx); } }),
   // EQ-2 read-back (additive action only — no existing action's output shape
   // changes, and no UI surface reads the shadow store). Returns the most
@@ -5834,9 +6398,9 @@ export const Actions = {
     },
   }),
   runautomatedscanbatch: defineAction({
-    request: z.object({ universe: z.enum(["sp100", "sp500"]), trigger: z.enum(["manual", "scheduled"]).default("manual"), maxSymbols: z.number().int().min(1).max(15).default(10) }), response: automatedScanBatchResponse,
+    request: z.object({ universe: z.enum(["sp100", "sp500"]), trigger: z.enum(["manual", "scheduled"]).default("manual"), maxSymbols: z.number().int().min(1).max(15).default(10), batchRunId: z.number().int().positive().optional() }), response: automatedScanBatchResponse,
     async handler(ctx, args): Promise<z.infer<typeof automatedScanBatchResponse>> {
-      const work = () => runAutomatedScanBatch(ctx, { universe: args.universe, maxSymbols: args.maxSymbols });
+      const work = () => runAutomatedScanBatch(ctx, { universe: args.universe, maxSymbols: args.maxSymbols, batchRunId: args.batchRunId ?? null });
       return args.trigger === "scheduled" ? withSchedulerReceipt(ctx, "discovery_scan", work) : work();
     },
   }),
@@ -6122,6 +6686,8 @@ ${evidenceText}`, { schema: completePictureInferenceSchema }); } catch { /* dete
   runDeepAnalysis: defineAction({ request: z.object({ symbol: z.string().min(1).max(30), coinId: z.string().max(80).optional(), name: z.string().max(160).optional(), referenceMultiple: z.number().positive().max(100).nullable().optional() }), response: deepAnalysisResponse.extend({ resolvedCoinId: z.string() }), async handler(ctx, args): Promise<z.infer<typeof deepAnalysisResponse> & { resolvedCoinId: string }> { const result = await deepAnalysis(ctx, args.symbol, args.referenceMultiple ?? null); return { ...result, resolvedCoinId: args.coinId?.trim() || args.symbol.trim().toUpperCase() }; } }),
   searchInstruments: defineAction({ request: z.object({ query: z.string().trim().min(2).max(80) }), response: instrumentSearchResponse, async handler(_ctx, args): Promise<z.infer<typeof instrumentSearchResponse>> { return searchYahooInstruments(args.query); } }),
   getAssetContext: defineAction({ request: z.object({ symbol: z.string().min(1).max(30) }), response: assetContextResponse, async handler(ctx, args): Promise<AssetContext> { return buildAssetContext(ctx, args.symbol); } }),
+  getCompanyProfile: defineAction({ request: z.object({ symbol: z.string().min(1).max(30) }), response: companyProfileSchema, async handler(ctx, args): Promise<CompanyProfile> { return fetchCompanyProfile(ctx, args.symbol); } }),
+  getCompanyProfiles: defineAction({ request: z.object({ symbols: z.array(z.string().min(1).max(30)).max(40) }), response: companyProfilesResponse, async handler(ctx, args): Promise<z.infer<typeof companyProfilesResponse>> { const resolved = await resolveStoredCompanyInfo(ctx, args.symbols); return { profiles: [...resolved.values()], generatedAt: new Date().toISOString() }; } }),
   getAssetContexts: defineAction({ request: z.object({ symbols: z.array(z.string().min(1).max(30)).max(25) }), response: z.object({ contexts: z.array(assetContextResponse), generatedAt: z.string() }), async handler(ctx, args): Promise<{ contexts: AssetContext[]; generatedAt: string }> { const symbols = [...new Set(args.symbols.map(canonicalAssetSymbol))]; return { contexts: await Promise.all(symbols.map((symbol) => buildAssetContext(ctx, symbol))), generatedAt: new Date().toISOString() }; } }),
   saveAssetProfile: defineAction({
     request: z.object({ symbol: z.string().min(1).max(30), canonicalName: z.string().min(1).max(160), instrumentType: z.enum(["equity", "crypto", "future", "fund", "other"]), instrumentDetail: z.string().min(1).max(500), description: z.string().min(1).max(1200), revenueModel: z.string().min(1).max(1200), sourceTitle: z.string().min(1).max(300), sourceUrl: z.string().url(), sourceAsOf: z.string().nullable() }),
@@ -6382,7 +6948,15 @@ ${evidenceText}`, { schema: completePictureInferenceSchema }); } catch { /* dete
         const board = await buildEquityOpportunityBoard(ctx);
         for (const boardRow of board.rows) reviewDueBySymbol.set(boardRow.symbol, boardRow.nextCheckAt);
       } catch { /* review-due is a display join; the inbox read stands without it */ }
-      return { generatedAt: new Date().toISOString(), total: allIds.length, unreadCount: unreadIds.length, notifications: rows.map((row) => ({ ...mapNotificationRow(row), reviewDue: reviewDueBySymbol.get(row.symbol) ?? null })) };
+      // Company-name join (display-only, stored rows only — this read never
+      // fetches): each notification shows the full company name beside its
+      // ticker when any stored terminal record knows it.
+      const nameBySymbol = new Map<string, string | null>();
+      try {
+        const resolved = await resolveStoredCompanyInfo(ctx, rows.map((row) => row.symbol));
+        for (const [symbol, profile] of resolved) nameBySymbol.set(symbol, profile.name);
+      } catch { /* the inbox read stands without names */ }
+      return { generatedAt: new Date().toISOString(), total: allIds.length, unreadCount: unreadIds.length, notifications: rows.map((row) => ({ ...mapNotificationRow(row), name: nameBySymbol.get(canonicalAssetSymbol(row.symbol)) ?? null, reviewDue: reviewDueBySymbol.get(row.symbol) ?? null })) };
     },
   }),
   // The ONLY writer of readAt. Called exclusively from the terminal UI's
@@ -6450,7 +7024,11 @@ ${evidenceText}`, { schema: completePictureInferenceSchema }); } catch { /* dete
       return {
         state: { halted: state?.halted ?? false, haltReason: state?.haltReason ?? null, haltedAt: state?.haltedAt?.toISOString() ?? null, leaseActive: !!(state?.leaseToken && state.leaseExpiresAt && state.leaseExpiresAt.getTime() > Date.now()), updatedAt: state?.updatedAt?.toISOString() ?? null },
         cohort: { cap: PAPER_ISSUANCE_COHORT_CAP, filled, pending, expiredUnfilled },
-        passes: recent.map((pass) => ({ id: pass.id, capturedDay: pass.capturedDay, batchRunId: pass.batchRunId, batchId: pass.batchId, reconcileOk: pass.reconcileOk, halted: pass.halted, haltReason: pass.haltReason, haltCleared: pass.haltCleared, created: parsePaperIssuanceList<z.infer<typeof paperIssuanceCreatedShape>>(pass.createdJson), skippedCapacity: parsePaperIssuanceList<z.infer<typeof paperIssuanceSkipShape>>(pass.skippedCapacityJson), skippedDuplicates: parsePaperIssuanceList<z.infer<typeof paperIssuanceSkipShape>>(pass.skippedDuplicatesJson), declined: parsePaperIssuanceList<z.infer<typeof paperIssuanceSkipShape>>(pass.declinedJson), cohortFilled: pass.cohortFilled, cohortPending: pass.cohortPending, createdAt: pass.createdAt.toISOString() })),
+        // Legacy passes (scanRunId null) stored the RUN id in batchRunId
+        // and the batch id in batchId; new passes store the batch id in
+        // both batch fields and the run id in scanRunId. The explicit
+        // scanRunId/scanBatchId pair is unambiguous for both generations.
+        passes: recent.map((pass) => ({ id: pass.id, capturedDay: pass.capturedDay, batchRunId: pass.batchRunId, batchId: pass.batchId, scanRunId: pass.scanRunId ?? pass.batchRunId, scanBatchId: pass.batchId, reconcileOk: pass.reconcileOk, halted: pass.halted, haltReason: pass.haltReason, haltCleared: pass.haltCleared, created: parsePaperIssuanceList<z.infer<typeof paperIssuanceCreatedShape>>(pass.createdJson), skippedCapacity: parsePaperIssuanceList<z.infer<typeof paperIssuanceSkipShape>>(pass.skippedCapacityJson), skippedDuplicates: parsePaperIssuanceList<z.infer<typeof paperIssuanceSkipShape>>(pass.skippedDuplicatesJson), declined: parsePaperIssuanceList<z.infer<typeof paperIssuanceSkipShape>>(pass.declinedJson), cohortFilled: pass.cohortFilled, cohortPending: pass.cohortPending, createdAt: pass.createdAt.toISOString() })),
       };
     },
   }),

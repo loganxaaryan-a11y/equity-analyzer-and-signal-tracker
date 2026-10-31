@@ -185,19 +185,34 @@ out = {"dossier": dossier, "crossStream": cross, "smartMoney": {"entries": entri
 print(json.dumps({"ok": True, "status": 200, "data": out, "creditsCost": None, "creditsRemaining": None, "error": None}, separators=(",", ":")))
 `;
 
-// OpenBB parser supplement (equity) — read-only reader for the single
-// collected bundle file. Returns the parsed JSON verbatim as data; all
-// projection happens in the action. Never writes, never reads app.db.
+// OpenBB parser supplement (equity) — read-only reader for the collected
+// bundle file plus the engine's equity snapshot header. Returns both parsed
+// JSON documents verbatim as data = {"bundle": ..., "snapshot": ...}; all
+// projection happens in the action. The snapshot is read independently: a
+// missing or unparseable snapshot yields snapshot=None and never fails the
+// bundle read, and a bundle failure still carries the snapshot so the
+// action can surface its freshness header. Never writes, never reads app.db.
 const PYTHON_OPENBB_EQUITY = String.raw`
 import json
 
-PATH = "/home/hatch/workspace/goals/research-terminal/paper-signals/pilot/marketdata/openbb/equity.json"
+BUNDLE_PATH = "/home/hatch/workspace/goals/research-terminal/paper-signals/pilot/marketdata/openbb/equity.json"
+SNAPSHOT_PATH = "/home/hatch/workspace/goals/research-terminal/paper-signals/pilot/snapshots/equity-snapshot.json"
+
+snapshot = None
 try:
-    with open(PATH, "r", encoding="utf-8") as fh:
+    with open(SNAPSHOT_PATH, "r", encoding="utf-8") as fh:
+        parsed_snapshot = json.load(fh)
+    if isinstance(parsed_snapshot, dict):
+        snapshot = parsed_snapshot
+except Exception:
+    snapshot = None
+
+try:
+    with open(BUNDLE_PATH, "r", encoding="utf-8") as fh:
         bundle = json.load(fh)
-    print(json.dumps({"ok": True, "status": 200, "data": bundle, "creditsCost": None, "creditsRemaining": None, "error": None}, separators=(",", ":")))
+    print(json.dumps({"ok": True, "status": 200, "data": {"bundle": bundle, "snapshot": snapshot}, "creditsCost": None, "creditsRemaining": None, "error": None}, separators=(",", ":")))
 except Exception as exc:
-    print(json.dumps({"ok": False, "status": None, "data": None, "creditsCost": None, "creditsRemaining": None, "error": type(exc).__name__ + ": " + str(exc)}, separators=(",", ":")))
+    print(json.dumps({"ok": False, "status": None, "data": {"bundle": None, "snapshot": snapshot}, "creditsCost": None, "creditsRemaining": None, "error": type(exc).__name__ + ": " + str(exc)}, separators=(",", ":")))
 `;
 
 function runOpenbbEquityFile() {

@@ -365,6 +365,27 @@
       "when": 1792613740090,
       "tag": "0052_add_equity_paper_issuance_activation",
       "breakpoints": true
+    },
+    {
+      "idx": 52,
+      "version": "6",
+      "when": 1792776155568,
+      "tag": "0053_add_company_profiles",
+      "breakpoints": true
+    },
+    {
+      "idx": 53,
+      "version": "6",
+      "when": 1792963261089,
+      "tag": "0054_scan_session_identity_three_times",
+      "breakpoints": true
+    },
+    {
+      "idx": 54,
+      "version": "6",
+      "when": 1793040515622,
+      "tag": "0055_add_scan_run_id_to_paper_issuance_passes",
+      "breakpoints": true
     }
   ]
 }
